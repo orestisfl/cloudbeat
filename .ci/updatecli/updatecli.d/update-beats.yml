@@ -65,7 +65,7 @@ targets:
     scmid: default
     kind: shell
     spec:
-      command: .ci/scripts/update-beats.sh
+      command: .ci/updatecli/scripts/update-beats.sh
       environments:
         - name: PATH
         - name: GOPATH
