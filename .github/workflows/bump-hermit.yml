@@ -1,0 +1,33 @@
+---
+name: Updatecli
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: "write"
+  pull-requests: "write"
+
+jobs:
+  updatecli:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@v2
+
+      - name: Run Updatecli in Dry Run mode
+        run: "updatecli diff --config .ci/updatecli/updatecli.d/update-hermit.yml --values .ci/updatecli/values.yml"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GIT_USER: foo
+          GIT_EMAIL: bar@elastic.co
+          JOB_URL: 1
+
+      - name: Run Updatecli in apply mode
+        run: "updatecli apply --config .ci/updatecli/updatecli.d/update-hermit.yml --values .ci/updatecli/values.yml"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GIT_USER: foo
+          GIT_EMAIL: bar@elastic.co
+          JOB_URL: 1
