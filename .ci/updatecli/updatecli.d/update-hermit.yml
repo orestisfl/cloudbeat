@@ -37,7 +37,7 @@ targets:
     scmid: default
     kind: shell
     spec:
-      command: .ci/scripts/update-hermit.sh
+      command: bin/hermit upgrade aws-iam-authenticator awscli elastic-package gcloud golangci-lint jq just mage opa pre-commit rain regal shellcheck shfmt yq
       environments:
         - name: PATH
         - name: HOME
