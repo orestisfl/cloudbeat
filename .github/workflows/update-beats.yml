@@ -13,17 +13,18 @@ env:
 
 jobs:
   bump:
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v4
-        with:
-          go-version-file: go.mod
-      - uses: elastic/apm-pipeline-library/.github/actions/updatecli@current
-        with:
-          vaultUrl: ${{ secrets.VAULT_ADDR }}
-          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
-          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
-          pipeline: ./.ci/updatecli/updatecli.d/update-beats.yml
-          values: ./.ci/updatecli/values.yml
-          notifyIfFailure: false
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@v2
+
+      - name: Init Hermit
+        run: ./bin/hermit env -r >> $GITHUB_ENV
+
+      - name: Run Updatecli in apply mode
+        run: "updatecli apply --debug --config .ci/updatecli/updatecli.d/update-beats.yml --values .ci/updatecli/values.yml"
+        env:
+          GITHUB_TOKEN: "${{ secrets.MY_GITHUB_TOKEN }}"
+          GIT_USER: foo
+          GIT_EMAIL: bar@elastic.co
