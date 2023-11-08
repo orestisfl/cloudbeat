@@ -1,0 +1,34 @@
+---
+name: Update Dependencies with Updatecli
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 13 * * 1'
+
+permissions:
+  contents: read
+
+env:
+  JOB_URL: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+jobs:
+  updatecli:
+    name: Update ${{ matrix.pipeline-name }} dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pipeline-name: [beats, golang, hermit]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Init Hermit
+        run: ./bin/hermit env -r >> $GITHUB_ENV
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@v2
+      - name: Run Updatecli in apply mode
+        run: "updatecli apply --debug --config .ci/updatecli/updatecli.d/update-${{ matrix.pipeline-name }}.yml --values .ci/updatecli/values.yml"
+        env:
+          GITHUB_TOKEN: "${{ secrets.MY_GITHUB_TOKEN }}"
+          GIT_USER: foo
+          GIT_EMAIL: bar@elastic.co
