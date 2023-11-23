@@ -22,6 +22,12 @@ repos:
     hooks:
       - id: add-trailing-comma
 
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: [ '--baseline', '.secrets.baseline']
+
   ## Golang hooks
   - repo: https://github.com/golangci/golangci-lint
     rev: v1.55.2
