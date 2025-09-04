@@ -27,7 +27,7 @@ import (
 	"time"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/management/status"
+	"github.com/elastic/beats/v7/x-pack/libbeat/management/status"
 	"github.com/elastic/elastic-agent-libs/config"
 	"github.com/elastic/go-ucfg"
 

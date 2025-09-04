@@ -159,7 +159,7 @@ func (f *ProcessesFetcher) Fetch(_ context.Context, cycleMetadata cycle.Metadata
 			continue
 		}
 
-		fetchedResource := f.fetchProcessData(stat, processConfig, p, cmd)
+		fetchedResource := f.fetchProcessData(stat, processConfig, p.PID, cmd)
 		f.resourceCh <- fetching.ResourceInfo{Resource: fetchedResource, CycleMetadata: cycleMetadata}
 	}
 
