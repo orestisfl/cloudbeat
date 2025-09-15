@@ -10,8 +10,6 @@ import (
 // IosHomeScreenFolder a folder containing pages of apps and web clips on the Home Screen.
 type IosHomeScreenFolder struct {
     IosHomeScreenItem
-    // Pages of Home Screen Layout Icons which must be applications or web clips. This collection can contain a maximum of 500 elements.
-    pages []IosHomeScreenFolderPageable
 }
 // NewIosHomeScreenFolder instantiates a new IosHomeScreenFolder and sets the default values.
 func NewIosHomeScreenFolder()(*IosHomeScreenFolder) {
@@ -52,7 +50,14 @@ func (m *IosHomeScreenFolder) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetPages gets the pages property value. Pages of Home Screen Layout Icons which must be applications or web clips. This collection can contain a maximum of 500 elements.
 // returns a []IosHomeScreenFolderPageable when successful
 func (m *IosHomeScreenFolder) GetPages()([]IosHomeScreenFolderPageable) {
-    return m.pages
+    val, err := m.GetBackingStore().Get("pages")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]IosHomeScreenFolderPageable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *IosHomeScreenFolder) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -76,7 +81,10 @@ func (m *IosHomeScreenFolder) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetPages sets the pages property value. Pages of Home Screen Layout Icons which must be applications or web clips. This collection can contain a maximum of 500 elements.
 func (m *IosHomeScreenFolder) SetPages(value []IosHomeScreenFolderPageable)() {
-    m.pages = value
+    err := m.GetBackingStore().Set("pages", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type IosHomeScreenFolderable interface {
     IosHomeScreenItemable

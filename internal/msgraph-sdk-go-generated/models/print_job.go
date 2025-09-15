@@ -10,28 +10,6 @@ import (
 
 type PrintJob struct {
     Entity
-    // The dateTimeOffset when the job was acknowledged. Read-only.
-    acknowledgedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The configuration property
-    configuration PrintJobConfigurationable
-    // The createdBy property
-    createdBy UserIdentityable
-    // The DateTimeOffset when the job was created. Read-only.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The documents property
-    documents []PrintDocumentable
-    // The error code of the print job. Read-only.
-    errorCode *int32
-    // If true, document can be fetched by printer.
-    isFetchable *bool
-    // Contains the source job URL, if the job has been redirected from another printer.
-    redirectedFrom *string
-    // Contains the destination job URL, if the job has been redirected to another printer.
-    redirectedTo *string
-    // The status property
-    status PrintJobStatusable
-    // A list of printTasks that were triggered by this print job.
-    tasks []PrintTaskable
 }
 // NewPrintJob instantiates a new PrintJob and sets the default values.
 func NewPrintJob()(*PrintJob) {
@@ -48,32 +26,74 @@ func CreatePrintJobFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
 // GetAcknowledgedDateTime gets the acknowledgedDateTime property value. The dateTimeOffset when the job was acknowledged. Read-only.
 // returns a *Time when successful
 func (m *PrintJob) GetAcknowledgedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.acknowledgedDateTime
+    val, err := m.GetBackingStore().Get("acknowledgedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetConfiguration gets the configuration property value. The configuration property
 // returns a PrintJobConfigurationable when successful
 func (m *PrintJob) GetConfiguration()(PrintJobConfigurationable) {
-    return m.configuration
+    val, err := m.GetBackingStore().Get("configuration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PrintJobConfigurationable)
+    }
+    return nil
 }
 // GetCreatedBy gets the createdBy property value. The createdBy property
 // returns a UserIdentityable when successful
 func (m *PrintJob) GetCreatedBy()(UserIdentityable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UserIdentityable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The DateTimeOffset when the job was created. Read-only.
 // returns a *Time when successful
 func (m *PrintJob) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDocuments gets the documents property value. The documents property
 // returns a []PrintDocumentable when successful
 func (m *PrintJob) GetDocuments()([]PrintDocumentable) {
-    return m.documents
+    val, err := m.GetBackingStore().Get("documents")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PrintDocumentable)
+    }
+    return nil
 }
 // GetErrorCode gets the errorCode property value. The error code of the print job. Read-only.
 // returns a *int32 when successful
 func (m *PrintJob) GetErrorCode()(*int32) {
-    return m.errorCode
+    val, err := m.GetBackingStore().Get("errorCode")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -206,27 +226,62 @@ func (m *PrintJob) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetIsFetchable gets the isFetchable property value. If true, document can be fetched by printer.
 // returns a *bool when successful
 func (m *PrintJob) GetIsFetchable()(*bool) {
-    return m.isFetchable
+    val, err := m.GetBackingStore().Get("isFetchable")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetRedirectedFrom gets the redirectedFrom property value. Contains the source job URL, if the job has been redirected from another printer.
 // returns a *string when successful
 func (m *PrintJob) GetRedirectedFrom()(*string) {
-    return m.redirectedFrom
+    val, err := m.GetBackingStore().Get("redirectedFrom")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRedirectedTo gets the redirectedTo property value. Contains the destination job URL, if the job has been redirected to another printer.
 // returns a *string when successful
 func (m *PrintJob) GetRedirectedTo()(*string) {
-    return m.redirectedTo
+    val, err := m.GetBackingStore().Get("redirectedTo")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status property
 // returns a PrintJobStatusable when successful
 func (m *PrintJob) GetStatus()(PrintJobStatusable) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PrintJobStatusable)
+    }
+    return nil
 }
 // GetTasks gets the tasks property value. A list of printTasks that were triggered by this print job.
 // returns a []PrintTaskable when successful
 func (m *PrintJob) GetTasks()([]PrintTaskable) {
-    return m.tasks
+    val, err := m.GetBackingStore().Get("tasks")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PrintTaskable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PrintJob) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -316,47 +371,80 @@ func (m *PrintJob) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetAcknowledgedDateTime sets the acknowledgedDateTime property value. The dateTimeOffset when the job was acknowledged. Read-only.
 func (m *PrintJob) SetAcknowledgedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.acknowledgedDateTime = value
+    err := m.GetBackingStore().Set("acknowledgedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetConfiguration sets the configuration property value. The configuration property
 func (m *PrintJob) SetConfiguration(value PrintJobConfigurationable)() {
-    m.configuration = value
+    err := m.GetBackingStore().Set("configuration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedBy sets the createdBy property value. The createdBy property
 func (m *PrintJob) SetCreatedBy(value UserIdentityable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The DateTimeOffset when the job was created. Read-only.
 func (m *PrintJob) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDocuments sets the documents property value. The documents property
 func (m *PrintJob) SetDocuments(value []PrintDocumentable)() {
-    m.documents = value
+    err := m.GetBackingStore().Set("documents", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetErrorCode sets the errorCode property value. The error code of the print job. Read-only.
 func (m *PrintJob) SetErrorCode(value *int32)() {
-    m.errorCode = value
+    err := m.GetBackingStore().Set("errorCode", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsFetchable sets the isFetchable property value. If true, document can be fetched by printer.
 func (m *PrintJob) SetIsFetchable(value *bool)() {
-    m.isFetchable = value
+    err := m.GetBackingStore().Set("isFetchable", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRedirectedFrom sets the redirectedFrom property value. Contains the source job URL, if the job has been redirected from another printer.
 func (m *PrintJob) SetRedirectedFrom(value *string)() {
-    m.redirectedFrom = value
+    err := m.GetBackingStore().Set("redirectedFrom", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRedirectedTo sets the redirectedTo property value. Contains the destination job URL, if the job has been redirected to another printer.
 func (m *PrintJob) SetRedirectedTo(value *string)() {
-    m.redirectedTo = value
+    err := m.GetBackingStore().Set("redirectedTo", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status property
 func (m *PrintJob) SetStatus(value PrintJobStatusable)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTasks sets the tasks property value. A list of printTasks that were triggered by this print job.
 func (m *PrintJob) SetTasks(value []PrintTaskable)() {
-    m.tasks = value
+    err := m.GetBackingStore().Set("tasks", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PrintJobable interface {
     Entityable

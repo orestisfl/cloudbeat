@@ -10,8 +10,6 @@ import (
 // WindowsAppXAppAssignmentSettings contains properties used when assigning a Windows AppX mobile app to a group.
 type WindowsAppXAppAssignmentSettings struct {
     MobileAppAssignmentSettings
-    // When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
-    useDeviceContext *bool
 }
 // NewWindowsAppXAppAssignmentSettings instantiates a new WindowsAppXAppAssignmentSettings and sets the default values.
 func NewWindowsAppXAppAssignmentSettings()(*WindowsAppXAppAssignmentSettings) {
@@ -46,7 +44,14 @@ func (m *WindowsAppXAppAssignmentSettings) GetFieldDeserializers()(map[string]fu
 // GetUseDeviceContext gets the useDeviceContext property value. When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
 // returns a *bool when successful
 func (m *WindowsAppXAppAssignmentSettings) GetUseDeviceContext()(*bool) {
-    return m.useDeviceContext
+    val, err := m.GetBackingStore().Get("useDeviceContext")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WindowsAppXAppAssignmentSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *WindowsAppXAppAssignmentSettings) Serialize(writer i878a80d2330e89d2689
 }
 // SetUseDeviceContext sets the useDeviceContext property value. When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
 func (m *WindowsAppXAppAssignmentSettings) SetUseDeviceContext(value *bool)() {
-    m.useDeviceContext = value
+    err := m.GetBackingStore().Set("useDeviceContext", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WindowsAppXAppAssignmentSettingsable interface {
     MobileAppAssignmentSettingsable

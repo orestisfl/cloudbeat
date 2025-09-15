@@ -9,12 +9,6 @@ import (
 
 type ContainerImageEvidence struct {
     AlertEvidence
-    // The digest image entity, in case this is a tag image.
-    digestImage ContainerImageEvidenceable
-    // The unique identifier for the container image entity.
-    imageId *string
-    // The container registry for this image.
-    registry ContainerRegistryEvidenceable
 }
 // NewContainerImageEvidence instantiates a new ContainerImageEvidence and sets the default values.
 func NewContainerImageEvidence()(*ContainerImageEvidence) {
@@ -33,7 +27,14 @@ func CreateContainerImageEvidenceFromDiscriminatorValue(parseNode i878a80d2330e8
 // GetDigestImage gets the digestImage property value. The digest image entity, in case this is a tag image.
 // returns a ContainerImageEvidenceable when successful
 func (m *ContainerImageEvidence) GetDigestImage()(ContainerImageEvidenceable) {
-    return m.digestImage
+    val, err := m.GetBackingStore().Get("digestImage")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ContainerImageEvidenceable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -74,12 +75,26 @@ func (m *ContainerImageEvidence) GetFieldDeserializers()(map[string]func(i878a80
 // GetImageId gets the imageId property value. The unique identifier for the container image entity.
 // returns a *string when successful
 func (m *ContainerImageEvidence) GetImageId()(*string) {
-    return m.imageId
+    val, err := m.GetBackingStore().Get("imageId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRegistry gets the registry property value. The container registry for this image.
 // returns a ContainerRegistryEvidenceable when successful
 func (m *ContainerImageEvidence) GetRegistry()(ContainerRegistryEvidenceable) {
-    return m.registry
+    val, err := m.GetBackingStore().Get("registry")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ContainerRegistryEvidenceable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ContainerImageEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *ContainerImageEvidence) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetDigestImage sets the digestImage property value. The digest image entity, in case this is a tag image.
 func (m *ContainerImageEvidence) SetDigestImage(value ContainerImageEvidenceable)() {
-    m.digestImage = value
+    err := m.GetBackingStore().Set("digestImage", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetImageId sets the imageId property value. The unique identifier for the container image entity.
 func (m *ContainerImageEvidence) SetImageId(value *string)() {
-    m.imageId = value
+    err := m.GetBackingStore().Set("imageId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistry sets the registry property value. The container registry for this image.
 func (m *ContainerImageEvidence) SetRegistry(value ContainerRegistryEvidenceable)() {
-    m.registry = value
+    err := m.GetBackingStore().Set("registry", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ContainerImageEvidenceable interface {
     AlertEvidenceable

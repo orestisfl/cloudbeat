@@ -10,8 +10,6 @@ import (
 
 type SiteSource struct {
     DataSource
-    // The site property
-    site i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Siteable
 }
 // NewSiteSource instantiates a new SiteSource and sets the default values.
 func NewSiteSource()(*SiteSource) {
@@ -46,7 +44,14 @@ func (m *SiteSource) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetSite gets the site property value. The site property
 // returns a Siteable when successful
 func (m *SiteSource) GetSite()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Siteable) {
-    return m.site
+    val, err := m.GetBackingStore().Get("site")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Siteable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SiteSource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *SiteSource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetSite sets the site property value. The site property
 func (m *SiteSource) SetSite(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Siteable)() {
-    m.site = value
+    err := m.GetBackingStore().Set("site", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SiteSourceable interface {
     DataSourceable

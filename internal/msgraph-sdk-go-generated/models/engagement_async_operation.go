@@ -10,10 +10,6 @@ import (
 // EngagementAsyncOperation represents the status of a Viva Engage async operation that is an operation that transcends thelifetime of a single API request. These operations are long-running or too expensive to completewithin the time frame of their original request.
 type EngagementAsyncOperation struct {
     LongRunningOperation
-    // The type of the long-running operation. The possible values are: createCommunity, unknownFutureValue.
-    operationType *EngagementAsyncOperationType
-    // The ID of the object created or modified as a result of this async operation.
-    resourceId *string
 }
 // NewEngagementAsyncOperation instantiates a new EngagementAsyncOperation and sets the default values.
 func NewEngagementAsyncOperation()(*EngagementAsyncOperation) {
@@ -56,12 +52,26 @@ func (m *EngagementAsyncOperation) GetFieldDeserializers()(map[string]func(i878a
 // GetOperationType gets the operationType property value. The type of the long-running operation. The possible values are: createCommunity, unknownFutureValue.
 // returns a *EngagementAsyncOperationType when successful
 func (m *EngagementAsyncOperation) GetOperationType()(*EngagementAsyncOperationType) {
-    return m.operationType
+    val, err := m.GetBackingStore().Get("operationType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EngagementAsyncOperationType)
+    }
+    return nil
 }
 // GetResourceId gets the resourceId property value. The ID of the object created or modified as a result of this async operation.
 // returns a *string when successful
 func (m *EngagementAsyncOperation) GetResourceId()(*string) {
-    return m.resourceId
+    val, err := m.GetBackingStore().Get("resourceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EngagementAsyncOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *EngagementAsyncOperation) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetOperationType sets the operationType property value. The type of the long-running operation. The possible values are: createCommunity, unknownFutureValue.
 func (m *EngagementAsyncOperation) SetOperationType(value *EngagementAsyncOperationType)() {
-    m.operationType = value
+    err := m.GetBackingStore().Set("operationType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceId sets the resourceId property value. The ID of the object created or modified as a result of this async operation.
 func (m *EngagementAsyncOperation) SetResourceId(value *string)() {
-    m.resourceId = value
+    err := m.GetBackingStore().Set("resourceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EngagementAsyncOperationable interface {
     LongRunningOperationable

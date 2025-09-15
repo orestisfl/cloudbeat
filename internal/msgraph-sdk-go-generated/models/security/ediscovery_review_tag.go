@@ -9,12 +9,6 @@ import (
 
 type EdiscoveryReviewTag struct {
     Tag
-    // Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
-    childSelectability *ChildSelectability
-    // Returns the tags that are a child of a tag.
-    childTags []EdiscoveryReviewTagable
-    // Returns the parent tag of the specified tag.
-    parent EdiscoveryReviewTagable
 }
 // NewEdiscoveryReviewTag instantiates a new EdiscoveryReviewTag and sets the default values.
 func NewEdiscoveryReviewTag()(*EdiscoveryReviewTag) {
@@ -33,12 +27,26 @@ func CreateEdiscoveryReviewTagFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetChildSelectability gets the childSelectability property value. Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
 // returns a *ChildSelectability when successful
 func (m *EdiscoveryReviewTag) GetChildSelectability()(*ChildSelectability) {
-    return m.childSelectability
+    val, err := m.GetBackingStore().Get("childSelectability")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ChildSelectability)
+    }
+    return nil
 }
 // GetChildTags gets the childTags property value. Returns the tags that are a child of a tag.
 // returns a []EdiscoveryReviewTagable when successful
 func (m *EdiscoveryReviewTag) GetChildTags()([]EdiscoveryReviewTagable) {
-    return m.childTags
+    val, err := m.GetBackingStore().Get("childTags")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]EdiscoveryReviewTagable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -85,7 +93,14 @@ func (m *EdiscoveryReviewTag) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetParent gets the parent property value. Returns the parent tag of the specified tag.
 // returns a EdiscoveryReviewTagable when successful
 func (m *EdiscoveryReviewTag) GetParent()(EdiscoveryReviewTagable) {
-    return m.parent
+    val, err := m.GetBackingStore().Get("parent")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EdiscoveryReviewTagable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EdiscoveryReviewTag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -122,15 +137,24 @@ func (m *EdiscoveryReviewTag) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetChildSelectability sets the childSelectability property value. Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
 func (m *EdiscoveryReviewTag) SetChildSelectability(value *ChildSelectability)() {
-    m.childSelectability = value
+    err := m.GetBackingStore().Set("childSelectability", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetChildTags sets the childTags property value. Returns the tags that are a child of a tag.
 func (m *EdiscoveryReviewTag) SetChildTags(value []EdiscoveryReviewTagable)() {
-    m.childTags = value
+    err := m.GetBackingStore().Set("childTags", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParent sets the parent property value. Returns the parent tag of the specified tag.
 func (m *EdiscoveryReviewTag) SetParent(value EdiscoveryReviewTagable)() {
-    m.parent = value
+    err := m.GetBackingStore().Set("parent", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EdiscoveryReviewTagable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -9,14 +9,6 @@ import (
 
 type IpAddress struct {
     Host
-    // The details about the autonomous system to which this IP address belongs.
-    autonomousSystem AutonomousSystemable
-    // The country/region for this IP address.
-    countryOrRegion *string
-    // The hosting company listed for this host.
-    hostingProvider *string
-    // The block of IP addresses this IP address belongs to.
-    netblock *string
 }
 // NewIpAddress instantiates a new IpAddress and sets the default values.
 func NewIpAddress()(*IpAddress) {
@@ -35,12 +27,26 @@ func CreateIpAddressFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetAutonomousSystem gets the autonomousSystem property value. The details about the autonomous system to which this IP address belongs.
 // returns a AutonomousSystemable when successful
 func (m *IpAddress) GetAutonomousSystem()(AutonomousSystemable) {
-    return m.autonomousSystem
+    val, err := m.GetBackingStore().Get("autonomousSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AutonomousSystemable)
+    }
+    return nil
 }
 // GetCountryOrRegion gets the countryOrRegion property value. The country/region for this IP address.
 // returns a *string when successful
 func (m *IpAddress) GetCountryOrRegion()(*string) {
-    return m.countryOrRegion
+    val, err := m.GetBackingStore().Get("countryOrRegion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -91,12 +97,26 @@ func (m *IpAddress) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetHostingProvider gets the hostingProvider property value. The hosting company listed for this host.
 // returns a *string when successful
 func (m *IpAddress) GetHostingProvider()(*string) {
-    return m.hostingProvider
+    val, err := m.GetBackingStore().Get("hostingProvider")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetNetblock gets the netblock property value. The block of IP addresses this IP address belongs to.
 // returns a *string when successful
 func (m *IpAddress) GetNetblock()(*string) {
-    return m.netblock
+    val, err := m.GetBackingStore().Get("netblock")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *IpAddress) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *IpAddress) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetAutonomousSystem sets the autonomousSystem property value. The details about the autonomous system to which this IP address belongs.
 func (m *IpAddress) SetAutonomousSystem(value AutonomousSystemable)() {
-    m.autonomousSystem = value
+    err := m.GetBackingStore().Set("autonomousSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCountryOrRegion sets the countryOrRegion property value. The country/region for this IP address.
 func (m *IpAddress) SetCountryOrRegion(value *string)() {
-    m.countryOrRegion = value
+    err := m.GetBackingStore().Set("countryOrRegion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetHostingProvider sets the hostingProvider property value. The hosting company listed for this host.
 func (m *IpAddress) SetHostingProvider(value *string)() {
-    m.hostingProvider = value
+    err := m.GetBackingStore().Set("hostingProvider", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNetblock sets the netblock property value. The block of IP addresses this IP address belongs to.
 func (m *IpAddress) SetNetblock(value *string)() {
-    m.netblock = value
+    err := m.GetBackingStore().Set("netblock", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type IpAddressable interface {
     Hostable

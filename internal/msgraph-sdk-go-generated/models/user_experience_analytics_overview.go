@@ -10,8 +10,6 @@ import (
 // UserExperienceAnalyticsOverview the user experience analytics overview entity contains the overall score and the scores and insights of every metric of all categories.
 type UserExperienceAnalyticsOverview struct {
     Entity
-    // The user experience analytics insights. Read-only.
-    insights []UserExperienceAnalyticsInsightable
 }
 // NewUserExperienceAnalyticsOverview instantiates a new UserExperienceAnalyticsOverview and sets the default values.
 func NewUserExperienceAnalyticsOverview()(*UserExperienceAnalyticsOverview) {
@@ -50,7 +48,14 @@ func (m *UserExperienceAnalyticsOverview) GetFieldDeserializers()(map[string]fun
 // GetInsights gets the insights property value. The user experience analytics insights. Read-only.
 // returns a []UserExperienceAnalyticsInsightable when successful
 func (m *UserExperienceAnalyticsOverview) GetInsights()([]UserExperienceAnalyticsInsightable) {
-    return m.insights
+    val, err := m.GetBackingStore().Get("insights")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UserExperienceAnalyticsInsightable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserExperienceAnalyticsOverview) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -74,7 +79,10 @@ func (m *UserExperienceAnalyticsOverview) Serialize(writer i878a80d2330e89d26896
 }
 // SetInsights sets the insights property value. The user experience analytics insights. Read-only.
 func (m *UserExperienceAnalyticsOverview) SetInsights(value []UserExperienceAnalyticsInsightable)() {
-    m.insights = value
+    err := m.GetBackingStore().Set("insights", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserExperienceAnalyticsOverviewable interface {
     Entityable

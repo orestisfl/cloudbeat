@@ -10,8 +10,6 @@ import (
 // ConfigurationManagerCollectionAssignmentTarget represents an assignment to a Configuration Manager Collection.
 type ConfigurationManagerCollectionAssignmentTarget struct {
     DeviceAndAppManagementAssignmentTarget
-    // The collection Id that is the target of the assignment.
-    collectionId *string
 }
 // NewConfigurationManagerCollectionAssignmentTarget instantiates a new ConfigurationManagerCollectionAssignmentTarget and sets the default values.
 func NewConfigurationManagerCollectionAssignmentTarget()(*ConfigurationManagerCollectionAssignmentTarget) {
@@ -30,7 +28,14 @@ func CreateConfigurationManagerCollectionAssignmentTargetFromDiscriminatorValue(
 // GetCollectionId gets the collectionId property value. The collection Id that is the target of the assignment.
 // returns a *string when successful
 func (m *ConfigurationManagerCollectionAssignmentTarget) GetCollectionId()(*string) {
-    return m.collectionId
+    val, err := m.GetBackingStore().Get("collectionId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *ConfigurationManagerCollectionAssignmentTarget) Serialize(writer i878a8
 }
 // SetCollectionId sets the collectionId property value. The collection Id that is the target of the assignment.
 func (m *ConfigurationManagerCollectionAssignmentTarget) SetCollectionId(value *string)() {
-    m.collectionId = value
+    err := m.GetBackingStore().Set("collectionId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ConfigurationManagerCollectionAssignmentTargetable interface {
     DeviceAndAppManagementAssignmentTargetable

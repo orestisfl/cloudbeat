@@ -10,8 +10,6 @@ import (
 
 type TriggersRoot struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The retentionEvents property
-    retentionEvents []RetentionEventable
 }
 // NewTriggersRoot instantiates a new TriggersRoot and sets the default values.
 func NewTriggersRoot()(*TriggersRoot) {
@@ -50,7 +48,14 @@ func (m *TriggersRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetRetentionEvents gets the retentionEvents property value. The retentionEvents property
 // returns a []RetentionEventable when successful
 func (m *TriggersRoot) GetRetentionEvents()([]RetentionEventable) {
-    return m.retentionEvents
+    val, err := m.GetBackingStore().Get("retentionEvents")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]RetentionEventable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TriggersRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -74,7 +79,10 @@ func (m *TriggersRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetRetentionEvents sets the retentionEvents property value. The retentionEvents property
 func (m *TriggersRoot) SetRetentionEvents(value []RetentionEventable)() {
-    m.retentionEvents = value
+    err := m.GetBackingStore().Set("retentionEvents", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TriggersRootable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

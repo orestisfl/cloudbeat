@@ -9,8 +9,6 @@ import (
 
 type PlannerBucketTaskBoardTaskFormat struct {
     Entity
-    // Hint used to order tasks in the bucket view of the task board. For details about the supported format, see Using order hints in Planner.
-    orderHint *string
 }
 // NewPlannerBucketTaskBoardTaskFormat instantiates a new PlannerBucketTaskBoardTaskFormat and sets the default values.
 func NewPlannerBucketTaskBoardTaskFormat()(*PlannerBucketTaskBoardTaskFormat) {
@@ -43,7 +41,14 @@ func (m *PlannerBucketTaskBoardTaskFormat) GetFieldDeserializers()(map[string]fu
 // GetOrderHint gets the orderHint property value. Hint used to order tasks in the bucket view of the task board. For details about the supported format, see Using order hints in Planner.
 // returns a *string when successful
 func (m *PlannerBucketTaskBoardTaskFormat) GetOrderHint()(*string) {
-    return m.orderHint
+    val, err := m.GetBackingStore().Get("orderHint")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PlannerBucketTaskBoardTaskFormat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *PlannerBucketTaskBoardTaskFormat) Serialize(writer i878a80d2330e89d2689
 }
 // SetOrderHint sets the orderHint property value. Hint used to order tasks in the bucket view of the task board. For details about the supported format, see Using order hints in Planner.
 func (m *PlannerBucketTaskBoardTaskFormat) SetOrderHint(value *string)() {
-    m.orderHint = value
+    err := m.GetBackingStore().Set("orderHint", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PlannerBucketTaskBoardTaskFormatable interface {
     Entityable

@@ -9,16 +9,6 @@ import (
 
 type NetworkConnectionEvidence struct {
     AlertEvidence
-    // The destinationAddress property
-    destinationAddress IpEvidenceable
-    // The destinationPort property
-    destinationPort *int32
-    // The protocol property
-    protocol *ProtocolType
-    // The sourceAddress property
-    sourceAddress IpEvidenceable
-    // The sourcePort property
-    sourcePort *int32
 }
 // NewNetworkConnectionEvidence instantiates a new NetworkConnectionEvidence and sets the default values.
 func NewNetworkConnectionEvidence()(*NetworkConnectionEvidence) {
@@ -37,12 +27,26 @@ func CreateNetworkConnectionEvidenceFromDiscriminatorValue(parseNode i878a80d233
 // GetDestinationAddress gets the destinationAddress property value. The destinationAddress property
 // returns a IpEvidenceable when successful
 func (m *NetworkConnectionEvidence) GetDestinationAddress()(IpEvidenceable) {
-    return m.destinationAddress
+    val, err := m.GetBackingStore().Get("destinationAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IpEvidenceable)
+    }
+    return nil
 }
 // GetDestinationPort gets the destinationPort property value. The destinationPort property
 // returns a *int32 when successful
 func (m *NetworkConnectionEvidence) GetDestinationPort()(*int32) {
-    return m.destinationPort
+    val, err := m.GetBackingStore().Get("destinationPort")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -103,17 +107,38 @@ func (m *NetworkConnectionEvidence) GetFieldDeserializers()(map[string]func(i878
 // GetProtocol gets the protocol property value. The protocol property
 // returns a *ProtocolType when successful
 func (m *NetworkConnectionEvidence) GetProtocol()(*ProtocolType) {
-    return m.protocol
+    val, err := m.GetBackingStore().Get("protocol")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ProtocolType)
+    }
+    return nil
 }
 // GetSourceAddress gets the sourceAddress property value. The sourceAddress property
 // returns a IpEvidenceable when successful
 func (m *NetworkConnectionEvidence) GetSourceAddress()(IpEvidenceable) {
-    return m.sourceAddress
+    val, err := m.GetBackingStore().Get("sourceAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IpEvidenceable)
+    }
+    return nil
 }
 // GetSourcePort gets the sourcePort property value. The sourcePort property
 // returns a *int32 when successful
 func (m *NetworkConnectionEvidence) GetSourcePort()(*int32) {
-    return m.sourcePort
+    val, err := m.GetBackingStore().Get("sourcePort")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *NetworkConnectionEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -156,23 +181,38 @@ func (m *NetworkConnectionEvidence) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetDestinationAddress sets the destinationAddress property value. The destinationAddress property
 func (m *NetworkConnectionEvidence) SetDestinationAddress(value IpEvidenceable)() {
-    m.destinationAddress = value
+    err := m.GetBackingStore().Set("destinationAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDestinationPort sets the destinationPort property value. The destinationPort property
 func (m *NetworkConnectionEvidence) SetDestinationPort(value *int32)() {
-    m.destinationPort = value
+    err := m.GetBackingStore().Set("destinationPort", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProtocol sets the protocol property value. The protocol property
 func (m *NetworkConnectionEvidence) SetProtocol(value *ProtocolType)() {
-    m.protocol = value
+    err := m.GetBackingStore().Set("protocol", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceAddress sets the sourceAddress property value. The sourceAddress property
 func (m *NetworkConnectionEvidence) SetSourceAddress(value IpEvidenceable)() {
-    m.sourceAddress = value
+    err := m.GetBackingStore().Set("sourceAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourcePort sets the sourcePort property value. The sourcePort property
 func (m *NetworkConnectionEvidence) SetSourcePort(value *int32)() {
-    m.sourcePort = value
+    err := m.GetBackingStore().Set("sourcePort", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type NetworkConnectionEvidenceable interface {
     AlertEvidenceable

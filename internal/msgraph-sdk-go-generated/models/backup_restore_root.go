@@ -9,48 +9,6 @@ import (
 
 type BackupRestoreRoot struct {
     Entity
-    // The list of drive inclusion rules applied to the tenant.
-    driveInclusionRules []DriveProtectionRuleable
-    // The list of drive protection units in the tenant.
-    driveProtectionUnits []DriveProtectionUnitable
-    // The driveProtectionUnitsBulkAdditionJobs property
-    driveProtectionUnitsBulkAdditionJobs []DriveProtectionUnitsBulkAdditionJobable
-    // The list of Exchange protection policies in the tenant.
-    exchangeProtectionPolicies []ExchangeProtectionPolicyable
-    // The list of Exchange restore sessions available in the tenant.
-    exchangeRestoreSessions []ExchangeRestoreSessionable
-    // The list of mailbox inclusion rules applied to the tenant.
-    mailboxInclusionRules []MailboxProtectionRuleable
-    // The list of mailbox protection units in the tenant.
-    mailboxProtectionUnits []MailboxProtectionUnitable
-    // The mailboxProtectionUnitsBulkAdditionJobs property
-    mailboxProtectionUnitsBulkAdditionJobs []MailboxProtectionUnitsBulkAdditionJobable
-    // The list of OneDrive for Business protection policies in the tenant.
-    oneDriveForBusinessProtectionPolicies []OneDriveForBusinessProtectionPolicyable
-    // The list of OneDrive for Business restore sessions available in the tenant.
-    oneDriveForBusinessRestoreSessions []OneDriveForBusinessRestoreSessionable
-    // List of protection policies in the tenant.
-    protectionPolicies []ProtectionPolicyBaseable
-    // List of protection units in the tenant.
-    protectionUnits []ProtectionUnitBaseable
-    // List of restore points in the tenant.
-    restorePoints []RestorePointable
-    // List of restore sessions in the tenant.
-    restoreSessions []RestoreSessionBaseable
-    // List of Backup Storage apps in the tenant.
-    serviceApps []ServiceAppable
-    // Represents the tenant-level status of the Backup Storage service.
-    serviceStatus ServiceStatusable
-    // The list of SharePoint protection policies in the tenant.
-    sharePointProtectionPolicies []SharePointProtectionPolicyable
-    // The list of SharePoint restore sessions available in the tenant.
-    sharePointRestoreSessions []SharePointRestoreSessionable
-    // The list of site inclusion rules applied to the tenant.
-    siteInclusionRules []SiteProtectionRuleable
-    // The list of site protection units in the tenant.
-    siteProtectionUnits []SiteProtectionUnitable
-    // The siteProtectionUnitsBulkAdditionJobs property
-    siteProtectionUnitsBulkAdditionJobs []SiteProtectionUnitsBulkAdditionJobable
 }
 // NewBackupRestoreRoot instantiates a new BackupRestoreRoot and sets the default values.
 func NewBackupRestoreRoot()(*BackupRestoreRoot) {
@@ -67,27 +25,62 @@ func CreateBackupRestoreRootFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetDriveInclusionRules gets the driveInclusionRules property value. The list of drive inclusion rules applied to the tenant.
 // returns a []DriveProtectionRuleable when successful
 func (m *BackupRestoreRoot) GetDriveInclusionRules()([]DriveProtectionRuleable) {
-    return m.driveInclusionRules
+    val, err := m.GetBackingStore().Get("driveInclusionRules")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveProtectionRuleable)
+    }
+    return nil
 }
 // GetDriveProtectionUnits gets the driveProtectionUnits property value. The list of drive protection units in the tenant.
 // returns a []DriveProtectionUnitable when successful
 func (m *BackupRestoreRoot) GetDriveProtectionUnits()([]DriveProtectionUnitable) {
-    return m.driveProtectionUnits
+    val, err := m.GetBackingStore().Get("driveProtectionUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveProtectionUnitable)
+    }
+    return nil
 }
 // GetDriveProtectionUnitsBulkAdditionJobs gets the driveProtectionUnitsBulkAdditionJobs property value. The driveProtectionUnitsBulkAdditionJobs property
 // returns a []DriveProtectionUnitsBulkAdditionJobable when successful
 func (m *BackupRestoreRoot) GetDriveProtectionUnitsBulkAdditionJobs()([]DriveProtectionUnitsBulkAdditionJobable) {
-    return m.driveProtectionUnitsBulkAdditionJobs
+    val, err := m.GetBackingStore().Get("driveProtectionUnitsBulkAdditionJobs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveProtectionUnitsBulkAdditionJobable)
+    }
+    return nil
 }
 // GetExchangeProtectionPolicies gets the exchangeProtectionPolicies property value. The list of Exchange protection policies in the tenant.
 // returns a []ExchangeProtectionPolicyable when successful
 func (m *BackupRestoreRoot) GetExchangeProtectionPolicies()([]ExchangeProtectionPolicyable) {
-    return m.exchangeProtectionPolicies
+    val, err := m.GetBackingStore().Get("exchangeProtectionPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ExchangeProtectionPolicyable)
+    }
+    return nil
 }
 // GetExchangeRestoreSessions gets the exchangeRestoreSessions property value. The list of Exchange restore sessions available in the tenant.
 // returns a []ExchangeRestoreSessionable when successful
 func (m *BackupRestoreRoot) GetExchangeRestoreSessions()([]ExchangeRestoreSessionable) {
-    return m.exchangeRestoreSessions
+    val, err := m.GetBackingStore().Get("exchangeRestoreSessions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ExchangeRestoreSessionable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -428,82 +421,194 @@ func (m *BackupRestoreRoot) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetMailboxInclusionRules gets the mailboxInclusionRules property value. The list of mailbox inclusion rules applied to the tenant.
 // returns a []MailboxProtectionRuleable when successful
 func (m *BackupRestoreRoot) GetMailboxInclusionRules()([]MailboxProtectionRuleable) {
-    return m.mailboxInclusionRules
+    val, err := m.GetBackingStore().Get("mailboxInclusionRules")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxProtectionRuleable)
+    }
+    return nil
 }
 // GetMailboxProtectionUnits gets the mailboxProtectionUnits property value. The list of mailbox protection units in the tenant.
 // returns a []MailboxProtectionUnitable when successful
 func (m *BackupRestoreRoot) GetMailboxProtectionUnits()([]MailboxProtectionUnitable) {
-    return m.mailboxProtectionUnits
+    val, err := m.GetBackingStore().Get("mailboxProtectionUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxProtectionUnitable)
+    }
+    return nil
 }
 // GetMailboxProtectionUnitsBulkAdditionJobs gets the mailboxProtectionUnitsBulkAdditionJobs property value. The mailboxProtectionUnitsBulkAdditionJobs property
 // returns a []MailboxProtectionUnitsBulkAdditionJobable when successful
 func (m *BackupRestoreRoot) GetMailboxProtectionUnitsBulkAdditionJobs()([]MailboxProtectionUnitsBulkAdditionJobable) {
-    return m.mailboxProtectionUnitsBulkAdditionJobs
+    val, err := m.GetBackingStore().Get("mailboxProtectionUnitsBulkAdditionJobs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxProtectionUnitsBulkAdditionJobable)
+    }
+    return nil
 }
 // GetOneDriveForBusinessProtectionPolicies gets the oneDriveForBusinessProtectionPolicies property value. The list of OneDrive for Business protection policies in the tenant.
 // returns a []OneDriveForBusinessProtectionPolicyable when successful
 func (m *BackupRestoreRoot) GetOneDriveForBusinessProtectionPolicies()([]OneDriveForBusinessProtectionPolicyable) {
-    return m.oneDriveForBusinessProtectionPolicies
+    val, err := m.GetBackingStore().Get("oneDriveForBusinessProtectionPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]OneDriveForBusinessProtectionPolicyable)
+    }
+    return nil
 }
 // GetOneDriveForBusinessRestoreSessions gets the oneDriveForBusinessRestoreSessions property value. The list of OneDrive for Business restore sessions available in the tenant.
 // returns a []OneDriveForBusinessRestoreSessionable when successful
 func (m *BackupRestoreRoot) GetOneDriveForBusinessRestoreSessions()([]OneDriveForBusinessRestoreSessionable) {
-    return m.oneDriveForBusinessRestoreSessions
+    val, err := m.GetBackingStore().Get("oneDriveForBusinessRestoreSessions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]OneDriveForBusinessRestoreSessionable)
+    }
+    return nil
 }
 // GetProtectionPolicies gets the protectionPolicies property value. List of protection policies in the tenant.
 // returns a []ProtectionPolicyBaseable when successful
 func (m *BackupRestoreRoot) GetProtectionPolicies()([]ProtectionPolicyBaseable) {
-    return m.protectionPolicies
+    val, err := m.GetBackingStore().Get("protectionPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ProtectionPolicyBaseable)
+    }
+    return nil
 }
 // GetProtectionUnits gets the protectionUnits property value. List of protection units in the tenant.
 // returns a []ProtectionUnitBaseable when successful
 func (m *BackupRestoreRoot) GetProtectionUnits()([]ProtectionUnitBaseable) {
-    return m.protectionUnits
+    val, err := m.GetBackingStore().Get("protectionUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ProtectionUnitBaseable)
+    }
+    return nil
 }
 // GetRestorePoints gets the restorePoints property value. List of restore points in the tenant.
 // returns a []RestorePointable when successful
 func (m *BackupRestoreRoot) GetRestorePoints()([]RestorePointable) {
-    return m.restorePoints
+    val, err := m.GetBackingStore().Get("restorePoints")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]RestorePointable)
+    }
+    return nil
 }
 // GetRestoreSessions gets the restoreSessions property value. List of restore sessions in the tenant.
 // returns a []RestoreSessionBaseable when successful
 func (m *BackupRestoreRoot) GetRestoreSessions()([]RestoreSessionBaseable) {
-    return m.restoreSessions
+    val, err := m.GetBackingStore().Get("restoreSessions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]RestoreSessionBaseable)
+    }
+    return nil
 }
 // GetServiceApps gets the serviceApps property value. List of Backup Storage apps in the tenant.
 // returns a []ServiceAppable when successful
 func (m *BackupRestoreRoot) GetServiceApps()([]ServiceAppable) {
-    return m.serviceApps
+    val, err := m.GetBackingStore().Get("serviceApps")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ServiceAppable)
+    }
+    return nil
 }
 // GetServiceStatus gets the serviceStatus property value. Represents the tenant-level status of the Backup Storage service.
 // returns a ServiceStatusable when successful
 func (m *BackupRestoreRoot) GetServiceStatus()(ServiceStatusable) {
-    return m.serviceStatus
+    val, err := m.GetBackingStore().Get("serviceStatus")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ServiceStatusable)
+    }
+    return nil
 }
 // GetSharePointProtectionPolicies gets the sharePointProtectionPolicies property value. The list of SharePoint protection policies in the tenant.
 // returns a []SharePointProtectionPolicyable when successful
 func (m *BackupRestoreRoot) GetSharePointProtectionPolicies()([]SharePointProtectionPolicyable) {
-    return m.sharePointProtectionPolicies
+    val, err := m.GetBackingStore().Get("sharePointProtectionPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SharePointProtectionPolicyable)
+    }
+    return nil
 }
 // GetSharePointRestoreSessions gets the sharePointRestoreSessions property value. The list of SharePoint restore sessions available in the tenant.
 // returns a []SharePointRestoreSessionable when successful
 func (m *BackupRestoreRoot) GetSharePointRestoreSessions()([]SharePointRestoreSessionable) {
-    return m.sharePointRestoreSessions
+    val, err := m.GetBackingStore().Get("sharePointRestoreSessions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SharePointRestoreSessionable)
+    }
+    return nil
 }
 // GetSiteInclusionRules gets the siteInclusionRules property value. The list of site inclusion rules applied to the tenant.
 // returns a []SiteProtectionRuleable when successful
 func (m *BackupRestoreRoot) GetSiteInclusionRules()([]SiteProtectionRuleable) {
-    return m.siteInclusionRules
+    val, err := m.GetBackingStore().Get("siteInclusionRules")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteProtectionRuleable)
+    }
+    return nil
 }
 // GetSiteProtectionUnits gets the siteProtectionUnits property value. The list of site protection units in the tenant.
 // returns a []SiteProtectionUnitable when successful
 func (m *BackupRestoreRoot) GetSiteProtectionUnits()([]SiteProtectionUnitable) {
-    return m.siteProtectionUnits
+    val, err := m.GetBackingStore().Get("siteProtectionUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteProtectionUnitable)
+    }
+    return nil
 }
 // GetSiteProtectionUnitsBulkAdditionJobs gets the siteProtectionUnitsBulkAdditionJobs property value. The siteProtectionUnitsBulkAdditionJobs property
 // returns a []SiteProtectionUnitsBulkAdditionJobable when successful
 func (m *BackupRestoreRoot) GetSiteProtectionUnitsBulkAdditionJobs()([]SiteProtectionUnitsBulkAdditionJobable) {
-    return m.siteProtectionUnitsBulkAdditionJobs
+    val, err := m.GetBackingStore().Get("siteProtectionUnitsBulkAdditionJobs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteProtectionUnitsBulkAdditionJobable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BackupRestoreRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -761,87 +866,150 @@ func (m *BackupRestoreRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetDriveInclusionRules sets the driveInclusionRules property value. The list of drive inclusion rules applied to the tenant.
 func (m *BackupRestoreRoot) SetDriveInclusionRules(value []DriveProtectionRuleable)() {
-    m.driveInclusionRules = value
+    err := m.GetBackingStore().Set("driveInclusionRules", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDriveProtectionUnits sets the driveProtectionUnits property value. The list of drive protection units in the tenant.
 func (m *BackupRestoreRoot) SetDriveProtectionUnits(value []DriveProtectionUnitable)() {
-    m.driveProtectionUnits = value
+    err := m.GetBackingStore().Set("driveProtectionUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDriveProtectionUnitsBulkAdditionJobs sets the driveProtectionUnitsBulkAdditionJobs property value. The driveProtectionUnitsBulkAdditionJobs property
 func (m *BackupRestoreRoot) SetDriveProtectionUnitsBulkAdditionJobs(value []DriveProtectionUnitsBulkAdditionJobable)() {
-    m.driveProtectionUnitsBulkAdditionJobs = value
+    err := m.GetBackingStore().Set("driveProtectionUnitsBulkAdditionJobs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExchangeProtectionPolicies sets the exchangeProtectionPolicies property value. The list of Exchange protection policies in the tenant.
 func (m *BackupRestoreRoot) SetExchangeProtectionPolicies(value []ExchangeProtectionPolicyable)() {
-    m.exchangeProtectionPolicies = value
+    err := m.GetBackingStore().Set("exchangeProtectionPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExchangeRestoreSessions sets the exchangeRestoreSessions property value. The list of Exchange restore sessions available in the tenant.
 func (m *BackupRestoreRoot) SetExchangeRestoreSessions(value []ExchangeRestoreSessionable)() {
-    m.exchangeRestoreSessions = value
+    err := m.GetBackingStore().Set("exchangeRestoreSessions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxInclusionRules sets the mailboxInclusionRules property value. The list of mailbox inclusion rules applied to the tenant.
 func (m *BackupRestoreRoot) SetMailboxInclusionRules(value []MailboxProtectionRuleable)() {
-    m.mailboxInclusionRules = value
+    err := m.GetBackingStore().Set("mailboxInclusionRules", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxProtectionUnits sets the mailboxProtectionUnits property value. The list of mailbox protection units in the tenant.
 func (m *BackupRestoreRoot) SetMailboxProtectionUnits(value []MailboxProtectionUnitable)() {
-    m.mailboxProtectionUnits = value
+    err := m.GetBackingStore().Set("mailboxProtectionUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxProtectionUnitsBulkAdditionJobs sets the mailboxProtectionUnitsBulkAdditionJobs property value. The mailboxProtectionUnitsBulkAdditionJobs property
 func (m *BackupRestoreRoot) SetMailboxProtectionUnitsBulkAdditionJobs(value []MailboxProtectionUnitsBulkAdditionJobable)() {
-    m.mailboxProtectionUnitsBulkAdditionJobs = value
+    err := m.GetBackingStore().Set("mailboxProtectionUnitsBulkAdditionJobs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOneDriveForBusinessProtectionPolicies sets the oneDriveForBusinessProtectionPolicies property value. The list of OneDrive for Business protection policies in the tenant.
 func (m *BackupRestoreRoot) SetOneDriveForBusinessProtectionPolicies(value []OneDriveForBusinessProtectionPolicyable)() {
-    m.oneDriveForBusinessProtectionPolicies = value
+    err := m.GetBackingStore().Set("oneDriveForBusinessProtectionPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOneDriveForBusinessRestoreSessions sets the oneDriveForBusinessRestoreSessions property value. The list of OneDrive for Business restore sessions available in the tenant.
 func (m *BackupRestoreRoot) SetOneDriveForBusinessRestoreSessions(value []OneDriveForBusinessRestoreSessionable)() {
-    m.oneDriveForBusinessRestoreSessions = value
+    err := m.GetBackingStore().Set("oneDriveForBusinessRestoreSessions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProtectionPolicies sets the protectionPolicies property value. List of protection policies in the tenant.
 func (m *BackupRestoreRoot) SetProtectionPolicies(value []ProtectionPolicyBaseable)() {
-    m.protectionPolicies = value
+    err := m.GetBackingStore().Set("protectionPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProtectionUnits sets the protectionUnits property value. List of protection units in the tenant.
 func (m *BackupRestoreRoot) SetProtectionUnits(value []ProtectionUnitBaseable)() {
-    m.protectionUnits = value
+    err := m.GetBackingStore().Set("protectionUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestorePoints sets the restorePoints property value. List of restore points in the tenant.
 func (m *BackupRestoreRoot) SetRestorePoints(value []RestorePointable)() {
-    m.restorePoints = value
+    err := m.GetBackingStore().Set("restorePoints", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoreSessions sets the restoreSessions property value. List of restore sessions in the tenant.
 func (m *BackupRestoreRoot) SetRestoreSessions(value []RestoreSessionBaseable)() {
-    m.restoreSessions = value
+    err := m.GetBackingStore().Set("restoreSessions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServiceApps sets the serviceApps property value. List of Backup Storage apps in the tenant.
 func (m *BackupRestoreRoot) SetServiceApps(value []ServiceAppable)() {
-    m.serviceApps = value
+    err := m.GetBackingStore().Set("serviceApps", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServiceStatus sets the serviceStatus property value. Represents the tenant-level status of the Backup Storage service.
 func (m *BackupRestoreRoot) SetServiceStatus(value ServiceStatusable)() {
-    m.serviceStatus = value
+    err := m.GetBackingStore().Set("serviceStatus", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSharePointProtectionPolicies sets the sharePointProtectionPolicies property value. The list of SharePoint protection policies in the tenant.
 func (m *BackupRestoreRoot) SetSharePointProtectionPolicies(value []SharePointProtectionPolicyable)() {
-    m.sharePointProtectionPolicies = value
+    err := m.GetBackingStore().Set("sharePointProtectionPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSharePointRestoreSessions sets the sharePointRestoreSessions property value. The list of SharePoint restore sessions available in the tenant.
 func (m *BackupRestoreRoot) SetSharePointRestoreSessions(value []SharePointRestoreSessionable)() {
-    m.sharePointRestoreSessions = value
+    err := m.GetBackingStore().Set("sharePointRestoreSessions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteInclusionRules sets the siteInclusionRules property value. The list of site inclusion rules applied to the tenant.
 func (m *BackupRestoreRoot) SetSiteInclusionRules(value []SiteProtectionRuleable)() {
-    m.siteInclusionRules = value
+    err := m.GetBackingStore().Set("siteInclusionRules", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteProtectionUnits sets the siteProtectionUnits property value. The list of site protection units in the tenant.
 func (m *BackupRestoreRoot) SetSiteProtectionUnits(value []SiteProtectionUnitable)() {
-    m.siteProtectionUnits = value
+    err := m.GetBackingStore().Set("siteProtectionUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteProtectionUnitsBulkAdditionJobs sets the siteProtectionUnitsBulkAdditionJobs property value. The siteProtectionUnitsBulkAdditionJobs property
 func (m *BackupRestoreRoot) SetSiteProtectionUnitsBulkAdditionJobs(value []SiteProtectionUnitsBulkAdditionJobable)() {
-    m.siteProtectionUnitsBulkAdditionJobs = value
+    err := m.GetBackingStore().Set("siteProtectionUnitsBulkAdditionJobs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BackupRestoreRootable interface {
     Entityable

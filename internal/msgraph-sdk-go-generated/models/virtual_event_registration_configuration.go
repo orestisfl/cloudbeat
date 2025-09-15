@@ -9,12 +9,6 @@ import (
 
 type VirtualEventRegistrationConfiguration struct {
     Entity
-    // Total capacity of the virtual event.
-    capacity *int32
-    // Registration questions.
-    questions []VirtualEventRegistrationQuestionBaseable
-    // Registration URL of the virtual event.
-    registrationWebUrl *string
 }
 // NewVirtualEventRegistrationConfiguration instantiates a new VirtualEventRegistrationConfiguration and sets the default values.
 func NewVirtualEventRegistrationConfiguration()(*VirtualEventRegistrationConfiguration) {
@@ -49,7 +43,14 @@ func CreateVirtualEventRegistrationConfigurationFromDiscriminatorValue(parseNode
 // GetCapacity gets the capacity property value. Total capacity of the virtual event.
 // returns a *int32 when successful
 func (m *VirtualEventRegistrationConfiguration) GetCapacity()(*int32) {
-    return m.capacity
+    val, err := m.GetBackingStore().Get("capacity")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -96,12 +97,26 @@ func (m *VirtualEventRegistrationConfiguration) GetFieldDeserializers()(map[stri
 // GetQuestions gets the questions property value. Registration questions.
 // returns a []VirtualEventRegistrationQuestionBaseable when successful
 func (m *VirtualEventRegistrationConfiguration) GetQuestions()([]VirtualEventRegistrationQuestionBaseable) {
-    return m.questions
+    val, err := m.GetBackingStore().Get("questions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventRegistrationQuestionBaseable)
+    }
+    return nil
 }
 // GetRegistrationWebUrl gets the registrationWebUrl property value. Registration URL of the virtual event.
 // returns a *string when successful
 func (m *VirtualEventRegistrationConfiguration) GetRegistrationWebUrl()(*string) {
-    return m.registrationWebUrl
+    val, err := m.GetBackingStore().Get("registrationWebUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventRegistrationConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -137,15 +152,24 @@ func (m *VirtualEventRegistrationConfiguration) Serialize(writer i878a80d2330e89
 }
 // SetCapacity sets the capacity property value. Total capacity of the virtual event.
 func (m *VirtualEventRegistrationConfiguration) SetCapacity(value *int32)() {
-    m.capacity = value
+    err := m.GetBackingStore().Set("capacity", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetQuestions sets the questions property value. Registration questions.
 func (m *VirtualEventRegistrationConfiguration) SetQuestions(value []VirtualEventRegistrationQuestionBaseable)() {
-    m.questions = value
+    err := m.GetBackingStore().Set("questions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationWebUrl sets the registrationWebUrl property value. Registration URL of the virtual event.
 func (m *VirtualEventRegistrationConfiguration) SetRegistrationWebUrl(value *string)() {
-    m.registrationWebUrl = value
+    err := m.GetBackingStore().Set("registrationWebUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventRegistrationConfigurationable interface {
     Entityable

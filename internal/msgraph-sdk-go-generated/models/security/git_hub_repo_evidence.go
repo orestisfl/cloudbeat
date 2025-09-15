@@ -9,16 +9,6 @@ import (
 
 type GitHubRepoEvidence struct {
     AlertEvidence
-    // The baseUrl property
-    baseUrl *string
-    // The login property
-    login *string
-    // The owner property
-    owner *string
-    // The ownerType property
-    ownerType *string
-    // The repoId property
-    repoId *string
 }
 // NewGitHubRepoEvidence instantiates a new GitHubRepoEvidence and sets the default values.
 func NewGitHubRepoEvidence()(*GitHubRepoEvidence) {
@@ -37,7 +27,14 @@ func CreateGitHubRepoEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetBaseUrl gets the baseUrl property value. The baseUrl property
 // returns a *string when successful
 func (m *GitHubRepoEvidence) GetBaseUrl()(*string) {
-    return m.baseUrl
+    val, err := m.GetBackingStore().Get("baseUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -98,22 +95,50 @@ func (m *GitHubRepoEvidence) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetLogin gets the login property value. The login property
 // returns a *string when successful
 func (m *GitHubRepoEvidence) GetLogin()(*string) {
-    return m.login
+    val, err := m.GetBackingStore().Get("login")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOwner gets the owner property value. The owner property
 // returns a *string when successful
 func (m *GitHubRepoEvidence) GetOwner()(*string) {
-    return m.owner
+    val, err := m.GetBackingStore().Get("owner")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOwnerType gets the ownerType property value. The ownerType property
 // returns a *string when successful
 func (m *GitHubRepoEvidence) GetOwnerType()(*string) {
-    return m.ownerType
+    val, err := m.GetBackingStore().Get("ownerType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRepoId gets the repoId property value. The repoId property
 // returns a *string when successful
 func (m *GitHubRepoEvidence) GetRepoId()(*string) {
-    return m.repoId
+    val, err := m.GetBackingStore().Get("repoId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *GitHubRepoEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -155,23 +180,38 @@ func (m *GitHubRepoEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetBaseUrl sets the baseUrl property value. The baseUrl property
 func (m *GitHubRepoEvidence) SetBaseUrl(value *string)() {
-    m.baseUrl = value
+    err := m.GetBackingStore().Set("baseUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLogin sets the login property value. The login property
 func (m *GitHubRepoEvidence) SetLogin(value *string)() {
-    m.login = value
+    err := m.GetBackingStore().Set("login", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwner sets the owner property value. The owner property
 func (m *GitHubRepoEvidence) SetOwner(value *string)() {
-    m.owner = value
+    err := m.GetBackingStore().Set("owner", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwnerType sets the ownerType property value. The ownerType property
 func (m *GitHubRepoEvidence) SetOwnerType(value *string)() {
-    m.ownerType = value
+    err := m.GetBackingStore().Set("ownerType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRepoId sets the repoId property value. The repoId property
 func (m *GitHubRepoEvidence) SetRepoId(value *string)() {
-    m.repoId = value
+    err := m.GetBackingStore().Set("repoId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type GitHubRepoEvidenceable interface {
     AlertEvidenceable

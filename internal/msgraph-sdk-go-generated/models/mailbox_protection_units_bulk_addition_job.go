@@ -9,10 +9,6 @@ import (
 
 type MailboxProtectionUnitsBulkAdditionJob struct {
     ProtectionUnitsBulkJobBase
-    // The list of Exchange directoryObjectIds to add to the Exchange protection policy.
-    directoryObjectIds []string
-    // The list of Exchange email addresses to add to the Exchange protection policy.
-    mailboxes []string
 }
 // NewMailboxProtectionUnitsBulkAdditionJob instantiates a new MailboxProtectionUnitsBulkAdditionJob and sets the default values.
 func NewMailboxProtectionUnitsBulkAdditionJob()(*MailboxProtectionUnitsBulkAdditionJob) {
@@ -31,7 +27,14 @@ func CreateMailboxProtectionUnitsBulkAdditionJobFromDiscriminatorValue(parseNode
 // GetDirectoryObjectIds gets the directoryObjectIds property value. The list of Exchange directoryObjectIds to add to the Exchange protection policy.
 // returns a []string when successful
 func (m *MailboxProtectionUnitsBulkAdditionJob) GetDirectoryObjectIds()([]string) {
-    return m.directoryObjectIds
+    val, err := m.GetBackingStore().Get("directoryObjectIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -74,7 +77,14 @@ func (m *MailboxProtectionUnitsBulkAdditionJob) GetFieldDeserializers()(map[stri
 // GetMailboxes gets the mailboxes property value. The list of Exchange email addresses to add to the Exchange protection policy.
 // returns a []string when successful
 func (m *MailboxProtectionUnitsBulkAdditionJob) GetMailboxes()([]string) {
-    return m.mailboxes
+    val, err := m.GetBackingStore().Get("mailboxes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MailboxProtectionUnitsBulkAdditionJob) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -98,11 +108,17 @@ func (m *MailboxProtectionUnitsBulkAdditionJob) Serialize(writer i878a80d2330e89
 }
 // SetDirectoryObjectIds sets the directoryObjectIds property value. The list of Exchange directoryObjectIds to add to the Exchange protection policy.
 func (m *MailboxProtectionUnitsBulkAdditionJob) SetDirectoryObjectIds(value []string)() {
-    m.directoryObjectIds = value
+    err := m.GetBackingStore().Set("directoryObjectIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxes sets the mailboxes property value. The list of Exchange email addresses to add to the Exchange protection policy.
 func (m *MailboxProtectionUnitsBulkAdditionJob) SetMailboxes(value []string)() {
-    m.mailboxes = value
+    err := m.GetBackingStore().Set("mailboxes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MailboxProtectionUnitsBulkAdditionJobable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

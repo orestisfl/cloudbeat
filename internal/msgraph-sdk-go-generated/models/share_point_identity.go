@@ -9,8 +9,6 @@ import (
 
 type SharePointIdentity struct {
     Identity
-    // The sign in name of the SharePoint identity.
-    loginName *string
 }
 // NewSharePointIdentity instantiates a new SharePointIdentity and sets the default values.
 func NewSharePointIdentity()(*SharePointIdentity) {
@@ -45,7 +43,14 @@ func (m *SharePointIdentity) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetLoginName gets the loginName property value. The sign in name of the SharePoint identity.
 // returns a *string when successful
 func (m *SharePointIdentity) GetLoginName()(*string) {
-    return m.loginName
+    val, err := m.GetBackingStore().Get("loginName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SharePointIdentity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *SharePointIdentity) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetLoginName sets the loginName property value. The sign in name of the SharePoint identity.
 func (m *SharePointIdentity) SetLoginName(value *string)() {
-    m.loginName = value
+    err := m.GetBackingStore().Set("loginName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SharePointIdentityable interface {
     Identityable

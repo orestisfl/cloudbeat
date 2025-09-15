@@ -9,14 +9,6 @@ import (
 
 type WindowsSetting struct {
     Entity
-    // A collection of setting values for a given windowsSetting.
-    instances []WindowsSettingInstanceable
-    // The type of setting payloads contained in the instances navigation property.
-    payloadType *string
-    // The settingType property
-    settingType *WindowsSettingType
-    // A unique identifier for the device the setting might belong to if it is of the settingType backup.
-    windowsDeviceId *string
 }
 // NewWindowsSetting instantiates a new WindowsSetting and sets the default values.
 func NewWindowsSetting()(*WindowsSetting) {
@@ -85,22 +77,50 @@ func (m *WindowsSetting) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetInstances gets the instances property value. A collection of setting values for a given windowsSetting.
 // returns a []WindowsSettingInstanceable when successful
 func (m *WindowsSetting) GetInstances()([]WindowsSettingInstanceable) {
-    return m.instances
+    val, err := m.GetBackingStore().Get("instances")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WindowsSettingInstanceable)
+    }
+    return nil
 }
 // GetPayloadType gets the payloadType property value. The type of setting payloads contained in the instances navigation property.
 // returns a *string when successful
 func (m *WindowsSetting) GetPayloadType()(*string) {
-    return m.payloadType
+    val, err := m.GetBackingStore().Get("payloadType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSettingType gets the settingType property value. The settingType property
 // returns a *WindowsSettingType when successful
 func (m *WindowsSetting) GetSettingType()(*WindowsSettingType) {
-    return m.settingType
+    val, err := m.GetBackingStore().Get("settingType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*WindowsSettingType)
+    }
+    return nil
 }
 // GetWindowsDeviceId gets the windowsDeviceId property value. A unique identifier for the device the setting might belong to if it is of the settingType backup.
 // returns a *string when successful
 func (m *WindowsSetting) GetWindowsDeviceId()(*string) {
-    return m.windowsDeviceId
+    val, err := m.GetBackingStore().Get("windowsDeviceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WindowsSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -143,19 +163,31 @@ func (m *WindowsSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetInstances sets the instances property value. A collection of setting values for a given windowsSetting.
 func (m *WindowsSetting) SetInstances(value []WindowsSettingInstanceable)() {
-    m.instances = value
+    err := m.GetBackingStore().Set("instances", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPayloadType sets the payloadType property value. The type of setting payloads contained in the instances navigation property.
 func (m *WindowsSetting) SetPayloadType(value *string)() {
-    m.payloadType = value
+    err := m.GetBackingStore().Set("payloadType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettingType sets the settingType property value. The settingType property
 func (m *WindowsSetting) SetSettingType(value *WindowsSettingType)() {
-    m.settingType = value
+    err := m.GetBackingStore().Set("settingType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWindowsDeviceId sets the windowsDeviceId property value. A unique identifier for the device the setting might belong to if it is of the settingType backup.
 func (m *WindowsSetting) SetWindowsDeviceId(value *string)() {
-    m.windowsDeviceId = value
+    err := m.GetBackingStore().Set("windowsDeviceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WindowsSettingable interface {
     Entityable

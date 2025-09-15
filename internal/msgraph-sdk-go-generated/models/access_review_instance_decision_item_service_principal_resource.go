@@ -9,8 +9,6 @@ import (
 
 type AccessReviewInstanceDecisionItemServicePrincipalResource struct {
     AccessReviewInstanceDecisionItemResource
-    // The globally unique identifier of the application to which access has been granted.
-    appId *string
 }
 // NewAccessReviewInstanceDecisionItemServicePrincipalResource instantiates a new AccessReviewInstanceDecisionItemServicePrincipalResource and sets the default values.
 func NewAccessReviewInstanceDecisionItemServicePrincipalResource()(*AccessReviewInstanceDecisionItemServicePrincipalResource) {
@@ -29,7 +27,14 @@ func CreateAccessReviewInstanceDecisionItemServicePrincipalResourceFromDiscrimin
 // GetAppId gets the appId property value. The globally unique identifier of the application to which access has been granted.
 // returns a *string when successful
 func (m *AccessReviewInstanceDecisionItemServicePrincipalResource) GetAppId()(*string) {
-    return m.appId
+    val, err := m.GetBackingStore().Get("appId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *AccessReviewInstanceDecisionItemServicePrincipalResource) Serialize(wri
 }
 // SetAppId sets the appId property value. The globally unique identifier of the application to which access has been granted.
 func (m *AccessReviewInstanceDecisionItemServicePrincipalResource) SetAppId(value *string)() {
-    m.appId = value
+    err := m.GetBackingStore().Set("appId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AccessReviewInstanceDecisionItemServicePrincipalResourceable interface {
     AccessReviewInstanceDecisionItemResourceable

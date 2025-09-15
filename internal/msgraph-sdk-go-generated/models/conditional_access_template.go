@@ -9,14 +9,6 @@ import (
 
 type ConditionalAccessTemplate struct {
     Entity
-    // The user-friendly name of the template.
-    description *string
-    // The details property
-    details ConditionalAccessPolicyDetailable
-    // The user-friendly name of the template.
-    name *string
-    // The scenarios property
-    scenarios *TemplateScenarios
 }
 // NewConditionalAccessTemplate instantiates a new ConditionalAccessTemplate and sets the default values.
 func NewConditionalAccessTemplate()(*ConditionalAccessTemplate) {
@@ -33,12 +25,26 @@ func CreateConditionalAccessTemplateFromDiscriminatorValue(parseNode i878a80d233
 // GetDescription gets the description property value. The user-friendly name of the template.
 // returns a *string when successful
 func (m *ConditionalAccessTemplate) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDetails gets the details property value. The details property
 // returns a ConditionalAccessPolicyDetailable when successful
 func (m *ConditionalAccessTemplate) GetDetails()(ConditionalAccessPolicyDetailable) {
-    return m.details
+    val, err := m.GetBackingStore().Get("details")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ConditionalAccessPolicyDetailable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -89,12 +95,26 @@ func (m *ConditionalAccessTemplate) GetFieldDeserializers()(map[string]func(i878
 // GetName gets the name property value. The user-friendly name of the template.
 // returns a *string when successful
 func (m *ConditionalAccessTemplate) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetScenarios gets the scenarios property value. The scenarios property
 // returns a *TemplateScenarios when successful
 func (m *ConditionalAccessTemplate) GetScenarios()(*TemplateScenarios) {
-    return m.scenarios
+    val, err := m.GetBackingStore().Get("scenarios")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TemplateScenarios)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ConditionalAccessTemplate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -131,19 +151,31 @@ func (m *ConditionalAccessTemplate) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetDescription sets the description property value. The user-friendly name of the template.
 func (m *ConditionalAccessTemplate) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDetails sets the details property value. The details property
 func (m *ConditionalAccessTemplate) SetDetails(value ConditionalAccessPolicyDetailable)() {
-    m.details = value
+    err := m.GetBackingStore().Set("details", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The user-friendly name of the template.
 func (m *ConditionalAccessTemplate) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetScenarios sets the scenarios property value. The scenarios property
 func (m *ConditionalAccessTemplate) SetScenarios(value *TemplateScenarios)() {
-    m.scenarios = value
+    err := m.GetBackingStore().Set("scenarios", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ConditionalAccessTemplateable interface {
     Entityable

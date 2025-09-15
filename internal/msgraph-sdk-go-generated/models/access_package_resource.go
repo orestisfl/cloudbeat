@@ -10,26 +10,6 @@ import (
 
 type AccessPackageResource struct {
     Entity
-    // Contains information about the attributes to be collected from the requestor and sent to the resource application.
-    attributes []AccessPackageResourceAttributeable
-    // The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // A description for the resource.
-    description *string
-    // The display name of the resource, such as the application name, group name or site name.
-    displayName *string
-    // Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
-    environment AccessPackageResourceEnvironmentable
-    // The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-    modifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The unique identifier of the resource in the origin system. For a Microsoft Entra group, this is the identifier of the group.
-    originId *string
-    // The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
-    originSystem *string
-    // Read-only. Nullable. Supports $expand.
-    roles []AccessPackageResourceRoleable
-    // Read-only. Nullable. Supports $expand.
-    scopes []AccessPackageResourceScopeable
 }
 // NewAccessPackageResource instantiates a new AccessPackageResource and sets the default values.
 func NewAccessPackageResource()(*AccessPackageResource) {
@@ -46,27 +26,62 @@ func CreateAccessPackageResourceFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetAttributes gets the attributes property value. Contains information about the attributes to be collected from the requestor and sent to the resource application.
 // returns a []AccessPackageResourceAttributeable when successful
 func (m *AccessPackageResource) GetAttributes()([]AccessPackageResourceAttributeable) {
-    return m.attributes
+    val, err := m.GetBackingStore().Get("attributes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageResourceAttributeable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 // returns a *Time when successful
 func (m *AccessPackageResource) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDescription gets the description property value. A description for the resource.
 // returns a *string when successful
 func (m *AccessPackageResource) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The display name of the resource, such as the application name, group name or site name.
 // returns a *string when successful
 func (m *AccessPackageResource) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetEnvironment gets the environment property value. Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
 // returns a AccessPackageResourceEnvironmentable when successful
 func (m *AccessPackageResource) GetEnvironment()(AccessPackageResourceEnvironmentable) {
-    return m.environment
+    val, err := m.GetBackingStore().Get("environment")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AccessPackageResourceEnvironmentable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -195,27 +210,62 @@ func (m *AccessPackageResource) GetFieldDeserializers()(map[string]func(i878a80d
 // GetModifiedDateTime gets the modifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 // returns a *Time when successful
 func (m *AccessPackageResource) GetModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.modifiedDateTime
+    val, err := m.GetBackingStore().Get("modifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetOriginId gets the originId property value. The unique identifier of the resource in the origin system. For a Microsoft Entra group, this is the identifier of the group.
 // returns a *string when successful
 func (m *AccessPackageResource) GetOriginId()(*string) {
-    return m.originId
+    val, err := m.GetBackingStore().Get("originId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOriginSystem gets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
 // returns a *string when successful
 func (m *AccessPackageResource) GetOriginSystem()(*string) {
-    return m.originSystem
+    val, err := m.GetBackingStore().Get("originSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRoles gets the roles property value. Read-only. Nullable. Supports $expand.
 // returns a []AccessPackageResourceRoleable when successful
 func (m *AccessPackageResource) GetRoles()([]AccessPackageResourceRoleable) {
-    return m.roles
+    val, err := m.GetBackingStore().Get("roles")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageResourceRoleable)
+    }
+    return nil
 }
 // GetScopes gets the scopes property value. Read-only. Nullable. Supports $expand.
 // returns a []AccessPackageResourceScopeable when successful
 func (m *AccessPackageResource) GetScopes()([]AccessPackageResourceScopeable) {
-    return m.scopes
+    val, err := m.GetBackingStore().Get("scopes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageResourceScopeable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AccessPackageResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -305,43 +355,73 @@ func (m *AccessPackageResource) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetAttributes sets the attributes property value. Contains information about the attributes to be collected from the requestor and sent to the resource application.
 func (m *AccessPackageResource) SetAttributes(value []AccessPackageResourceAttributeable)() {
-    m.attributes = value
+    err := m.GetBackingStore().Set("attributes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 func (m *AccessPackageResource) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. A description for the resource.
 func (m *AccessPackageResource) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The display name of the resource, such as the application name, group name or site name.
 func (m *AccessPackageResource) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEnvironment sets the environment property value. Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
 func (m *AccessPackageResource) SetEnvironment(value AccessPackageResourceEnvironmentable)() {
-    m.environment = value
+    err := m.GetBackingStore().Set("environment", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetModifiedDateTime sets the modifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 func (m *AccessPackageResource) SetModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.modifiedDateTime = value
+    err := m.GetBackingStore().Set("modifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOriginId sets the originId property value. The unique identifier of the resource in the origin system. For a Microsoft Entra group, this is the identifier of the group.
 func (m *AccessPackageResource) SetOriginId(value *string)() {
-    m.originId = value
+    err := m.GetBackingStore().Set("originId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOriginSystem sets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
 func (m *AccessPackageResource) SetOriginSystem(value *string)() {
-    m.originSystem = value
+    err := m.GetBackingStore().Set("originSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoles sets the roles property value. Read-only. Nullable. Supports $expand.
 func (m *AccessPackageResource) SetRoles(value []AccessPackageResourceRoleable)() {
-    m.roles = value
+    err := m.GetBackingStore().Set("roles", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetScopes sets the scopes property value. Read-only. Nullable. Supports $expand.
 func (m *AccessPackageResource) SetScopes(value []AccessPackageResourceScopeable)() {
-    m.scopes = value
+    err := m.GetBackingStore().Set("scopes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AccessPackageResourceable interface {
     Entityable

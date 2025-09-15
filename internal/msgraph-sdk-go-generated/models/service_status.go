@@ -6,32 +6,18 @@ package models
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type ServiceStatus struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The type of consumer. The possible values are: unknown, firstparty, thirdparty, unknownFutureValue.
-    backupServiceConsumer *BackupServiceConsumer
-    // The reason the service is disabled. The possible values are: none, controllerServiceAppDeleted, invalidBillingProfile, userRequested, unknownFutureValue.
-    disableReason *DisableReason
-    // The expiration time of the grace period.
-    gracePeriodDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Identity of the person who last modified the entity.
-    lastModifiedBy IdentitySetable
-    // Timestamp of the last modification of the entity.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The OdataType property
-    odataType *string
-    // The expiration time of the restoration allowed period.
-    restoreAllowedTillDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Status of the service. This value indicates what capabilities can be used. The possible values are: disabled, enabled, protectionChangeLocked, restoreLocked, unknownFutureValue.
-    status *BackupServiceStatus
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewServiceStatus instantiates a new ServiceStatus and sets the default values.
 func NewServiceStatus()(*ServiceStatus) {
     m := &ServiceStatus{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -43,17 +29,44 @@ func CreateServiceStatusFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *ServiceStatus) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *ServiceStatus) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetBackupServiceConsumer gets the backupServiceConsumer property value. The type of consumer. The possible values are: unknown, firstparty, thirdparty, unknownFutureValue.
 // returns a *BackupServiceConsumer when successful
 func (m *ServiceStatus) GetBackupServiceConsumer()(*BackupServiceConsumer) {
-    return m.backupServiceConsumer
+    val, err := m.GetBackingStore().Get("backupServiceConsumer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*BackupServiceConsumer)
+    }
+    return nil
 }
 // GetDisableReason gets the disableReason property value. The reason the service is disabled. The possible values are: none, controllerServiceAppDeleted, invalidBillingProfile, userRequested, unknownFutureValue.
 // returns a *DisableReason when successful
 func (m *ServiceStatus) GetDisableReason()(*DisableReason) {
-    return m.disableReason
+    val, err := m.GetBackingStore().Get("disableReason")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DisableReason)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -144,32 +157,74 @@ func (m *ServiceStatus) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
 // GetGracePeriodDateTime gets the gracePeriodDateTime property value. The expiration time of the grace period.
 // returns a *Time when successful
 func (m *ServiceStatus) GetGracePeriodDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.gracePeriodDateTime
+    val, err := m.GetBackingStore().Get("gracePeriodDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetLastModifiedBy gets the lastModifiedBy property value. Identity of the person who last modified the entity.
 // returns a IdentitySetable when successful
 func (m *ServiceStatus) GetLastModifiedBy()(IdentitySetable) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Timestamp of the last modification of the entity.
 // returns a *Time when successful
 func (m *ServiceStatus) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *ServiceStatus) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRestoreAllowedTillDateTime gets the restoreAllowedTillDateTime property value. The expiration time of the restoration allowed period.
 // returns a *Time when successful
 func (m *ServiceStatus) GetRestoreAllowedTillDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.restoreAllowedTillDateTime
+    val, err := m.GetBackingStore().Get("restoreAllowedTillDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetStatus gets the status property value. Status of the service. This value indicates what capabilities can be used. The possible values are: disabled, enabled, protectionChangeLocked, restoreLocked, unknownFutureValue.
 // returns a *BackupServiceStatus when successful
 func (m *ServiceStatus) GetStatus()(*BackupServiceStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*BackupServiceStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ServiceStatus) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -234,43 +289,76 @@ func (m *ServiceStatus) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ServiceStatus) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *ServiceStatus) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetBackupServiceConsumer sets the backupServiceConsumer property value. The type of consumer. The possible values are: unknown, firstparty, thirdparty, unknownFutureValue.
 func (m *ServiceStatus) SetBackupServiceConsumer(value *BackupServiceConsumer)() {
-    m.backupServiceConsumer = value
+    err := m.GetBackingStore().Set("backupServiceConsumer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisableReason sets the disableReason property value. The reason the service is disabled. The possible values are: none, controllerServiceAppDeleted, invalidBillingProfile, userRequested, unknownFutureValue.
 func (m *ServiceStatus) SetDisableReason(value *DisableReason)() {
-    m.disableReason = value
+    err := m.GetBackingStore().Set("disableReason", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetGracePeriodDateTime sets the gracePeriodDateTime property value. The expiration time of the grace period.
 func (m *ServiceStatus) SetGracePeriodDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.gracePeriodDateTime = value
+    err := m.GetBackingStore().Set("gracePeriodDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. Identity of the person who last modified the entity.
 func (m *ServiceStatus) SetLastModifiedBy(value IdentitySetable)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Timestamp of the last modification of the entity.
 func (m *ServiceStatus) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ServiceStatus) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoreAllowedTillDateTime sets the restoreAllowedTillDateTime property value. The expiration time of the restoration allowed period.
 func (m *ServiceStatus) SetRestoreAllowedTillDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.restoreAllowedTillDateTime = value
+    err := m.GetBackingStore().Set("restoreAllowedTillDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. Status of the service. This value indicates what capabilities can be used. The possible values are: disabled, enabled, protectionChangeLocked, restoreLocked, unknownFutureValue.
 func (m *ServiceStatus) SetStatus(value *BackupServiceStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ServiceStatusable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetBackupServiceConsumer()(*BackupServiceConsumer)
     GetDisableReason()(*DisableReason)
     GetGracePeriodDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
@@ -279,6 +367,7 @@ type ServiceStatusable interface {
     GetOdataType()(*string)
     GetRestoreAllowedTillDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetStatus()(*BackupServiceStatus)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetBackupServiceConsumer(value *BackupServiceConsumer)()
     SetDisableReason(value *DisableReason)()
     SetGracePeriodDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()

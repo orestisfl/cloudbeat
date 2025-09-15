@@ -10,12 +10,6 @@ import (
 
 type RecycleBinItem struct {
     BaseItem
-    // Date and time when the item was deleted. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    deletedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Relative URL of the list or folder that originally contained the item.
-    deletedFromLocation *string
-    // Size of the item in bytes.
-    size *int64
 }
 // NewRecycleBinItem instantiates a new RecycleBinItem and sets the default values.
 func NewRecycleBinItem()(*RecycleBinItem) {
@@ -34,12 +28,26 @@ func CreateRecycleBinItemFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetDeletedDateTime gets the deletedDateTime property value. Date and time when the item was deleted. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *RecycleBinItem) GetDeletedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.deletedDateTime
+    val, err := m.GetBackingStore().Get("deletedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDeletedFromLocation gets the deletedFromLocation property value. Relative URL of the list or folder that originally contained the item.
 // returns a *string when successful
 func (m *RecycleBinItem) GetDeletedFromLocation()(*string) {
-    return m.deletedFromLocation
+    val, err := m.GetBackingStore().Get("deletedFromLocation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -80,7 +88,14 @@ func (m *RecycleBinItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetSize gets the size property value. Size of the item in bytes.
 // returns a *int64 when successful
 func (m *RecycleBinItem) GetSize()(*int64) {
-    return m.size
+    val, err := m.GetBackingStore().Get("size")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *RecycleBinItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -110,15 +125,24 @@ func (m *RecycleBinItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetDeletedDateTime sets the deletedDateTime property value. Date and time when the item was deleted. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *RecycleBinItem) SetDeletedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.deletedDateTime = value
+    err := m.GetBackingStore().Set("deletedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeletedFromLocation sets the deletedFromLocation property value. Relative URL of the list or folder that originally contained the item.
 func (m *RecycleBinItem) SetDeletedFromLocation(value *string)() {
-    m.deletedFromLocation = value
+    err := m.GetBackingStore().Set("deletedFromLocation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSize sets the size property value. Size of the item in bytes.
 func (m *RecycleBinItem) SetSize(value *int64)() {
-    m.size = value
+    err := m.GetBackingStore().Set("size", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type RecycleBinItemable interface {
     BaseItemable

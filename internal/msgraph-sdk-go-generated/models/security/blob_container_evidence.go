@@ -9,12 +9,6 @@ import (
 
 type BlobContainerEvidence struct {
     AlertEvidence
-    // The name of the blob container.
-    name *string
-    // The storage which the blob container belongs to.
-    storageResource AzureResourceEvidenceable
-    // The full URL representation of the blob container.
-    url *string
 }
 // NewBlobContainerEvidence instantiates a new BlobContainerEvidence and sets the default values.
 func NewBlobContainerEvidence()(*BlobContainerEvidence) {
@@ -69,17 +63,38 @@ func (m *BlobContainerEvidence) GetFieldDeserializers()(map[string]func(i878a80d
 // GetName gets the name property value. The name of the blob container.
 // returns a *string when successful
 func (m *BlobContainerEvidence) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetStorageResource gets the storageResource property value. The storage which the blob container belongs to.
 // returns a AzureResourceEvidenceable when successful
 func (m *BlobContainerEvidence) GetStorageResource()(AzureResourceEvidenceable) {
-    return m.storageResource
+    val, err := m.GetBackingStore().Get("storageResource")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AzureResourceEvidenceable)
+    }
+    return nil
 }
 // GetUrl gets the url property value. The full URL representation of the blob container.
 // returns a *string when successful
 func (m *BlobContainerEvidence) GetUrl()(*string) {
-    return m.url
+    val, err := m.GetBackingStore().Get("url")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BlobContainerEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *BlobContainerEvidence) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetName sets the name property value. The name of the blob container.
 func (m *BlobContainerEvidence) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStorageResource sets the storageResource property value. The storage which the blob container belongs to.
 func (m *BlobContainerEvidence) SetStorageResource(value AzureResourceEvidenceable)() {
-    m.storageResource = value
+    err := m.GetBackingStore().Set("storageResource", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUrl sets the url property value. The full URL representation of the blob container.
 func (m *BlobContainerEvidence) SetUrl(value *string)() {
-    m.url = value
+    err := m.GetBackingStore().Set("url", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BlobContainerEvidenceable interface {
     AlertEvidenceable

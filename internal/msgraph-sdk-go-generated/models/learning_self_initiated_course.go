@@ -10,8 +10,6 @@ import (
 
 type LearningSelfInitiatedCourse struct {
     LearningCourseActivity
-    // The date and time on which the learner started the self-initiated course. Optional.
-    startedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewLearningSelfInitiatedCourse instantiates a new LearningSelfInitiatedCourse and sets the default values.
 func NewLearningSelfInitiatedCourse()(*LearningSelfInitiatedCourse) {
@@ -44,7 +42,14 @@ func (m *LearningSelfInitiatedCourse) GetFieldDeserializers()(map[string]func(i8
 // GetStartedDateTime gets the startedDateTime property value. The date and time on which the learner started the self-initiated course. Optional.
 // returns a *Time when successful
 func (m *LearningSelfInitiatedCourse) GetStartedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startedDateTime
+    val, err := m.GetBackingStore().Get("startedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LearningSelfInitiatedCourse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -62,7 +67,10 @@ func (m *LearningSelfInitiatedCourse) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetStartedDateTime sets the startedDateTime property value. The date and time on which the learner started the self-initiated course. Optional.
 func (m *LearningSelfInitiatedCourse) SetStartedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startedDateTime = value
+    err := m.GetBackingStore().Set("startedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LearningSelfInitiatedCourseable interface {
     LearningCourseActivityable

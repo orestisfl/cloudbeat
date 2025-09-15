@@ -9,8 +9,6 @@ import (
 
 type OnAttributeCollectionSubmitListener struct {
     AuthenticationEventListener
-    // Configuration for what to invoke if the event resolves to this listener.
-    handler OnAttributeCollectionSubmitHandlerable
 }
 // NewOnAttributeCollectionSubmitListener instantiates a new OnAttributeCollectionSubmitListener and sets the default values.
 func NewOnAttributeCollectionSubmitListener()(*OnAttributeCollectionSubmitListener) {
@@ -45,7 +43,14 @@ func (m *OnAttributeCollectionSubmitListener) GetFieldDeserializers()(map[string
 // GetHandler gets the handler property value. Configuration for what to invoke if the event resolves to this listener.
 // returns a OnAttributeCollectionSubmitHandlerable when successful
 func (m *OnAttributeCollectionSubmitListener) GetHandler()(OnAttributeCollectionSubmitHandlerable) {
-    return m.handler
+    val, err := m.GetBackingStore().Get("handler")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnAttributeCollectionSubmitHandlerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnAttributeCollectionSubmitListener) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *OnAttributeCollectionSubmitListener) Serialize(writer i878a80d2330e89d2
 }
 // SetHandler sets the handler property value. Configuration for what to invoke if the event resolves to this listener.
 func (m *OnAttributeCollectionSubmitListener) SetHandler(value OnAttributeCollectionSubmitHandlerable)() {
-    m.handler = value
+    err := m.GetBackingStore().Set("handler", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnAttributeCollectionSubmitListenerable interface {
     AuthenticationEventListenerable

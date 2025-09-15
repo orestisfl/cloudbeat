@@ -10,20 +10,6 @@ import (
 
 type LifecycleWorkflowsContainer struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The customTaskExtension instance.
-    customTaskExtensions []CustomTaskExtensionable
-    // Deleted workflows in your lifecycle workflows instance.
-    deletedItems i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DeletedItemContainerable
-    // The insight container holding workflow insight summaries for a tenant.
-    insights Insightsable
-    // The settings property
-    settings LifecycleManagementSettingsable
-    // The definition of tasks within the lifecycle workflows instance.
-    taskDefinitions []TaskDefinitionable
-    // The workflows in the lifecycle workflows instance.
-    workflows []Workflowable
-    // The workflow templates in the lifecycle workflow instance.
-    workflowTemplates []WorkflowTemplateable
 }
 // NewLifecycleWorkflowsContainer instantiates a new LifecycleWorkflowsContainer and sets the default values.
 func NewLifecycleWorkflowsContainer()(*LifecycleWorkflowsContainer) {
@@ -40,12 +26,26 @@ func CreateLifecycleWorkflowsContainerFromDiscriminatorValue(parseNode i878a80d2
 // GetCustomTaskExtensions gets the customTaskExtensions property value. The customTaskExtension instance.
 // returns a []CustomTaskExtensionable when successful
 func (m *LifecycleWorkflowsContainer) GetCustomTaskExtensions()([]CustomTaskExtensionable) {
-    return m.customTaskExtensions
+    val, err := m.GetBackingStore().Get("customTaskExtensions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CustomTaskExtensionable)
+    }
+    return nil
 }
 // GetDeletedItems gets the deletedItems property value. Deleted workflows in your lifecycle workflows instance.
 // returns a DeletedItemContainerable when successful
 func (m *LifecycleWorkflowsContainer) GetDeletedItems()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DeletedItemContainerable) {
-    return m.deletedItems
+    val, err := m.GetBackingStore().Get("deletedItems")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DeletedItemContainerable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -150,27 +150,62 @@ func (m *LifecycleWorkflowsContainer) GetFieldDeserializers()(map[string]func(i8
 // GetInsights gets the insights property value. The insight container holding workflow insight summaries for a tenant.
 // returns a Insightsable when successful
 func (m *LifecycleWorkflowsContainer) GetInsights()(Insightsable) {
-    return m.insights
+    val, err := m.GetBackingStore().Get("insights")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Insightsable)
+    }
+    return nil
 }
 // GetSettings gets the settings property value. The settings property
 // returns a LifecycleManagementSettingsable when successful
 func (m *LifecycleWorkflowsContainer) GetSettings()(LifecycleManagementSettingsable) {
-    return m.settings
+    val, err := m.GetBackingStore().Get("settings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(LifecycleManagementSettingsable)
+    }
+    return nil
 }
 // GetTaskDefinitions gets the taskDefinitions property value. The definition of tasks within the lifecycle workflows instance.
 // returns a []TaskDefinitionable when successful
 func (m *LifecycleWorkflowsContainer) GetTaskDefinitions()([]TaskDefinitionable) {
-    return m.taskDefinitions
+    val, err := m.GetBackingStore().Get("taskDefinitions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TaskDefinitionable)
+    }
+    return nil
 }
 // GetWorkflows gets the workflows property value. The workflows in the lifecycle workflows instance.
 // returns a []Workflowable when successful
 func (m *LifecycleWorkflowsContainer) GetWorkflows()([]Workflowable) {
-    return m.workflows
+    val, err := m.GetBackingStore().Get("workflows")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Workflowable)
+    }
+    return nil
 }
 // GetWorkflowTemplates gets the workflowTemplates property value. The workflow templates in the lifecycle workflow instance.
 // returns a []WorkflowTemplateable when successful
 func (m *LifecycleWorkflowsContainer) GetWorkflowTemplates()([]WorkflowTemplateable) {
-    return m.workflowTemplates
+    val, err := m.GetBackingStore().Get("workflowTemplates")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WorkflowTemplateable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LifecycleWorkflowsContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -248,31 +283,52 @@ func (m *LifecycleWorkflowsContainer) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetCustomTaskExtensions sets the customTaskExtensions property value. The customTaskExtension instance.
 func (m *LifecycleWorkflowsContainer) SetCustomTaskExtensions(value []CustomTaskExtensionable)() {
-    m.customTaskExtensions = value
+    err := m.GetBackingStore().Set("customTaskExtensions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeletedItems sets the deletedItems property value. Deleted workflows in your lifecycle workflows instance.
 func (m *LifecycleWorkflowsContainer) SetDeletedItems(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DeletedItemContainerable)() {
-    m.deletedItems = value
+    err := m.GetBackingStore().Set("deletedItems", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetInsights sets the insights property value. The insight container holding workflow insight summaries for a tenant.
 func (m *LifecycleWorkflowsContainer) SetInsights(value Insightsable)() {
-    m.insights = value
+    err := m.GetBackingStore().Set("insights", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettings sets the settings property value. The settings property
 func (m *LifecycleWorkflowsContainer) SetSettings(value LifecycleManagementSettingsable)() {
-    m.settings = value
+    err := m.GetBackingStore().Set("settings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTaskDefinitions sets the taskDefinitions property value. The definition of tasks within the lifecycle workflows instance.
 func (m *LifecycleWorkflowsContainer) SetTaskDefinitions(value []TaskDefinitionable)() {
-    m.taskDefinitions = value
+    err := m.GetBackingStore().Set("taskDefinitions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWorkflows sets the workflows property value. The workflows in the lifecycle workflows instance.
 func (m *LifecycleWorkflowsContainer) SetWorkflows(value []Workflowable)() {
-    m.workflows = value
+    err := m.GetBackingStore().Set("workflows", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWorkflowTemplates sets the workflowTemplates property value. The workflow templates in the lifecycle workflow instance.
 func (m *LifecycleWorkflowsContainer) SetWorkflowTemplates(value []WorkflowTemplateable)() {
-    m.workflowTemplates = value
+    err := m.GetBackingStore().Set("workflowTemplates", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LifecycleWorkflowsContainerable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

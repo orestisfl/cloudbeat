@@ -10,16 +10,6 @@ import (
 // MacOSDmgApp contains properties and inherited properties for the MacOS DMG (Apple Disk Image) App.
 type MacOSDmgApp struct {
     MobileLobApp
-    // When TRUE, indicates that the app's version will NOT be used to detect if the app is installed on a device. When FALSE, indicates that the app's version will be used to detect if the app is installed on a device. Set this to true for apps that use a self update feature. The default value is FALSE.
-    ignoreVersionDetection *bool
-    // The list of .apps expected to be installed by the DMG (Apple Disk Image). This collection can contain a maximum of 500 elements.
-    includedApps []MacOSIncludedAppable
-    // ComplexType macOSMinimumOperatingSystem that indicates the minimum operating system applicable for the application.
-    minimumSupportedOperatingSystem MacOSMinimumOperatingSystemable
-    // The bundleId of the primary .app in the DMG (Apple Disk Image). This maps to the CFBundleIdentifier in the app's bundle configuration.
-    primaryBundleId *string
-    // The version of the primary .app in the DMG (Apple Disk Image). This maps to the CFBundleShortVersion in the app's bundle configuration.
-    primaryBundleVersion *string
 }
 // NewMacOSDmgApp instantiates a new MacOSDmgApp and sets the default values.
 func NewMacOSDmgApp()(*MacOSDmgApp) {
@@ -100,27 +90,62 @@ func (m *MacOSDmgApp) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetIgnoreVersionDetection gets the ignoreVersionDetection property value. When TRUE, indicates that the app's version will NOT be used to detect if the app is installed on a device. When FALSE, indicates that the app's version will be used to detect if the app is installed on a device. Set this to true for apps that use a self update feature. The default value is FALSE.
 // returns a *bool when successful
 func (m *MacOSDmgApp) GetIgnoreVersionDetection()(*bool) {
-    return m.ignoreVersionDetection
+    val, err := m.GetBackingStore().Get("ignoreVersionDetection")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIncludedApps gets the includedApps property value. The list of .apps expected to be installed by the DMG (Apple Disk Image). This collection can contain a maximum of 500 elements.
 // returns a []MacOSIncludedAppable when successful
 func (m *MacOSDmgApp) GetIncludedApps()([]MacOSIncludedAppable) {
-    return m.includedApps
+    val, err := m.GetBackingStore().Get("includedApps")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MacOSIncludedAppable)
+    }
+    return nil
 }
 // GetMinimumSupportedOperatingSystem gets the minimumSupportedOperatingSystem property value. ComplexType macOSMinimumOperatingSystem that indicates the minimum operating system applicable for the application.
 // returns a MacOSMinimumOperatingSystemable when successful
 func (m *MacOSDmgApp) GetMinimumSupportedOperatingSystem()(MacOSMinimumOperatingSystemable) {
-    return m.minimumSupportedOperatingSystem
+    val, err := m.GetBackingStore().Get("minimumSupportedOperatingSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(MacOSMinimumOperatingSystemable)
+    }
+    return nil
 }
 // GetPrimaryBundleId gets the primaryBundleId property value. The bundleId of the primary .app in the DMG (Apple Disk Image). This maps to the CFBundleIdentifier in the app's bundle configuration.
 // returns a *string when successful
 func (m *MacOSDmgApp) GetPrimaryBundleId()(*string) {
-    return m.primaryBundleId
+    val, err := m.GetBackingStore().Get("primaryBundleId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPrimaryBundleVersion gets the primaryBundleVersion property value. The version of the primary .app in the DMG (Apple Disk Image). This maps to the CFBundleShortVersion in the app's bundle configuration.
 // returns a *string when successful
 func (m *MacOSDmgApp) GetPrimaryBundleVersion()(*string) {
-    return m.primaryBundleVersion
+    val, err := m.GetBackingStore().Get("primaryBundleVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MacOSDmgApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -168,23 +193,38 @@ func (m *MacOSDmgApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetIgnoreVersionDetection sets the ignoreVersionDetection property value. When TRUE, indicates that the app's version will NOT be used to detect if the app is installed on a device. When FALSE, indicates that the app's version will be used to detect if the app is installed on a device. Set this to true for apps that use a self update feature. The default value is FALSE.
 func (m *MacOSDmgApp) SetIgnoreVersionDetection(value *bool)() {
-    m.ignoreVersionDetection = value
+    err := m.GetBackingStore().Set("ignoreVersionDetection", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIncludedApps sets the includedApps property value. The list of .apps expected to be installed by the DMG (Apple Disk Image). This collection can contain a maximum of 500 elements.
 func (m *MacOSDmgApp) SetIncludedApps(value []MacOSIncludedAppable)() {
-    m.includedApps = value
+    err := m.GetBackingStore().Set("includedApps", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMinimumSupportedOperatingSystem sets the minimumSupportedOperatingSystem property value. ComplexType macOSMinimumOperatingSystem that indicates the minimum operating system applicable for the application.
 func (m *MacOSDmgApp) SetMinimumSupportedOperatingSystem(value MacOSMinimumOperatingSystemable)() {
-    m.minimumSupportedOperatingSystem = value
+    err := m.GetBackingStore().Set("minimumSupportedOperatingSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPrimaryBundleId sets the primaryBundleId property value. The bundleId of the primary .app in the DMG (Apple Disk Image). This maps to the CFBundleIdentifier in the app's bundle configuration.
 func (m *MacOSDmgApp) SetPrimaryBundleId(value *string)() {
-    m.primaryBundleId = value
+    err := m.GetBackingStore().Set("primaryBundleId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPrimaryBundleVersion sets the primaryBundleVersion property value. The version of the primary .app in the DMG (Apple Disk Image). This maps to the CFBundleShortVersion in the app's bundle configuration.
 func (m *MacOSDmgApp) SetPrimaryBundleVersion(value *string)() {
-    m.primaryBundleVersion = value
+    err := m.GetBackingStore().Set("primaryBundleVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MacOSDmgAppable interface {
     MobileLobAppable

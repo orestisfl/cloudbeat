@@ -11,12 +11,6 @@ import (
 
 type FilePlanDescriptorTemplate struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Represents the user who created the filePlanDescriptorTemplate column.
-    createdBy i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable
-    // Represents the date and time in which the filePlanDescriptorTemplate is created.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Unique string that defines a filePlanDescriptorTemplate name.
-    displayName *string
 }
 // NewFilePlanDescriptorTemplate instantiates a new FilePlanDescriptorTemplate and sets the default values.
 func NewFilePlanDescriptorTemplate()(*FilePlanDescriptorTemplate) {
@@ -61,17 +55,38 @@ func CreateFilePlanDescriptorTemplateFromDiscriminatorValue(parseNode i878a80d23
 // GetCreatedBy gets the createdBy property value. Represents the user who created the filePlanDescriptorTemplate column.
 // returns a IdentitySetable when successful
 func (m *FilePlanDescriptorTemplate) GetCreatedBy()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. Represents the date and time in which the filePlanDescriptorTemplate is created.
 // returns a *Time when successful
 func (m *FilePlanDescriptorTemplate) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. Unique string that defines a filePlanDescriptorTemplate name.
 // returns a *string when successful
 func (m *FilePlanDescriptorTemplate) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -137,15 +152,24 @@ func (m *FilePlanDescriptorTemplate) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetCreatedBy sets the createdBy property value. Represents the user who created the filePlanDescriptorTemplate column.
 func (m *FilePlanDescriptorTemplate) SetCreatedBy(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. Represents the date and time in which the filePlanDescriptorTemplate is created.
 func (m *FilePlanDescriptorTemplate) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. Unique string that defines a filePlanDescriptorTemplate name.
 func (m *FilePlanDescriptorTemplate) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type FilePlanDescriptorTemplateable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

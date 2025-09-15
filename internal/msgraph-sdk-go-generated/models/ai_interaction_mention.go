@@ -5,24 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type AiInteractionMention struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The mentioned property
-    mentioned AiInteractionMentionedIdentitySetable
-    // The mentionId property
-    mentionId *int32
-    // The mentionText property
-    mentionText *string
-    // The OdataType property
-    odataType *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewAiInteractionMention instantiates a new AiInteractionMention and sets the default values.
 func NewAiInteractionMention()(*AiInteractionMention) {
     m := &AiInteractionMention{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -34,7 +28,20 @@ func CreateAiInteractionMentionFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *AiInteractionMention) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *AiInteractionMention) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -85,22 +92,50 @@ func (m *AiInteractionMention) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetMentioned gets the mentioned property value. The mentioned property
 // returns a AiInteractionMentionedIdentitySetable when successful
 func (m *AiInteractionMention) GetMentioned()(AiInteractionMentionedIdentitySetable) {
-    return m.mentioned
+    val, err := m.GetBackingStore().Get("mentioned")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AiInteractionMentionedIdentitySetable)
+    }
+    return nil
 }
 // GetMentionId gets the mentionId property value. The mentionId property
 // returns a *int32 when successful
 func (m *AiInteractionMention) GetMentionId()(*int32) {
-    return m.mentionId
+    val, err := m.GetBackingStore().Get("mentionId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetMentionText gets the mentionText property value. The mentionText property
 // returns a *string when successful
 func (m *AiInteractionMention) GetMentionText()(*string) {
-    return m.mentionText
+    val, err := m.GetBackingStore().Get("mentionText")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *AiInteractionMention) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AiInteractionMention) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -138,31 +173,53 @@ func (m *AiInteractionMention) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AiInteractionMention) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *AiInteractionMention) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetMentioned sets the mentioned property value. The mentioned property
 func (m *AiInteractionMention) SetMentioned(value AiInteractionMentionedIdentitySetable)() {
-    m.mentioned = value
+    err := m.GetBackingStore().Set("mentioned", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMentionId sets the mentionId property value. The mentionId property
 func (m *AiInteractionMention) SetMentionId(value *int32)() {
-    m.mentionId = value
+    err := m.GetBackingStore().Set("mentionId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMentionText sets the mentionText property value. The mentionText property
 func (m *AiInteractionMention) SetMentionText(value *string)() {
-    m.mentionText = value
+    err := m.GetBackingStore().Set("mentionText", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AiInteractionMention) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AiInteractionMentionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetMentioned()(AiInteractionMentionedIdentitySetable)
     GetMentionId()(*int32)
     GetMentionText()(*string)
     GetOdataType()(*string)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetMentioned(value AiInteractionMentionedIdentitySetable)()
     SetMentionId(value *int32)()
     SetMentionText(value *string)()

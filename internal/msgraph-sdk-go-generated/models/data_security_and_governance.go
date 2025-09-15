@@ -9,8 +9,6 @@ import (
 
 type DataSecurityAndGovernance struct {
     Entity
-    // The sensitivityLabels property
-    sensitivityLabels []SensitivityLabelable
 }
 // NewDataSecurityAndGovernance instantiates a new DataSecurityAndGovernance and sets the default values.
 func NewDataSecurityAndGovernance()(*DataSecurityAndGovernance) {
@@ -69,7 +67,14 @@ func (m *DataSecurityAndGovernance) GetFieldDeserializers()(map[string]func(i878
 // GetSensitivityLabels gets the sensitivityLabels property value. The sensitivityLabels property
 // returns a []SensitivityLabelable when successful
 func (m *DataSecurityAndGovernance) GetSensitivityLabels()([]SensitivityLabelable) {
-    return m.sensitivityLabels
+    val, err := m.GetBackingStore().Get("sensitivityLabels")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SensitivityLabelable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DataSecurityAndGovernance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -93,7 +98,10 @@ func (m *DataSecurityAndGovernance) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetSensitivityLabels sets the sensitivityLabels property value. The sensitivityLabels property
 func (m *DataSecurityAndGovernance) SetSensitivityLabels(value []SensitivityLabelable)() {
-    m.sensitivityLabels = value
+    err := m.GetBackingStore().Set("sensitivityLabels", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DataSecurityAndGovernanceable interface {
     Entityable

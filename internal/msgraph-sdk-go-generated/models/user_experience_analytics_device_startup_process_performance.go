@@ -10,18 +10,6 @@ import (
 // UserExperienceAnalyticsDeviceStartupProcessPerformance the user experience analytics device startup process performance.
 type UserExperienceAnalyticsDeviceStartupProcessPerformance struct {
     Entity
-    // The count of devices which initiated this process on startup. Supports: $filter, $select, $OrderBy. Read-only.
-    deviceCount *int64
-    // The median impact of startup process on device boot time in milliseconds. Supports: $filter, $select, $OrderBy. Read-only.
-    medianImpactInMs *int64
-    // The name of the startup process. Examples: outlook, excel. Supports: $select, $OrderBy. Read-only.
-    processName *string
-    // The product name of the startup process. Examples: Microsoft Outlook, Microsoft Excel. Supports: $select, $OrderBy. Read-only.
-    productName *string
-    // The publisher of the startup process. Examples: Microsoft Corporation, Contoso Corp. Supports: $select, $OrderBy. Read-only.
-    publisher *string
-    // The total impact of startup process on device boot time in milliseconds. Supports: $filter, $select, $OrderBy. Read-only.
-    totalImpactInMs *int64
 }
 // NewUserExperienceAnalyticsDeviceStartupProcessPerformance instantiates a new UserExperienceAnalyticsDeviceStartupProcessPerformance and sets the default values.
 func NewUserExperienceAnalyticsDeviceStartupProcessPerformance()(*UserExperienceAnalyticsDeviceStartupProcessPerformance) {
@@ -38,7 +26,14 @@ func CreateUserExperienceAnalyticsDeviceStartupProcessPerformanceFromDiscriminat
 // GetDeviceCount gets the deviceCount property value. The count of devices which initiated this process on startup. Supports: $filter, $select, $OrderBy. Read-only.
 // returns a *int64 when successful
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) GetDeviceCount()(*int64) {
-    return m.deviceCount
+    val, err := m.GetBackingStore().Get("deviceCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -109,27 +104,62 @@ func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) GetFieldDeseria
 // GetMedianImpactInMs gets the medianImpactInMs property value. The median impact of startup process on device boot time in milliseconds. Supports: $filter, $select, $OrderBy. Read-only.
 // returns a *int64 when successful
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) GetMedianImpactInMs()(*int64) {
-    return m.medianImpactInMs
+    val, err := m.GetBackingStore().Get("medianImpactInMs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetProcessName gets the processName property value. The name of the startup process. Examples: outlook, excel. Supports: $select, $OrderBy. Read-only.
 // returns a *string when successful
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) GetProcessName()(*string) {
-    return m.processName
+    val, err := m.GetBackingStore().Get("processName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetProductName gets the productName property value. The product name of the startup process. Examples: Microsoft Outlook, Microsoft Excel. Supports: $select, $OrderBy. Read-only.
 // returns a *string when successful
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) GetProductName()(*string) {
-    return m.productName
+    val, err := m.GetBackingStore().Get("productName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPublisher gets the publisher property value. The publisher of the startup process. Examples: Microsoft Corporation, Contoso Corp. Supports: $select, $OrderBy. Read-only.
 // returns a *string when successful
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) GetPublisher()(*string) {
-    return m.publisher
+    val, err := m.GetBackingStore().Get("publisher")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTotalImpactInMs gets the totalImpactInMs property value. The total impact of startup process on device boot time in milliseconds. Supports: $filter, $select, $OrderBy. Read-only.
 // returns a *int64 when successful
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) GetTotalImpactInMs()(*int64) {
-    return m.totalImpactInMs
+    val, err := m.GetBackingStore().Get("totalImpactInMs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -177,27 +207,45 @@ func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) Serialize(write
 }
 // SetDeviceCount sets the deviceCount property value. The count of devices which initiated this process on startup. Supports: $filter, $select, $OrderBy. Read-only.
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) SetDeviceCount(value *int64)() {
-    m.deviceCount = value
+    err := m.GetBackingStore().Set("deviceCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMedianImpactInMs sets the medianImpactInMs property value. The median impact of startup process on device boot time in milliseconds. Supports: $filter, $select, $OrderBy. Read-only.
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) SetMedianImpactInMs(value *int64)() {
-    m.medianImpactInMs = value
+    err := m.GetBackingStore().Set("medianImpactInMs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProcessName sets the processName property value. The name of the startup process. Examples: outlook, excel. Supports: $select, $OrderBy. Read-only.
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) SetProcessName(value *string)() {
-    m.processName = value
+    err := m.GetBackingStore().Set("processName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProductName sets the productName property value. The product name of the startup process. Examples: Microsoft Outlook, Microsoft Excel. Supports: $select, $OrderBy. Read-only.
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) SetProductName(value *string)() {
-    m.productName = value
+    err := m.GetBackingStore().Set("productName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPublisher sets the publisher property value. The publisher of the startup process. Examples: Microsoft Corporation, Contoso Corp. Supports: $select, $OrderBy. Read-only.
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) SetPublisher(value *string)() {
-    m.publisher = value
+    err := m.GetBackingStore().Set("publisher", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTotalImpactInMs sets the totalImpactInMs property value. The total impact of startup process on device boot time in milliseconds. Supports: $filter, $select, $OrderBy. Read-only.
 func (m *UserExperienceAnalyticsDeviceStartupProcessPerformance) SetTotalImpactInMs(value *int64)() {
-    m.totalImpactInMs = value
+    err := m.GetBackingStore().Set("totalImpactInMs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserExperienceAnalyticsDeviceStartupProcessPerformanceable interface {
     Entityable

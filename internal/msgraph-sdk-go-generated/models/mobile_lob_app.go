@@ -10,14 +10,6 @@ import (
 // MobileLobApp an abstract base class containing properties for all mobile line-of-business apps.
 type MobileLobApp struct {
     MobileApp
-    // The internal committed content version.
-    committedContentVersion *string
-    // The list of content versions for this app.
-    contentVersions []MobileAppContentable
-    // The name of the main Lob application file.
-    fileName *string
-    // The total size, including all uploaded files.
-    size *int64
 }
 // NewMobileLobApp instantiates a new MobileLobApp and sets the default values.
 func NewMobileLobApp()(*MobileLobApp) {
@@ -68,12 +60,26 @@ func CreateMobileLobAppFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 // GetCommittedContentVersion gets the committedContentVersion property value. The internal committed content version.
 // returns a *string when successful
 func (m *MobileLobApp) GetCommittedContentVersion()(*string) {
-    return m.committedContentVersion
+    val, err := m.GetBackingStore().Get("committedContentVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetContentVersions gets the contentVersions property value. The list of content versions for this app.
 // returns a []MobileAppContentable when successful
 func (m *MobileLobApp) GetContentVersions()([]MobileAppContentable) {
-    return m.contentVersions
+    val, err := m.GetBackingStore().Get("contentVersions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MobileAppContentable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -130,12 +136,26 @@ func (m *MobileLobApp) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetFileName gets the fileName property value. The name of the main Lob application file.
 // returns a *string when successful
 func (m *MobileLobApp) GetFileName()(*string) {
-    return m.fileName
+    val, err := m.GetBackingStore().Get("fileName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSize gets the size property value. The total size, including all uploaded files.
 // returns a *int64 when successful
 func (m *MobileLobApp) GetSize()(*int64) {
-    return m.size
+    val, err := m.GetBackingStore().Get("size")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MobileLobApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -171,19 +191,31 @@ func (m *MobileLobApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetCommittedContentVersion sets the committedContentVersion property value. The internal committed content version.
 func (m *MobileLobApp) SetCommittedContentVersion(value *string)() {
-    m.committedContentVersion = value
+    err := m.GetBackingStore().Set("committedContentVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetContentVersions sets the contentVersions property value. The list of content versions for this app.
 func (m *MobileLobApp) SetContentVersions(value []MobileAppContentable)() {
-    m.contentVersions = value
+    err := m.GetBackingStore().Set("contentVersions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFileName sets the fileName property value. The name of the main Lob application file.
 func (m *MobileLobApp) SetFileName(value *string)() {
-    m.fileName = value
+    err := m.GetBackingStore().Set("fileName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSize sets the size property value. The total size, including all uploaded files.
 func (m *MobileLobApp) SetSize(value *int64)() {
-    m.size = value
+    err := m.GetBackingStore().Set("size", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MobileLobAppable interface {
     MobileAppable

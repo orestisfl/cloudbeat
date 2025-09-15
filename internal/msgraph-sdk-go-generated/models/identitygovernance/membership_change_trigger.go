@@ -9,8 +9,6 @@ import (
 
 type MembershipChangeTrigger struct {
     WorkflowExecutionTrigger
-    // The changeType property
-    changeType *MembershipChangeType
 }
 // NewMembershipChangeTrigger instantiates a new MembershipChangeTrigger and sets the default values.
 func NewMembershipChangeTrigger()(*MembershipChangeTrigger) {
@@ -29,7 +27,14 @@ func CreateMembershipChangeTriggerFromDiscriminatorValue(parseNode i878a80d2330e
 // GetChangeType gets the changeType property value. The changeType property
 // returns a *MembershipChangeType when successful
 func (m *MembershipChangeTrigger) GetChangeType()(*MembershipChangeType) {
-    return m.changeType
+    val, err := m.GetBackingStore().Get("changeType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*MembershipChangeType)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *MembershipChangeTrigger) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetChangeType sets the changeType property value. The changeType property
 func (m *MembershipChangeTrigger) SetChangeType(value *MembershipChangeType)() {
-    m.changeType = value
+    err := m.GetBackingStore().Set("changeType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MembershipChangeTriggerable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

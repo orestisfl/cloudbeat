@@ -9,10 +9,6 @@ import (
 
 type OnTokenIssuanceStartCustomExtensionHandler struct {
     OnTokenIssuanceStartHandler
-    // The configuration property
-    configuration CustomExtensionOverwriteConfigurationable
-    // The customExtension property
-    customExtension OnTokenIssuanceStartCustomExtensionable
 }
 // NewOnTokenIssuanceStartCustomExtensionHandler instantiates a new OnTokenIssuanceStartCustomExtensionHandler and sets the default values.
 func NewOnTokenIssuanceStartCustomExtensionHandler()(*OnTokenIssuanceStartCustomExtensionHandler) {
@@ -31,12 +27,26 @@ func CreateOnTokenIssuanceStartCustomExtensionHandlerFromDiscriminatorValue(pars
 // GetConfiguration gets the configuration property value. The configuration property
 // returns a CustomExtensionOverwriteConfigurationable when successful
 func (m *OnTokenIssuanceStartCustomExtensionHandler) GetConfiguration()(CustomExtensionOverwriteConfigurationable) {
-    return m.configuration
+    val, err := m.GetBackingStore().Get("configuration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CustomExtensionOverwriteConfigurationable)
+    }
+    return nil
 }
 // GetCustomExtension gets the customExtension property value. The customExtension property
 // returns a OnTokenIssuanceStartCustomExtensionable when successful
 func (m *OnTokenIssuanceStartCustomExtensionHandler) GetCustomExtension()(OnTokenIssuanceStartCustomExtensionable) {
-    return m.customExtension
+    val, err := m.GetBackingStore().Get("customExtension")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnTokenIssuanceStartCustomExtensionable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,11 +96,17 @@ func (m *OnTokenIssuanceStartCustomExtensionHandler) Serialize(writer i878a80d23
 }
 // SetConfiguration sets the configuration property value. The configuration property
 func (m *OnTokenIssuanceStartCustomExtensionHandler) SetConfiguration(value CustomExtensionOverwriteConfigurationable)() {
-    m.configuration = value
+    err := m.GetBackingStore().Set("configuration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCustomExtension sets the customExtension property value. The customExtension property
 func (m *OnTokenIssuanceStartCustomExtensionHandler) SetCustomExtension(value OnTokenIssuanceStartCustomExtensionable)() {
-    m.customExtension = value
+    err := m.GetBackingStore().Set("customExtension", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnTokenIssuanceStartCustomExtensionHandlerable interface {
     OnTokenIssuanceStartHandlerable

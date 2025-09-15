@@ -9,10 +9,6 @@ import (
 
 type MembersLeftEventMessageDetail struct {
     EventMessageDetail
-    // Initiator of the event.
-    initiator IdentitySetable
-    // List of members who left the chat.
-    members []TeamworkUserIdentityable
 }
 // NewMembersLeftEventMessageDetail instantiates a new MembersLeftEventMessageDetail and sets the default values.
 func NewMembersLeftEventMessageDetail()(*MembersLeftEventMessageDetail) {
@@ -63,12 +59,26 @@ func (m *MembersLeftEventMessageDetail) GetFieldDeserializers()(map[string]func(
 // GetInitiator gets the initiator property value. Initiator of the event.
 // returns a IdentitySetable when successful
 func (m *MembersLeftEventMessageDetail) GetInitiator()(IdentitySetable) {
-    return m.initiator
+    val, err := m.GetBackingStore().Get("initiator")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetMembers gets the members property value. List of members who left the chat.
 // returns a []TeamworkUserIdentityable when successful
 func (m *MembersLeftEventMessageDetail) GetMembers()([]TeamworkUserIdentityable) {
-    return m.members
+    val, err := m.GetBackingStore().Get("members")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TeamworkUserIdentityable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MembersLeftEventMessageDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -98,11 +108,17 @@ func (m *MembersLeftEventMessageDetail) Serialize(writer i878a80d2330e89d2689638
 }
 // SetInitiator sets the initiator property value. Initiator of the event.
 func (m *MembersLeftEventMessageDetail) SetInitiator(value IdentitySetable)() {
-    m.initiator = value
+    err := m.GetBackingStore().Set("initiator", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMembers sets the members property value. List of members who left the chat.
 func (m *MembersLeftEventMessageDetail) SetMembers(value []TeamworkUserIdentityable)() {
-    m.members = value
+    err := m.GetBackingStore().Set("members", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MembersLeftEventMessageDetailable interface {
     EventMessageDetailable

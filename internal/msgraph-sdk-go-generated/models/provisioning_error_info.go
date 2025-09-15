@@ -5,28 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type ProvisioningErrorInfo struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Additional details if there's error.
-    additionalDetails *string
-    // Categorizes the error code. Possible values are failure, nonServiceFailure, success, unknownFutureValue
-    errorCategory *ProvisioningStatusErrorCategory
-    // Unique error code if any occurred. Learn more
-    errorCode *string
-    // The OdataType property
-    odataType *string
-    // Summarizes the status and describes why the status happened.
-    reason *string
-    // Provides the resolution for the corresponding error.
-    recommendedAction *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewProvisioningErrorInfo instantiates a new ProvisioningErrorInfo and sets the default values.
 func NewProvisioningErrorInfo()(*ProvisioningErrorInfo) {
     m := &ProvisioningErrorInfo{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -38,22 +28,56 @@ func CreateProvisioningErrorInfoFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *ProvisioningErrorInfo) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
 }
 // GetAdditionalDetails gets the additionalDetails property value. Additional details if there's error.
 // returns a *string when successful
 func (m *ProvisioningErrorInfo) GetAdditionalDetails()(*string) {
-    return m.additionalDetails
+    val, err := m.GetBackingStore().Get("additionalDetails")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *ProvisioningErrorInfo) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetErrorCategory gets the errorCategory property value. Categorizes the error code. Possible values are failure, nonServiceFailure, success, unknownFutureValue
 // returns a *ProvisioningStatusErrorCategory when successful
 func (m *ProvisioningErrorInfo) GetErrorCategory()(*ProvisioningStatusErrorCategory) {
-    return m.errorCategory
+    val, err := m.GetBackingStore().Get("errorCategory")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ProvisioningStatusErrorCategory)
+    }
+    return nil
 }
 // GetErrorCode gets the errorCode property value. Unique error code if any occurred. Learn more
 // returns a *string when successful
 func (m *ProvisioningErrorInfo) GetErrorCode()(*string) {
-    return m.errorCode
+    val, err := m.GetBackingStore().Get("errorCode")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -124,17 +148,38 @@ func (m *ProvisioningErrorInfo) GetFieldDeserializers()(map[string]func(i878a80d
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *ProvisioningErrorInfo) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetReason gets the reason property value. Summarizes the status and describes why the status happened.
 // returns a *string when successful
 func (m *ProvisioningErrorInfo) GetReason()(*string) {
-    return m.reason
+    val, err := m.GetBackingStore().Get("reason")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRecommendedAction gets the recommendedAction property value. Provides the resolution for the corresponding error.
 // returns a *string when successful
 func (m *ProvisioningErrorInfo) GetRecommendedAction()(*string) {
-    return m.recommendedAction
+    val, err := m.GetBackingStore().Get("recommendedAction")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProvisioningErrorInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -185,42 +230,70 @@ func (m *ProvisioningErrorInfo) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ProvisioningErrorInfo) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAdditionalDetails sets the additionalDetails property value. Additional details if there's error.
 func (m *ProvisioningErrorInfo) SetAdditionalDetails(value *string)() {
-    m.additionalDetails = value
+    err := m.GetBackingStore().Set("additionalDetails", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *ProvisioningErrorInfo) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetErrorCategory sets the errorCategory property value. Categorizes the error code. Possible values are failure, nonServiceFailure, success, unknownFutureValue
 func (m *ProvisioningErrorInfo) SetErrorCategory(value *ProvisioningStatusErrorCategory)() {
-    m.errorCategory = value
+    err := m.GetBackingStore().Set("errorCategory", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetErrorCode sets the errorCode property value. Unique error code if any occurred. Learn more
 func (m *ProvisioningErrorInfo) SetErrorCode(value *string)() {
-    m.errorCode = value
+    err := m.GetBackingStore().Set("errorCode", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ProvisioningErrorInfo) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReason sets the reason property value. Summarizes the status and describes why the status happened.
 func (m *ProvisioningErrorInfo) SetReason(value *string)() {
-    m.reason = value
+    err := m.GetBackingStore().Set("reason", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecommendedAction sets the recommendedAction property value. Provides the resolution for the corresponding error.
 func (m *ProvisioningErrorInfo) SetRecommendedAction(value *string)() {
-    m.recommendedAction = value
+    err := m.GetBackingStore().Set("recommendedAction", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProvisioningErrorInfoable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAdditionalDetails()(*string)
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetErrorCategory()(*ProvisioningStatusErrorCategory)
     GetErrorCode()(*string)
     GetOdataType()(*string)
     GetReason()(*string)
     GetRecommendedAction()(*string)
     SetAdditionalDetails(value *string)()
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetErrorCategory(value *ProvisioningStatusErrorCategory)()
     SetErrorCode(value *string)()
     SetOdataType(value *string)()

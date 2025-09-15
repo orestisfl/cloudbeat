@@ -9,14 +9,6 @@ import (
 
 type EducationAssignmentDefaults struct {
     Entity
-    // Class-level default behavior for handling students who are added after the assignment is published. Possible values are: none, assignIfOpen.
-    addedStudentAction *EducationAddedStudentAction
-    // Optional field to control adding assignments to students' and teachers' calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: studentsOnly. The default value is none.
-    addToCalendarAction *EducationAddToCalendarOptions
-    // Class-level default value for due time field. Default value is 23:59:00.
-    dueTime *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly
-    // Default Teams channel to which notifications are sent. Default value is null.
-    notificationChannelUrl *string
 }
 // NewEducationAssignmentDefaults instantiates a new EducationAssignmentDefaults and sets the default values.
 func NewEducationAssignmentDefaults()(*EducationAssignmentDefaults) {
@@ -33,17 +25,38 @@ func CreateEducationAssignmentDefaultsFromDiscriminatorValue(parseNode i878a80d2
 // GetAddedStudentAction gets the addedStudentAction property value. Class-level default behavior for handling students who are added after the assignment is published. Possible values are: none, assignIfOpen.
 // returns a *EducationAddedStudentAction when successful
 func (m *EducationAssignmentDefaults) GetAddedStudentAction()(*EducationAddedStudentAction) {
-    return m.addedStudentAction
+    val, err := m.GetBackingStore().Get("addedStudentAction")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EducationAddedStudentAction)
+    }
+    return nil
 }
 // GetAddToCalendarAction gets the addToCalendarAction property value. Optional field to control adding assignments to students' and teachers' calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: studentsOnly. The default value is none.
 // returns a *EducationAddToCalendarOptions when successful
 func (m *EducationAssignmentDefaults) GetAddToCalendarAction()(*EducationAddToCalendarOptions) {
-    return m.addToCalendarAction
+    val, err := m.GetBackingStore().Get("addToCalendarAction")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EducationAddToCalendarOptions)
+    }
+    return nil
 }
 // GetDueTime gets the dueTime property value. Class-level default value for due time field. Default value is 23:59:00.
 // returns a *TimeOnly when successful
 func (m *EducationAssignmentDefaults) GetDueTime()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly) {
-    return m.dueTime
+    val, err := m.GetBackingStore().Get("dueTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -94,7 +107,14 @@ func (m *EducationAssignmentDefaults) GetFieldDeserializers()(map[string]func(i8
 // GetNotificationChannelUrl gets the notificationChannelUrl property value. Default Teams channel to which notifications are sent. Default value is null.
 // returns a *string when successful
 func (m *EducationAssignmentDefaults) GetNotificationChannelUrl()(*string) {
-    return m.notificationChannelUrl
+    val, err := m.GetBackingStore().Get("notificationChannelUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationAssignmentDefaults) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *EducationAssignmentDefaults) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetAddedStudentAction sets the addedStudentAction property value. Class-level default behavior for handling students who are added after the assignment is published. Possible values are: none, assignIfOpen.
 func (m *EducationAssignmentDefaults) SetAddedStudentAction(value *EducationAddedStudentAction)() {
-    m.addedStudentAction = value
+    err := m.GetBackingStore().Set("addedStudentAction", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAddToCalendarAction sets the addToCalendarAction property value. Optional field to control adding assignments to students' and teachers' calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: studentsOnly. The default value is none.
 func (m *EducationAssignmentDefaults) SetAddToCalendarAction(value *EducationAddToCalendarOptions)() {
-    m.addToCalendarAction = value
+    err := m.GetBackingStore().Set("addToCalendarAction", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDueTime sets the dueTime property value. Class-level default value for due time field. Default value is 23:59:00.
 func (m *EducationAssignmentDefaults) SetDueTime(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)() {
-    m.dueTime = value
+    err := m.GetBackingStore().Set("dueTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNotificationChannelUrl sets the notificationChannelUrl property value. Default Teams channel to which notifications are sent. Default value is null.
 func (m *EducationAssignmentDefaults) SetNotificationChannelUrl(value *string)() {
-    m.notificationChannelUrl = value
+    err := m.GetBackingStore().Set("notificationChannelUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationAssignmentDefaultsable interface {
     Entityable

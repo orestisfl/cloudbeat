@@ -10,16 +10,6 @@ import (
 // IosDdmLobAppAssignmentSettings contains properties used to assign an iOS iOS Declarative Device Management (DDM) Line Of Business (LOB) mobile app to a group.
 type IosDdmLobAppAssignmentSettings struct {
     MobileAppAssignmentSettings
-    // Domain names to associate with the app
-    associatedDomains []string
-    // When true, the system allows direct downloads for the AssociatedDomains. When false, the system will not allow direct downloads for the AssociatedDomains. Default is false.
-    associatedDomainsDirectDownloadAllowed *bool
-    // When true, indicates that the app should not be backed up to iCloud. When false, indicates that the app may be backed up to iCloud. Default is false.
-    preventManagedAppBackup *bool
-    // When true, the device locks its screen after every transaction that requires a customer’s card PIN. When false, the user can choose the behavior. Default value is false.
-    tapToPayScreenLockEnabled *bool
-    // The unique identifier of the relay to associate with the app.
-    vpnConfigurationId *string
 }
 // NewIosDdmLobAppAssignmentSettings instantiates a new IosDdmLobAppAssignmentSettings and sets the default values.
 func NewIosDdmLobAppAssignmentSettings()(*IosDdmLobAppAssignmentSettings) {
@@ -38,12 +28,26 @@ func CreateIosDdmLobAppAssignmentSettingsFromDiscriminatorValue(parseNode i878a8
 // GetAssociatedDomains gets the associatedDomains property value. Domain names to associate with the app
 // returns a []string when successful
 func (m *IosDdmLobAppAssignmentSettings) GetAssociatedDomains()([]string) {
-    return m.associatedDomains
+    val, err := m.GetBackingStore().Get("associatedDomains")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetAssociatedDomainsDirectDownloadAllowed gets the associatedDomainsDirectDownloadAllowed property value. When true, the system allows direct downloads for the AssociatedDomains. When false, the system will not allow direct downloads for the AssociatedDomains. Default is false.
 // returns a *bool when successful
 func (m *IosDdmLobAppAssignmentSettings) GetAssociatedDomainsDirectDownloadAllowed()(*bool) {
-    return m.associatedDomainsDirectDownloadAllowed
+    val, err := m.GetBackingStore().Get("associatedDomainsDirectDownloadAllowed")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -110,17 +114,38 @@ func (m *IosDdmLobAppAssignmentSettings) GetFieldDeserializers()(map[string]func
 // GetPreventManagedAppBackup gets the preventManagedAppBackup property value. When true, indicates that the app should not be backed up to iCloud. When false, indicates that the app may be backed up to iCloud. Default is false.
 // returns a *bool when successful
 func (m *IosDdmLobAppAssignmentSettings) GetPreventManagedAppBackup()(*bool) {
-    return m.preventManagedAppBackup
+    val, err := m.GetBackingStore().Get("preventManagedAppBackup")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetTapToPayScreenLockEnabled gets the tapToPayScreenLockEnabled property value. When true, the device locks its screen after every transaction that requires a customer’s card PIN. When false, the user can choose the behavior. Default value is false.
 // returns a *bool when successful
 func (m *IosDdmLobAppAssignmentSettings) GetTapToPayScreenLockEnabled()(*bool) {
-    return m.tapToPayScreenLockEnabled
+    val, err := m.GetBackingStore().Get("tapToPayScreenLockEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetVpnConfigurationId gets the vpnConfigurationId property value. The unique identifier of the relay to associate with the app.
 // returns a *string when successful
 func (m *IosDdmLobAppAssignmentSettings) GetVpnConfigurationId()(*string) {
-    return m.vpnConfigurationId
+    val, err := m.GetBackingStore().Get("vpnConfigurationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *IosDdmLobAppAssignmentSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -162,23 +187,38 @@ func (m *IosDdmLobAppAssignmentSettings) Serialize(writer i878a80d2330e89d268963
 }
 // SetAssociatedDomains sets the associatedDomains property value. Domain names to associate with the app
 func (m *IosDdmLobAppAssignmentSettings) SetAssociatedDomains(value []string)() {
-    m.associatedDomains = value
+    err := m.GetBackingStore().Set("associatedDomains", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAssociatedDomainsDirectDownloadAllowed sets the associatedDomainsDirectDownloadAllowed property value. When true, the system allows direct downloads for the AssociatedDomains. When false, the system will not allow direct downloads for the AssociatedDomains. Default is false.
 func (m *IosDdmLobAppAssignmentSettings) SetAssociatedDomainsDirectDownloadAllowed(value *bool)() {
-    m.associatedDomainsDirectDownloadAllowed = value
+    err := m.GetBackingStore().Set("associatedDomainsDirectDownloadAllowed", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPreventManagedAppBackup sets the preventManagedAppBackup property value. When true, indicates that the app should not be backed up to iCloud. When false, indicates that the app may be backed up to iCloud. Default is false.
 func (m *IosDdmLobAppAssignmentSettings) SetPreventManagedAppBackup(value *bool)() {
-    m.preventManagedAppBackup = value
+    err := m.GetBackingStore().Set("preventManagedAppBackup", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTapToPayScreenLockEnabled sets the tapToPayScreenLockEnabled property value. When true, the device locks its screen after every transaction that requires a customer’s card PIN. When false, the user can choose the behavior. Default value is false.
 func (m *IosDdmLobAppAssignmentSettings) SetTapToPayScreenLockEnabled(value *bool)() {
-    m.tapToPayScreenLockEnabled = value
+    err := m.GetBackingStore().Set("tapToPayScreenLockEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVpnConfigurationId sets the vpnConfigurationId property value. The unique identifier of the relay to associate with the app.
 func (m *IosDdmLobAppAssignmentSettings) SetVpnConfigurationId(value *string)() {
-    m.vpnConfigurationId = value
+    err := m.GetBackingStore().Set("vpnConfigurationId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type IosDdmLobAppAssignmentSettingsable interface {
     MobileAppAssignmentSettingsable

@@ -9,10 +9,6 @@ import (
 
 type VirtualEventRegistrationCustomQuestion struct {
     VirtualEventRegistrationQuestionBase
-    // Answer choices when answerInputType is singleChoice or multiChoice.
-    answerChoices []string
-    // Input type of the registration question answer. Possible values are text, multilineText, singleChoice, multiChoice, boolean, and unknownFutureValue.
-    answerInputType *VirtualEventRegistrationQuestionAnswerInputType
 }
 // NewVirtualEventRegistrationCustomQuestion instantiates a new VirtualEventRegistrationCustomQuestion and sets the default values.
 func NewVirtualEventRegistrationCustomQuestion()(*VirtualEventRegistrationCustomQuestion) {
@@ -31,12 +27,26 @@ func CreateVirtualEventRegistrationCustomQuestionFromDiscriminatorValue(parseNod
 // GetAnswerChoices gets the answerChoices property value. Answer choices when answerInputType is singleChoice or multiChoice.
 // returns a []string when successful
 func (m *VirtualEventRegistrationCustomQuestion) GetAnswerChoices()([]string) {
-    return m.answerChoices
+    val, err := m.GetBackingStore().Get("answerChoices")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetAnswerInputType gets the answerInputType property value. Input type of the registration question answer. Possible values are text, multilineText, singleChoice, multiChoice, boolean, and unknownFutureValue.
 // returns a *VirtualEventRegistrationQuestionAnswerInputType when successful
 func (m *VirtualEventRegistrationCustomQuestion) GetAnswerInputType()(*VirtualEventRegistrationQuestionAnswerInputType) {
-    return m.answerInputType
+    val, err := m.GetBackingStore().Get("answerInputType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*VirtualEventRegistrationQuestionAnswerInputType)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -93,11 +103,17 @@ func (m *VirtualEventRegistrationCustomQuestion) Serialize(writer i878a80d2330e8
 }
 // SetAnswerChoices sets the answerChoices property value. Answer choices when answerInputType is singleChoice or multiChoice.
 func (m *VirtualEventRegistrationCustomQuestion) SetAnswerChoices(value []string)() {
-    m.answerChoices = value
+    err := m.GetBackingStore().Set("answerChoices", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAnswerInputType sets the answerInputType property value. Input type of the registration question answer. Possible values are text, multilineText, singleChoice, multiChoice, boolean, and unknownFutureValue.
 func (m *VirtualEventRegistrationCustomQuestion) SetAnswerInputType(value *VirtualEventRegistrationQuestionAnswerInputType)() {
-    m.answerInputType = value
+    err := m.GetBackingStore().Set("answerInputType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventRegistrationCustomQuestionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -10,14 +10,6 @@ import (
 
 type DeviceLocalCredential struct {
     Entity
-    // The name of the local admin account for which LAPS is enabled.
-    accountName *string
-    // The SID of the local admin account for which LAPS is enabled.
-    accountSid *string
-    // When the local administrator account credential for the device object was backed up to Azure Active Directory.
-    backupDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The password for the local administrator account that is backed up to Azure Active Directory and returned as a Base64 encoded value.
-    passwordBase64 *string
 }
 // NewDeviceLocalCredential instantiates a new DeviceLocalCredential and sets the default values.
 func NewDeviceLocalCredential()(*DeviceLocalCredential) {
@@ -34,17 +26,38 @@ func CreateDeviceLocalCredentialFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetAccountName gets the accountName property value. The name of the local admin account for which LAPS is enabled.
 // returns a *string when successful
 func (m *DeviceLocalCredential) GetAccountName()(*string) {
-    return m.accountName
+    val, err := m.GetBackingStore().Get("accountName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetAccountSid gets the accountSid property value. The SID of the local admin account for which LAPS is enabled.
 // returns a *string when successful
 func (m *DeviceLocalCredential) GetAccountSid()(*string) {
-    return m.accountSid
+    val, err := m.GetBackingStore().Get("accountSid")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetBackupDateTime gets the backupDateTime property value. When the local administrator account credential for the device object was backed up to Azure Active Directory.
 // returns a *Time when successful
 func (m *DeviceLocalCredential) GetBackupDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.backupDateTime
+    val, err := m.GetBackingStore().Get("backupDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -95,7 +108,14 @@ func (m *DeviceLocalCredential) GetFieldDeserializers()(map[string]func(i878a80d
 // GetPasswordBase64 gets the passwordBase64 property value. The password for the local administrator account that is backed up to Azure Active Directory and returned as a Base64 encoded value.
 // returns a *string when successful
 func (m *DeviceLocalCredential) GetPasswordBase64()(*string) {
-    return m.passwordBase64
+    val, err := m.GetBackingStore().Get("passwordBase64")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeviceLocalCredential) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -131,19 +151,31 @@ func (m *DeviceLocalCredential) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetAccountName sets the accountName property value. The name of the local admin account for which LAPS is enabled.
 func (m *DeviceLocalCredential) SetAccountName(value *string)() {
-    m.accountName = value
+    err := m.GetBackingStore().Set("accountName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAccountSid sets the accountSid property value. The SID of the local admin account for which LAPS is enabled.
 func (m *DeviceLocalCredential) SetAccountSid(value *string)() {
-    m.accountSid = value
+    err := m.GetBackingStore().Set("accountSid", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetBackupDateTime sets the backupDateTime property value. When the local administrator account credential for the device object was backed up to Azure Active Directory.
 func (m *DeviceLocalCredential) SetBackupDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.backupDateTime = value
+    err := m.GetBackingStore().Set("backupDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPasswordBase64 sets the passwordBase64 property value. The password for the local administrator account that is backed up to Azure Active Directory and returned as a Base64 encoded value.
 func (m *DeviceLocalCredential) SetPasswordBase64(value *string)() {
-    m.passwordBase64 = value
+    err := m.GetBackingStore().Set("passwordBase64", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceLocalCredentialable interface {
     Entityable

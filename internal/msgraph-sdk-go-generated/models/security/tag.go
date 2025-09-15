@@ -11,14 +11,6 @@ import (
 
 type Tag struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The createdBy property
-    createdBy i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable
-    // The description property
-    description *string
-    // The displayName property
-    displayName *string
-    // The lastModifiedDateTime property
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewTag instantiates a new Tag and sets the default values.
 func NewTag()(*Tag) {
@@ -53,17 +45,38 @@ func CreateTagFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef
 // GetCreatedBy gets the createdBy property value. The createdBy property
 // returns a IdentitySetable when successful
 func (m *Tag) GetCreatedBy()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
 func (m *Tag) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The displayName property
 // returns a *string when successful
 func (m *Tag) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -114,7 +127,14 @@ func (m *Tag) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. The lastModifiedDateTime property
 // returns a *Time when successful
 func (m *Tag) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Tag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -150,19 +170,31 @@ func (m *Tag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493
 }
 // SetCreatedBy sets the createdBy property value. The createdBy property
 func (m *Tag) SetCreatedBy(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. The description property
 func (m *Tag) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The displayName property
 func (m *Tag) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. The lastModifiedDateTime property
 func (m *Tag) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Tagable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

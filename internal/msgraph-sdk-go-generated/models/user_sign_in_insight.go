@@ -10,8 +10,6 @@ import (
 
 type UserSignInInsight struct {
     GovernanceInsight
-    // Indicates when the user last signed in.
-    lastSignInDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewUserSignInInsight instantiates a new UserSignInInsight and sets the default values.
 func NewUserSignInInsight()(*UserSignInInsight) {
@@ -46,7 +44,14 @@ func (m *UserSignInInsight) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetLastSignInDateTime gets the lastSignInDateTime property value. Indicates when the user last signed in.
 // returns a *Time when successful
 func (m *UserSignInInsight) GetLastSignInDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastSignInDateTime
+    val, err := m.GetBackingStore().Get("lastSignInDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserSignInInsight) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *UserSignInInsight) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetLastSignInDateTime sets the lastSignInDateTime property value. Indicates when the user last signed in.
 func (m *UserSignInInsight) SetLastSignInDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastSignInDateTime = value
+    err := m.GetBackingStore().Set("lastSignInDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserSignInInsightable interface {
     GovernanceInsightable

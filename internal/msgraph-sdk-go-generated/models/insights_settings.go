@@ -9,10 +9,6 @@ import (
 
 type InsightsSettings struct {
     Entity
-    // The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. The default value is null. Optional.
-    disabledForGroup *string
-    // true if insights of the specified type are enabled for the organization; false if insights of the specified type are disabled for all users without exceptions. The default value is true. Optional.
-    isEnabledInOrganization *bool
 }
 // NewInsightsSettings instantiates a new InsightsSettings and sets the default values.
 func NewInsightsSettings()(*InsightsSettings) {
@@ -29,7 +25,14 @@ func CreateInsightsSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 // GetDisabledForGroup gets the disabledForGroup property value. The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. The default value is null. Optional.
 // returns a *string when successful
 func (m *InsightsSettings) GetDisabledForGroup()(*string) {
-    return m.disabledForGroup
+    val, err := m.GetBackingStore().Get("disabledForGroup")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *InsightsSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetIsEnabledInOrganization gets the isEnabledInOrganization property value. true if insights of the specified type are enabled for the organization; false if insights of the specified type are disabled for all users without exceptions. The default value is true. Optional.
 // returns a *bool when successful
 func (m *InsightsSettings) GetIsEnabledInOrganization()(*bool) {
-    return m.isEnabledInOrganization
+    val, err := m.GetBackingStore().Get("isEnabledInOrganization")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *InsightsSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *InsightsSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetDisabledForGroup sets the disabledForGroup property value. The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. The default value is null. Optional.
 func (m *InsightsSettings) SetDisabledForGroup(value *string)() {
-    m.disabledForGroup = value
+    err := m.GetBackingStore().Set("disabledForGroup", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsEnabledInOrganization sets the isEnabledInOrganization property value. true if insights of the specified type are enabled for the organization; false if insights of the specified type are disabled for all users without exceptions. The default value is true. Optional.
 func (m *InsightsSettings) SetIsEnabledInOrganization(value *bool)() {
-    m.isEnabledInOrganization = value
+    err := m.GetBackingStore().Set("isEnabledInOrganization", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type InsightsSettingsable interface {
     Entityable

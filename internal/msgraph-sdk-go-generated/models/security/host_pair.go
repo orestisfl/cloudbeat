@@ -11,16 +11,6 @@ import (
 
 type HostPair struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The childHost property
-    childHost Hostable
-    // The date and time when Microsoft Defender Threat Intelligence first observed the hostPair. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    firstSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The date and time when Microsoft Defender Threat Intelligence last observed the hostPair. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The reason that two hosts are identified as hostPair.
-    linkKind *string
-    // The parentHost property
-    parentHost Hostable
 }
 // NewHostPair instantiates a new HostPair and sets the default values.
 func NewHostPair()(*HostPair) {
@@ -37,7 +27,14 @@ func CreateHostPairFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
 // GetChildHost gets the childHost property value. The childHost property
 // returns a Hostable when successful
 func (m *HostPair) GetChildHost()(Hostable) {
-    return m.childHost
+    val, err := m.GetBackingStore().Get("childHost")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Hostable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -98,22 +95,50 @@ func (m *HostPair) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetFirstSeenDateTime gets the firstSeenDateTime property value. The date and time when Microsoft Defender Threat Intelligence first observed the hostPair. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *HostPair) GetFirstSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.firstSeenDateTime
+    val, err := m.GetBackingStore().Get("firstSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetLastSeenDateTime gets the lastSeenDateTime property value. The date and time when Microsoft Defender Threat Intelligence last observed the hostPair. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *HostPair) GetLastSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastSeenDateTime
+    val, err := m.GetBackingStore().Get("lastSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetLinkKind gets the linkKind property value. The reason that two hosts are identified as hostPair.
 // returns a *string when successful
 func (m *HostPair) GetLinkKind()(*string) {
-    return m.linkKind
+    val, err := m.GetBackingStore().Get("linkKind")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetParentHost gets the parentHost property value. The parentHost property
 // returns a Hostable when successful
 func (m *HostPair) GetParentHost()(Hostable) {
-    return m.parentHost
+    val, err := m.GetBackingStore().Get("parentHost")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Hostable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *HostPair) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -155,23 +180,38 @@ func (m *HostPair) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetChildHost sets the childHost property value. The childHost property
 func (m *HostPair) SetChildHost(value Hostable)() {
-    m.childHost = value
+    err := m.GetBackingStore().Set("childHost", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFirstSeenDateTime sets the firstSeenDateTime property value. The date and time when Microsoft Defender Threat Intelligence first observed the hostPair. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *HostPair) SetFirstSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.firstSeenDateTime = value
+    err := m.GetBackingStore().Set("firstSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastSeenDateTime sets the lastSeenDateTime property value. The date and time when Microsoft Defender Threat Intelligence last observed the hostPair. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *HostPair) SetLastSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastSeenDateTime = value
+    err := m.GetBackingStore().Set("lastSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLinkKind sets the linkKind property value. The reason that two hosts are identified as hostPair.
 func (m *HostPair) SetLinkKind(value *string)() {
-    m.linkKind = value
+    err := m.GetBackingStore().Set("linkKind", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParentHost sets the parentHost property value. The parentHost property
 func (m *HostPair) SetParentHost(value Hostable)() {
-    m.parentHost = value
+    err := m.GetBackingStore().Set("parentHost", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type HostPairable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

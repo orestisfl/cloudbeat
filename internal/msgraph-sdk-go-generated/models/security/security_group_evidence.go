@@ -10,18 +10,6 @@ import (
 
 type SecurityGroupEvidence struct {
     AlertEvidence
-    // The unique group identifier assigned by the on-premises Active Directory.
-    activeDirectoryObjectGuid *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The name of the security group.
-    displayName *string
-    // The distinguished name of the security group.
-    distinguishedName *string
-    // The friendly name of the security group.
-    friendlyName *string
-    // Unique identifier of the security group.
-    securityGroupId *string
-    // The security identifier of the group.
-    sid *string
 }
 // NewSecurityGroupEvidence instantiates a new SecurityGroupEvidence and sets the default values.
 func NewSecurityGroupEvidence()(*SecurityGroupEvidence) {
@@ -40,17 +28,38 @@ func CreateSecurityGroupEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetActiveDirectoryObjectGuid gets the activeDirectoryObjectGuid property value. The unique group identifier assigned by the on-premises Active Directory.
 // returns a *UUID when successful
 func (m *SecurityGroupEvidence) GetActiveDirectoryObjectGuid()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.activeDirectoryObjectGuid
+    val, err := m.GetBackingStore().Get("activeDirectoryObjectGuid")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The name of the security group.
 // returns a *string when successful
 func (m *SecurityGroupEvidence) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDistinguishedName gets the distinguishedName property value. The distinguished name of the security group.
 // returns a *string when successful
 func (m *SecurityGroupEvidence) GetDistinguishedName()(*string) {
-    return m.distinguishedName
+    val, err := m.GetBackingStore().Get("distinguishedName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -121,17 +130,38 @@ func (m *SecurityGroupEvidence) GetFieldDeserializers()(map[string]func(i878a80d
 // GetFriendlyName gets the friendlyName property value. The friendly name of the security group.
 // returns a *string when successful
 func (m *SecurityGroupEvidence) GetFriendlyName()(*string) {
-    return m.friendlyName
+    val, err := m.GetBackingStore().Get("friendlyName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSecurityGroupId gets the securityGroupId property value. Unique identifier of the security group.
 // returns a *string when successful
 func (m *SecurityGroupEvidence) GetSecurityGroupId()(*string) {
-    return m.securityGroupId
+    val, err := m.GetBackingStore().Get("securityGroupId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSid gets the sid property value. The security identifier of the group.
 // returns a *string when successful
 func (m *SecurityGroupEvidence) GetSid()(*string) {
-    return m.sid
+    val, err := m.GetBackingStore().Get("sid")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SecurityGroupEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -179,27 +209,45 @@ func (m *SecurityGroupEvidence) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetActiveDirectoryObjectGuid sets the activeDirectoryObjectGuid property value. The unique group identifier assigned by the on-premises Active Directory.
 func (m *SecurityGroupEvidence) SetActiveDirectoryObjectGuid(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.activeDirectoryObjectGuid = value
+    err := m.GetBackingStore().Set("activeDirectoryObjectGuid", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The name of the security group.
 func (m *SecurityGroupEvidence) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDistinguishedName sets the distinguishedName property value. The distinguished name of the security group.
 func (m *SecurityGroupEvidence) SetDistinguishedName(value *string)() {
-    m.distinguishedName = value
+    err := m.GetBackingStore().Set("distinguishedName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFriendlyName sets the friendlyName property value. The friendly name of the security group.
 func (m *SecurityGroupEvidence) SetFriendlyName(value *string)() {
-    m.friendlyName = value
+    err := m.GetBackingStore().Set("friendlyName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSecurityGroupId sets the securityGroupId property value. Unique identifier of the security group.
 func (m *SecurityGroupEvidence) SetSecurityGroupId(value *string)() {
-    m.securityGroupId = value
+    err := m.GetBackingStore().Set("securityGroupId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSid sets the sid property value. The security identifier of the group.
 func (m *SecurityGroupEvidence) SetSid(value *string)() {
-    m.sid = value
+    err := m.GetBackingStore().Set("sid", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SecurityGroupEvidenceable interface {
     AlertEvidenceable

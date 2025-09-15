@@ -9,12 +9,6 @@ import (
 
 type NicEvidence struct {
     AlertEvidence
-    // The current IP address of the NIC.
-    ipAddress IpEvidenceable
-    // The MAC address of the NIC.
-    macAddress *string
-    // The current virtual local area networks of the NIC.
-    vlans []string
 }
 // NewNicEvidence instantiates a new NicEvidence and sets the default values.
 func NewNicEvidence()(*NicEvidence) {
@@ -75,17 +69,38 @@ func (m *NicEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetIpAddress gets the ipAddress property value. The current IP address of the NIC.
 // returns a IpEvidenceable when successful
 func (m *NicEvidence) GetIpAddress()(IpEvidenceable) {
-    return m.ipAddress
+    val, err := m.GetBackingStore().Get("ipAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IpEvidenceable)
+    }
+    return nil
 }
 // GetMacAddress gets the macAddress property value. The MAC address of the NIC.
 // returns a *string when successful
 func (m *NicEvidence) GetMacAddress()(*string) {
-    return m.macAddress
+    val, err := m.GetBackingStore().Get("macAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetVlans gets the vlans property value. The current virtual local area networks of the NIC.
 // returns a []string when successful
 func (m *NicEvidence) GetVlans()([]string) {
-    return m.vlans
+    val, err := m.GetBackingStore().Get("vlans")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *NicEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -115,15 +130,24 @@ func (m *NicEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetIpAddress sets the ipAddress property value. The current IP address of the NIC.
 func (m *NicEvidence) SetIpAddress(value IpEvidenceable)() {
-    m.ipAddress = value
+    err := m.GetBackingStore().Set("ipAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMacAddress sets the macAddress property value. The MAC address of the NIC.
 func (m *NicEvidence) SetMacAddress(value *string)() {
-    m.macAddress = value
+    err := m.GetBackingStore().Set("macAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVlans sets the vlans property value. The current virtual local area networks of the NIC.
 func (m *NicEvidence) SetVlans(value []string)() {
-    m.vlans = value
+    err := m.GetBackingStore().Set("vlans", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type NicEvidenceable interface {
     AlertEvidenceable

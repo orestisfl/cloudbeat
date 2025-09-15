@@ -9,10 +9,6 @@ import (
 
 type OnPremisesDirectorySynchronization struct {
     Entity
-    // Consists of configurations that can be fine-tuned and impact the on-premises directory synchronization process for a tenant. Nullable.
-    configuration OnPremisesDirectorySynchronizationConfigurationable
-    // The features property
-    features OnPremisesDirectorySynchronizationFeatureable
 }
 // NewOnPremisesDirectorySynchronization instantiates a new OnPremisesDirectorySynchronization and sets the default values.
 func NewOnPremisesDirectorySynchronization()(*OnPremisesDirectorySynchronization) {
@@ -29,12 +25,26 @@ func CreateOnPremisesDirectorySynchronizationFromDiscriminatorValue(parseNode i8
 // GetConfiguration gets the configuration property value. Consists of configurations that can be fine-tuned and impact the on-premises directory synchronization process for a tenant. Nullable.
 // returns a OnPremisesDirectorySynchronizationConfigurationable when successful
 func (m *OnPremisesDirectorySynchronization) GetConfiguration()(OnPremisesDirectorySynchronizationConfigurationable) {
-    return m.configuration
+    val, err := m.GetBackingStore().Get("configuration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnPremisesDirectorySynchronizationConfigurationable)
+    }
+    return nil
 }
 // GetFeatures gets the features property value. The features property
 // returns a OnPremisesDirectorySynchronizationFeatureable when successful
 func (m *OnPremisesDirectorySynchronization) GetFeatures()(OnPremisesDirectorySynchronizationFeatureable) {
-    return m.features
+    val, err := m.GetBackingStore().Get("features")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnPremisesDirectorySynchronizationFeatureable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -84,11 +94,17 @@ func (m *OnPremisesDirectorySynchronization) Serialize(writer i878a80d2330e89d26
 }
 // SetConfiguration sets the configuration property value. Consists of configurations that can be fine-tuned and impact the on-premises directory synchronization process for a tenant. Nullable.
 func (m *OnPremisesDirectorySynchronization) SetConfiguration(value OnPremisesDirectorySynchronizationConfigurationable)() {
-    m.configuration = value
+    err := m.GetBackingStore().Set("configuration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFeatures sets the features property value. The features property
 func (m *OnPremisesDirectorySynchronization) SetFeatures(value OnPremisesDirectorySynchronizationFeatureable)() {
-    m.features = value
+    err := m.GetBackingStore().Set("features", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnPremisesDirectorySynchronizationable interface {
     Entityable

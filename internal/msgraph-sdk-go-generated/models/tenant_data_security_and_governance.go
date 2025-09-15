@@ -9,8 +9,6 @@ import (
 
 type TenantDataSecurityAndGovernance struct {
     DataSecurityAndGovernance
-    // The protectionScopes property
-    protectionScopes TenantProtectionScopeContainerable
 }
 // NewTenantDataSecurityAndGovernance instantiates a new TenantDataSecurityAndGovernance and sets the default values.
 func NewTenantDataSecurityAndGovernance()(*TenantDataSecurityAndGovernance) {
@@ -45,7 +43,14 @@ func (m *TenantDataSecurityAndGovernance) GetFieldDeserializers()(map[string]fun
 // GetProtectionScopes gets the protectionScopes property value. The protectionScopes property
 // returns a TenantProtectionScopeContainerable when successful
 func (m *TenantDataSecurityAndGovernance) GetProtectionScopes()(TenantProtectionScopeContainerable) {
-    return m.protectionScopes
+    val, err := m.GetBackingStore().Get("protectionScopes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TenantProtectionScopeContainerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TenantDataSecurityAndGovernance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *TenantDataSecurityAndGovernance) Serialize(writer i878a80d2330e89d26896
 }
 // SetProtectionScopes sets the protectionScopes property value. The protectionScopes property
 func (m *TenantDataSecurityAndGovernance) SetProtectionScopes(value TenantProtectionScopeContainerable)() {
-    m.protectionScopes = value
+    err := m.GetBackingStore().Set("protectionScopes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TenantDataSecurityAndGovernanceable interface {
     DataSecurityAndGovernanceable

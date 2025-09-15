@@ -10,14 +10,6 @@ import (
 // RichLongRunningOperation the status of a long-running operation.
 type RichLongRunningOperation struct {
     LongRunningOperation
-    // Error that caused the operation to fail.
-    error PublicErrorable
-    // A value between 0 and 100 that indicates the progress of the operation.
-    percentageComplete *int32
-    // The unique identifier for the result.
-    resourceId *string
-    // The type of the operation.
-    typeEscaped *string
 }
 // NewRichLongRunningOperation instantiates a new RichLongRunningOperation and sets the default values.
 func NewRichLongRunningOperation()(*RichLongRunningOperation) {
@@ -34,7 +26,14 @@ func CreateRichLongRunningOperationFromDiscriminatorValue(parseNode i878a80d2330
 // GetError gets the error property value. Error that caused the operation to fail.
 // returns a PublicErrorable when successful
 func (m *RichLongRunningOperation) GetError()(PublicErrorable) {
-    return m.error
+    val, err := m.GetBackingStore().Get("error")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PublicErrorable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -85,17 +84,38 @@ func (m *RichLongRunningOperation) GetFieldDeserializers()(map[string]func(i878a
 // GetPercentageComplete gets the percentageComplete property value. A value between 0 and 100 that indicates the progress of the operation.
 // returns a *int32 when successful
 func (m *RichLongRunningOperation) GetPercentageComplete()(*int32) {
-    return m.percentageComplete
+    val, err := m.GetBackingStore().Get("percentageComplete")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetResourceId gets the resourceId property value. The unique identifier for the result.
 // returns a *string when successful
 func (m *RichLongRunningOperation) GetResourceId()(*string) {
-    return m.resourceId
+    val, err := m.GetBackingStore().Get("resourceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTypeEscaped gets the type property value. The type of the operation.
 // returns a *string when successful
 func (m *RichLongRunningOperation) GetTypeEscaped()(*string) {
-    return m.typeEscaped
+    val, err := m.GetBackingStore().Get("typeEscaped")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *RichLongRunningOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -131,19 +151,31 @@ func (m *RichLongRunningOperation) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetError sets the error property value. Error that caused the operation to fail.
 func (m *RichLongRunningOperation) SetError(value PublicErrorable)() {
-    m.error = value
+    err := m.GetBackingStore().Set("error", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPercentageComplete sets the percentageComplete property value. A value between 0 and 100 that indicates the progress of the operation.
 func (m *RichLongRunningOperation) SetPercentageComplete(value *int32)() {
-    m.percentageComplete = value
+    err := m.GetBackingStore().Set("percentageComplete", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceId sets the resourceId property value. The unique identifier for the result.
 func (m *RichLongRunningOperation) SetResourceId(value *string)() {
-    m.resourceId = value
+    err := m.GetBackingStore().Set("resourceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTypeEscaped sets the type property value. The type of the operation.
 func (m *RichLongRunningOperation) SetTypeEscaped(value *string)() {
-    m.typeEscaped = value
+    err := m.GetBackingStore().Set("typeEscaped", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type RichLongRunningOperationable interface {
     LongRunningOperationable

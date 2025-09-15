@@ -9,8 +9,6 @@ import (
 
 type EducationLinkedAssignmentResource struct {
     EducationResource
-    // URL of the actual assignment.
-    url *string
 }
 // NewEducationLinkedAssignmentResource instantiates a new EducationLinkedAssignmentResource and sets the default values.
 func NewEducationLinkedAssignmentResource()(*EducationLinkedAssignmentResource) {
@@ -45,7 +43,14 @@ func (m *EducationLinkedAssignmentResource) GetFieldDeserializers()(map[string]f
 // GetUrl gets the url property value. URL of the actual assignment.
 // returns a *string when successful
 func (m *EducationLinkedAssignmentResource) GetUrl()(*string) {
-    return m.url
+    val, err := m.GetBackingStore().Get("url")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationLinkedAssignmentResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *EducationLinkedAssignmentResource) Serialize(writer i878a80d2330e89d268
 }
 // SetUrl sets the url property value. URL of the actual assignment.
 func (m *EducationLinkedAssignmentResource) SetUrl(value *string)() {
-    m.url = value
+    err := m.GetBackingStore().Set("url", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationLinkedAssignmentResourceable interface {
     EducationResourceable

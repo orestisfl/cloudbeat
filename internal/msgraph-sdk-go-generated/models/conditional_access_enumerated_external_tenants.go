@@ -9,8 +9,6 @@ import (
 
 type ConditionalAccessEnumeratedExternalTenants struct {
     ConditionalAccessExternalTenants
-    // A collection of tenant IDs that define the scope of a policy targeting conditional access for guests and external users.
-    members []string
 }
 // NewConditionalAccessEnumeratedExternalTenants instantiates a new ConditionalAccessEnumeratedExternalTenants and sets the default values.
 func NewConditionalAccessEnumeratedExternalTenants()(*ConditionalAccessEnumeratedExternalTenants) {
@@ -51,7 +49,14 @@ func (m *ConditionalAccessEnumeratedExternalTenants) GetFieldDeserializers()(map
 // GetMembers gets the members property value. A collection of tenant IDs that define the scope of a policy targeting conditional access for guests and external users.
 // returns a []string when successful
 func (m *ConditionalAccessEnumeratedExternalTenants) GetMembers()([]string) {
-    return m.members
+    val, err := m.GetBackingStore().Get("members")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ConditionalAccessEnumeratedExternalTenants) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -69,7 +74,10 @@ func (m *ConditionalAccessEnumeratedExternalTenants) Serialize(writer i878a80d23
 }
 // SetMembers sets the members property value. A collection of tenant IDs that define the scope of a policy targeting conditional access for guests and external users.
 func (m *ConditionalAccessEnumeratedExternalTenants) SetMembers(value []string)() {
-    m.members = value
+    err := m.GetBackingStore().Set("members", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ConditionalAccessEnumeratedExternalTenantsable interface {
     ConditionalAccessExternalTenantsable

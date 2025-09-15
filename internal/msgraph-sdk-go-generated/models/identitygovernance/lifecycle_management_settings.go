@@ -10,10 +10,6 @@ import (
 
 type LifecycleManagementSettings struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The emailSettings property
-    emailSettings i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.EmailSettingsable
-    // The interval in hours at which all workflows running in the tenant should be scheduled for execution. This interval has a minimum value of 1 and a maximum value of 24. The default value is 3 hours.
-    workflowScheduleIntervalInHours *int32
 }
 // NewLifecycleManagementSettings instantiates a new LifecycleManagementSettings and sets the default values.
 func NewLifecycleManagementSettings()(*LifecycleManagementSettings) {
@@ -30,7 +26,14 @@ func CreateLifecycleManagementSettingsFromDiscriminatorValue(parseNode i878a80d2
 // GetEmailSettings gets the emailSettings property value. The emailSettings property
 // returns a EmailSettingsable when successful
 func (m *LifecycleManagementSettings) GetEmailSettings()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.EmailSettingsable) {
-    return m.emailSettings
+    val, err := m.GetBackingStore().Get("emailSettings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.EmailSettingsable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +64,14 @@ func (m *LifecycleManagementSettings) GetFieldDeserializers()(map[string]func(i8
 // GetWorkflowScheduleIntervalInHours gets the workflowScheduleIntervalInHours property value. The interval in hours at which all workflows running in the tenant should be scheduled for execution. This interval has a minimum value of 1 and a maximum value of 24. The default value is 3 hours.
 // returns a *int32 when successful
 func (m *LifecycleManagementSettings) GetWorkflowScheduleIntervalInHours()(*int32) {
-    return m.workflowScheduleIntervalInHours
+    val, err := m.GetBackingStore().Get("workflowScheduleIntervalInHours")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LifecycleManagementSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *LifecycleManagementSettings) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetEmailSettings sets the emailSettings property value. The emailSettings property
 func (m *LifecycleManagementSettings) SetEmailSettings(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.EmailSettingsable)() {
-    m.emailSettings = value
+    err := m.GetBackingStore().Set("emailSettings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWorkflowScheduleIntervalInHours sets the workflowScheduleIntervalInHours property value. The interval in hours at which all workflows running in the tenant should be scheduled for execution. This interval has a minimum value of 1 and a maximum value of 24. The default value is 3 hours.
 func (m *LifecycleManagementSettings) SetWorkflowScheduleIntervalInHours(value *int32)() {
-    m.workflowScheduleIntervalInHours = value
+    err := m.GetBackingStore().Set("workflowScheduleIntervalInHours", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LifecycleManagementSettingsable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

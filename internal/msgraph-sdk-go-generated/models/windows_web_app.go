@@ -10,8 +10,6 @@ import (
 // WindowsWebApp contains properties and inherited properties for Windows web apps.
 type WindowsWebApp struct {
     MobileApp
-    // Indicates the Windows web app URL. Example: 'https://www.contoso.com'
-    appUrl *string
 }
 // NewWindowsWebApp instantiates a new WindowsWebApp and sets the default values.
 func NewWindowsWebApp()(*WindowsWebApp) {
@@ -30,7 +28,14 @@ func CreateWindowsWebAppFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 // GetAppUrl gets the appUrl property value. Indicates the Windows web app URL. Example: 'https://www.contoso.com'
 // returns a *string when successful
 func (m *WindowsWebApp) GetAppUrl()(*string) {
-    return m.appUrl
+    val, err := m.GetBackingStore().Get("appUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *WindowsWebApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetAppUrl sets the appUrl property value. Indicates the Windows web app URL. Example: 'https://www.contoso.com'
 func (m *WindowsWebApp) SetAppUrl(value *string)() {
-    m.appUrl = value
+    err := m.GetBackingStore().Set("appUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WindowsWebAppable interface {
     MobileAppable

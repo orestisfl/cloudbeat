@@ -5,38 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type CloudPcAuditActor struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Name of the application.
-    applicationDisplayName *string
-    // Microsoft Entra application ID.
-    applicationId *string
-    // IP address.
-    ipAddress *string
-    // The OdataType property
-    odataType *string
-    // The delegated partner tenant ID.
-    remoteTenantId *string
-    // The delegated partner user ID.
-    remoteUserId *string
-    // Service Principal Name (SPN).
-    servicePrincipalName *string
-    // Microsoft Entra user ID.
-    userId *string
-    // List of user permissions and application permissions when the audit event was performed.
-    userPermissions []string
-    // User Principal Name (UPN).
-    userPrincipalName *string
-    // List of role scope tags.
-    userRoleScopeTags []CloudPcUserRoleScopeTagInfoable
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewCloudPcAuditActor instantiates a new CloudPcAuditActor and sets the default values.
 func NewCloudPcAuditActor()(*CloudPcAuditActor) {
     m := &CloudPcAuditActor{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -48,17 +28,44 @@ func CreateCloudPcAuditActorFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *CloudPcAuditActor) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
 }
 // GetApplicationDisplayName gets the applicationDisplayName property value. Name of the application.
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetApplicationDisplayName()(*string) {
-    return m.applicationDisplayName
+    val, err := m.GetBackingStore().Get("applicationDisplayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetApplicationId gets the applicationId property value. Microsoft Entra application ID.
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetApplicationId()(*string) {
-    return m.applicationId
+    val, err := m.GetBackingStore().Get("applicationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *CloudPcAuditActor) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -191,47 +198,110 @@ func (m *CloudPcAuditActor) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetIpAddress gets the ipAddress property value. IP address.
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetIpAddress()(*string) {
-    return m.ipAddress
+    val, err := m.GetBackingStore().Get("ipAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRemoteTenantId gets the remoteTenantId property value. The delegated partner tenant ID.
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetRemoteTenantId()(*string) {
-    return m.remoteTenantId
+    val, err := m.GetBackingStore().Get("remoteTenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRemoteUserId gets the remoteUserId property value. The delegated partner user ID.
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetRemoteUserId()(*string) {
-    return m.remoteUserId
+    val, err := m.GetBackingStore().Get("remoteUserId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetServicePrincipalName gets the servicePrincipalName property value. Service Principal Name (SPN).
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetServicePrincipalName()(*string) {
-    return m.servicePrincipalName
+    val, err := m.GetBackingStore().Get("servicePrincipalName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUserId gets the userId property value. Microsoft Entra user ID.
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetUserId()(*string) {
-    return m.userId
+    val, err := m.GetBackingStore().Get("userId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUserPermissions gets the userPermissions property value. List of user permissions and application permissions when the audit event was performed.
 // returns a []string when successful
 func (m *CloudPcAuditActor) GetUserPermissions()([]string) {
-    return m.userPermissions
+    val, err := m.GetBackingStore().Get("userPermissions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetUserPrincipalName gets the userPrincipalName property value. User Principal Name (UPN).
 // returns a *string when successful
 func (m *CloudPcAuditActor) GetUserPrincipalName()(*string) {
-    return m.userPrincipalName
+    val, err := m.GetBackingStore().Get("userPrincipalName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUserRoleScopeTags gets the userRoleScopeTags property value. List of role scope tags.
 // returns a []CloudPcUserRoleScopeTagInfoable when successful
 func (m *CloudPcAuditActor) GetUserRoleScopeTags()([]CloudPcUserRoleScopeTagInfoable) {
-    return m.userRoleScopeTags
+    val, err := m.GetBackingStore().Get("userRoleScopeTags")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPcUserRoleScopeTagInfoable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CloudPcAuditActor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -317,57 +387,99 @@ func (m *CloudPcAuditActor) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CloudPcAuditActor) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetApplicationDisplayName sets the applicationDisplayName property value. Name of the application.
 func (m *CloudPcAuditActor) SetApplicationDisplayName(value *string)() {
-    m.applicationDisplayName = value
+    err := m.GetBackingStore().Set("applicationDisplayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetApplicationId sets the applicationId property value. Microsoft Entra application ID.
 func (m *CloudPcAuditActor) SetApplicationId(value *string)() {
-    m.applicationId = value
+    err := m.GetBackingStore().Set("applicationId", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *CloudPcAuditActor) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetIpAddress sets the ipAddress property value. IP address.
 func (m *CloudPcAuditActor) SetIpAddress(value *string)() {
-    m.ipAddress = value
+    err := m.GetBackingStore().Set("ipAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *CloudPcAuditActor) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRemoteTenantId sets the remoteTenantId property value. The delegated partner tenant ID.
 func (m *CloudPcAuditActor) SetRemoteTenantId(value *string)() {
-    m.remoteTenantId = value
+    err := m.GetBackingStore().Set("remoteTenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRemoteUserId sets the remoteUserId property value. The delegated partner user ID.
 func (m *CloudPcAuditActor) SetRemoteUserId(value *string)() {
-    m.remoteUserId = value
+    err := m.GetBackingStore().Set("remoteUserId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServicePrincipalName sets the servicePrincipalName property value. Service Principal Name (SPN).
 func (m *CloudPcAuditActor) SetServicePrincipalName(value *string)() {
-    m.servicePrincipalName = value
+    err := m.GetBackingStore().Set("servicePrincipalName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserId sets the userId property value. Microsoft Entra user ID.
 func (m *CloudPcAuditActor) SetUserId(value *string)() {
-    m.userId = value
+    err := m.GetBackingStore().Set("userId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserPermissions sets the userPermissions property value. List of user permissions and application permissions when the audit event was performed.
 func (m *CloudPcAuditActor) SetUserPermissions(value []string)() {
-    m.userPermissions = value
+    err := m.GetBackingStore().Set("userPermissions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserPrincipalName sets the userPrincipalName property value. User Principal Name (UPN).
 func (m *CloudPcAuditActor) SetUserPrincipalName(value *string)() {
-    m.userPrincipalName = value
+    err := m.GetBackingStore().Set("userPrincipalName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserRoleScopeTags sets the userRoleScopeTags property value. List of role scope tags.
 func (m *CloudPcAuditActor) SetUserRoleScopeTags(value []CloudPcUserRoleScopeTagInfoable)() {
-    m.userRoleScopeTags = value
+    err := m.GetBackingStore().Set("userRoleScopeTags", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CloudPcAuditActorable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetApplicationDisplayName()(*string)
     GetApplicationId()(*string)
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetIpAddress()(*string)
     GetOdataType()(*string)
     GetRemoteTenantId()(*string)
@@ -379,6 +491,7 @@ type CloudPcAuditActorable interface {
     GetUserRoleScopeTags()([]CloudPcUserRoleScopeTagInfoable)
     SetApplicationDisplayName(value *string)()
     SetApplicationId(value *string)()
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetIpAddress(value *string)()
     SetOdataType(value *string)()
     SetRemoteTenantId(value *string)()

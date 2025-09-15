@@ -9,10 +9,6 @@ import (
 
 type WorkbookChartAreaFormat struct {
     Entity
-    // Represents the fill format of an object, which includes background formatting information. Read-only.
-    fill WorkbookChartFillable
-    // Represents the font attributes (font name, font size, color, etc.) for the current object. Read-only.
-    font WorkbookChartFontable
 }
 // NewWorkbookChartAreaFormat instantiates a new WorkbookChartAreaFormat and sets the default values.
 func NewWorkbookChartAreaFormat()(*WorkbookChartAreaFormat) {
@@ -55,12 +51,26 @@ func (m *WorkbookChartAreaFormat) GetFieldDeserializers()(map[string]func(i878a8
 // GetFill gets the fill property value. Represents the fill format of an object, which includes background formatting information. Read-only.
 // returns a WorkbookChartFillable when successful
 func (m *WorkbookChartAreaFormat) GetFill()(WorkbookChartFillable) {
-    return m.fill
+    val, err := m.GetBackingStore().Get("fill")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartFillable)
+    }
+    return nil
 }
 // GetFont gets the font property value. Represents the font attributes (font name, font size, color, etc.) for the current object. Read-only.
 // returns a WorkbookChartFontable when successful
 func (m *WorkbookChartAreaFormat) GetFont()(WorkbookChartFontable) {
-    return m.font
+    val, err := m.GetBackingStore().Get("font")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartFontable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookChartAreaFormat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *WorkbookChartAreaFormat) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetFill sets the fill property value. Represents the fill format of an object, which includes background formatting information. Read-only.
 func (m *WorkbookChartAreaFormat) SetFill(value WorkbookChartFillable)() {
-    m.fill = value
+    err := m.GetBackingStore().Set("fill", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFont sets the font property value. Represents the font attributes (font name, font size, color, etc.) for the current object. Read-only.
 func (m *WorkbookChartAreaFormat) SetFont(value WorkbookChartFontable)() {
-    m.font = value
+    err := m.GetBackingStore().Set("font", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookChartAreaFormatable interface {
     Entityable

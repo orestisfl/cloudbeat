@@ -5,22 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type VirtualEventExternalRegistrationInformation struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The OdataType property
-    odataType *string
-    // A URL or string that represents the location from which the registrant registered. Optional.
-    referrer *string
-    // The identifier for a virtualEventExternalRegistrationInformation object. Optional. If set, the maximum supported length is 256 characters.
-    registrationId *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewVirtualEventExternalRegistrationInformation instantiates a new VirtualEventExternalRegistrationInformation and sets the default values.
 func NewVirtualEventExternalRegistrationInformation()(*VirtualEventExternalRegistrationInformation) {
     m := &VirtualEventExternalRegistrationInformation{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -32,7 +28,20 @@ func CreateVirtualEventExternalRegistrationInformationFromDiscriminatorValue(par
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *VirtualEventExternalRegistrationInformation) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *VirtualEventExternalRegistrationInformation) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -73,17 +82,38 @@ func (m *VirtualEventExternalRegistrationInformation) GetFieldDeserializers()(ma
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *VirtualEventExternalRegistrationInformation) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetReferrer gets the referrer property value. A URL or string that represents the location from which the registrant registered. Optional.
 // returns a *string when successful
 func (m *VirtualEventExternalRegistrationInformation) GetReferrer()(*string) {
-    return m.referrer
+    val, err := m.GetBackingStore().Get("referrer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRegistrationId gets the registrationId property value. The identifier for a virtualEventExternalRegistrationInformation object. Optional. If set, the maximum supported length is 256 characters.
 // returns a *string when successful
 func (m *VirtualEventExternalRegistrationInformation) GetRegistrationId()(*string) {
-    return m.registrationId
+    val, err := m.GetBackingStore().Get("registrationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventExternalRegistrationInformation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -115,26 +145,45 @@ func (m *VirtualEventExternalRegistrationInformation) Serialize(writer i878a80d2
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *VirtualEventExternalRegistrationInformation) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *VirtualEventExternalRegistrationInformation) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *VirtualEventExternalRegistrationInformation) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReferrer sets the referrer property value. A URL or string that represents the location from which the registrant registered. Optional.
 func (m *VirtualEventExternalRegistrationInformation) SetReferrer(value *string)() {
-    m.referrer = value
+    err := m.GetBackingStore().Set("referrer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationId sets the registrationId property value. The identifier for a virtualEventExternalRegistrationInformation object. Optional. If set, the maximum supported length is 256 characters.
 func (m *VirtualEventExternalRegistrationInformation) SetRegistrationId(value *string)() {
-    m.registrationId = value
+    err := m.GetBackingStore().Set("registrationId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventExternalRegistrationInformationable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetOdataType()(*string)
     GetReferrer()(*string)
     GetRegistrationId()(*string)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetOdataType(value *string)()
     SetReferrer(value *string)()
     SetRegistrationId(value *string)()

@@ -9,8 +9,6 @@ import (
 
 type AccessPackageResourceAttributeQuestion struct {
     AccessPackageResourceAttributeSource
-    // The question property
-    question AccessPackageQuestionable
 }
 // NewAccessPackageResourceAttributeQuestion instantiates a new AccessPackageResourceAttributeQuestion and sets the default values.
 func NewAccessPackageResourceAttributeQuestion()(*AccessPackageResourceAttributeQuestion) {
@@ -45,7 +43,14 @@ func (m *AccessPackageResourceAttributeQuestion) GetFieldDeserializers()(map[str
 // GetQuestion gets the question property value. The question property
 // returns a AccessPackageQuestionable when successful
 func (m *AccessPackageResourceAttributeQuestion) GetQuestion()(AccessPackageQuestionable) {
-    return m.question
+    val, err := m.GetBackingStore().Get("question")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AccessPackageQuestionable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AccessPackageResourceAttributeQuestion) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *AccessPackageResourceAttributeQuestion) Serialize(writer i878a80d2330e8
 }
 // SetQuestion sets the question property value. The question property
 func (m *AccessPackageResourceAttributeQuestion) SetQuestion(value AccessPackageQuestionable)() {
-    m.question = value
+    err := m.GetBackingStore().Set("question", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AccessPackageResourceAttributeQuestionable interface {
     AccessPackageResourceAttributeSourceable

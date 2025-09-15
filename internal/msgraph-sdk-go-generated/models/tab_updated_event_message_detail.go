@@ -9,10 +9,6 @@ import (
 
 type TabUpdatedEventMessageDetail struct {
     EventMessageDetail
-    // Initiator of the event.
-    initiator IdentitySetable
-    // Unique identifier of the tab.
-    tabId *string
 }
 // NewTabUpdatedEventMessageDetail instantiates a new TabUpdatedEventMessageDetail and sets the default values.
 func NewTabUpdatedEventMessageDetail()(*TabUpdatedEventMessageDetail) {
@@ -57,12 +53,26 @@ func (m *TabUpdatedEventMessageDetail) GetFieldDeserializers()(map[string]func(i
 // GetInitiator gets the initiator property value. Initiator of the event.
 // returns a IdentitySetable when successful
 func (m *TabUpdatedEventMessageDetail) GetInitiator()(IdentitySetable) {
-    return m.initiator
+    val, err := m.GetBackingStore().Get("initiator")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetTabId gets the tabId property value. Unique identifier of the tab.
 // returns a *string when successful
 func (m *TabUpdatedEventMessageDetail) GetTabId()(*string) {
-    return m.tabId
+    val, err := m.GetBackingStore().Get("tabId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TabUpdatedEventMessageDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *TabUpdatedEventMessageDetail) Serialize(writer i878a80d2330e89d26896388
 }
 // SetInitiator sets the initiator property value. Initiator of the event.
 func (m *TabUpdatedEventMessageDetail) SetInitiator(value IdentitySetable)() {
-    m.initiator = value
+    err := m.GetBackingStore().Set("initiator", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTabId sets the tabId property value. Unique identifier of the tab.
 func (m *TabUpdatedEventMessageDetail) SetTabId(value *string)() {
-    m.tabId = value
+    err := m.GetBackingStore().Set("tabId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TabUpdatedEventMessageDetailable interface {
     EventMessageDetailable

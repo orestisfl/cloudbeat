@@ -9,8 +9,6 @@ import (
 
 type CategoryTemplate struct {
     FilePlanDescriptorTemplate
-    // Represents all subcategories under a particular category.
-    subcategories []SubcategoryTemplateable
 }
 // NewCategoryTemplate instantiates a new CategoryTemplate and sets the default values.
 func NewCategoryTemplate()(*CategoryTemplate) {
@@ -49,7 +47,14 @@ func (m *CategoryTemplate) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetSubcategories gets the subcategories property value. Represents all subcategories under a particular category.
 // returns a []SubcategoryTemplateable when successful
 func (m *CategoryTemplate) GetSubcategories()([]SubcategoryTemplateable) {
-    return m.subcategories
+    val, err := m.GetBackingStore().Get("subcategories")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SubcategoryTemplateable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CategoryTemplate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *CategoryTemplate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetSubcategories sets the subcategories property value. Represents all subcategories under a particular category.
 func (m *CategoryTemplate) SetSubcategories(value []SubcategoryTemplateable)() {
-    m.subcategories = value
+    err := m.GetBackingStore().Set("subcategories", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CategoryTemplateable interface {
     FilePlanDescriptorTemplateable

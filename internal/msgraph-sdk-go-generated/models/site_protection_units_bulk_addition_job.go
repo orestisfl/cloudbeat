@@ -9,10 +9,6 @@ import (
 
 type SiteProtectionUnitsBulkAdditionJob struct {
     ProtectionUnitsBulkJobBase
-    // The list of SharePoint site IDs to add to the SharePoint protection policy.
-    siteIds []string
-    // The list of SharePoint site URLs to add to the SharePoint protection policy.
-    siteWebUrls []string
 }
 // NewSiteProtectionUnitsBulkAdditionJob instantiates a new SiteProtectionUnitsBulkAdditionJob and sets the default values.
 func NewSiteProtectionUnitsBulkAdditionJob()(*SiteProtectionUnitsBulkAdditionJob) {
@@ -69,12 +65,26 @@ func (m *SiteProtectionUnitsBulkAdditionJob) GetFieldDeserializers()(map[string]
 // GetSiteIds gets the siteIds property value. The list of SharePoint site IDs to add to the SharePoint protection policy.
 // returns a []string when successful
 func (m *SiteProtectionUnitsBulkAdditionJob) GetSiteIds()([]string) {
-    return m.siteIds
+    val, err := m.GetBackingStore().Get("siteIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetSiteWebUrls gets the siteWebUrls property value. The list of SharePoint site URLs to add to the SharePoint protection policy.
 // returns a []string when successful
 func (m *SiteProtectionUnitsBulkAdditionJob) GetSiteWebUrls()([]string) {
-    return m.siteWebUrls
+    val, err := m.GetBackingStore().Get("siteWebUrls")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SiteProtectionUnitsBulkAdditionJob) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -98,11 +108,17 @@ func (m *SiteProtectionUnitsBulkAdditionJob) Serialize(writer i878a80d2330e89d26
 }
 // SetSiteIds sets the siteIds property value. The list of SharePoint site IDs to add to the SharePoint protection policy.
 func (m *SiteProtectionUnitsBulkAdditionJob) SetSiteIds(value []string)() {
-    m.siteIds = value
+    err := m.GetBackingStore().Set("siteIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteWebUrls sets the siteWebUrls property value. The list of SharePoint site URLs to add to the SharePoint protection policy.
 func (m *SiteProtectionUnitsBulkAdditionJob) SetSiteWebUrls(value []string)() {
-    m.siteWebUrls = value
+    err := m.GetBackingStore().Set("siteWebUrls", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SiteProtectionUnitsBulkAdditionJobable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

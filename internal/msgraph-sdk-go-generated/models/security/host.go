@@ -10,36 +10,6 @@ import (
 
 type Host struct {
     Artifact
-    // The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
-    childHostPairs []HostPairable
-    // The hostComponents that are associated with this host.
-    components []HostComponentable
-    // The hostCookies that are associated with this host.
-    cookies []HostCookieable
-    // The first date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    firstSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The hostPairs that are associated with this host, where this host is either the parentHost or childHost.
-    hostPairs []HostPairable
-    // The most recent date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The hostPairs that are associated with a host, where that host is the childHost and has an incoming pairing with a parentHost.
-    parentHostPairs []HostPairable
-    // Passive DNS retrieval about this host.
-    passiveDns []PassiveDnsRecordable
-    // Reverse passive DNS retrieval about this host.
-    passiveDnsReverse []PassiveDnsRecordable
-    // The hostPorts associated with a host.
-    ports []HostPortable
-    // Represents a calculated reputation of this host.
-    reputation HostReputationable
-    // The hostSslCertificates that are associated with this host.
-    sslCertificates []HostSslCertificateable
-    // The subdomains that are associated with this host.
-    subdomains []Subdomainable
-    // The hostTrackers that are associated with this host.
-    trackers []HostTrackerable
-    // The most recent whoisRecord for this host.
-    whois WhoisRecordable
 }
 // NewHost instantiates a new Host and sets the default values.
 func NewHost()(*Host) {
@@ -78,17 +48,38 @@ func CreateHostFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487ee
 // GetChildHostPairs gets the childHostPairs property value. The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
 // returns a []HostPairable when successful
 func (m *Host) GetChildHostPairs()([]HostPairable) {
-    return m.childHostPairs
+    val, err := m.GetBackingStore().Get("childHostPairs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostPairable)
+    }
+    return nil
 }
 // GetComponents gets the components property value. The hostComponents that are associated with this host.
 // returns a []HostComponentable when successful
 func (m *Host) GetComponents()([]HostComponentable) {
-    return m.components
+    val, err := m.GetBackingStore().Get("components")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostComponentable)
+    }
+    return nil
 }
 // GetCookies gets the cookies property value. The hostCookies that are associated with this host.
 // returns a []HostCookieable when successful
 func (m *Host) GetCookies()([]HostCookieable) {
-    return m.cookies
+    val, err := m.GetBackingStore().Get("cookies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostCookieable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -315,62 +306,146 @@ func (m *Host) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
 // GetFirstSeenDateTime gets the firstSeenDateTime property value. The first date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *Host) GetFirstSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.firstSeenDateTime
+    val, err := m.GetBackingStore().Get("firstSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetHostPairs gets the hostPairs property value. The hostPairs that are associated with this host, where this host is either the parentHost or childHost.
 // returns a []HostPairable when successful
 func (m *Host) GetHostPairs()([]HostPairable) {
-    return m.hostPairs
+    val, err := m.GetBackingStore().Get("hostPairs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostPairable)
+    }
+    return nil
 }
 // GetLastSeenDateTime gets the lastSeenDateTime property value. The most recent date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *Host) GetLastSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastSeenDateTime
+    val, err := m.GetBackingStore().Get("lastSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetParentHostPairs gets the parentHostPairs property value. The hostPairs that are associated with a host, where that host is the childHost and has an incoming pairing with a parentHost.
 // returns a []HostPairable when successful
 func (m *Host) GetParentHostPairs()([]HostPairable) {
-    return m.parentHostPairs
+    val, err := m.GetBackingStore().Get("parentHostPairs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostPairable)
+    }
+    return nil
 }
 // GetPassiveDns gets the passiveDns property value. Passive DNS retrieval about this host.
 // returns a []PassiveDnsRecordable when successful
 func (m *Host) GetPassiveDns()([]PassiveDnsRecordable) {
-    return m.passiveDns
+    val, err := m.GetBackingStore().Get("passiveDns")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PassiveDnsRecordable)
+    }
+    return nil
 }
 // GetPassiveDnsReverse gets the passiveDnsReverse property value. Reverse passive DNS retrieval about this host.
 // returns a []PassiveDnsRecordable when successful
 func (m *Host) GetPassiveDnsReverse()([]PassiveDnsRecordable) {
-    return m.passiveDnsReverse
+    val, err := m.GetBackingStore().Get("passiveDnsReverse")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PassiveDnsRecordable)
+    }
+    return nil
 }
 // GetPorts gets the ports property value. The hostPorts associated with a host.
 // returns a []HostPortable when successful
 func (m *Host) GetPorts()([]HostPortable) {
-    return m.ports
+    val, err := m.GetBackingStore().Get("ports")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostPortable)
+    }
+    return nil
 }
 // GetReputation gets the reputation property value. Represents a calculated reputation of this host.
 // returns a HostReputationable when successful
 func (m *Host) GetReputation()(HostReputationable) {
-    return m.reputation
+    val, err := m.GetBackingStore().Get("reputation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(HostReputationable)
+    }
+    return nil
 }
 // GetSslCertificates gets the sslCertificates property value. The hostSslCertificates that are associated with this host.
 // returns a []HostSslCertificateable when successful
 func (m *Host) GetSslCertificates()([]HostSslCertificateable) {
-    return m.sslCertificates
+    val, err := m.GetBackingStore().Get("sslCertificates")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostSslCertificateable)
+    }
+    return nil
 }
 // GetSubdomains gets the subdomains property value. The subdomains that are associated with this host.
 // returns a []Subdomainable when successful
 func (m *Host) GetSubdomains()([]Subdomainable) {
-    return m.subdomains
+    val, err := m.GetBackingStore().Get("subdomains")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Subdomainable)
+    }
+    return nil
 }
 // GetTrackers gets the trackers property value. The hostTrackers that are associated with this host.
 // returns a []HostTrackerable when successful
 func (m *Host) GetTrackers()([]HostTrackerable) {
-    return m.trackers
+    val, err := m.GetBackingStore().Get("trackers")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HostTrackerable)
+    }
+    return nil
 }
 // GetWhois gets the whois property value. The most recent whoisRecord for this host.
 // returns a WhoisRecordable when successful
 func (m *Host) GetWhois()(WhoisRecordable) {
-    return m.whois
+    val, err := m.GetBackingStore().Get("whois")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisRecordable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Host) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -538,63 +613,108 @@ func (m *Host) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
 }
 // SetChildHostPairs sets the childHostPairs property value. The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
 func (m *Host) SetChildHostPairs(value []HostPairable)() {
-    m.childHostPairs = value
+    err := m.GetBackingStore().Set("childHostPairs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetComponents sets the components property value. The hostComponents that are associated with this host.
 func (m *Host) SetComponents(value []HostComponentable)() {
-    m.components = value
+    err := m.GetBackingStore().Set("components", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCookies sets the cookies property value. The hostCookies that are associated with this host.
 func (m *Host) SetCookies(value []HostCookieable)() {
-    m.cookies = value
+    err := m.GetBackingStore().Set("cookies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFirstSeenDateTime sets the firstSeenDateTime property value. The first date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *Host) SetFirstSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.firstSeenDateTime = value
+    err := m.GetBackingStore().Set("firstSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetHostPairs sets the hostPairs property value. The hostPairs that are associated with this host, where this host is either the parentHost or childHost.
 func (m *Host) SetHostPairs(value []HostPairable)() {
-    m.hostPairs = value
+    err := m.GetBackingStore().Set("hostPairs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastSeenDateTime sets the lastSeenDateTime property value. The most recent date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *Host) SetLastSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastSeenDateTime = value
+    err := m.GetBackingStore().Set("lastSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParentHostPairs sets the parentHostPairs property value. The hostPairs that are associated with a host, where that host is the childHost and has an incoming pairing with a parentHost.
 func (m *Host) SetParentHostPairs(value []HostPairable)() {
-    m.parentHostPairs = value
+    err := m.GetBackingStore().Set("parentHostPairs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPassiveDns sets the passiveDns property value. Passive DNS retrieval about this host.
 func (m *Host) SetPassiveDns(value []PassiveDnsRecordable)() {
-    m.passiveDns = value
+    err := m.GetBackingStore().Set("passiveDns", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPassiveDnsReverse sets the passiveDnsReverse property value. Reverse passive DNS retrieval about this host.
 func (m *Host) SetPassiveDnsReverse(value []PassiveDnsRecordable)() {
-    m.passiveDnsReverse = value
+    err := m.GetBackingStore().Set("passiveDnsReverse", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPorts sets the ports property value. The hostPorts associated with a host.
 func (m *Host) SetPorts(value []HostPortable)() {
-    m.ports = value
+    err := m.GetBackingStore().Set("ports", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReputation sets the reputation property value. Represents a calculated reputation of this host.
 func (m *Host) SetReputation(value HostReputationable)() {
-    m.reputation = value
+    err := m.GetBackingStore().Set("reputation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSslCertificates sets the sslCertificates property value. The hostSslCertificates that are associated with this host.
 func (m *Host) SetSslCertificates(value []HostSslCertificateable)() {
-    m.sslCertificates = value
+    err := m.GetBackingStore().Set("sslCertificates", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubdomains sets the subdomains property value. The subdomains that are associated with this host.
 func (m *Host) SetSubdomains(value []Subdomainable)() {
-    m.subdomains = value
+    err := m.GetBackingStore().Set("subdomains", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTrackers sets the trackers property value. The hostTrackers that are associated with this host.
 func (m *Host) SetTrackers(value []HostTrackerable)() {
-    m.trackers = value
+    err := m.GetBackingStore().Set("trackers", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWhois sets the whois property value. The most recent whoisRecord for this host.
 func (m *Host) SetWhois(value WhoisRecordable)() {
-    m.whois = value
+    err := m.GetBackingStore().Set("whois", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Hostable interface {
     Artifactable

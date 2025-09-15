@@ -9,8 +9,6 @@ import (
 
 type OnenoteEntityBaseModel struct {
     Entity
-    // The endpoint where you can get details about the page. Read-only.
-    self *string
 }
 // NewOnenoteEntityBaseModel instantiates a new OnenoteEntityBaseModel and sets the default values.
 func NewOnenoteEntityBaseModel()(*OnenoteEntityBaseModel) {
@@ -73,7 +71,14 @@ func (m *OnenoteEntityBaseModel) GetFieldDeserializers()(map[string]func(i878a80
 // GetSelf gets the self property value. The endpoint where you can get details about the page. Read-only.
 // returns a *string when successful
 func (m *OnenoteEntityBaseModel) GetSelf()(*string) {
-    return m.self
+    val, err := m.GetBackingStore().Get("self")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnenoteEntityBaseModel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -91,7 +96,10 @@ func (m *OnenoteEntityBaseModel) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetSelf sets the self property value. The endpoint where you can get details about the page. Read-only.
 func (m *OnenoteEntityBaseModel) SetSelf(value *string)() {
-    m.self = value
+    err := m.GetBackingStore().Set("self", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnenoteEntityBaseModelable interface {
     Entityable

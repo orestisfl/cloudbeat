@@ -9,28 +9,6 @@ import (
 
 type Drive struct {
     BaseItem
-    // Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
-    bundles []DriveItemable
-    // Describes the type of drive represented by this resource. OneDrive personal drives return personal. OneDrive for Business returns business. SharePoint document libraries return documentLibrary. Read-only.
-    driveType *string
-    // The list of items the user is following. Only in OneDrive for Business.
-    following []DriveItemable
-    // All items contained in the drive. Read-only. Nullable.
-    items []DriveItemable
-    // For drives in SharePoint, the underlying document library list. Read-only. Nullable.
-    list Listable
-    // Optional. The user account that owns the drive. Read-only.
-    owner IdentitySetable
-    // Optional. Information about the drive's storage space quota. Read-only.
-    quota Quotaable
-    // The root folder of the drive. Read-only.
-    root DriveItemable
-    // The sharePointIds property
-    sharePointIds SharepointIdsable
-    // Collection of common folders available in OneDrive. Read-only. Nullable.
-    special []DriveItemable
-    // If present, indicates that it's a system-managed drive. Read-only.
-    system SystemFacetable
 }
 // NewDrive instantiates a new Drive and sets the default values.
 func NewDrive()(*Drive) {
@@ -49,12 +27,26 @@ func CreateDriveFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487e
 // GetBundles gets the bundles property value. Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
 // returns a []DriveItemable when successful
 func (m *Drive) GetBundles()([]DriveItemable) {
-    return m.bundles
+    val, err := m.GetBackingStore().Get("bundles")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveItemable)
+    }
+    return nil
 }
 // GetDriveType gets the driveType property value. Describes the type of drive represented by this resource. OneDrive personal drives return personal. OneDrive for Business returns business. SharePoint document libraries return documentLibrary. Read-only.
 // returns a *string when successful
 func (m *Drive) GetDriveType()(*string) {
-    return m.driveType
+    val, err := m.GetBackingStore().Get("driveType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -199,47 +191,110 @@ func (m *Drive) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
 // GetFollowing gets the following property value. The list of items the user is following. Only in OneDrive for Business.
 // returns a []DriveItemable when successful
 func (m *Drive) GetFollowing()([]DriveItemable) {
-    return m.following
+    val, err := m.GetBackingStore().Get("following")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveItemable)
+    }
+    return nil
 }
 // GetItems gets the items property value. All items contained in the drive. Read-only. Nullable.
 // returns a []DriveItemable when successful
 func (m *Drive) GetItems()([]DriveItemable) {
-    return m.items
+    val, err := m.GetBackingStore().Get("items")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveItemable)
+    }
+    return nil
 }
 // GetList gets the list property value. For drives in SharePoint, the underlying document library list. Read-only. Nullable.
 // returns a Listable when successful
 func (m *Drive) GetList()(Listable) {
-    return m.list
+    val, err := m.GetBackingStore().Get("list")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Listable)
+    }
+    return nil
 }
 // GetOwner gets the owner property value. Optional. The user account that owns the drive. Read-only.
 // returns a IdentitySetable when successful
 func (m *Drive) GetOwner()(IdentitySetable) {
-    return m.owner
+    val, err := m.GetBackingStore().Get("owner")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetQuota gets the quota property value. Optional. Information about the drive's storage space quota. Read-only.
 // returns a Quotaable when successful
 func (m *Drive) GetQuota()(Quotaable) {
-    return m.quota
+    val, err := m.GetBackingStore().Get("quota")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Quotaable)
+    }
+    return nil
 }
 // GetRoot gets the root property value. The root folder of the drive. Read-only.
 // returns a DriveItemable when successful
 func (m *Drive) GetRoot()(DriveItemable) {
-    return m.root
+    val, err := m.GetBackingStore().Get("root")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DriveItemable)
+    }
+    return nil
 }
 // GetSharePointIds gets the sharePointIds property value. The sharePointIds property
 // returns a SharepointIdsable when successful
 func (m *Drive) GetSharePointIds()(SharepointIdsable) {
-    return m.sharePointIds
+    val, err := m.GetBackingStore().Get("sharePointIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SharepointIdsable)
+    }
+    return nil
 }
 // GetSpecial gets the special property value. Collection of common folders available in OneDrive. Read-only. Nullable.
 // returns a []DriveItemable when successful
 func (m *Drive) GetSpecial()([]DriveItemable) {
-    return m.special
+    val, err := m.GetBackingStore().Get("special")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveItemable)
+    }
+    return nil
 }
 // GetSystem gets the system property value. If present, indicates that it's a system-managed drive. Read-only.
 // returns a SystemFacetable when successful
 func (m *Drive) GetSystem()(SystemFacetable) {
-    return m.system
+    val, err := m.GetBackingStore().Get("system")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SystemFacetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Drive) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -341,47 +396,80 @@ func (m *Drive) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
 }
 // SetBundles sets the bundles property value. Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
 func (m *Drive) SetBundles(value []DriveItemable)() {
-    m.bundles = value
+    err := m.GetBackingStore().Set("bundles", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDriveType sets the driveType property value. Describes the type of drive represented by this resource. OneDrive personal drives return personal. OneDrive for Business returns business. SharePoint document libraries return documentLibrary. Read-only.
 func (m *Drive) SetDriveType(value *string)() {
-    m.driveType = value
+    err := m.GetBackingStore().Set("driveType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFollowing sets the following property value. The list of items the user is following. Only in OneDrive for Business.
 func (m *Drive) SetFollowing(value []DriveItemable)() {
-    m.following = value
+    err := m.GetBackingStore().Set("following", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetItems sets the items property value. All items contained in the drive. Read-only. Nullable.
 func (m *Drive) SetItems(value []DriveItemable)() {
-    m.items = value
+    err := m.GetBackingStore().Set("items", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetList sets the list property value. For drives in SharePoint, the underlying document library list. Read-only. Nullable.
 func (m *Drive) SetList(value Listable)() {
-    m.list = value
+    err := m.GetBackingStore().Set("list", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwner sets the owner property value. Optional. The user account that owns the drive. Read-only.
 func (m *Drive) SetOwner(value IdentitySetable)() {
-    m.owner = value
+    err := m.GetBackingStore().Set("owner", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetQuota sets the quota property value. Optional. Information about the drive's storage space quota. Read-only.
 func (m *Drive) SetQuota(value Quotaable)() {
-    m.quota = value
+    err := m.GetBackingStore().Set("quota", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoot sets the root property value. The root folder of the drive. Read-only.
 func (m *Drive) SetRoot(value DriveItemable)() {
-    m.root = value
+    err := m.GetBackingStore().Set("root", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSharePointIds sets the sharePointIds property value. The sharePointIds property
 func (m *Drive) SetSharePointIds(value SharepointIdsable)() {
-    m.sharePointIds = value
+    err := m.GetBackingStore().Set("sharePointIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSpecial sets the special property value. Collection of common folders available in OneDrive. Read-only. Nullable.
 func (m *Drive) SetSpecial(value []DriveItemable)() {
-    m.special = value
+    err := m.GetBackingStore().Set("special", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSystem sets the system property value. If present, indicates that it's a system-managed drive. Read-only.
 func (m *Drive) SetSystem(value SystemFacetable)() {
-    m.system = value
+    err := m.GetBackingStore().Set("system", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Driveable interface {
     BaseItemable

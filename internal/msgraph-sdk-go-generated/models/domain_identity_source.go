@@ -9,10 +9,6 @@ import (
 
 type DomainIdentitySource struct {
     IdentitySource
-    // The name of the identity source, typically also the domain name. Read only.
-    displayName *string
-    // The domain name. Read only.
-    domainName *string
 }
 // NewDomainIdentitySource instantiates a new DomainIdentitySource and sets the default values.
 func NewDomainIdentitySource()(*DomainIdentitySource) {
@@ -31,12 +27,26 @@ func CreateDomainIdentitySourceFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetDisplayName gets the displayName property value. The name of the identity source, typically also the domain name. Read only.
 // returns a *string when successful
 func (m *DomainIdentitySource) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDomainName gets the domainName property value. The domain name. Read only.
 // returns a *string when successful
 func (m *DomainIdentitySource) GetDomainName()(*string) {
-    return m.domainName
+    val, err := m.GetBackingStore().Get("domainName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,11 +96,17 @@ func (m *DomainIdentitySource) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetDisplayName sets the displayName property value. The name of the identity source, typically also the domain name. Read only.
 func (m *DomainIdentitySource) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDomainName sets the domainName property value. The domain name. Read only.
 func (m *DomainIdentitySource) SetDomainName(value *string)() {
-    m.domainName = value
+    err := m.GetBackingStore().Set("domainName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DomainIdentitySourceable interface {
     IdentitySourceable

@@ -9,20 +9,6 @@ import (
 
 type AttendanceRecord struct {
     Entity
-    // List of time periods between joining and leaving a meeting.
-    attendanceIntervals []AttendanceIntervalable
-    // Email address of the user associated with this attendance record.
-    emailAddress *string
-    // The external information for a virtualEventRegistration.
-    externalRegistrationInformation VirtualEventExternalRegistrationInformationable
-    // The identity of the user associated with this attendance record. The specific type is one of the following derived types of identity, depending on the user type: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
-    identity Identityable
-    // Unique identifier of a virtualEventRegistration that is available to all participants registered for the virtualEventWebinar.
-    registrationId *string
-    // Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
-    role *string
-    // Total duration of the attendances in seconds.
-    totalAttendanceInSeconds *int32
 }
 // NewAttendanceRecord instantiates a new AttendanceRecord and sets the default values.
 func NewAttendanceRecord()(*AttendanceRecord) {
@@ -39,17 +25,38 @@ func CreateAttendanceRecordFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 // GetAttendanceIntervals gets the attendanceIntervals property value. List of time periods between joining and leaving a meeting.
 // returns a []AttendanceIntervalable when successful
 func (m *AttendanceRecord) GetAttendanceIntervals()([]AttendanceIntervalable) {
-    return m.attendanceIntervals
+    val, err := m.GetBackingStore().Get("attendanceIntervals")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AttendanceIntervalable)
+    }
+    return nil
 }
 // GetEmailAddress gets the emailAddress property value. Email address of the user associated with this attendance record.
 // returns a *string when successful
 func (m *AttendanceRecord) GetEmailAddress()(*string) {
-    return m.emailAddress
+    val, err := m.GetBackingStore().Get("emailAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExternalRegistrationInformation gets the externalRegistrationInformation property value. The external information for a virtualEventRegistration.
 // returns a VirtualEventExternalRegistrationInformationable when successful
 func (m *AttendanceRecord) GetExternalRegistrationInformation()(VirtualEventExternalRegistrationInformationable) {
-    return m.externalRegistrationInformation
+    val, err := m.GetBackingStore().Get("externalRegistrationInformation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(VirtualEventExternalRegistrationInformationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -136,22 +143,50 @@ func (m *AttendanceRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetIdentity gets the identity property value. The identity of the user associated with this attendance record. The specific type is one of the following derived types of identity, depending on the user type: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
 // returns a Identityable when successful
 func (m *AttendanceRecord) GetIdentity()(Identityable) {
-    return m.identity
+    val, err := m.GetBackingStore().Get("identity")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Identityable)
+    }
+    return nil
 }
 // GetRegistrationId gets the registrationId property value. Unique identifier of a virtualEventRegistration that is available to all participants registered for the virtualEventWebinar.
 // returns a *string when successful
 func (m *AttendanceRecord) GetRegistrationId()(*string) {
-    return m.registrationId
+    val, err := m.GetBackingStore().Get("registrationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRole gets the role property value. Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
 // returns a *string when successful
 func (m *AttendanceRecord) GetRole()(*string) {
-    return m.role
+    val, err := m.GetBackingStore().Get("role")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTotalAttendanceInSeconds gets the totalAttendanceInSeconds property value. Total duration of the attendances in seconds.
 // returns a *int32 when successful
 func (m *AttendanceRecord) GetTotalAttendanceInSeconds()(*int32) {
-    return m.totalAttendanceInSeconds
+    val, err := m.GetBackingStore().Get("totalAttendanceInSeconds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AttendanceRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -211,31 +246,52 @@ func (m *AttendanceRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetAttendanceIntervals sets the attendanceIntervals property value. List of time periods between joining and leaving a meeting.
 func (m *AttendanceRecord) SetAttendanceIntervals(value []AttendanceIntervalable)() {
-    m.attendanceIntervals = value
+    err := m.GetBackingStore().Set("attendanceIntervals", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEmailAddress sets the emailAddress property value. Email address of the user associated with this attendance record.
 func (m *AttendanceRecord) SetEmailAddress(value *string)() {
-    m.emailAddress = value
+    err := m.GetBackingStore().Set("emailAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalRegistrationInformation sets the externalRegistrationInformation property value. The external information for a virtualEventRegistration.
 func (m *AttendanceRecord) SetExternalRegistrationInformation(value VirtualEventExternalRegistrationInformationable)() {
-    m.externalRegistrationInformation = value
+    err := m.GetBackingStore().Set("externalRegistrationInformation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentity sets the identity property value. The identity of the user associated with this attendance record. The specific type is one of the following derived types of identity, depending on the user type: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
 func (m *AttendanceRecord) SetIdentity(value Identityable)() {
-    m.identity = value
+    err := m.GetBackingStore().Set("identity", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationId sets the registrationId property value. Unique identifier of a virtualEventRegistration that is available to all participants registered for the virtualEventWebinar.
 func (m *AttendanceRecord) SetRegistrationId(value *string)() {
-    m.registrationId = value
+    err := m.GetBackingStore().Set("registrationId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRole sets the role property value. Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
 func (m *AttendanceRecord) SetRole(value *string)() {
-    m.role = value
+    err := m.GetBackingStore().Set("role", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTotalAttendanceInSeconds sets the totalAttendanceInSeconds property value. Total duration of the attendances in seconds.
 func (m *AttendanceRecord) SetTotalAttendanceInSeconds(value *int32)() {
-    m.totalAttendanceInSeconds = value
+    err := m.GetBackingStore().Set("totalAttendanceInSeconds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AttendanceRecordable interface {
     Entityable

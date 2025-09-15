@@ -9,8 +9,6 @@ import (
 
 type CrossTenantAccessPolicyTenantRestrictions struct {
     CrossTenantAccessPolicyB2BSetting
-    // Defines the rule for filtering devices and whether devices that satisfy the rule should be allowed or blocked. This property isn't supported on the server side yet.
-    devices DevicesFilterable
 }
 // NewCrossTenantAccessPolicyTenantRestrictions instantiates a new CrossTenantAccessPolicyTenantRestrictions and sets the default values.
 func NewCrossTenantAccessPolicyTenantRestrictions()(*CrossTenantAccessPolicyTenantRestrictions) {
@@ -29,7 +27,14 @@ func CreateCrossTenantAccessPolicyTenantRestrictionsFromDiscriminatorValue(parse
 // GetDevices gets the devices property value. Defines the rule for filtering devices and whether devices that satisfy the rule should be allowed or blocked. This property isn't supported on the server side yet.
 // returns a DevicesFilterable when successful
 func (m *CrossTenantAccessPolicyTenantRestrictions) GetDevices()(DevicesFilterable) {
-    return m.devices
+    val, err := m.GetBackingStore().Get("devices")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DevicesFilterable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *CrossTenantAccessPolicyTenantRestrictions) Serialize(writer i878a80d233
 }
 // SetDevices sets the devices property value. Defines the rule for filtering devices and whether devices that satisfy the rule should be allowed or blocked. This property isn't supported on the server side yet.
 func (m *CrossTenantAccessPolicyTenantRestrictions) SetDevices(value DevicesFilterable)() {
-    m.devices = value
+    err := m.GetBackingStore().Set("devices", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CrossTenantAccessPolicyTenantRestrictionsable interface {
     CrossTenantAccessPolicyB2BSettingable

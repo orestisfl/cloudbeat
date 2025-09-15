@@ -10,14 +10,6 @@ import (
 
 type Billing struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Represents metadata for the exported data.
-    manifests []Manifestable
-    // Represents an operation to export the billing data of a partner.
-    operations []Operationable
-    // The reconciliation property
-    reconciliation BillingReconciliationable
-    // The usage property
-    usage AzureUsageable
 }
 // NewBilling instantiates a new Billing and sets the default values.
 func NewBilling()(*Billing) {
@@ -92,22 +84,50 @@ func (m *Billing) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 // GetManifests gets the manifests property value. Represents metadata for the exported data.
 // returns a []Manifestable when successful
 func (m *Billing) GetManifests()([]Manifestable) {
-    return m.manifests
+    val, err := m.GetBackingStore().Get("manifests")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Manifestable)
+    }
+    return nil
 }
 // GetOperations gets the operations property value. Represents an operation to export the billing data of a partner.
 // returns a []Operationable when successful
 func (m *Billing) GetOperations()([]Operationable) {
-    return m.operations
+    val, err := m.GetBackingStore().Get("operations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Operationable)
+    }
+    return nil
 }
 // GetReconciliation gets the reconciliation property value. The reconciliation property
 // returns a BillingReconciliationable when successful
 func (m *Billing) GetReconciliation()(BillingReconciliationable) {
-    return m.reconciliation
+    val, err := m.GetBackingStore().Get("reconciliation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(BillingReconciliationable)
+    }
+    return nil
 }
 // GetUsage gets the usage property value. The usage property
 // returns a AzureUsageable when successful
 func (m *Billing) GetUsage()(AzureUsageable) {
-    return m.usage
+    val, err := m.GetBackingStore().Get("usage")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AzureUsageable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Billing) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -155,19 +175,31 @@ func (m *Billing) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
 }
 // SetManifests sets the manifests property value. Represents metadata for the exported data.
 func (m *Billing) SetManifests(value []Manifestable)() {
-    m.manifests = value
+    err := m.GetBackingStore().Set("manifests", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOperations sets the operations property value. Represents an operation to export the billing data of a partner.
 func (m *Billing) SetOperations(value []Operationable)() {
-    m.operations = value
+    err := m.GetBackingStore().Set("operations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReconciliation sets the reconciliation property value. The reconciliation property
 func (m *Billing) SetReconciliation(value BillingReconciliationable)() {
-    m.reconciliation = value
+    err := m.GetBackingStore().Set("reconciliation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUsage sets the usage property value. The usage property
 func (m *Billing) SetUsage(value AzureUsageable)() {
-    m.usage = value
+    err := m.GetBackingStore().Set("usage", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Billingable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

@@ -6,26 +6,18 @@ package security
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type ResourceAccessEvent struct {
-    // The time of the access event.
-    accessDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The identifier of the user account.
-    accountId *string
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // IP address of the resource.
-    ipAddress *string
-    // The OdataType property
-    odataType *string
-    // The protocol and host name pairs describing the connection.
-    resourceIdentifier *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewResourceAccessEvent instantiates a new ResourceAccessEvent and sets the default values.
 func NewResourceAccessEvent()(*ResourceAccessEvent) {
     m := &ResourceAccessEvent{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -37,17 +29,44 @@ func CreateResourceAccessEventFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetAccessDateTime gets the accessDateTime property value. The time of the access event.
 // returns a *Time when successful
 func (m *ResourceAccessEvent) GetAccessDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.accessDateTime
+    val, err := m.GetBackingStore().Get("accessDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetAccountId gets the accountId property value. The identifier of the user account.
 // returns a *string when successful
 func (m *ResourceAccessEvent) GetAccountId()(*string) {
-    return m.accountId
+    val, err := m.GetBackingStore().Get("accountId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *ResourceAccessEvent) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *ResourceAccessEvent) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -108,17 +127,38 @@ func (m *ResourceAccessEvent) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetIpAddress gets the ipAddress property value. IP address of the resource.
 // returns a *string when successful
 func (m *ResourceAccessEvent) GetIpAddress()(*string) {
-    return m.ipAddress
+    val, err := m.GetBackingStore().Get("ipAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *ResourceAccessEvent) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetResourceIdentifier gets the resourceIdentifier property value. The protocol and host name pairs describing the connection.
 // returns a *string when successful
 func (m *ResourceAccessEvent) GetResourceIdentifier()(*string) {
-    return m.resourceIdentifier
+    val, err := m.GetBackingStore().Get("resourceIdentifier")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ResourceAccessEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -162,38 +202,63 @@ func (m *ResourceAccessEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetAccessDateTime sets the accessDateTime property value. The time of the access event.
 func (m *ResourceAccessEvent) SetAccessDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.accessDateTime = value
+    err := m.GetBackingStore().Set("accessDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAccountId sets the accountId property value. The identifier of the user account.
 func (m *ResourceAccessEvent) SetAccountId(value *string)() {
-    m.accountId = value
+    err := m.GetBackingStore().Set("accountId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ResourceAccessEvent) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *ResourceAccessEvent) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetIpAddress sets the ipAddress property value. IP address of the resource.
 func (m *ResourceAccessEvent) SetIpAddress(value *string)() {
-    m.ipAddress = value
+    err := m.GetBackingStore().Set("ipAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ResourceAccessEvent) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceIdentifier sets the resourceIdentifier property value. The protocol and host name pairs describing the connection.
 func (m *ResourceAccessEvent) SetResourceIdentifier(value *string)() {
-    m.resourceIdentifier = value
+    err := m.GetBackingStore().Set("resourceIdentifier", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ResourceAccessEventable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAccessDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetAccountId()(*string)
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetIpAddress()(*string)
     GetOdataType()(*string)
     GetResourceIdentifier()(*string)
     SetAccessDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetAccountId(value *string)()
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetIpAddress(value *string)()
     SetOdataType(value *string)()
     SetResourceIdentifier(value *string)()

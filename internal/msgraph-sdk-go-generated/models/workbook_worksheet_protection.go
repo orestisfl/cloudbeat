@@ -9,10 +9,6 @@ import (
 
 type WorkbookWorksheetProtection struct {
     Entity
-    // Worksheet protection options. Read-only.
-    options WorkbookWorksheetProtectionOptionsable
-    // Indicates whether the worksheet is protected.  Read-only.
-    protected *bool
 }
 // NewWorkbookWorksheetProtection instantiates a new WorkbookWorksheetProtection and sets the default values.
 func NewWorkbookWorksheetProtection()(*WorkbookWorksheetProtection) {
@@ -55,12 +51,26 @@ func (m *WorkbookWorksheetProtection) GetFieldDeserializers()(map[string]func(i8
 // GetOptions gets the options property value. Worksheet protection options. Read-only.
 // returns a WorkbookWorksheetProtectionOptionsable when successful
 func (m *WorkbookWorksheetProtection) GetOptions()(WorkbookWorksheetProtectionOptionsable) {
-    return m.options
+    val, err := m.GetBackingStore().Get("options")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookWorksheetProtectionOptionsable)
+    }
+    return nil
 }
 // GetProtected gets the protected property value. Indicates whether the worksheet is protected.  Read-only.
 // returns a *bool when successful
 func (m *WorkbookWorksheetProtection) GetProtected()(*bool) {
-    return m.protected
+    val, err := m.GetBackingStore().Get("protected")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookWorksheetProtection) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *WorkbookWorksheetProtection) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetOptions sets the options property value. Worksheet protection options. Read-only.
 func (m *WorkbookWorksheetProtection) SetOptions(value WorkbookWorksheetProtectionOptionsable)() {
-    m.options = value
+    err := m.GetBackingStore().Set("options", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProtected sets the protected property value. Indicates whether the worksheet is protected.  Read-only.
 func (m *WorkbookWorksheetProtection) SetProtected(value *bool)() {
-    m.protected = value
+    err := m.GetBackingStore().Set("protected", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookWorksheetProtectionable interface {
     Entityable

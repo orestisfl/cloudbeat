@@ -9,10 +9,6 @@ import (
 
 type DriveRestoreArtifactsBulkAdditionRequest struct {
     RestoreArtifactsBulkRequestBase
-    // The list of directory object IDs that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
-    directoryObjectIds []string
-    // The list of email addresses that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
-    drives []string
 }
 // NewDriveRestoreArtifactsBulkAdditionRequest instantiates a new DriveRestoreArtifactsBulkAdditionRequest and sets the default values.
 func NewDriveRestoreArtifactsBulkAdditionRequest()(*DriveRestoreArtifactsBulkAdditionRequest) {
@@ -29,12 +25,26 @@ func CreateDriveRestoreArtifactsBulkAdditionRequestFromDiscriminatorValue(parseN
 // GetDirectoryObjectIds gets the directoryObjectIds property value. The list of directory object IDs that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
 // returns a []string when successful
 func (m *DriveRestoreArtifactsBulkAdditionRequest) GetDirectoryObjectIds()([]string) {
-    return m.directoryObjectIds
+    val, err := m.GetBackingStore().Get("directoryObjectIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetDrives gets the drives property value. The list of email addresses that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
 // returns a []string when successful
 func (m *DriveRestoreArtifactsBulkAdditionRequest) GetDrives()([]string) {
-    return m.drives
+    val, err := m.GetBackingStore().Get("drives")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -96,11 +106,17 @@ func (m *DriveRestoreArtifactsBulkAdditionRequest) Serialize(writer i878a80d2330
 }
 // SetDirectoryObjectIds sets the directoryObjectIds property value. The list of directory object IDs that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
 func (m *DriveRestoreArtifactsBulkAdditionRequest) SetDirectoryObjectIds(value []string)() {
-    m.directoryObjectIds = value
+    err := m.GetBackingStore().Set("directoryObjectIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDrives sets the drives property value. The list of email addresses that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
 func (m *DriveRestoreArtifactsBulkAdditionRequest) SetDrives(value []string)() {
-    m.drives = value
+    err := m.GetBackingStore().Set("drives", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DriveRestoreArtifactsBulkAdditionRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

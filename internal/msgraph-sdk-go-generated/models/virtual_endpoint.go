@@ -9,20 +9,6 @@ import (
 
 type VirtualEndpoint struct {
     Entity
-    // A collection of Cloud PC audit events.
-    auditEvents []CloudPcAuditEventable
-    // A collection of cloud-managed virtual desktops.
-    cloudPCs []CloudPCable
-    // A collection of device image resources on Cloud PC.
-    deviceImages []CloudPcDeviceImageable
-    // A collection of gallery image resources on Cloud PC.
-    galleryImages []CloudPcGalleryImageable
-    // A defined collection of Azure resource information that can be used to establish Azure network connections for Cloud PCs.
-    onPremisesConnections []CloudPcOnPremisesConnectionable
-    // A collection of Cloud PC provisioning policies.
-    provisioningPolicies []CloudPcProvisioningPolicyable
-    // A collection of Cloud PC user settings.
-    userSettings []CloudPcUserSettingable
 }
 // NewVirtualEndpoint instantiates a new VirtualEndpoint and sets the default values.
 func NewVirtualEndpoint()(*VirtualEndpoint) {
@@ -39,17 +25,38 @@ func CreateVirtualEndpointFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetAuditEvents gets the auditEvents property value. A collection of Cloud PC audit events.
 // returns a []CloudPcAuditEventable when successful
 func (m *VirtualEndpoint) GetAuditEvents()([]CloudPcAuditEventable) {
-    return m.auditEvents
+    val, err := m.GetBackingStore().Get("auditEvents")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPcAuditEventable)
+    }
+    return nil
 }
 // GetCloudPCs gets the cloudPCs property value. A collection of cloud-managed virtual desktops.
 // returns a []CloudPCable when successful
 func (m *VirtualEndpoint) GetCloudPCs()([]CloudPCable) {
-    return m.cloudPCs
+    val, err := m.GetBackingStore().Get("cloudPCs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPCable)
+    }
+    return nil
 }
 // GetDeviceImages gets the deviceImages property value. A collection of device image resources on Cloud PC.
 // returns a []CloudPcDeviceImageable when successful
 func (m *VirtualEndpoint) GetDeviceImages()([]CloudPcDeviceImageable) {
-    return m.deviceImages
+    val, err := m.GetBackingStore().Get("deviceImages")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPcDeviceImageable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -172,22 +179,50 @@ func (m *VirtualEndpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetGalleryImages gets the galleryImages property value. A collection of gallery image resources on Cloud PC.
 // returns a []CloudPcGalleryImageable when successful
 func (m *VirtualEndpoint) GetGalleryImages()([]CloudPcGalleryImageable) {
-    return m.galleryImages
+    val, err := m.GetBackingStore().Get("galleryImages")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPcGalleryImageable)
+    }
+    return nil
 }
 // GetOnPremisesConnections gets the onPremisesConnections property value. A defined collection of Azure resource information that can be used to establish Azure network connections for Cloud PCs.
 // returns a []CloudPcOnPremisesConnectionable when successful
 func (m *VirtualEndpoint) GetOnPremisesConnections()([]CloudPcOnPremisesConnectionable) {
-    return m.onPremisesConnections
+    val, err := m.GetBackingStore().Get("onPremisesConnections")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPcOnPremisesConnectionable)
+    }
+    return nil
 }
 // GetProvisioningPolicies gets the provisioningPolicies property value. A collection of Cloud PC provisioning policies.
 // returns a []CloudPcProvisioningPolicyable when successful
 func (m *VirtualEndpoint) GetProvisioningPolicies()([]CloudPcProvisioningPolicyable) {
-    return m.provisioningPolicies
+    val, err := m.GetBackingStore().Get("provisioningPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPcProvisioningPolicyable)
+    }
+    return nil
 }
 // GetUserSettings gets the userSettings property value. A collection of Cloud PC user settings.
 // returns a []CloudPcUserSettingable when successful
 func (m *VirtualEndpoint) GetUserSettings()([]CloudPcUserSettingable) {
-    return m.userSettings
+    val, err := m.GetBackingStore().Get("userSettings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudPcUserSettingable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEndpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -283,31 +318,52 @@ func (m *VirtualEndpoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetAuditEvents sets the auditEvents property value. A collection of Cloud PC audit events.
 func (m *VirtualEndpoint) SetAuditEvents(value []CloudPcAuditEventable)() {
-    m.auditEvents = value
+    err := m.GetBackingStore().Set("auditEvents", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCloudPCs sets the cloudPCs property value. A collection of cloud-managed virtual desktops.
 func (m *VirtualEndpoint) SetCloudPCs(value []CloudPCable)() {
-    m.cloudPCs = value
+    err := m.GetBackingStore().Set("cloudPCs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceImages sets the deviceImages property value. A collection of device image resources on Cloud PC.
 func (m *VirtualEndpoint) SetDeviceImages(value []CloudPcDeviceImageable)() {
-    m.deviceImages = value
+    err := m.GetBackingStore().Set("deviceImages", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetGalleryImages sets the galleryImages property value. A collection of gallery image resources on Cloud PC.
 func (m *VirtualEndpoint) SetGalleryImages(value []CloudPcGalleryImageable)() {
-    m.galleryImages = value
+    err := m.GetBackingStore().Set("galleryImages", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnPremisesConnections sets the onPremisesConnections property value. A defined collection of Azure resource information that can be used to establish Azure network connections for Cloud PCs.
 func (m *VirtualEndpoint) SetOnPremisesConnections(value []CloudPcOnPremisesConnectionable)() {
-    m.onPremisesConnections = value
+    err := m.GetBackingStore().Set("onPremisesConnections", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProvisioningPolicies sets the provisioningPolicies property value. A collection of Cloud PC provisioning policies.
 func (m *VirtualEndpoint) SetProvisioningPolicies(value []CloudPcProvisioningPolicyable)() {
-    m.provisioningPolicies = value
+    err := m.GetBackingStore().Set("provisioningPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserSettings sets the userSettings property value. A collection of Cloud PC user settings.
 func (m *VirtualEndpoint) SetUserSettings(value []CloudPcUserSettingable)() {
-    m.userSettings = value
+    err := m.GetBackingStore().Set("userSettings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEndpointable interface {
     Entityable

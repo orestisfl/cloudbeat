@@ -10,16 +10,6 @@ import (
 
 type ItemRetentionLabel struct {
     Entity
-    // Specifies whether the label is applied explicitly on the item. True indicates that the label is applied explicitly; otherwise, the label is inherited from its parent. Read-only.
-    isLabelAppliedExplicitly *bool
-    // Identity of the user who applied the label. Read-only.
-    labelAppliedBy IdentitySetable
-    // The date and time when the label was applied on the item. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-    labelAppliedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The retention label on the document. Read-write.
-    name *string
-    // The retention settings enforced on the item. Read-write.
-    retentionSettings RetentionLabelSettingsable
 }
 // NewItemRetentionLabel instantiates a new ItemRetentionLabel and sets the default values.
 func NewItemRetentionLabel()(*ItemRetentionLabel) {
@@ -92,27 +82,62 @@ func (m *ItemRetentionLabel) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetIsLabelAppliedExplicitly gets the isLabelAppliedExplicitly property value. Specifies whether the label is applied explicitly on the item. True indicates that the label is applied explicitly; otherwise, the label is inherited from its parent. Read-only.
 // returns a *bool when successful
 func (m *ItemRetentionLabel) GetIsLabelAppliedExplicitly()(*bool) {
-    return m.isLabelAppliedExplicitly
+    val, err := m.GetBackingStore().Get("isLabelAppliedExplicitly")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetLabelAppliedBy gets the labelAppliedBy property value. Identity of the user who applied the label. Read-only.
 // returns a IdentitySetable when successful
 func (m *ItemRetentionLabel) GetLabelAppliedBy()(IdentitySetable) {
-    return m.labelAppliedBy
+    val, err := m.GetBackingStore().Get("labelAppliedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetLabelAppliedDateTime gets the labelAppliedDateTime property value. The date and time when the label was applied on the item. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 // returns a *Time when successful
 func (m *ItemRetentionLabel) GetLabelAppliedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.labelAppliedDateTime
+    val, err := m.GetBackingStore().Get("labelAppliedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetName gets the name property value. The retention label on the document. Read-write.
 // returns a *string when successful
 func (m *ItemRetentionLabel) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRetentionSettings gets the retentionSettings property value. The retention settings enforced on the item. Read-write.
 // returns a RetentionLabelSettingsable when successful
 func (m *ItemRetentionLabel) GetRetentionSettings()(RetentionLabelSettingsable) {
-    return m.retentionSettings
+    val, err := m.GetBackingStore().Get("retentionSettings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(RetentionLabelSettingsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ItemRetentionLabel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -154,23 +179,38 @@ func (m *ItemRetentionLabel) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetIsLabelAppliedExplicitly sets the isLabelAppliedExplicitly property value. Specifies whether the label is applied explicitly on the item. True indicates that the label is applied explicitly; otherwise, the label is inherited from its parent. Read-only.
 func (m *ItemRetentionLabel) SetIsLabelAppliedExplicitly(value *bool)() {
-    m.isLabelAppliedExplicitly = value
+    err := m.GetBackingStore().Set("isLabelAppliedExplicitly", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLabelAppliedBy sets the labelAppliedBy property value. Identity of the user who applied the label. Read-only.
 func (m *ItemRetentionLabel) SetLabelAppliedBy(value IdentitySetable)() {
-    m.labelAppliedBy = value
+    err := m.GetBackingStore().Set("labelAppliedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLabelAppliedDateTime sets the labelAppliedDateTime property value. The date and time when the label was applied on the item. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 func (m *ItemRetentionLabel) SetLabelAppliedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.labelAppliedDateTime = value
+    err := m.GetBackingStore().Set("labelAppliedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The retention label on the document. Read-write.
 func (m *ItemRetentionLabel) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRetentionSettings sets the retentionSettings property value. The retention settings enforced on the item. Read-write.
 func (m *ItemRetentionLabel) SetRetentionSettings(value RetentionLabelSettingsable)() {
-    m.retentionSettings = value
+    err := m.GetBackingStore().Set("retentionSettings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ItemRetentionLabelable interface {
     Entityable

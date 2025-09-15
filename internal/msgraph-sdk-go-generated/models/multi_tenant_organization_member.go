@@ -11,22 +11,6 @@ import (
 
 type MultiTenantOrganizationMember struct {
     DirectoryObject
-    // Tenant ID of the tenant that added the tenant to the multitenant organization. Read-only.
-    addedByTenantId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // Date and time when the tenant was added to the multitenant organization. Read-only.
-    addedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Display name of the tenant added to the multitenant organization.
-    displayName *string
-    // Date and time when the tenant joined the multitenant organization. Read-only.
-    joinedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Role of the tenant in the multitenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multitenant organization but tenants with the member role can only participate in a multitenant organization. There can be multiple tenants with the owner role in a multitenant organization.
-    role *MultiTenantOrganizationMemberRole
-    // State of the tenant in the multitenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multitenant organization to participate in the multitenant organization. Tenants in the active state can participate in the multitenant organization. Tenants in the removed state are in the process of being removed from the multitenant organization. Read-only.
-    state *MultiTenantOrganizationMemberState
-    // Tenant ID of the Microsoft Entra tenant added to the multitenant organization. Set at the time tenant is added.Supports $filter. Key.
-    tenantId *string
-    // Details of the processing status for a tenant in a multitenant organization. Read-only. Nullable.
-    transitionDetails MultiTenantOrganizationMemberTransitionDetailsable
 }
 // NewMultiTenantOrganizationMember instantiates a new MultiTenantOrganizationMember and sets the default values.
 func NewMultiTenantOrganizationMember()(*MultiTenantOrganizationMember) {
@@ -45,17 +29,38 @@ func CreateMultiTenantOrganizationMemberFromDiscriminatorValue(parseNode i878a80
 // GetAddedByTenantId gets the addedByTenantId property value. Tenant ID of the tenant that added the tenant to the multitenant organization. Read-only.
 // returns a *UUID when successful
 func (m *MultiTenantOrganizationMember) GetAddedByTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.addedByTenantId
+    val, err := m.GetBackingStore().Get("addedByTenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    }
+    return nil
 }
 // GetAddedDateTime gets the addedDateTime property value. Date and time when the tenant was added to the multitenant organization. Read-only.
 // returns a *Time when successful
 func (m *MultiTenantOrganizationMember) GetAddedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.addedDateTime
+    val, err := m.GetBackingStore().Get("addedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. Display name of the tenant added to the multitenant organization.
 // returns a *string when successful
 func (m *MultiTenantOrganizationMember) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -146,27 +151,62 @@ func (m *MultiTenantOrganizationMember) GetFieldDeserializers()(map[string]func(
 // GetJoinedDateTime gets the joinedDateTime property value. Date and time when the tenant joined the multitenant organization. Read-only.
 // returns a *Time when successful
 func (m *MultiTenantOrganizationMember) GetJoinedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.joinedDateTime
+    val, err := m.GetBackingStore().Get("joinedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRole gets the role property value. Role of the tenant in the multitenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multitenant organization but tenants with the member role can only participate in a multitenant organization. There can be multiple tenants with the owner role in a multitenant organization.
 // returns a *MultiTenantOrganizationMemberRole when successful
 func (m *MultiTenantOrganizationMember) GetRole()(*MultiTenantOrganizationMemberRole) {
-    return m.role
+    val, err := m.GetBackingStore().Get("role")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*MultiTenantOrganizationMemberRole)
+    }
+    return nil
 }
 // GetState gets the state property value. State of the tenant in the multitenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multitenant organization to participate in the multitenant organization. Tenants in the active state can participate in the multitenant organization. Tenants in the removed state are in the process of being removed from the multitenant organization. Read-only.
 // returns a *MultiTenantOrganizationMemberState when successful
 func (m *MultiTenantOrganizationMember) GetState()(*MultiTenantOrganizationMemberState) {
-    return m.state
+    val, err := m.GetBackingStore().Get("state")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*MultiTenantOrganizationMemberState)
+    }
+    return nil
 }
 // GetTenantId gets the tenantId property value. Tenant ID of the Microsoft Entra tenant added to the multitenant organization. Set at the time tenant is added.Supports $filter. Key.
 // returns a *string when successful
 func (m *MultiTenantOrganizationMember) GetTenantId()(*string) {
-    return m.tenantId
+    val, err := m.GetBackingStore().Get("tenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTransitionDetails gets the transitionDetails property value. Details of the processing status for a tenant in a multitenant organization. Read-only. Nullable.
 // returns a MultiTenantOrganizationMemberTransitionDetailsable when successful
 func (m *MultiTenantOrganizationMember) GetTransitionDetails()(MultiTenantOrganizationMemberTransitionDetailsable) {
-    return m.transitionDetails
+    val, err := m.GetBackingStore().Get("transitionDetails")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(MultiTenantOrganizationMemberTransitionDetailsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MultiTenantOrganizationMember) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -228,35 +268,59 @@ func (m *MultiTenantOrganizationMember) Serialize(writer i878a80d2330e89d2689638
 }
 // SetAddedByTenantId sets the addedByTenantId property value. Tenant ID of the tenant that added the tenant to the multitenant organization. Read-only.
 func (m *MultiTenantOrganizationMember) SetAddedByTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.addedByTenantId = value
+    err := m.GetBackingStore().Set("addedByTenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAddedDateTime sets the addedDateTime property value. Date and time when the tenant was added to the multitenant organization. Read-only.
 func (m *MultiTenantOrganizationMember) SetAddedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.addedDateTime = value
+    err := m.GetBackingStore().Set("addedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. Display name of the tenant added to the multitenant organization.
 func (m *MultiTenantOrganizationMember) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetJoinedDateTime sets the joinedDateTime property value. Date and time when the tenant joined the multitenant organization. Read-only.
 func (m *MultiTenantOrganizationMember) SetJoinedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.joinedDateTime = value
+    err := m.GetBackingStore().Set("joinedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRole sets the role property value. Role of the tenant in the multitenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multitenant organization but tenants with the member role can only participate in a multitenant organization. There can be multiple tenants with the owner role in a multitenant organization.
 func (m *MultiTenantOrganizationMember) SetRole(value *MultiTenantOrganizationMemberRole)() {
-    m.role = value
+    err := m.GetBackingStore().Set("role", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetState sets the state property value. State of the tenant in the multitenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multitenant organization to participate in the multitenant organization. Tenants in the active state can participate in the multitenant organization. Tenants in the removed state are in the process of being removed from the multitenant organization. Read-only.
 func (m *MultiTenantOrganizationMember) SetState(value *MultiTenantOrganizationMemberState)() {
-    m.state = value
+    err := m.GetBackingStore().Set("state", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTenantId sets the tenantId property value. Tenant ID of the Microsoft Entra tenant added to the multitenant organization. Set at the time tenant is added.Supports $filter. Key.
 func (m *MultiTenantOrganizationMember) SetTenantId(value *string)() {
-    m.tenantId = value
+    err := m.GetBackingStore().Set("tenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTransitionDetails sets the transitionDetails property value. Details of the processing status for a tenant in a multitenant organization. Read-only. Nullable.
 func (m *MultiTenantOrganizationMember) SetTransitionDetails(value MultiTenantOrganizationMemberTransitionDetailsable)() {
-    m.transitionDetails = value
+    err := m.GetBackingStore().Set("transitionDetails", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MultiTenantOrganizationMemberable interface {
     DirectoryObjectable

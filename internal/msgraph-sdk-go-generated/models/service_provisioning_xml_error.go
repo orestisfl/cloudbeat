@@ -9,8 +9,6 @@ import (
 
 type ServiceProvisioningXmlError struct {
     ServiceProvisioningError
-    // Error Information published by the Federated Service as an xml string.
-    errorDetail *string
 }
 // NewServiceProvisioningXmlError instantiates a new ServiceProvisioningXmlError and sets the default values.
 func NewServiceProvisioningXmlError()(*ServiceProvisioningXmlError) {
@@ -29,7 +27,14 @@ func CreateServiceProvisioningXmlErrorFromDiscriminatorValue(parseNode i878a80d2
 // GetErrorDetail gets the errorDetail property value. Error Information published by the Federated Service as an xml string.
 // returns a *string when successful
 func (m *ServiceProvisioningXmlError) GetErrorDetail()(*string) {
-    return m.errorDetail
+    val, err := m.GetBackingStore().Get("errorDetail")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *ServiceProvisioningXmlError) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetErrorDetail sets the errorDetail property value. Error Information published by the Federated Service as an xml string.
 func (m *ServiceProvisioningXmlError) SetErrorDetail(value *string)() {
-    m.errorDetail = value
+    err := m.GetBackingStore().Set("errorDetail", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ServiceProvisioningXmlErrorable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

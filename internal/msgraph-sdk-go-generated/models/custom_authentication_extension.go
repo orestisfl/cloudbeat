@@ -9,8 +9,6 @@ import (
 
 type CustomAuthenticationExtension struct {
     CustomCalloutExtension
-    // The behaviour on error for the custom authentication extension.
-    behaviorOnError CustomExtensionBehaviorOnErrorable
 }
 // NewCustomAuthenticationExtension instantiates a new CustomAuthenticationExtension and sets the default values.
 func NewCustomAuthenticationExtension()(*CustomAuthenticationExtension) {
@@ -53,7 +51,14 @@ func CreateCustomAuthenticationExtensionFromDiscriminatorValue(parseNode i878a80
 // GetBehaviorOnError gets the behaviorOnError property value. The behaviour on error for the custom authentication extension.
 // returns a CustomExtensionBehaviorOnErrorable when successful
 func (m *CustomAuthenticationExtension) GetBehaviorOnError()(CustomExtensionBehaviorOnErrorable) {
-    return m.behaviorOnError
+    val, err := m.GetBackingStore().Get("behaviorOnError")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CustomExtensionBehaviorOnErrorable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -87,7 +92,10 @@ func (m *CustomAuthenticationExtension) Serialize(writer i878a80d2330e89d2689638
 }
 // SetBehaviorOnError sets the behaviorOnError property value. The behaviour on error for the custom authentication extension.
 func (m *CustomAuthenticationExtension) SetBehaviorOnError(value CustomExtensionBehaviorOnErrorable)() {
-    m.behaviorOnError = value
+    err := m.GetBackingStore().Set("behaviorOnError", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CustomAuthenticationExtensionable interface {
     CustomCalloutExtensionable

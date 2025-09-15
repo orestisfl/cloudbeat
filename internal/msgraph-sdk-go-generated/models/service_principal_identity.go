@@ -9,8 +9,6 @@ import (
 
 type ServicePrincipalIdentity struct {
     Identity
-    // The application identifier of the service principal.
-    appId *string
 }
 // NewServicePrincipalIdentity instantiates a new ServicePrincipalIdentity and sets the default values.
 func NewServicePrincipalIdentity()(*ServicePrincipalIdentity) {
@@ -29,7 +27,14 @@ func CreateServicePrincipalIdentityFromDiscriminatorValue(parseNode i878a80d2330
 // GetAppId gets the appId property value. The application identifier of the service principal.
 // returns a *string when successful
 func (m *ServicePrincipalIdentity) GetAppId()(*string) {
-    return m.appId
+    val, err := m.GetBackingStore().Get("appId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *ServicePrincipalIdentity) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetAppId sets the appId property value. The application identifier of the service principal.
 func (m *ServicePrincipalIdentity) SetAppId(value *string)() {
-    m.appId = value
+    err := m.GetBackingStore().Set("appId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ServicePrincipalIdentityable interface {
     Identityable

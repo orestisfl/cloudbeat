@@ -9,12 +9,6 @@ import (
 
 type ExchangeRestoreSession struct {
     RestoreSessionBase
-    // The granularMailboxRestoreArtifacts property
-    granularMailboxRestoreArtifacts []GranularMailboxRestoreArtifactable
-    // A collection of restore points and destination details that can be used to restore Exchange mailboxes.
-    mailboxRestoreArtifacts []MailboxRestoreArtifactable
-    // A collection of user mailboxes and destination details that can be used to restore Exchange mailboxes.
-    mailboxRestoreArtifactsBulkAdditionRequests []MailboxRestoreArtifactsBulkAdditionRequestable
 }
 // NewExchangeRestoreSession instantiates a new ExchangeRestoreSession and sets the default values.
 func NewExchangeRestoreSession()(*ExchangeRestoreSession) {
@@ -87,17 +81,38 @@ func (m *ExchangeRestoreSession) GetFieldDeserializers()(map[string]func(i878a80
 // GetGranularMailboxRestoreArtifacts gets the granularMailboxRestoreArtifacts property value. The granularMailboxRestoreArtifacts property
 // returns a []GranularMailboxRestoreArtifactable when successful
 func (m *ExchangeRestoreSession) GetGranularMailboxRestoreArtifacts()([]GranularMailboxRestoreArtifactable) {
-    return m.granularMailboxRestoreArtifacts
+    val, err := m.GetBackingStore().Get("granularMailboxRestoreArtifacts")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]GranularMailboxRestoreArtifactable)
+    }
+    return nil
 }
 // GetMailboxRestoreArtifacts gets the mailboxRestoreArtifacts property value. A collection of restore points and destination details that can be used to restore Exchange mailboxes.
 // returns a []MailboxRestoreArtifactable when successful
 func (m *ExchangeRestoreSession) GetMailboxRestoreArtifacts()([]MailboxRestoreArtifactable) {
-    return m.mailboxRestoreArtifacts
+    val, err := m.GetBackingStore().Get("mailboxRestoreArtifacts")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxRestoreArtifactable)
+    }
+    return nil
 }
 // GetMailboxRestoreArtifactsBulkAdditionRequests gets the mailboxRestoreArtifactsBulkAdditionRequests property value. A collection of user mailboxes and destination details that can be used to restore Exchange mailboxes.
 // returns a []MailboxRestoreArtifactsBulkAdditionRequestable when successful
 func (m *ExchangeRestoreSession) GetMailboxRestoreArtifactsBulkAdditionRequests()([]MailboxRestoreArtifactsBulkAdditionRequestable) {
-    return m.mailboxRestoreArtifactsBulkAdditionRequests
+    val, err := m.GetBackingStore().Get("mailboxRestoreArtifactsBulkAdditionRequests")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxRestoreArtifactsBulkAdditionRequestable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ExchangeRestoreSession) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -145,15 +160,24 @@ func (m *ExchangeRestoreSession) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetGranularMailboxRestoreArtifacts sets the granularMailboxRestoreArtifacts property value. The granularMailboxRestoreArtifacts property
 func (m *ExchangeRestoreSession) SetGranularMailboxRestoreArtifacts(value []GranularMailboxRestoreArtifactable)() {
-    m.granularMailboxRestoreArtifacts = value
+    err := m.GetBackingStore().Set("granularMailboxRestoreArtifacts", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxRestoreArtifacts sets the mailboxRestoreArtifacts property value. A collection of restore points and destination details that can be used to restore Exchange mailboxes.
 func (m *ExchangeRestoreSession) SetMailboxRestoreArtifacts(value []MailboxRestoreArtifactable)() {
-    m.mailboxRestoreArtifacts = value
+    err := m.GetBackingStore().Set("mailboxRestoreArtifacts", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxRestoreArtifactsBulkAdditionRequests sets the mailboxRestoreArtifactsBulkAdditionRequests property value. A collection of user mailboxes and destination details that can be used to restore Exchange mailboxes.
 func (m *ExchangeRestoreSession) SetMailboxRestoreArtifactsBulkAdditionRequests(value []MailboxRestoreArtifactsBulkAdditionRequestable)() {
-    m.mailboxRestoreArtifactsBulkAdditionRequests = value
+    err := m.GetBackingStore().Set("mailboxRestoreArtifactsBulkAdditionRequests", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ExchangeRestoreSessionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

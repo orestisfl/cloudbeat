@@ -10,18 +10,6 @@ import (
 // DeviceConfigurationState support for this Entity is being deprecated starting May 2026 & will no longer be supported.
 type DeviceConfigurationState struct {
     Entity
-    // The name of the policy for this policyBase
-    displayName *string
-    // Supported platform types for policies.
-    platformType *PolicyPlatformType
-    // Count of how many setting a policy holds
-    settingCount *int32
-    // The settingStates property
-    settingStates []DeviceConfigurationSettingStateable
-    // The state property
-    state *ComplianceStatus
-    // The version of the policy
-    version *int32
 }
 // NewDeviceConfigurationState instantiates a new DeviceConfigurationState and sets the default values.
 func NewDeviceConfigurationState()(*DeviceConfigurationState) {
@@ -38,7 +26,14 @@ func CreateDeviceConfigurationStateFromDiscriminatorValue(parseNode i878a80d2330
 // GetDisplayName gets the displayName property value. The name of the policy for this policyBase
 // returns a *string when successful
 func (m *DeviceConfigurationState) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -115,27 +110,62 @@ func (m *DeviceConfigurationState) GetFieldDeserializers()(map[string]func(i878a
 // GetPlatformType gets the platformType property value. Supported platform types for policies.
 // returns a *PolicyPlatformType when successful
 func (m *DeviceConfigurationState) GetPlatformType()(*PolicyPlatformType) {
-    return m.platformType
+    val, err := m.GetBackingStore().Get("platformType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*PolicyPlatformType)
+    }
+    return nil
 }
 // GetSettingCount gets the settingCount property value. Count of how many setting a policy holds
 // returns a *int32 when successful
 func (m *DeviceConfigurationState) GetSettingCount()(*int32) {
-    return m.settingCount
+    val, err := m.GetBackingStore().Get("settingCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetSettingStates gets the settingStates property value. The settingStates property
 // returns a []DeviceConfigurationSettingStateable when successful
 func (m *DeviceConfigurationState) GetSettingStates()([]DeviceConfigurationSettingStateable) {
-    return m.settingStates
+    val, err := m.GetBackingStore().Get("settingStates")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DeviceConfigurationSettingStateable)
+    }
+    return nil
 }
 // GetState gets the state property value. The state property
 // returns a *ComplianceStatus when successful
 func (m *DeviceConfigurationState) GetState()(*ComplianceStatus) {
-    return m.state
+    val, err := m.GetBackingStore().Get("state")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ComplianceStatus)
+    }
+    return nil
 }
 // GetVersion gets the version property value. The version of the policy
 // returns a *int32 when successful
 func (m *DeviceConfigurationState) GetVersion()(*int32) {
-    return m.version
+    val, err := m.GetBackingStore().Get("version")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeviceConfigurationState) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -191,27 +221,45 @@ func (m *DeviceConfigurationState) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetDisplayName sets the displayName property value. The name of the policy for this policyBase
 func (m *DeviceConfigurationState) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPlatformType sets the platformType property value. Supported platform types for policies.
 func (m *DeviceConfigurationState) SetPlatformType(value *PolicyPlatformType)() {
-    m.platformType = value
+    err := m.GetBackingStore().Set("platformType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettingCount sets the settingCount property value. Count of how many setting a policy holds
 func (m *DeviceConfigurationState) SetSettingCount(value *int32)() {
-    m.settingCount = value
+    err := m.GetBackingStore().Set("settingCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettingStates sets the settingStates property value. The settingStates property
 func (m *DeviceConfigurationState) SetSettingStates(value []DeviceConfigurationSettingStateable)() {
-    m.settingStates = value
+    err := m.GetBackingStore().Set("settingStates", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetState sets the state property value. The state property
 func (m *DeviceConfigurationState) SetState(value *ComplianceStatus)() {
-    m.state = value
+    err := m.GetBackingStore().Set("state", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVersion sets the version property value. The version of the policy
 func (m *DeviceConfigurationState) SetVersion(value *int32)() {
-    m.version = value
+    err := m.GetBackingStore().Set("version", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceConfigurationStateable interface {
     Entityable

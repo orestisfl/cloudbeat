@@ -9,8 +9,6 @@ import (
 
 type ProvisioningSystem struct {
     Identity
-    // Details of the system.
-    details DetailsInfoable
 }
 // NewProvisioningSystem instantiates a new ProvisioningSystem and sets the default values.
 func NewProvisioningSystem()(*ProvisioningSystem) {
@@ -29,7 +27,14 @@ func CreateProvisioningSystemFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetDetails gets the details property value. Details of the system.
 // returns a DetailsInfoable when successful
 func (m *ProvisioningSystem) GetDetails()(DetailsInfoable) {
-    return m.details
+    val, err := m.GetBackingStore().Get("details")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DetailsInfoable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *ProvisioningSystem) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetDetails sets the details property value. Details of the system.
 func (m *ProvisioningSystem) SetDetails(value DetailsInfoable)() {
-    m.details = value
+    err := m.GetBackingStore().Set("details", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProvisioningSystemable interface {
     Identityable

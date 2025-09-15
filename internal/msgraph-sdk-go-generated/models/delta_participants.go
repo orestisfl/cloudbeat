@@ -9,10 +9,6 @@ import (
 
 type DeltaParticipants struct {
     Entity
-    // The collection of participants that were updated since the last roster update.
-    participants []Participantable
-    // The sequence number for the roster update that is used to identify the notification order.
-    sequenceNumber *int64
 }
 // NewDeltaParticipants instantiates a new DeltaParticipants and sets the default values.
 func NewDeltaParticipants()(*DeltaParticipants) {
@@ -61,12 +57,26 @@ func (m *DeltaParticipants) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetParticipants gets the participants property value. The collection of participants that were updated since the last roster update.
 // returns a []Participantable when successful
 func (m *DeltaParticipants) GetParticipants()([]Participantable) {
-    return m.participants
+    val, err := m.GetBackingStore().Get("participants")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Participantable)
+    }
+    return nil
 }
 // GetSequenceNumber gets the sequenceNumber property value. The sequence number for the roster update that is used to identify the notification order.
 // returns a *int64 when successful
 func (m *DeltaParticipants) GetSequenceNumber()(*int64) {
-    return m.sequenceNumber
+    val, err := m.GetBackingStore().Get("sequenceNumber")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeltaParticipants) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -96,11 +106,17 @@ func (m *DeltaParticipants) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetParticipants sets the participants property value. The collection of participants that were updated since the last roster update.
 func (m *DeltaParticipants) SetParticipants(value []Participantable)() {
-    m.participants = value
+    err := m.GetBackingStore().Set("participants", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSequenceNumber sets the sequenceNumber property value. The sequence number for the roster update that is used to identify the notification order.
 func (m *DeltaParticipants) SetSequenceNumber(value *int64)() {
-    m.sequenceNumber = value
+    err := m.GetBackingStore().Set("sequenceNumber", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeltaParticipantsable interface {
     Entityable

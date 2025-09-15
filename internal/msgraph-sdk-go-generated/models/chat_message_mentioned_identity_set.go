@@ -9,8 +9,6 @@ import (
 
 type ChatMessageMentionedIdentitySet struct {
     IdentitySet
-    // If present, represents a conversation (for example, team, channel, or chat) @mentioned in a message.
-    conversation TeamworkConversationIdentityable
 }
 // NewChatMessageMentionedIdentitySet instantiates a new ChatMessageMentionedIdentitySet and sets the default values.
 func NewChatMessageMentionedIdentitySet()(*ChatMessageMentionedIdentitySet) {
@@ -29,7 +27,14 @@ func CreateChatMessageMentionedIdentitySetFromDiscriminatorValue(parseNode i878a
 // GetConversation gets the conversation property value. If present, represents a conversation (for example, team, channel, or chat) @mentioned in a message.
 // returns a TeamworkConversationIdentityable when successful
 func (m *ChatMessageMentionedIdentitySet) GetConversation()(TeamworkConversationIdentityable) {
-    return m.conversation
+    val, err := m.GetBackingStore().Get("conversation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TeamworkConversationIdentityable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *ChatMessageMentionedIdentitySet) Serialize(writer i878a80d2330e89d26896
 }
 // SetConversation sets the conversation property value. If present, represents a conversation (for example, team, channel, or chat) @mentioned in a message.
 func (m *ChatMessageMentionedIdentitySet) SetConversation(value TeamworkConversationIdentityable)() {
-    m.conversation = value
+    err := m.GetBackingStore().Set("conversation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ChatMessageMentionedIdentitySetable interface {
     IdentitySetable

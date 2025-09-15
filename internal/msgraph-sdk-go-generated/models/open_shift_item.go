@@ -9,8 +9,6 @@ import (
 
 type OpenShiftItem struct {
     ShiftItem
-    // Count of the number of slots for the given open shift.
-    openSlotCount *int32
 }
 // NewOpenShiftItem instantiates a new OpenShiftItem and sets the default values.
 func NewOpenShiftItem()(*OpenShiftItem) {
@@ -45,7 +43,14 @@ func (m *OpenShiftItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
 // GetOpenSlotCount gets the openSlotCount property value. Count of the number of slots for the given open shift.
 // returns a *int32 when successful
 func (m *OpenShiftItem) GetOpenSlotCount()(*int32) {
-    return m.openSlotCount
+    val, err := m.GetBackingStore().Get("openSlotCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OpenShiftItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *OpenShiftItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetOpenSlotCount sets the openSlotCount property value. Count of the number of slots for the given open shift.
 func (m *OpenShiftItem) SetOpenSlotCount(value *int32)() {
-    m.openSlotCount = value
+    err := m.GetBackingStore().Set("openSlotCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OpenShiftItemable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

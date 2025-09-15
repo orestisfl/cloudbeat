@@ -10,12 +10,6 @@ import (
 
 type CallEvent struct {
     Entity
-    // The callEventType property
-    callEventType *CallEventType
-    // The eventDateTime property
-    eventDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The participants property
-    participants []Participantable
 }
 // NewCallEvent instantiates a new CallEvent and sets the default values.
 func NewCallEvent()(*CallEvent) {
@@ -50,12 +44,26 @@ func CreateCallEventFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetCallEventType gets the callEventType property value. The callEventType property
 // returns a *CallEventType when successful
 func (m *CallEvent) GetCallEventType()(*CallEventType) {
-    return m.callEventType
+    val, err := m.GetBackingStore().Get("callEventType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*CallEventType)
+    }
+    return nil
 }
 // GetEventDateTime gets the eventDateTime property value. The eventDateTime property
 // returns a *Time when successful
 func (m *CallEvent) GetEventDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.eventDateTime
+    val, err := m.GetBackingStore().Get("eventDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -102,7 +110,14 @@ func (m *CallEvent) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetParticipants gets the participants property value. The participants property
 // returns a []Participantable when successful
 func (m *CallEvent) GetParticipants()([]Participantable) {
-    return m.participants
+    val, err := m.GetBackingStore().Get("participants")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Participantable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CallEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -139,15 +154,24 @@ func (m *CallEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetCallEventType sets the callEventType property value. The callEventType property
 func (m *CallEvent) SetCallEventType(value *CallEventType)() {
-    m.callEventType = value
+    err := m.GetBackingStore().Set("callEventType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEventDateTime sets the eventDateTime property value. The eventDateTime property
 func (m *CallEvent) SetEventDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.eventDateTime = value
+    err := m.GetBackingStore().Set("eventDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParticipants sets the participants property value. The participants property
 func (m *CallEvent) SetParticipants(value []Participantable)() {
-    m.participants = value
+    err := m.GetBackingStore().Set("participants", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CallEventable interface {
     Entityable

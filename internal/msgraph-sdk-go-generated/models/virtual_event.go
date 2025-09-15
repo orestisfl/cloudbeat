@@ -9,26 +9,6 @@ import (
 
 type VirtualEvent struct {
     Entity
-    // The identity information for the creator of the virtual event. Inherited from virtualEvent.
-    createdBy CommunicationsIdentitySetable
-    // A description of the virtual event.
-    description ItemBodyable
-    // The display name of the virtual event.
-    displayName *string
-    // The end time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
-    endDateTime DateTimeTimeZoneable
-    // The external information of a virtual event. Returned only for event organizers or coorganizers; otherwise, null.
-    externalEventInformation []VirtualEventExternalInformationable
-    // The virtual event presenters.
-    presenters []VirtualEventPresenterable
-    // The sessions for the virtual event.
-    sessions []VirtualEventSessionable
-    // The virtual event settings.
-    settings VirtualEventSettingsable
-    // Start time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
-    startDateTime DateTimeTimeZoneable
-    // The status of the virtual event. The possible values are: draft, published, canceled, and unknownFutureValue.
-    status *VirtualEventStatus
 }
 // NewVirtualEvent instantiates a new VirtualEvent and sets the default values.
 func NewVirtualEvent()(*VirtualEvent) {
@@ -65,27 +45,62 @@ func CreateVirtualEventFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 // GetCreatedBy gets the createdBy property value. The identity information for the creator of the virtual event. Inherited from virtualEvent.
 // returns a CommunicationsIdentitySetable when successful
 func (m *VirtualEvent) GetCreatedBy()(CommunicationsIdentitySetable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CommunicationsIdentitySetable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. A description of the virtual event.
 // returns a ItemBodyable when successful
 func (m *VirtualEvent) GetDescription()(ItemBodyable) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ItemBodyable)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The display name of the virtual event.
 // returns a *string when successful
 func (m *VirtualEvent) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetEndDateTime gets the endDateTime property value. The end time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
 // returns a DateTimeTimeZoneable when successful
 func (m *VirtualEvent) GetEndDateTime()(DateTimeTimeZoneable) {
-    return m.endDateTime
+    val, err := m.GetBackingStore().Get("endDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DateTimeTimeZoneable)
+    }
+    return nil
 }
 // GetExternalEventInformation gets the externalEventInformation property value. The external information of a virtual event. Returned only for event organizers or coorganizers; otherwise, null.
 // returns a []VirtualEventExternalInformationable when successful
 func (m *VirtualEvent) GetExternalEventInformation()([]VirtualEventExternalInformationable) {
-    return m.externalEventInformation
+    val, err := m.GetBackingStore().Get("externalEventInformation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventExternalInformationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -214,27 +229,62 @@ func (m *VirtualEvent) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetPresenters gets the presenters property value. The virtual event presenters.
 // returns a []VirtualEventPresenterable when successful
 func (m *VirtualEvent) GetPresenters()([]VirtualEventPresenterable) {
-    return m.presenters
+    val, err := m.GetBackingStore().Get("presenters")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventPresenterable)
+    }
+    return nil
 }
 // GetSessions gets the sessions property value. The sessions for the virtual event.
 // returns a []VirtualEventSessionable when successful
 func (m *VirtualEvent) GetSessions()([]VirtualEventSessionable) {
-    return m.sessions
+    val, err := m.GetBackingStore().Get("sessions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventSessionable)
+    }
+    return nil
 }
 // GetSettings gets the settings property value. The virtual event settings.
 // returns a VirtualEventSettingsable when successful
 func (m *VirtualEvent) GetSettings()(VirtualEventSettingsable) {
-    return m.settings
+    val, err := m.GetBackingStore().Get("settings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(VirtualEventSettingsable)
+    }
+    return nil
 }
 // GetStartDateTime gets the startDateTime property value. Start time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
 // returns a DateTimeTimeZoneable when successful
 func (m *VirtualEvent) GetStartDateTime()(DateTimeTimeZoneable) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DateTimeTimeZoneable)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the virtual event. The possible values are: draft, published, canceled, and unknownFutureValue.
 // returns a *VirtualEventStatus when successful
 func (m *VirtualEvent) GetStatus()(*VirtualEventStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*VirtualEventStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -325,43 +375,73 @@ func (m *VirtualEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetCreatedBy sets the createdBy property value. The identity information for the creator of the virtual event. Inherited from virtualEvent.
 func (m *VirtualEvent) SetCreatedBy(value CommunicationsIdentitySetable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. A description of the virtual event.
 func (m *VirtualEvent) SetDescription(value ItemBodyable)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The display name of the virtual event.
 func (m *VirtualEvent) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEndDateTime sets the endDateTime property value. The end time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
 func (m *VirtualEvent) SetEndDateTime(value DateTimeTimeZoneable)() {
-    m.endDateTime = value
+    err := m.GetBackingStore().Set("endDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalEventInformation sets the externalEventInformation property value. The external information of a virtual event. Returned only for event organizers or coorganizers; otherwise, null.
 func (m *VirtualEvent) SetExternalEventInformation(value []VirtualEventExternalInformationable)() {
-    m.externalEventInformation = value
+    err := m.GetBackingStore().Set("externalEventInformation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPresenters sets the presenters property value. The virtual event presenters.
 func (m *VirtualEvent) SetPresenters(value []VirtualEventPresenterable)() {
-    m.presenters = value
+    err := m.GetBackingStore().Set("presenters", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSessions sets the sessions property value. The sessions for the virtual event.
 func (m *VirtualEvent) SetSessions(value []VirtualEventSessionable)() {
-    m.sessions = value
+    err := m.GetBackingStore().Set("sessions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettings sets the settings property value. The virtual event settings.
 func (m *VirtualEvent) SetSettings(value VirtualEventSettingsable)() {
-    m.settings = value
+    err := m.GetBackingStore().Set("settings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. Start time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
 func (m *VirtualEvent) SetStartDateTime(value DateTimeTimeZoneable)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the virtual event. The possible values are: draft, published, canceled, and unknownFutureValue.
 func (m *VirtualEvent) SetStatus(value *VirtualEventStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventable interface {
     Entityable

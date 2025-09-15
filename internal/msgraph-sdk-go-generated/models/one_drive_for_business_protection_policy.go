@@ -9,12 +9,6 @@ import (
 
 type OneDriveForBusinessProtectionPolicy struct {
     ProtectionPolicyBase
-    // Contains the details of the Onedrive for Business protection rule.
-    driveInclusionRules []DriveProtectionRuleable
-    // Contains the protection units associated with a  OneDrive for Business protection policy.
-    driveProtectionUnits []DriveProtectionUnitable
-    // The driveProtectionUnitsBulkAdditionJobs property
-    driveProtectionUnitsBulkAdditionJobs []DriveProtectionUnitsBulkAdditionJobable
 }
 // NewOneDriveForBusinessProtectionPolicy instantiates a new OneDriveForBusinessProtectionPolicy and sets the default values.
 func NewOneDriveForBusinessProtectionPolicy()(*OneDriveForBusinessProtectionPolicy) {
@@ -33,17 +27,38 @@ func CreateOneDriveForBusinessProtectionPolicyFromDiscriminatorValue(parseNode i
 // GetDriveInclusionRules gets the driveInclusionRules property value. Contains the details of the Onedrive for Business protection rule.
 // returns a []DriveProtectionRuleable when successful
 func (m *OneDriveForBusinessProtectionPolicy) GetDriveInclusionRules()([]DriveProtectionRuleable) {
-    return m.driveInclusionRules
+    val, err := m.GetBackingStore().Get("driveInclusionRules")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveProtectionRuleable)
+    }
+    return nil
 }
 // GetDriveProtectionUnits gets the driveProtectionUnits property value. Contains the protection units associated with a  OneDrive for Business protection policy.
 // returns a []DriveProtectionUnitable when successful
 func (m *OneDriveForBusinessProtectionPolicy) GetDriveProtectionUnits()([]DriveProtectionUnitable) {
-    return m.driveProtectionUnits
+    val, err := m.GetBackingStore().Get("driveProtectionUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveProtectionUnitable)
+    }
+    return nil
 }
 // GetDriveProtectionUnitsBulkAdditionJobs gets the driveProtectionUnitsBulkAdditionJobs property value. The driveProtectionUnitsBulkAdditionJobs property
 // returns a []DriveProtectionUnitsBulkAdditionJobable when successful
 func (m *OneDriveForBusinessProtectionPolicy) GetDriveProtectionUnitsBulkAdditionJobs()([]DriveProtectionUnitsBulkAdditionJobable) {
-    return m.driveProtectionUnitsBulkAdditionJobs
+    val, err := m.GetBackingStore().Get("driveProtectionUnitsBulkAdditionJobs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveProtectionUnitsBulkAdditionJobable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -145,15 +160,24 @@ func (m *OneDriveForBusinessProtectionPolicy) Serialize(writer i878a80d2330e89d2
 }
 // SetDriveInclusionRules sets the driveInclusionRules property value. Contains the details of the Onedrive for Business protection rule.
 func (m *OneDriveForBusinessProtectionPolicy) SetDriveInclusionRules(value []DriveProtectionRuleable)() {
-    m.driveInclusionRules = value
+    err := m.GetBackingStore().Set("driveInclusionRules", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDriveProtectionUnits sets the driveProtectionUnits property value. Contains the protection units associated with a  OneDrive for Business protection policy.
 func (m *OneDriveForBusinessProtectionPolicy) SetDriveProtectionUnits(value []DriveProtectionUnitable)() {
-    m.driveProtectionUnits = value
+    err := m.GetBackingStore().Set("driveProtectionUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDriveProtectionUnitsBulkAdditionJobs sets the driveProtectionUnitsBulkAdditionJobs property value. The driveProtectionUnitsBulkAdditionJobs property
 func (m *OneDriveForBusinessProtectionPolicy) SetDriveProtectionUnitsBulkAdditionJobs(value []DriveProtectionUnitsBulkAdditionJobable)() {
-    m.driveProtectionUnitsBulkAdditionJobs = value
+    err := m.GetBackingStore().Set("driveProtectionUnitsBulkAdditionJobs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OneDriveForBusinessProtectionPolicyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

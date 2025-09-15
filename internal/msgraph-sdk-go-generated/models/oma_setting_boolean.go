@@ -10,8 +10,6 @@ import (
 // OmaSettingBoolean oMA Settings Boolean definition.
 type OmaSettingBoolean struct {
     OmaSetting
-    // Value.
-    value *bool
 }
 // NewOmaSettingBoolean instantiates a new OmaSettingBoolean and sets the default values.
 func NewOmaSettingBoolean()(*OmaSettingBoolean) {
@@ -46,7 +44,14 @@ func (m *OmaSettingBoolean) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetValue gets the value property value. Value.
 // returns a *bool when successful
 func (m *OmaSettingBoolean) GetValue()(*bool) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OmaSettingBoolean) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *OmaSettingBoolean) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetValue sets the value property value. Value.
 func (m *OmaSettingBoolean) SetValue(value *bool)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OmaSettingBooleanable interface {
     OmaSettingable

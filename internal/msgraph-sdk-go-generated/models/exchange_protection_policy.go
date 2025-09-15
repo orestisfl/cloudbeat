@@ -9,12 +9,6 @@ import (
 
 type ExchangeProtectionPolicy struct {
     ProtectionPolicyBase
-    // The rules associated with the Exchange protection policy.
-    mailboxInclusionRules []MailboxProtectionRuleable
-    // The protection units (mailboxes) that are  protected under the Exchange protection policy.
-    mailboxProtectionUnits []MailboxProtectionUnitable
-    // The mailboxProtectionUnitsBulkAdditionJobs property
-    mailboxProtectionUnitsBulkAdditionJobs []MailboxProtectionUnitsBulkAdditionJobable
 }
 // NewExchangeProtectionPolicy instantiates a new ExchangeProtectionPolicy and sets the default values.
 func NewExchangeProtectionPolicy()(*ExchangeProtectionPolicy) {
@@ -87,17 +81,38 @@ func (m *ExchangeProtectionPolicy) GetFieldDeserializers()(map[string]func(i878a
 // GetMailboxInclusionRules gets the mailboxInclusionRules property value. The rules associated with the Exchange protection policy.
 // returns a []MailboxProtectionRuleable when successful
 func (m *ExchangeProtectionPolicy) GetMailboxInclusionRules()([]MailboxProtectionRuleable) {
-    return m.mailboxInclusionRules
+    val, err := m.GetBackingStore().Get("mailboxInclusionRules")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxProtectionRuleable)
+    }
+    return nil
 }
 // GetMailboxProtectionUnits gets the mailboxProtectionUnits property value. The protection units (mailboxes) that are  protected under the Exchange protection policy.
 // returns a []MailboxProtectionUnitable when successful
 func (m *ExchangeProtectionPolicy) GetMailboxProtectionUnits()([]MailboxProtectionUnitable) {
-    return m.mailboxProtectionUnits
+    val, err := m.GetBackingStore().Get("mailboxProtectionUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxProtectionUnitable)
+    }
+    return nil
 }
 // GetMailboxProtectionUnitsBulkAdditionJobs gets the mailboxProtectionUnitsBulkAdditionJobs property value. The mailboxProtectionUnitsBulkAdditionJobs property
 // returns a []MailboxProtectionUnitsBulkAdditionJobable when successful
 func (m *ExchangeProtectionPolicy) GetMailboxProtectionUnitsBulkAdditionJobs()([]MailboxProtectionUnitsBulkAdditionJobable) {
-    return m.mailboxProtectionUnitsBulkAdditionJobs
+    val, err := m.GetBackingStore().Get("mailboxProtectionUnitsBulkAdditionJobs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MailboxProtectionUnitsBulkAdditionJobable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ExchangeProtectionPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -145,15 +160,24 @@ func (m *ExchangeProtectionPolicy) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetMailboxInclusionRules sets the mailboxInclusionRules property value. The rules associated with the Exchange protection policy.
 func (m *ExchangeProtectionPolicy) SetMailboxInclusionRules(value []MailboxProtectionRuleable)() {
-    m.mailboxInclusionRules = value
+    err := m.GetBackingStore().Set("mailboxInclusionRules", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxProtectionUnits sets the mailboxProtectionUnits property value. The protection units (mailboxes) that are  protected under the Exchange protection policy.
 func (m *ExchangeProtectionPolicy) SetMailboxProtectionUnits(value []MailboxProtectionUnitable)() {
-    m.mailboxProtectionUnits = value
+    err := m.GetBackingStore().Set("mailboxProtectionUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxProtectionUnitsBulkAdditionJobs sets the mailboxProtectionUnitsBulkAdditionJobs property value. The mailboxProtectionUnitsBulkAdditionJobs property
 func (m *ExchangeProtectionPolicy) SetMailboxProtectionUnitsBulkAdditionJobs(value []MailboxProtectionUnitsBulkAdditionJobable)() {
-    m.mailboxProtectionUnitsBulkAdditionJobs = value
+    err := m.GetBackingStore().Set("mailboxProtectionUnitsBulkAdditionJobs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ExchangeProtectionPolicyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

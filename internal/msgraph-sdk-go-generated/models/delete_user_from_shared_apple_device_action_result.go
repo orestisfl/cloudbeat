@@ -10,8 +10,6 @@ import (
 // DeleteUserFromSharedAppleDeviceActionResult delete user from shared apple device action result
 type DeleteUserFromSharedAppleDeviceActionResult struct {
     DeviceActionResult
-    // User principal name of the user to be deleted
-    userPrincipalName *string
 }
 // NewDeleteUserFromSharedAppleDeviceActionResult instantiates a new DeleteUserFromSharedAppleDeviceActionResult and sets the default values.
 func NewDeleteUserFromSharedAppleDeviceActionResult()(*DeleteUserFromSharedAppleDeviceActionResult) {
@@ -44,7 +42,14 @@ func (m *DeleteUserFromSharedAppleDeviceActionResult) GetFieldDeserializers()(ma
 // GetUserPrincipalName gets the userPrincipalName property value. User principal name of the user to be deleted
 // returns a *string when successful
 func (m *DeleteUserFromSharedAppleDeviceActionResult) GetUserPrincipalName()(*string) {
-    return m.userPrincipalName
+    val, err := m.GetBackingStore().Get("userPrincipalName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeleteUserFromSharedAppleDeviceActionResult) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -62,7 +67,10 @@ func (m *DeleteUserFromSharedAppleDeviceActionResult) Serialize(writer i878a80d2
 }
 // SetUserPrincipalName sets the userPrincipalName property value. User principal name of the user to be deleted
 func (m *DeleteUserFromSharedAppleDeviceActionResult) SetUserPrincipalName(value *string)() {
-    m.userPrincipalName = value
+    err := m.GetBackingStore().Set("userPrincipalName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeleteUserFromSharedAppleDeviceActionResultable interface {
     DeviceActionResultable

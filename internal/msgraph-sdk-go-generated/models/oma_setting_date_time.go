@@ -11,8 +11,6 @@ import (
 // OmaSettingDateTime oMA Settings DateTime definition.
 type OmaSettingDateTime struct {
     OmaSetting
-    // Value.
-    value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewOmaSettingDateTime instantiates a new OmaSettingDateTime and sets the default values.
 func NewOmaSettingDateTime()(*OmaSettingDateTime) {
@@ -47,7 +45,14 @@ func (m *OmaSettingDateTime) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetValue gets the value property value. Value.
 // returns a *Time when successful
 func (m *OmaSettingDateTime) GetValue()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OmaSettingDateTime) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -65,7 +70,10 @@ func (m *OmaSettingDateTime) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetValue sets the value property value. Value.
 func (m *OmaSettingDateTime) SetValue(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OmaSettingDateTimeable interface {
     OmaSettingable

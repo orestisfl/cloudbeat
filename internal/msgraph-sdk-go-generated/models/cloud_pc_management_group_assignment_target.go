@@ -9,10 +9,6 @@ import (
 
 type CloudPcManagementGroupAssignmentTarget struct {
     CloudPcManagementAssignmentTarget
-    // The ID of the target group for the assignment.
-    groupId *string
-    // The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.
-    servicePlanId *string
 }
 // NewCloudPcManagementGroupAssignmentTarget instantiates a new CloudPcManagementGroupAssignmentTarget and sets the default values.
 func NewCloudPcManagementGroupAssignmentTarget()(*CloudPcManagementGroupAssignmentTarget) {
@@ -57,12 +53,26 @@ func (m *CloudPcManagementGroupAssignmentTarget) GetFieldDeserializers()(map[str
 // GetGroupId gets the groupId property value. The ID of the target group for the assignment.
 // returns a *string when successful
 func (m *CloudPcManagementGroupAssignmentTarget) GetGroupId()(*string) {
-    return m.groupId
+    val, err := m.GetBackingStore().Get("groupId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetServicePlanId gets the servicePlanId property value. The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.
 // returns a *string when successful
 func (m *CloudPcManagementGroupAssignmentTarget) GetServicePlanId()(*string) {
-    return m.servicePlanId
+    val, err := m.GetBackingStore().Get("servicePlanId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CloudPcManagementGroupAssignmentTarget) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *CloudPcManagementGroupAssignmentTarget) Serialize(writer i878a80d2330e8
 }
 // SetGroupId sets the groupId property value. The ID of the target group for the assignment.
 func (m *CloudPcManagementGroupAssignmentTarget) SetGroupId(value *string)() {
-    m.groupId = value
+    err := m.GetBackingStore().Set("groupId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServicePlanId sets the servicePlanId property value. The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.
 func (m *CloudPcManagementGroupAssignmentTarget) SetServicePlanId(value *string)() {
-    m.servicePlanId = value
+    err := m.GetBackingStore().Set("servicePlanId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CloudPcManagementGroupAssignmentTargetable interface {
     CloudPcManagementAssignmentTargetable

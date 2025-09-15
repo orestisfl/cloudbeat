@@ -9,8 +9,6 @@ import (
 
 type AttributeMappingFunctionSchema struct {
     Entity
-    // Collection of function parameters.
-    parameters []AttributeMappingParameterSchemaable
 }
 // NewAttributeMappingFunctionSchema instantiates a new AttributeMappingFunctionSchema and sets the default values.
 func NewAttributeMappingFunctionSchema()(*AttributeMappingFunctionSchema) {
@@ -49,7 +47,14 @@ func (m *AttributeMappingFunctionSchema) GetFieldDeserializers()(map[string]func
 // GetParameters gets the parameters property value. Collection of function parameters.
 // returns a []AttributeMappingParameterSchemaable when successful
 func (m *AttributeMappingFunctionSchema) GetParameters()([]AttributeMappingParameterSchemaable) {
-    return m.parameters
+    val, err := m.GetBackingStore().Get("parameters")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AttributeMappingParameterSchemaable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AttributeMappingFunctionSchema) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *AttributeMappingFunctionSchema) Serialize(writer i878a80d2330e89d268963
 }
 // SetParameters sets the parameters property value. Collection of function parameters.
 func (m *AttributeMappingFunctionSchema) SetParameters(value []AttributeMappingParameterSchemaable)() {
-    m.parameters = value
+    err := m.GetBackingStore().Set("parameters", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AttributeMappingFunctionSchemaable interface {
     Entityable

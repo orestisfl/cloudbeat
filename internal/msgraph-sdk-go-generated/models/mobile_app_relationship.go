@@ -10,22 +10,6 @@ import (
 // MobileAppRelationship the MobileAppRelationship describes the relationship between two mobile applications by providing information that tells if an application is dependent on or superseded by another application.
 type MobileAppRelationship struct {
     Entity
-    // The display name of the app that is the source of the mobile app relationship entity. For example: Orca. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
-    sourceDisplayName *string
-    // The display version of the app that is the source of the mobile app relationship entity. For example 1.0.12 or 1.2203.156 or 3. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
-    sourceDisplayVersion *string
-    // The unique app identifier of the source of the mobile app relationship entity. For example: 2dbc75b9-e993-4e4d-a071-91ac5a218672. If null during relationship creation, then it will be populated with parent Id. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
-    sourceId *string
-    // The publisher display name of the app that is the source of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
-    sourcePublisherDisplayName *string
-    // The display name of the app that is the target of the mobile app relationship entity. For example: Firefox Setup 52.0.2 32bit.intunewin. Maximum length is 500 characters. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
-    targetDisplayName *string
-    // The display version of the app that is the target of the mobile app relationship entity. For example 1.0 or 1.2203.156. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
-    targetDisplayVersion *string
-    // The unique app identifier of the target of the mobile app relationship entity. For example: 2dbc75b9-e993-4e4d-a071-91ac5a218672. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy.
-    targetId *string
-    // The publisher display name of the app that is the target of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
-    targetPublisherDisplayName *string
 }
 // NewMobileAppRelationship instantiates a new MobileAppRelationship and sets the default values.
 func NewMobileAppRelationship()(*MobileAppRelationship) {
@@ -128,42 +112,98 @@ func (m *MobileAppRelationship) GetFieldDeserializers()(map[string]func(i878a80d
 // GetSourceDisplayName gets the sourceDisplayName property value. The display name of the app that is the source of the mobile app relationship entity. For example: Orca. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetSourceDisplayName()(*string) {
-    return m.sourceDisplayName
+    val, err := m.GetBackingStore().Get("sourceDisplayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSourceDisplayVersion gets the sourceDisplayVersion property value. The display version of the app that is the source of the mobile app relationship entity. For example 1.0.12 or 1.2203.156 or 3. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetSourceDisplayVersion()(*string) {
-    return m.sourceDisplayVersion
+    val, err := m.GetBackingStore().Get("sourceDisplayVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSourceId gets the sourceId property value. The unique app identifier of the source of the mobile app relationship entity. For example: 2dbc75b9-e993-4e4d-a071-91ac5a218672. If null during relationship creation, then it will be populated with parent Id. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetSourceId()(*string) {
-    return m.sourceId
+    val, err := m.GetBackingStore().Get("sourceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSourcePublisherDisplayName gets the sourcePublisherDisplayName property value. The publisher display name of the app that is the source of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetSourcePublisherDisplayName()(*string) {
-    return m.sourcePublisherDisplayName
+    val, err := m.GetBackingStore().Get("sourcePublisherDisplayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTargetDisplayName gets the targetDisplayName property value. The display name of the app that is the target of the mobile app relationship entity. For example: Firefox Setup 52.0.2 32bit.intunewin. Maximum length is 500 characters. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetTargetDisplayName()(*string) {
-    return m.targetDisplayName
+    val, err := m.GetBackingStore().Get("targetDisplayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTargetDisplayVersion gets the targetDisplayVersion property value. The display version of the app that is the target of the mobile app relationship entity. For example 1.0 or 1.2203.156. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetTargetDisplayVersion()(*string) {
-    return m.targetDisplayVersion
+    val, err := m.GetBackingStore().Get("targetDisplayVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTargetId gets the targetId property value. The unique app identifier of the target of the mobile app relationship entity. For example: 2dbc75b9-e993-4e4d-a071-91ac5a218672. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetTargetId()(*string) {
-    return m.targetId
+    val, err := m.GetBackingStore().Get("targetId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTargetPublisherDisplayName gets the targetPublisherDisplayName property value. The publisher display name of the app that is the target of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 // returns a *string when successful
 func (m *MobileAppRelationship) GetTargetPublisherDisplayName()(*string) {
-    return m.targetPublisherDisplayName
+    val, err := m.GetBackingStore().Get("targetPublisherDisplayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MobileAppRelationship) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -181,35 +221,59 @@ func (m *MobileAppRelationship) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetSourceDisplayName sets the sourceDisplayName property value. The display name of the app that is the source of the mobile app relationship entity. For example: Orca. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 func (m *MobileAppRelationship) SetSourceDisplayName(value *string)() {
-    m.sourceDisplayName = value
+    err := m.GetBackingStore().Set("sourceDisplayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceDisplayVersion sets the sourceDisplayVersion property value. The display version of the app that is the source of the mobile app relationship entity. For example 1.0.12 or 1.2203.156 or 3. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 func (m *MobileAppRelationship) SetSourceDisplayVersion(value *string)() {
-    m.sourceDisplayVersion = value
+    err := m.GetBackingStore().Set("sourceDisplayVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceId sets the sourceId property value. The unique app identifier of the source of the mobile app relationship entity. For example: 2dbc75b9-e993-4e4d-a071-91ac5a218672. If null during relationship creation, then it will be populated with parent Id. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 func (m *MobileAppRelationship) SetSourceId(value *string)() {
-    m.sourceId = value
+    err := m.GetBackingStore().Set("sourceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourcePublisherDisplayName sets the sourcePublisherDisplayName property value. The publisher display name of the app that is the source of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 func (m *MobileAppRelationship) SetSourcePublisherDisplayName(value *string)() {
-    m.sourcePublisherDisplayName = value
+    err := m.GetBackingStore().Set("sourcePublisherDisplayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTargetDisplayName sets the targetDisplayName property value. The display name of the app that is the target of the mobile app relationship entity. For example: Firefox Setup 52.0.2 32bit.intunewin. Maximum length is 500 characters. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 func (m *MobileAppRelationship) SetTargetDisplayName(value *string)() {
-    m.targetDisplayName = value
+    err := m.GetBackingStore().Set("targetDisplayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTargetDisplayVersion sets the targetDisplayVersion property value. The display version of the app that is the target of the mobile app relationship entity. For example 1.0 or 1.2203.156. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 func (m *MobileAppRelationship) SetTargetDisplayVersion(value *string)() {
-    m.targetDisplayVersion = value
+    err := m.GetBackingStore().Set("targetDisplayVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTargetId sets the targetId property value. The unique app identifier of the target of the mobile app relationship entity. For example: 2dbc75b9-e993-4e4d-a071-91ac5a218672. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy.
 func (m *MobileAppRelationship) SetTargetId(value *string)() {
-    m.targetId = value
+    err := m.GetBackingStore().Set("targetId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTargetPublisherDisplayName sets the targetPublisherDisplayName property value. The publisher display name of the app that is the target of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
 func (m *MobileAppRelationship) SetTargetPublisherDisplayName(value *string)() {
-    m.targetPublisherDisplayName = value
+    err := m.GetBackingStore().Set("targetPublisherDisplayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MobileAppRelationshipable interface {
     Entityable

@@ -9,8 +9,6 @@ import (
 
 type WorkbookFilter struct {
     Entity
-    // The currently applied filter on the given column. Read-only.
-    criteria WorkbookFilterCriteriaable
 }
 // NewWorkbookFilter instantiates a new WorkbookFilter and sets the default values.
 func NewWorkbookFilter()(*WorkbookFilter) {
@@ -27,7 +25,14 @@ func CreateWorkbookFilterFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetCriteria gets the criteria property value. The currently applied filter on the given column. Read-only.
 // returns a WorkbookFilterCriteriaable when successful
 func (m *WorkbookFilter) GetCriteria()(WorkbookFilterCriteriaable) {
-    return m.criteria
+    val, err := m.GetBackingStore().Get("criteria")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookFilterCriteriaable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +66,10 @@ func (m *WorkbookFilter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetCriteria sets the criteria property value. The currently applied filter on the given column. Read-only.
 func (m *WorkbookFilter) SetCriteria(value WorkbookFilterCriteriaable)() {
-    m.criteria = value
+    err := m.GetBackingStore().Set("criteria", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookFilterable interface {
     Entityable

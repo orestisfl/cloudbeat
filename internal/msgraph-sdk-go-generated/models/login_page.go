@@ -10,26 +10,6 @@ import (
 
 type LoginPage struct {
     Entity
-    // The HTML content of the login page.
-    content *string
-    // Identity of the user who created the login page.
-    createdBy EmailIdentityable
-    // Date and time when the login page was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Description about the login page.
-    description *string
-    // Display name of the login page.
-    displayName *string
-    // The content language of the login page.
-    language *string
-    // Identity of the user who last modified the login page.
-    lastModifiedBy EmailIdentityable
-    // Date and time when the login page was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The source of the content. Possible values are: unknown, global, tenant, unknownFutureValue.
-    source *SimulationContentSource
-    // The login page status. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue.
-    status *SimulationContentStatus
 }
 // NewLoginPage instantiates a new LoginPage and sets the default values.
 func NewLoginPage()(*LoginPage) {
@@ -46,27 +26,62 @@ func CreateLoginPageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetContent gets the content property value. The HTML content of the login page.
 // returns a *string when successful
 func (m *LoginPage) GetContent()(*string) {
-    return m.content
+    val, err := m.GetBackingStore().Get("content")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCreatedBy gets the createdBy property value. Identity of the user who created the login page.
 // returns a EmailIdentityable when successful
 func (m *LoginPage) GetCreatedBy()(EmailIdentityable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EmailIdentityable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. Date and time when the login page was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *LoginPage) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDescription gets the description property value. Description about the login page.
 // returns a *string when successful
 func (m *LoginPage) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. Display name of the login page.
 // returns a *string when successful
 func (m *LoginPage) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -177,27 +192,62 @@ func (m *LoginPage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetLanguage gets the language property value. The content language of the login page.
 // returns a *string when successful
 func (m *LoginPage) GetLanguage()(*string) {
-    return m.language
+    val, err := m.GetBackingStore().Get("language")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLastModifiedBy gets the lastModifiedBy property value. Identity of the user who last modified the login page.
 // returns a EmailIdentityable when successful
 func (m *LoginPage) GetLastModifiedBy()(EmailIdentityable) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EmailIdentityable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Date and time when the login page was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *LoginPage) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetSource gets the source property value. The source of the content. Possible values are: unknown, global, tenant, unknownFutureValue.
 // returns a *SimulationContentSource when successful
 func (m *LoginPage) GetSource()(*SimulationContentSource) {
-    return m.source
+    val, err := m.GetBackingStore().Get("source")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*SimulationContentSource)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The login page status. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue.
 // returns a *SimulationContentStatus when successful
 func (m *LoginPage) GetStatus()(*SimulationContentStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*SimulationContentStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LoginPage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -271,43 +321,73 @@ func (m *LoginPage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetContent sets the content property value. The HTML content of the login page.
 func (m *LoginPage) SetContent(value *string)() {
-    m.content = value
+    err := m.GetBackingStore().Set("content", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedBy sets the createdBy property value. Identity of the user who created the login page.
 func (m *LoginPage) SetCreatedBy(value EmailIdentityable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. Date and time when the login page was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *LoginPage) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. Description about the login page.
 func (m *LoginPage) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. Display name of the login page.
 func (m *LoginPage) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLanguage sets the language property value. The content language of the login page.
 func (m *LoginPage) SetLanguage(value *string)() {
-    m.language = value
+    err := m.GetBackingStore().Set("language", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. Identity of the user who last modified the login page.
 func (m *LoginPage) SetLastModifiedBy(value EmailIdentityable)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Date and time when the login page was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *LoginPage) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSource sets the source property value. The source of the content. Possible values are: unknown, global, tenant, unknownFutureValue.
 func (m *LoginPage) SetSource(value *SimulationContentSource)() {
-    m.source = value
+    err := m.GetBackingStore().Set("source", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The login page status. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue.
 func (m *LoginPage) SetStatus(value *SimulationContentStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LoginPageable interface {
     Entityable

@@ -9,10 +9,6 @@ import (
 
 type OnAttributeCollectionSubmitCustomExtensionHandler struct {
     OnAttributeCollectionSubmitHandler
-    // Configuration regarding properties of the custom extension that can be overwritten per event listener.
-    configuration CustomExtensionOverwriteConfigurationable
-    // The customExtension property
-    customExtension OnAttributeCollectionSubmitCustomExtensionable
 }
 // NewOnAttributeCollectionSubmitCustomExtensionHandler instantiates a new OnAttributeCollectionSubmitCustomExtensionHandler and sets the default values.
 func NewOnAttributeCollectionSubmitCustomExtensionHandler()(*OnAttributeCollectionSubmitCustomExtensionHandler) {
@@ -31,12 +27,26 @@ func CreateOnAttributeCollectionSubmitCustomExtensionHandlerFromDiscriminatorVal
 // GetConfiguration gets the configuration property value. Configuration regarding properties of the custom extension that can be overwritten per event listener.
 // returns a CustomExtensionOverwriteConfigurationable when successful
 func (m *OnAttributeCollectionSubmitCustomExtensionHandler) GetConfiguration()(CustomExtensionOverwriteConfigurationable) {
-    return m.configuration
+    val, err := m.GetBackingStore().Get("configuration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CustomExtensionOverwriteConfigurationable)
+    }
+    return nil
 }
 // GetCustomExtension gets the customExtension property value. The customExtension property
 // returns a OnAttributeCollectionSubmitCustomExtensionable when successful
 func (m *OnAttributeCollectionSubmitCustomExtensionHandler) GetCustomExtension()(OnAttributeCollectionSubmitCustomExtensionable) {
-    return m.customExtension
+    val, err := m.GetBackingStore().Get("customExtension")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnAttributeCollectionSubmitCustomExtensionable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,11 +96,17 @@ func (m *OnAttributeCollectionSubmitCustomExtensionHandler) Serialize(writer i87
 }
 // SetConfiguration sets the configuration property value. Configuration regarding properties of the custom extension that can be overwritten per event listener.
 func (m *OnAttributeCollectionSubmitCustomExtensionHandler) SetConfiguration(value CustomExtensionOverwriteConfigurationable)() {
-    m.configuration = value
+    err := m.GetBackingStore().Set("configuration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCustomExtension sets the customExtension property value. The customExtension property
 func (m *OnAttributeCollectionSubmitCustomExtensionHandler) SetCustomExtension(value OnAttributeCollectionSubmitCustomExtensionable)() {
-    m.customExtension = value
+    err := m.GetBackingStore().Set("customExtension", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnAttributeCollectionSubmitCustomExtensionHandlerable interface {
     OnAttributeCollectionSubmitHandlerable

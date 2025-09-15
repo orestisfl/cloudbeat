@@ -9,8 +9,6 @@ import (
 
 type PronounsSettings struct {
     Entity
-    // true to enable pronouns in the organization; otherwise, false. The default value is false, and pronouns are disabled.
-    isEnabledInOrganization *bool
 }
 // NewPronounsSettings instantiates a new PronounsSettings and sets the default values.
 func NewPronounsSettings()(*PronounsSettings) {
@@ -43,7 +41,14 @@ func (m *PronounsSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetIsEnabledInOrganization gets the isEnabledInOrganization property value. true to enable pronouns in the organization; otherwise, false. The default value is false, and pronouns are disabled.
 // returns a *bool when successful
 func (m *PronounsSettings) GetIsEnabledInOrganization()(*bool) {
-    return m.isEnabledInOrganization
+    val, err := m.GetBackingStore().Get("isEnabledInOrganization")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PronounsSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *PronounsSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetIsEnabledInOrganization sets the isEnabledInOrganization property value. true to enable pronouns in the organization; otherwise, false. The default value is false, and pronouns are disabled.
 func (m *PronounsSettings) SetIsEnabledInOrganization(value *bool)() {
-    m.isEnabledInOrganization = value
+    err := m.GetBackingStore().Set("isEnabledInOrganization", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PronounsSettingsable interface {
     Entityable

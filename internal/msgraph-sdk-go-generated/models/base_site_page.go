@@ -9,12 +9,6 @@ import (
 
 type BaseSitePage struct {
     BaseItem
-    // The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.
-    pageLayout *PageLayoutType
-    // The publishing status and the MM.mm version of the page.
-    publishingState PublicationFacetable
-    // Title of the sitePage.
-    title *string
 }
 // NewBaseSitePage instantiates a new BaseSitePage and sets the default values.
 func NewBaseSitePage()(*BaseSitePage) {
@@ -87,17 +81,38 @@ func (m *BaseSitePage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetPageLayout gets the pageLayout property value. The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.
 // returns a *PageLayoutType when successful
 func (m *BaseSitePage) GetPageLayout()(*PageLayoutType) {
-    return m.pageLayout
+    val, err := m.GetBackingStore().Get("pageLayout")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*PageLayoutType)
+    }
+    return nil
 }
 // GetPublishingState gets the publishingState property value. The publishing status and the MM.mm version of the page.
 // returns a PublicationFacetable when successful
 func (m *BaseSitePage) GetPublishingState()(PublicationFacetable) {
-    return m.publishingState
+    val, err := m.GetBackingStore().Get("publishingState")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PublicationFacetable)
+    }
+    return nil
 }
 // GetTitle gets the title property value. Title of the sitePage.
 // returns a *string when successful
 func (m *BaseSitePage) GetTitle()(*string) {
-    return m.title
+    val, err := m.GetBackingStore().Get("title")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BaseSitePage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -128,15 +143,24 @@ func (m *BaseSitePage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetPageLayout sets the pageLayout property value. The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.
 func (m *BaseSitePage) SetPageLayout(value *PageLayoutType)() {
-    m.pageLayout = value
+    err := m.GetBackingStore().Set("pageLayout", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPublishingState sets the publishingState property value. The publishing status and the MM.mm version of the page.
 func (m *BaseSitePage) SetPublishingState(value PublicationFacetable)() {
-    m.publishingState = value
+    err := m.GetBackingStore().Set("publishingState", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTitle sets the title property value. Title of the sitePage.
 func (m *BaseSitePage) SetTitle(value *string)() {
-    m.title = value
+    err := m.GetBackingStore().Set("title", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BaseSitePageable interface {
     BaseItemable

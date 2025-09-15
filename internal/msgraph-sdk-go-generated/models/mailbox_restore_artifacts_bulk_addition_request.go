@@ -9,10 +9,6 @@ import (
 
 type MailboxRestoreArtifactsBulkAdditionRequest struct {
     RestoreArtifactsBulkRequestBase
-    // The list of directory object IDs that are added to the corresponding Exchange restore session in a bulk operation.
-    directoryObjectIds []string
-    // The list of email addresses that are added to the corresponding Exchange restore session in a bulk operation.
-    mailboxes []string
 }
 // NewMailboxRestoreArtifactsBulkAdditionRequest instantiates a new MailboxRestoreArtifactsBulkAdditionRequest and sets the default values.
 func NewMailboxRestoreArtifactsBulkAdditionRequest()(*MailboxRestoreArtifactsBulkAdditionRequest) {
@@ -29,7 +25,14 @@ func CreateMailboxRestoreArtifactsBulkAdditionRequestFromDiscriminatorValue(pars
 // GetDirectoryObjectIds gets the directoryObjectIds property value. The list of directory object IDs that are added to the corresponding Exchange restore session in a bulk operation.
 // returns a []string when successful
 func (m *MailboxRestoreArtifactsBulkAdditionRequest) GetDirectoryObjectIds()([]string) {
-    return m.directoryObjectIds
+    val, err := m.GetBackingStore().Get("directoryObjectIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -72,7 +75,14 @@ func (m *MailboxRestoreArtifactsBulkAdditionRequest) GetFieldDeserializers()(map
 // GetMailboxes gets the mailboxes property value. The list of email addresses that are added to the corresponding Exchange restore session in a bulk operation.
 // returns a []string when successful
 func (m *MailboxRestoreArtifactsBulkAdditionRequest) GetMailboxes()([]string) {
-    return m.mailboxes
+    val, err := m.GetBackingStore().Get("mailboxes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MailboxRestoreArtifactsBulkAdditionRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -96,11 +106,17 @@ func (m *MailboxRestoreArtifactsBulkAdditionRequest) Serialize(writer i878a80d23
 }
 // SetDirectoryObjectIds sets the directoryObjectIds property value. The list of directory object IDs that are added to the corresponding Exchange restore session in a bulk operation.
 func (m *MailboxRestoreArtifactsBulkAdditionRequest) SetDirectoryObjectIds(value []string)() {
-    m.directoryObjectIds = value
+    err := m.GetBackingStore().Set("directoryObjectIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxes sets the mailboxes property value. The list of email addresses that are added to the corresponding Exchange restore session in a bulk operation.
 func (m *MailboxRestoreArtifactsBulkAdditionRequest) SetMailboxes(value []string)() {
-    m.mailboxes = value
+    err := m.GetBackingStore().Set("mailboxes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MailboxRestoreArtifactsBulkAdditionRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

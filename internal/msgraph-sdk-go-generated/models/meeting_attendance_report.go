@@ -10,16 +10,6 @@ import (
 
 type MeetingAttendanceReport struct {
     Entity
-    // List of attendance records of an attendance report. Read-only.
-    attendanceRecords []AttendanceRecordable
-    // The external information of a virtual event. Returned only for event organizers or coorganizers. Read-only.
-    externalEventInformation []VirtualEventExternalInformationable
-    // UTC time when the meeting ended. Read-only.
-    meetingEndDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // UTC time when the meeting started. Read-only.
-    meetingStartDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Total number of participants. Read-only.
-    totalParticipantCount *int32
 }
 // NewMeetingAttendanceReport instantiates a new MeetingAttendanceReport and sets the default values.
 func NewMeetingAttendanceReport()(*MeetingAttendanceReport) {
@@ -36,12 +26,26 @@ func CreateMeetingAttendanceReportFromDiscriminatorValue(parseNode i878a80d2330e
 // GetAttendanceRecords gets the attendanceRecords property value. List of attendance records of an attendance report. Read-only.
 // returns a []AttendanceRecordable when successful
 func (m *MeetingAttendanceReport) GetAttendanceRecords()([]AttendanceRecordable) {
-    return m.attendanceRecords
+    val, err := m.GetBackingStore().Get("attendanceRecords")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AttendanceRecordable)
+    }
+    return nil
 }
 // GetExternalEventInformation gets the externalEventInformation property value. The external information of a virtual event. Returned only for event organizers or coorganizers. Read-only.
 // returns a []VirtualEventExternalInformationable when successful
 func (m *MeetingAttendanceReport) GetExternalEventInformation()([]VirtualEventExternalInformationable) {
-    return m.externalEventInformation
+    val, err := m.GetBackingStore().Get("externalEventInformation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventExternalInformationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -114,17 +118,38 @@ func (m *MeetingAttendanceReport) GetFieldDeserializers()(map[string]func(i878a8
 // GetMeetingEndDateTime gets the meetingEndDateTime property value. UTC time when the meeting ended. Read-only.
 // returns a *Time when successful
 func (m *MeetingAttendanceReport) GetMeetingEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.meetingEndDateTime
+    val, err := m.GetBackingStore().Get("meetingEndDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetMeetingStartDateTime gets the meetingStartDateTime property value. UTC time when the meeting started. Read-only.
 // returns a *Time when successful
 func (m *MeetingAttendanceReport) GetMeetingStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.meetingStartDateTime
+    val, err := m.GetBackingStore().Get("meetingStartDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetTotalParticipantCount gets the totalParticipantCount property value. Total number of participants. Read-only.
 // returns a *int32 when successful
 func (m *MeetingAttendanceReport) GetTotalParticipantCount()(*int32) {
-    return m.totalParticipantCount
+    val, err := m.GetBackingStore().Get("totalParticipantCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MeetingAttendanceReport) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -178,23 +203,38 @@ func (m *MeetingAttendanceReport) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetAttendanceRecords sets the attendanceRecords property value. List of attendance records of an attendance report. Read-only.
 func (m *MeetingAttendanceReport) SetAttendanceRecords(value []AttendanceRecordable)() {
-    m.attendanceRecords = value
+    err := m.GetBackingStore().Set("attendanceRecords", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalEventInformation sets the externalEventInformation property value. The external information of a virtual event. Returned only for event organizers or coorganizers. Read-only.
 func (m *MeetingAttendanceReport) SetExternalEventInformation(value []VirtualEventExternalInformationable)() {
-    m.externalEventInformation = value
+    err := m.GetBackingStore().Set("externalEventInformation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMeetingEndDateTime sets the meetingEndDateTime property value. UTC time when the meeting ended. Read-only.
 func (m *MeetingAttendanceReport) SetMeetingEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.meetingEndDateTime = value
+    err := m.GetBackingStore().Set("meetingEndDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMeetingStartDateTime sets the meetingStartDateTime property value. UTC time when the meeting started. Read-only.
 func (m *MeetingAttendanceReport) SetMeetingStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.meetingStartDateTime = value
+    err := m.GetBackingStore().Set("meetingStartDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTotalParticipantCount sets the totalParticipantCount property value. Total number of participants. Read-only.
 func (m *MeetingAttendanceReport) SetTotalParticipantCount(value *int32)() {
-    m.totalParticipantCount = value
+    err := m.GetBackingStore().Set("totalParticipantCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MeetingAttendanceReportable interface {
     Entityable

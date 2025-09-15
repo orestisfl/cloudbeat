@@ -9,8 +9,6 @@ import (
 
 type PlannerGroup struct {
     Entity
-    // Read-only. Nullable. Returns the plannerPlans owned by the group.
-    plans []PlannerPlanable
 }
 // NewPlannerGroup instantiates a new PlannerGroup and sets the default values.
 func NewPlannerGroup()(*PlannerGroup) {
@@ -49,7 +47,14 @@ func (m *PlannerGroup) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetPlans gets the plans property value. Read-only. Nullable. Returns the plannerPlans owned by the group.
 // returns a []PlannerPlanable when successful
 func (m *PlannerGroup) GetPlans()([]PlannerPlanable) {
-    return m.plans
+    val, err := m.GetBackingStore().Get("plans")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PlannerPlanable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PlannerGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *PlannerGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetPlans sets the plans property value. Read-only. Nullable. Returns the plannerPlans owned by the group.
 func (m *PlannerGroup) SetPlans(value []PlannerPlanable)() {
-    m.plans = value
+    err := m.GetBackingStore().Set("plans", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PlannerGroupable interface {
     Entityable

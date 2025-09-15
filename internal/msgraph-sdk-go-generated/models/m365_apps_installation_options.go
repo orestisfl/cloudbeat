@@ -9,12 +9,6 @@ import (
 
 type M365AppsInstallationOptions struct {
     Entity
-    // The appsForMac property
-    appsForMac AppsInstallationOptionsForMacable
-    // The appsForWindows property
-    appsForWindows AppsInstallationOptionsForWindowsable
-    // The updateChannel property
-    updateChannel *AppsUpdateChannelType
 }
 // NewM365AppsInstallationOptions instantiates a new M365AppsInstallationOptions and sets the default values.
 func NewM365AppsInstallationOptions()(*M365AppsInstallationOptions) {
@@ -31,12 +25,26 @@ func CreateM365AppsInstallationOptionsFromDiscriminatorValue(parseNode i878a80d2
 // GetAppsForMac gets the appsForMac property value. The appsForMac property
 // returns a AppsInstallationOptionsForMacable when successful
 func (m *M365AppsInstallationOptions) GetAppsForMac()(AppsInstallationOptionsForMacable) {
-    return m.appsForMac
+    val, err := m.GetBackingStore().Get("appsForMac")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AppsInstallationOptionsForMacable)
+    }
+    return nil
 }
 // GetAppsForWindows gets the appsForWindows property value. The appsForWindows property
 // returns a AppsInstallationOptionsForWindowsable when successful
 func (m *M365AppsInstallationOptions) GetAppsForWindows()(AppsInstallationOptionsForWindowsable) {
-    return m.appsForWindows
+    val, err := m.GetBackingStore().Get("appsForWindows")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AppsInstallationOptionsForWindowsable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -77,7 +85,14 @@ func (m *M365AppsInstallationOptions) GetFieldDeserializers()(map[string]func(i8
 // GetUpdateChannel gets the updateChannel property value. The updateChannel property
 // returns a *AppsUpdateChannelType when successful
 func (m *M365AppsInstallationOptions) GetUpdateChannel()(*AppsUpdateChannelType) {
-    return m.updateChannel
+    val, err := m.GetBackingStore().Get("updateChannel")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*AppsUpdateChannelType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *M365AppsInstallationOptions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -108,15 +123,24 @@ func (m *M365AppsInstallationOptions) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetAppsForMac sets the appsForMac property value. The appsForMac property
 func (m *M365AppsInstallationOptions) SetAppsForMac(value AppsInstallationOptionsForMacable)() {
-    m.appsForMac = value
+    err := m.GetBackingStore().Set("appsForMac", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAppsForWindows sets the appsForWindows property value. The appsForWindows property
 func (m *M365AppsInstallationOptions) SetAppsForWindows(value AppsInstallationOptionsForWindowsable)() {
-    m.appsForWindows = value
+    err := m.GetBackingStore().Set("appsForWindows", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUpdateChannel sets the updateChannel property value. The updateChannel property
 func (m *M365AppsInstallationOptions) SetUpdateChannel(value *AppsUpdateChannelType)() {
-    m.updateChannel = value
+    err := m.GetBackingStore().Set("updateChannel", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type M365AppsInstallationOptionsable interface {
     Entityable

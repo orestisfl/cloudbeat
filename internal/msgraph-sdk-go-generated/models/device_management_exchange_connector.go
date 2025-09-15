@@ -11,24 +11,6 @@ import (
 // DeviceManagementExchangeConnector entity which represents a connection to an Exchange environment.
 type DeviceManagementExchangeConnector struct {
     Entity
-    // The name of the server hosting the Exchange Connector.
-    connectorServerName *string
-    // An alias assigned to the Exchange server
-    exchangeAlias *string
-    // The type of Exchange Connector.
-    exchangeConnectorType *DeviceManagementExchangeConnectorType
-    // Exchange Organization to the Exchange server
-    exchangeOrganization *string
-    // Last sync time for the Exchange Connector
-    lastSyncDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Email address used to configure the Service To Service Exchange Connector.
-    primarySmtpAddress *string
-    // The name of the Exchange server.
-    serverName *string
-    // The current status of the Exchange Connector.
-    status *DeviceManagementExchangeConnectorStatus
-    // The version of the ExchangeConnectorAgent
-    version *string
 }
 // NewDeviceManagementExchangeConnector instantiates a new DeviceManagementExchangeConnector and sets the default values.
 func NewDeviceManagementExchangeConnector()(*DeviceManagementExchangeConnector) {
@@ -45,22 +27,50 @@ func CreateDeviceManagementExchangeConnectorFromDiscriminatorValue(parseNode i87
 // GetConnectorServerName gets the connectorServerName property value. The name of the server hosting the Exchange Connector.
 // returns a *string when successful
 func (m *DeviceManagementExchangeConnector) GetConnectorServerName()(*string) {
-    return m.connectorServerName
+    val, err := m.GetBackingStore().Get("connectorServerName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExchangeAlias gets the exchangeAlias property value. An alias assigned to the Exchange server
 // returns a *string when successful
 func (m *DeviceManagementExchangeConnector) GetExchangeAlias()(*string) {
-    return m.exchangeAlias
+    val, err := m.GetBackingStore().Get("exchangeAlias")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExchangeConnectorType gets the exchangeConnectorType property value. The type of Exchange Connector.
 // returns a *DeviceManagementExchangeConnectorType when successful
 func (m *DeviceManagementExchangeConnector) GetExchangeConnectorType()(*DeviceManagementExchangeConnectorType) {
-    return m.exchangeConnectorType
+    val, err := m.GetBackingStore().Get("exchangeConnectorType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DeviceManagementExchangeConnectorType)
+    }
+    return nil
 }
 // GetExchangeOrganization gets the exchangeOrganization property value. Exchange Organization to the Exchange server
 // returns a *string when successful
 func (m *DeviceManagementExchangeConnector) GetExchangeOrganization()(*string) {
-    return m.exchangeOrganization
+    val, err := m.GetBackingStore().Get("exchangeOrganization")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -161,27 +171,62 @@ func (m *DeviceManagementExchangeConnector) GetFieldDeserializers()(map[string]f
 // GetLastSyncDateTime gets the lastSyncDateTime property value. Last sync time for the Exchange Connector
 // returns a *Time when successful
 func (m *DeviceManagementExchangeConnector) GetLastSyncDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastSyncDateTime
+    val, err := m.GetBackingStore().Get("lastSyncDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetPrimarySmtpAddress gets the primarySmtpAddress property value. Email address used to configure the Service To Service Exchange Connector.
 // returns a *string when successful
 func (m *DeviceManagementExchangeConnector) GetPrimarySmtpAddress()(*string) {
-    return m.primarySmtpAddress
+    val, err := m.GetBackingStore().Get("primarySmtpAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetServerName gets the serverName property value. The name of the Exchange server.
 // returns a *string when successful
 func (m *DeviceManagementExchangeConnector) GetServerName()(*string) {
-    return m.serverName
+    val, err := m.GetBackingStore().Get("serverName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The current status of the Exchange Connector.
 // returns a *DeviceManagementExchangeConnectorStatus when successful
 func (m *DeviceManagementExchangeConnector) GetStatus()(*DeviceManagementExchangeConnectorStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DeviceManagementExchangeConnectorStatus)
+    }
+    return nil
 }
 // GetVersion gets the version property value. The version of the ExchangeConnectorAgent
 // returns a *string when successful
 func (m *DeviceManagementExchangeConnector) GetVersion()(*string) {
-    return m.version
+    val, err := m.GetBackingStore().Get("version")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeviceManagementExchangeConnector) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -249,39 +294,66 @@ func (m *DeviceManagementExchangeConnector) Serialize(writer i878a80d2330e89d268
 }
 // SetConnectorServerName sets the connectorServerName property value. The name of the server hosting the Exchange Connector.
 func (m *DeviceManagementExchangeConnector) SetConnectorServerName(value *string)() {
-    m.connectorServerName = value
+    err := m.GetBackingStore().Set("connectorServerName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExchangeAlias sets the exchangeAlias property value. An alias assigned to the Exchange server
 func (m *DeviceManagementExchangeConnector) SetExchangeAlias(value *string)() {
-    m.exchangeAlias = value
+    err := m.GetBackingStore().Set("exchangeAlias", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExchangeConnectorType sets the exchangeConnectorType property value. The type of Exchange Connector.
 func (m *DeviceManagementExchangeConnector) SetExchangeConnectorType(value *DeviceManagementExchangeConnectorType)() {
-    m.exchangeConnectorType = value
+    err := m.GetBackingStore().Set("exchangeConnectorType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExchangeOrganization sets the exchangeOrganization property value. Exchange Organization to the Exchange server
 func (m *DeviceManagementExchangeConnector) SetExchangeOrganization(value *string)() {
-    m.exchangeOrganization = value
+    err := m.GetBackingStore().Set("exchangeOrganization", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastSyncDateTime sets the lastSyncDateTime property value. Last sync time for the Exchange Connector
 func (m *DeviceManagementExchangeConnector) SetLastSyncDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastSyncDateTime = value
+    err := m.GetBackingStore().Set("lastSyncDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPrimarySmtpAddress sets the primarySmtpAddress property value. Email address used to configure the Service To Service Exchange Connector.
 func (m *DeviceManagementExchangeConnector) SetPrimarySmtpAddress(value *string)() {
-    m.primarySmtpAddress = value
+    err := m.GetBackingStore().Set("primarySmtpAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServerName sets the serverName property value. The name of the Exchange server.
 func (m *DeviceManagementExchangeConnector) SetServerName(value *string)() {
-    m.serverName = value
+    err := m.GetBackingStore().Set("serverName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The current status of the Exchange Connector.
 func (m *DeviceManagementExchangeConnector) SetStatus(value *DeviceManagementExchangeConnectorStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVersion sets the version property value. The version of the ExchangeConnectorAgent
 func (m *DeviceManagementExchangeConnector) SetVersion(value *string)() {
-    m.version = value
+    err := m.GetBackingStore().Set("version", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceManagementExchangeConnectorable interface {
     Entityable

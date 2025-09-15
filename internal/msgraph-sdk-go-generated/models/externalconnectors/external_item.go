@@ -10,14 +10,6 @@ import (
 
 type ExternalItem struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // An array of access control entries. Each entry specifies the access granted to a user or group. Required.
-    acl []Aclable
-    // Returns a list of activities performed on the item. Write-only.
-    activities []ExternalActivityable
-    // A plain-text  representation of the contents of the item. The text in this property is full-text indexed. Optional.
-    content ExternalItemContentable
-    // A property bag with the properties of the item. The properties MUST conform to the schema defined for the externalConnection. Required.
-    properties Propertiesable
 }
 // NewExternalItem instantiates a new ExternalItem and sets the default values.
 func NewExternalItem()(*ExternalItem) {
@@ -34,17 +26,38 @@ func CreateExternalItemFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 // GetAcl gets the acl property value. An array of access control entries. Each entry specifies the access granted to a user or group. Required.
 // returns a []Aclable when successful
 func (m *ExternalItem) GetAcl()([]Aclable) {
-    return m.acl
+    val, err := m.GetBackingStore().Get("acl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Aclable)
+    }
+    return nil
 }
 // GetActivities gets the activities property value. Returns a list of activities performed on the item. Write-only.
 // returns a []ExternalActivityable when successful
 func (m *ExternalItem) GetActivities()([]ExternalActivityable) {
-    return m.activities
+    val, err := m.GetBackingStore().Get("activities")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ExternalActivityable)
+    }
+    return nil
 }
 // GetContent gets the content property value. A plain-text  representation of the contents of the item. The text in this property is full-text indexed. Optional.
 // returns a ExternalItemContentable when successful
 func (m *ExternalItem) GetContent()(ExternalItemContentable) {
-    return m.content
+    val, err := m.GetBackingStore().Get("content")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ExternalItemContentable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -107,7 +120,14 @@ func (m *ExternalItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetProperties gets the properties property value. A property bag with the properties of the item. The properties MUST conform to the schema defined for the externalConnection. Required.
 // returns a Propertiesable when successful
 func (m *ExternalItem) GetProperties()(Propertiesable) {
-    return m.properties
+    val, err := m.GetBackingStore().Get("properties")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Propertiesable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ExternalItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -155,19 +175,31 @@ func (m *ExternalItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetAcl sets the acl property value. An array of access control entries. Each entry specifies the access granted to a user or group. Required.
 func (m *ExternalItem) SetAcl(value []Aclable)() {
-    m.acl = value
+    err := m.GetBackingStore().Set("acl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetActivities sets the activities property value. Returns a list of activities performed on the item. Write-only.
 func (m *ExternalItem) SetActivities(value []ExternalActivityable)() {
-    m.activities = value
+    err := m.GetBackingStore().Set("activities", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetContent sets the content property value. A plain-text  representation of the contents of the item. The text in this property is full-text indexed. Optional.
 func (m *ExternalItem) SetContent(value ExternalItemContentable)() {
-    m.content = value
+    err := m.GetBackingStore().Set("content", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProperties sets the properties property value. A property bag with the properties of the item. The properties MUST conform to the schema defined for the externalConnection. Required.
 func (m *ExternalItem) SetProperties(value Propertiesable)() {
-    m.properties = value
+    err := m.GetBackingStore().Set("properties", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ExternalItemable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

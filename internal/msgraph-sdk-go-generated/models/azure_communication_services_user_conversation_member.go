@@ -9,8 +9,6 @@ import (
 
 type AzureCommunicationServicesUserConversationMember struct {
     ConversationMember
-    // Azure Communication Services ID of the user.
-    azureCommunicationServicesId *string
 }
 // NewAzureCommunicationServicesUserConversationMember instantiates a new AzureCommunicationServicesUserConversationMember and sets the default values.
 func NewAzureCommunicationServicesUserConversationMember()(*AzureCommunicationServicesUserConversationMember) {
@@ -29,7 +27,14 @@ func CreateAzureCommunicationServicesUserConversationMemberFromDiscriminatorValu
 // GetAzureCommunicationServicesId gets the azureCommunicationServicesId property value. Azure Communication Services ID of the user.
 // returns a *string when successful
 func (m *AzureCommunicationServicesUserConversationMember) GetAzureCommunicationServicesId()(*string) {
-    return m.azureCommunicationServicesId
+    val, err := m.GetBackingStore().Get("azureCommunicationServicesId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *AzureCommunicationServicesUserConversationMember) Serialize(writer i878
 }
 // SetAzureCommunicationServicesId sets the azureCommunicationServicesId property value. Azure Communication Services ID of the user.
 func (m *AzureCommunicationServicesUserConversationMember) SetAzureCommunicationServicesId(value *string)() {
-    m.azureCommunicationServicesId = value
+    err := m.GetBackingStore().Set("azureCommunicationServicesId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AzureCommunicationServicesUserConversationMemberable interface {
     ConversationMemberable

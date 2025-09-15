@@ -10,18 +10,6 @@ import (
 
 type PrintConnector struct {
     Entity
-    // The connector's version.
-    appVersion *string
-    // The name of the connector.
-    displayName *string
-    // The connector machine's hostname.
-    fullyQualifiedDomainName *string
-    // The physical and/or organizational location of the connector.
-    location PrinterLocationable
-    // The connector machine's operating system version.
-    operatingSystem *string
-    // The DateTimeOffset when the connector was registered.
-    registeredDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewPrintConnector instantiates a new PrintConnector and sets the default values.
 func NewPrintConnector()(*PrintConnector) {
@@ -38,12 +26,26 @@ func CreatePrintConnectorFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetAppVersion gets the appVersion property value. The connector's version.
 // returns a *string when successful
 func (m *PrintConnector) GetAppVersion()(*string) {
-    return m.appVersion
+    val, err := m.GetBackingStore().Get("appVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The name of the connector.
 // returns a *string when successful
 func (m *PrintConnector) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -114,22 +116,50 @@ func (m *PrintConnector) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetFullyQualifiedDomainName gets the fullyQualifiedDomainName property value. The connector machine's hostname.
 // returns a *string when successful
 func (m *PrintConnector) GetFullyQualifiedDomainName()(*string) {
-    return m.fullyQualifiedDomainName
+    val, err := m.GetBackingStore().Get("fullyQualifiedDomainName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLocation gets the location property value. The physical and/or organizational location of the connector.
 // returns a PrinterLocationable when successful
 func (m *PrintConnector) GetLocation()(PrinterLocationable) {
-    return m.location
+    val, err := m.GetBackingStore().Get("location")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PrinterLocationable)
+    }
+    return nil
 }
 // GetOperatingSystem gets the operatingSystem property value. The connector machine's operating system version.
 // returns a *string when successful
 func (m *PrintConnector) GetOperatingSystem()(*string) {
-    return m.operatingSystem
+    val, err := m.GetBackingStore().Get("operatingSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRegisteredDateTime gets the registeredDateTime property value. The DateTimeOffset when the connector was registered.
 // returns a *Time when successful
 func (m *PrintConnector) GetRegisteredDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.registeredDateTime
+    val, err := m.GetBackingStore().Get("registeredDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PrintConnector) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -177,27 +207,45 @@ func (m *PrintConnector) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetAppVersion sets the appVersion property value. The connector's version.
 func (m *PrintConnector) SetAppVersion(value *string)() {
-    m.appVersion = value
+    err := m.GetBackingStore().Set("appVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The name of the connector.
 func (m *PrintConnector) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFullyQualifiedDomainName sets the fullyQualifiedDomainName property value. The connector machine's hostname.
 func (m *PrintConnector) SetFullyQualifiedDomainName(value *string)() {
-    m.fullyQualifiedDomainName = value
+    err := m.GetBackingStore().Set("fullyQualifiedDomainName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLocation sets the location property value. The physical and/or organizational location of the connector.
 func (m *PrintConnector) SetLocation(value PrinterLocationable)() {
-    m.location = value
+    err := m.GetBackingStore().Set("location", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOperatingSystem sets the operatingSystem property value. The connector machine's operating system version.
 func (m *PrintConnector) SetOperatingSystem(value *string)() {
-    m.operatingSystem = value
+    err := m.GetBackingStore().Set("operatingSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegisteredDateTime sets the registeredDateTime property value. The DateTimeOffset when the connector was registered.
 func (m *PrintConnector) SetRegisteredDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.registeredDateTime = value
+    err := m.GetBackingStore().Set("registeredDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PrintConnectorable interface {
     Entityable

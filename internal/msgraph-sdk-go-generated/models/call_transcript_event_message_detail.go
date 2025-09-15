@@ -9,12 +9,6 @@ import (
 
 type CallTranscriptEventMessageDetail struct {
     EventMessageDetail
-    // Unique identifier of the call.
-    callId *string
-    // Unique identifier for a call transcript.
-    callTranscriptICalUid *string
-    // The organizer of the meeting.
-    meetingOrganizer IdentitySetable
 }
 // NewCallTranscriptEventMessageDetail instantiates a new CallTranscriptEventMessageDetail and sets the default values.
 func NewCallTranscriptEventMessageDetail()(*CallTranscriptEventMessageDetail) {
@@ -33,12 +27,26 @@ func CreateCallTranscriptEventMessageDetailFromDiscriminatorValue(parseNode i878
 // GetCallId gets the callId property value. Unique identifier of the call.
 // returns a *string when successful
 func (m *CallTranscriptEventMessageDetail) GetCallId()(*string) {
-    return m.callId
+    val, err := m.GetBackingStore().Get("callId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCallTranscriptICalUid gets the callTranscriptICalUid property value. Unique identifier for a call transcript.
 // returns a *string when successful
 func (m *CallTranscriptEventMessageDetail) GetCallTranscriptICalUid()(*string) {
-    return m.callTranscriptICalUid
+    val, err := m.GetBackingStore().Get("callTranscriptICalUid")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -79,7 +87,14 @@ func (m *CallTranscriptEventMessageDetail) GetFieldDeserializers()(map[string]fu
 // GetMeetingOrganizer gets the meetingOrganizer property value. The organizer of the meeting.
 // returns a IdentitySetable when successful
 func (m *CallTranscriptEventMessageDetail) GetMeetingOrganizer()(IdentitySetable) {
-    return m.meetingOrganizer
+    val, err := m.GetBackingStore().Get("meetingOrganizer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CallTranscriptEventMessageDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *CallTranscriptEventMessageDetail) Serialize(writer i878a80d2330e89d2689
 }
 // SetCallId sets the callId property value. Unique identifier of the call.
 func (m *CallTranscriptEventMessageDetail) SetCallId(value *string)() {
-    m.callId = value
+    err := m.GetBackingStore().Set("callId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCallTranscriptICalUid sets the callTranscriptICalUid property value. Unique identifier for a call transcript.
 func (m *CallTranscriptEventMessageDetail) SetCallTranscriptICalUid(value *string)() {
-    m.callTranscriptICalUid = value
+    err := m.GetBackingStore().Set("callTranscriptICalUid", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMeetingOrganizer sets the meetingOrganizer property value. The organizer of the meeting.
 func (m *CallTranscriptEventMessageDetail) SetMeetingOrganizer(value IdentitySetable)() {
-    m.meetingOrganizer = value
+    err := m.GetBackingStore().Set("meetingOrganizer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CallTranscriptEventMessageDetailable interface {
     EventMessageDetailable

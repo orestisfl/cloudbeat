@@ -9,8 +9,6 @@ import (
 
 type OnTokenIssuanceStartListener struct {
     AuthenticationEventListener
-    // The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
-    handler OnTokenIssuanceStartHandlerable
 }
 // NewOnTokenIssuanceStartListener instantiates a new OnTokenIssuanceStartListener and sets the default values.
 func NewOnTokenIssuanceStartListener()(*OnTokenIssuanceStartListener) {
@@ -45,7 +43,14 @@ func (m *OnTokenIssuanceStartListener) GetFieldDeserializers()(map[string]func(i
 // GetHandler gets the handler property value. The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
 // returns a OnTokenIssuanceStartHandlerable when successful
 func (m *OnTokenIssuanceStartListener) GetHandler()(OnTokenIssuanceStartHandlerable) {
-    return m.handler
+    val, err := m.GetBackingStore().Get("handler")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnTokenIssuanceStartHandlerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnTokenIssuanceStartListener) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *OnTokenIssuanceStartListener) Serialize(writer i878a80d2330e89d26896388
 }
 // SetHandler sets the handler property value. The handler to invoke when conditions are met for this onTokenIssuanceStartListener.
 func (m *OnTokenIssuanceStartListener) SetHandler(value OnTokenIssuanceStartHandlerable)() {
-    m.handler = value
+    err := m.GetBackingStore().Set("handler", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnTokenIssuanceStartListenerable interface {
     AuthenticationEventListenerable

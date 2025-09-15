@@ -9,12 +9,6 @@ import (
 
 type DriveRestoreArtifact struct {
     RestoreArtifactBase
-    // The new site identifier if destinationType is new, and the input site ID if the destinationType is inPlace.
-    restoredSiteId *string
-    // The name of the restored site.
-    restoredSiteName *string
-    // The web URL of the restored site.
-    restoredSiteWebUrl *string
 }
 // NewDriveRestoreArtifact instantiates a new DriveRestoreArtifact and sets the default values.
 func NewDriveRestoreArtifact()(*DriveRestoreArtifact) {
@@ -67,17 +61,38 @@ func (m *DriveRestoreArtifact) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetRestoredSiteId gets the restoredSiteId property value. The new site identifier if destinationType is new, and the input site ID if the destinationType is inPlace.
 // returns a *string when successful
 func (m *DriveRestoreArtifact) GetRestoredSiteId()(*string) {
-    return m.restoredSiteId
+    val, err := m.GetBackingStore().Get("restoredSiteId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRestoredSiteName gets the restoredSiteName property value. The name of the restored site.
 // returns a *string when successful
 func (m *DriveRestoreArtifact) GetRestoredSiteName()(*string) {
-    return m.restoredSiteName
+    val, err := m.GetBackingStore().Get("restoredSiteName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRestoredSiteWebUrl gets the restoredSiteWebUrl property value. The web URL of the restored site.
 // returns a *string when successful
 func (m *DriveRestoreArtifact) GetRestoredSiteWebUrl()(*string) {
-    return m.restoredSiteWebUrl
+    val, err := m.GetBackingStore().Get("restoredSiteWebUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DriveRestoreArtifact) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -95,15 +110,24 @@ func (m *DriveRestoreArtifact) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetRestoredSiteId sets the restoredSiteId property value. The new site identifier if destinationType is new, and the input site ID if the destinationType is inPlace.
 func (m *DriveRestoreArtifact) SetRestoredSiteId(value *string)() {
-    m.restoredSiteId = value
+    err := m.GetBackingStore().Set("restoredSiteId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoredSiteName sets the restoredSiteName property value. The name of the restored site.
 func (m *DriveRestoreArtifact) SetRestoredSiteName(value *string)() {
-    m.restoredSiteName = value
+    err := m.GetBackingStore().Set("restoredSiteName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoredSiteWebUrl sets the restoredSiteWebUrl property value. The web URL of the restored site.
 func (m *DriveRestoreArtifact) SetRestoredSiteWebUrl(value *string)() {
-    m.restoredSiteWebUrl = value
+    err := m.GetBackingStore().Set("restoredSiteWebUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DriveRestoreArtifactable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

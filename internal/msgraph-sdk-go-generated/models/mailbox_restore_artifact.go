@@ -9,12 +9,6 @@ import (
 
 type MailboxRestoreArtifact struct {
     RestoreArtifactBase
-    // The new restored folder identifier for the user.
-    restoredFolderId *string
-    // The new restored folder name.
-    restoredFolderName *string
-    // The number of items that are being restored in the folder.
-    restoredItemCount *int32
 }
 // NewMailboxRestoreArtifact instantiates a new MailboxRestoreArtifact and sets the default values.
 func NewMailboxRestoreArtifact()(*MailboxRestoreArtifact) {
@@ -85,17 +79,38 @@ func (m *MailboxRestoreArtifact) GetFieldDeserializers()(map[string]func(i878a80
 // GetRestoredFolderId gets the restoredFolderId property value. The new restored folder identifier for the user.
 // returns a *string when successful
 func (m *MailboxRestoreArtifact) GetRestoredFolderId()(*string) {
-    return m.restoredFolderId
+    val, err := m.GetBackingStore().Get("restoredFolderId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRestoredFolderName gets the restoredFolderName property value. The new restored folder name.
 // returns a *string when successful
 func (m *MailboxRestoreArtifact) GetRestoredFolderName()(*string) {
-    return m.restoredFolderName
+    val, err := m.GetBackingStore().Get("restoredFolderName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRestoredItemCount gets the restoredItemCount property value. The number of items that are being restored in the folder.
 // returns a *int32 when successful
 func (m *MailboxRestoreArtifact) GetRestoredItemCount()(*int32) {
-    return m.restoredItemCount
+    val, err := m.GetBackingStore().Get("restoredItemCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MailboxRestoreArtifact) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -119,15 +134,24 @@ func (m *MailboxRestoreArtifact) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetRestoredFolderId sets the restoredFolderId property value. The new restored folder identifier for the user.
 func (m *MailboxRestoreArtifact) SetRestoredFolderId(value *string)() {
-    m.restoredFolderId = value
+    err := m.GetBackingStore().Set("restoredFolderId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoredFolderName sets the restoredFolderName property value. The new restored folder name.
 func (m *MailboxRestoreArtifact) SetRestoredFolderName(value *string)() {
-    m.restoredFolderName = value
+    err := m.GetBackingStore().Set("restoredFolderName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoredItemCount sets the restoredItemCount property value. The number of items that are being restored in the folder.
 func (m *MailboxRestoreArtifact) SetRestoredItemCount(value *int32)() {
-    m.restoredItemCount = value
+    err := m.GetBackingStore().Set("restoredItemCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MailboxRestoreArtifactable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

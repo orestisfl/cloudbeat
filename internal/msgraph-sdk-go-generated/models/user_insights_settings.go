@@ -9,8 +9,6 @@ import (
 
 type UserInsightsSettings struct {
     Entity
-    // True if the user's itemInsights and meeting hours insights are enabled; false if the user's itemInsights and meeting hours insights are disabled. The default value is true. Optional.
-    isEnabled *bool
 }
 // NewUserInsightsSettings instantiates a new UserInsightsSettings and sets the default values.
 func NewUserInsightsSettings()(*UserInsightsSettings) {
@@ -43,7 +41,14 @@ func (m *UserInsightsSettings) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetIsEnabled gets the isEnabled property value. True if the user's itemInsights and meeting hours insights are enabled; false if the user's itemInsights and meeting hours insights are disabled. The default value is true. Optional.
 // returns a *bool when successful
 func (m *UserInsightsSettings) GetIsEnabled()(*bool) {
-    return m.isEnabled
+    val, err := m.GetBackingStore().Get("isEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserInsightsSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *UserInsightsSettings) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetIsEnabled sets the isEnabled property value. True if the user's itemInsights and meeting hours insights are enabled; false if the user's itemInsights and meeting hours insights are disabled. The default value is true. Optional.
 func (m *UserInsightsSettings) SetIsEnabled(value *bool)() {
-    m.isEnabled = value
+    err := m.GetBackingStore().Set("isEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserInsightsSettingsable interface {
     Entityable

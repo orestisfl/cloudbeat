@@ -10,14 +10,6 @@ import (
 
 type DelegatedAdminRelationshipRequest struct {
     Entity
-    // The action property
-    action *DelegatedAdminRelationshipRequestAction
-    // The date and time in ISO 8601 format and in UTC time when the relationship request was created. Read-only.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The date and time in ISO 8601 format and UTC time when this relationship request was last modified. Read-only.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The status of the request. Read-only. The possible values are: created, pending, succeeded, failed, unknownFutureValue.
-    status *DelegatedAdminRelationshipRequestStatus
 }
 // NewDelegatedAdminRelationshipRequest instantiates a new DelegatedAdminRelationshipRequest and sets the default values.
 func NewDelegatedAdminRelationshipRequest()(*DelegatedAdminRelationshipRequest) {
@@ -34,12 +26,26 @@ func CreateDelegatedAdminRelationshipRequestFromDiscriminatorValue(parseNode i87
 // GetAction gets the action property value. The action property
 // returns a *DelegatedAdminRelationshipRequestAction when successful
 func (m *DelegatedAdminRelationshipRequest) GetAction()(*DelegatedAdminRelationshipRequestAction) {
-    return m.action
+    val, err := m.GetBackingStore().Get("action")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DelegatedAdminRelationshipRequestAction)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The date and time in ISO 8601 format and in UTC time when the relationship request was created. Read-only.
 // returns a *Time when successful
 func (m *DelegatedAdminRelationshipRequest) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -90,12 +96,26 @@ func (m *DelegatedAdminRelationshipRequest) GetFieldDeserializers()(map[string]f
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. The date and time in ISO 8601 format and UTC time when this relationship request was last modified. Read-only.
 // returns a *Time when successful
 func (m *DelegatedAdminRelationshipRequest) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the request. Read-only. The possible values are: created, pending, succeeded, failed, unknownFutureValue.
 // returns a *DelegatedAdminRelationshipRequestStatus when successful
 func (m *DelegatedAdminRelationshipRequest) GetStatus()(*DelegatedAdminRelationshipRequestStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DelegatedAdminRelationshipRequestStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DelegatedAdminRelationshipRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -133,19 +153,31 @@ func (m *DelegatedAdminRelationshipRequest) Serialize(writer i878a80d2330e89d268
 }
 // SetAction sets the action property value. The action property
 func (m *DelegatedAdminRelationshipRequest) SetAction(value *DelegatedAdminRelationshipRequestAction)() {
-    m.action = value
+    err := m.GetBackingStore().Set("action", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The date and time in ISO 8601 format and in UTC time when the relationship request was created. Read-only.
 func (m *DelegatedAdminRelationshipRequest) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. The date and time in ISO 8601 format and UTC time when this relationship request was last modified. Read-only.
 func (m *DelegatedAdminRelationshipRequest) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the request. Read-only. The possible values are: created, pending, succeeded, failed, unknownFutureValue.
 func (m *DelegatedAdminRelationshipRequest) SetStatus(value *DelegatedAdminRelationshipRequestStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DelegatedAdminRelationshipRequestable interface {
     Entityable

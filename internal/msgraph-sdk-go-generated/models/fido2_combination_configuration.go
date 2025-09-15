@@ -9,8 +9,6 @@ import (
 
 type Fido2CombinationConfiguration struct {
     AuthenticationCombinationConfiguration
-    // A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.
-    allowedAAGUIDs []string
 }
 // NewFido2CombinationConfiguration instantiates a new Fido2CombinationConfiguration and sets the default values.
 func NewFido2CombinationConfiguration()(*Fido2CombinationConfiguration) {
@@ -29,7 +27,14 @@ func CreateFido2CombinationConfigurationFromDiscriminatorValue(parseNode i878a80
 // GetAllowedAAGUIDs gets the allowedAAGUIDs property value. A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.
 // returns a []string when successful
 func (m *Fido2CombinationConfiguration) GetAllowedAAGUIDs()([]string) {
-    return m.allowedAAGUIDs
+    val, err := m.GetBackingStore().Get("allowedAAGUIDs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -69,7 +74,10 @@ func (m *Fido2CombinationConfiguration) Serialize(writer i878a80d2330e89d2689638
 }
 // SetAllowedAAGUIDs sets the allowedAAGUIDs property value. A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.
 func (m *Fido2CombinationConfiguration) SetAllowedAAGUIDs(value []string)() {
-    m.allowedAAGUIDs = value
+    err := m.GetBackingStore().Set("allowedAAGUIDs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Fido2CombinationConfigurationable interface {
     AuthenticationCombinationConfigurationable

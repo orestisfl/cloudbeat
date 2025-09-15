@@ -9,8 +9,6 @@ import (
 
 type CloudLogonRequestEvidence struct {
     AlertEvidence
-    // The unique identifier for the sign-in request.
-    requestId *string
 }
 // NewCloudLogonRequestEvidence instantiates a new CloudLogonRequestEvidence and sets the default values.
 func NewCloudLogonRequestEvidence()(*CloudLogonRequestEvidence) {
@@ -45,7 +43,14 @@ func (m *CloudLogonRequestEvidence) GetFieldDeserializers()(map[string]func(i878
 // GetRequestId gets the requestId property value. The unique identifier for the sign-in request.
 // returns a *string when successful
 func (m *CloudLogonRequestEvidence) GetRequestId()(*string) {
-    return m.requestId
+    val, err := m.GetBackingStore().Get("requestId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CloudLogonRequestEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *CloudLogonRequestEvidence) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetRequestId sets the requestId property value. The unique identifier for the sign-in request.
 func (m *CloudLogonRequestEvidence) SetRequestId(value *string)() {
-    m.requestId = value
+    err := m.GetBackingStore().Set("requestId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CloudLogonRequestEvidenceable interface {
     AlertEvidenceable

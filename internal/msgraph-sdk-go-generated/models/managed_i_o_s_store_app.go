@@ -10,14 +10,6 @@ import (
 // ManagedIOSStoreApp contains properties and inherited properties for an iOS store app that you can manage with an Intune app protection policy.
 type ManagedIOSStoreApp struct {
     ManagedApp
-    // Contains properties of the possible iOS device types the mobile app can run on.
-    applicableDeviceType IosDeviceTypeable
-    // The Apple AppStoreUrl.
-    appStoreUrl *string
-    // The app's Bundle ID.
-    bundleId *string
-    // Contains properties of the minimum operating system required for an iOS mobile app.
-    minimumSupportedOperatingSystem IosMinimumOperatingSystemable
 }
 // NewManagedIOSStoreApp instantiates a new ManagedIOSStoreApp and sets the default values.
 func NewManagedIOSStoreApp()(*ManagedIOSStoreApp) {
@@ -36,17 +28,38 @@ func CreateManagedIOSStoreAppFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetApplicableDeviceType gets the applicableDeviceType property value. Contains properties of the possible iOS device types the mobile app can run on.
 // returns a IosDeviceTypeable when successful
 func (m *ManagedIOSStoreApp) GetApplicableDeviceType()(IosDeviceTypeable) {
-    return m.applicableDeviceType
+    val, err := m.GetBackingStore().Get("applicableDeviceType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IosDeviceTypeable)
+    }
+    return nil
 }
 // GetAppStoreUrl gets the appStoreUrl property value. The Apple AppStoreUrl.
 // returns a *string when successful
 func (m *ManagedIOSStoreApp) GetAppStoreUrl()(*string) {
-    return m.appStoreUrl
+    val, err := m.GetBackingStore().Get("appStoreUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetBundleId gets the bundleId property value. The app's Bundle ID.
 // returns a *string when successful
 func (m *ManagedIOSStoreApp) GetBundleId()(*string) {
-    return m.bundleId
+    val, err := m.GetBackingStore().Get("bundleId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -97,7 +110,14 @@ func (m *ManagedIOSStoreApp) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetMinimumSupportedOperatingSystem gets the minimumSupportedOperatingSystem property value. Contains properties of the minimum operating system required for an iOS mobile app.
 // returns a IosMinimumOperatingSystemable when successful
 func (m *ManagedIOSStoreApp) GetMinimumSupportedOperatingSystem()(IosMinimumOperatingSystemable) {
-    return m.minimumSupportedOperatingSystem
+    val, err := m.GetBackingStore().Get("minimumSupportedOperatingSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IosMinimumOperatingSystemable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ManagedIOSStoreApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -133,19 +153,31 @@ func (m *ManagedIOSStoreApp) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetApplicableDeviceType sets the applicableDeviceType property value. Contains properties of the possible iOS device types the mobile app can run on.
 func (m *ManagedIOSStoreApp) SetApplicableDeviceType(value IosDeviceTypeable)() {
-    m.applicableDeviceType = value
+    err := m.GetBackingStore().Set("applicableDeviceType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAppStoreUrl sets the appStoreUrl property value. The Apple AppStoreUrl.
 func (m *ManagedIOSStoreApp) SetAppStoreUrl(value *string)() {
-    m.appStoreUrl = value
+    err := m.GetBackingStore().Set("appStoreUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetBundleId sets the bundleId property value. The app's Bundle ID.
 func (m *ManagedIOSStoreApp) SetBundleId(value *string)() {
-    m.bundleId = value
+    err := m.GetBackingStore().Set("bundleId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMinimumSupportedOperatingSystem sets the minimumSupportedOperatingSystem property value. Contains properties of the minimum operating system required for an iOS mobile app.
 func (m *ManagedIOSStoreApp) SetMinimumSupportedOperatingSystem(value IosMinimumOperatingSystemable)() {
-    m.minimumSupportedOperatingSystem = value
+    err := m.GetBackingStore().Set("minimumSupportedOperatingSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ManagedIOSStoreAppable interface {
     ManagedAppable

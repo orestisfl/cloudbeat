@@ -9,10 +9,6 @@ import (
 
 type InferenceClassificationOverride struct {
     Entity
-    // Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.
-    classifyAs *InferenceClassificationType
-    // The email address information of the sender for whom the override is created.
-    senderEmailAddress EmailAddressable
 }
 // NewInferenceClassificationOverride instantiates a new InferenceClassificationOverride and sets the default values.
 func NewInferenceClassificationOverride()(*InferenceClassificationOverride) {
@@ -29,7 +25,14 @@ func CreateInferenceClassificationOverrideFromDiscriminatorValue(parseNode i878a
 // GetClassifyAs gets the classifyAs property value. Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.
 // returns a *InferenceClassificationType when successful
 func (m *InferenceClassificationOverride) GetClassifyAs()(*InferenceClassificationType) {
-    return m.classifyAs
+    val, err := m.GetBackingStore().Get("classifyAs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*InferenceClassificationType)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *InferenceClassificationOverride) GetFieldDeserializers()(map[string]fun
 // GetSenderEmailAddress gets the senderEmailAddress property value. The email address information of the sender for whom the override is created.
 // returns a EmailAddressable when successful
 func (m *InferenceClassificationOverride) GetSenderEmailAddress()(EmailAddressable) {
-    return m.senderEmailAddress
+    val, err := m.GetBackingStore().Get("senderEmailAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EmailAddressable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *InferenceClassificationOverride) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *InferenceClassificationOverride) Serialize(writer i878a80d2330e89d26896
 }
 // SetClassifyAs sets the classifyAs property value. Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.
 func (m *InferenceClassificationOverride) SetClassifyAs(value *InferenceClassificationType)() {
-    m.classifyAs = value
+    err := m.GetBackingStore().Set("classifyAs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSenderEmailAddress sets the senderEmailAddress property value. The email address information of the sender for whom the override is created.
 func (m *InferenceClassificationOverride) SetSenderEmailAddress(value EmailAddressable)() {
-    m.senderEmailAddress = value
+    err := m.GetBackingStore().Set("senderEmailAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type InferenceClassificationOverrideable interface {
     Entityable

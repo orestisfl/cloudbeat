@@ -9,22 +9,6 @@ import (
 
 type BookingCustomerInformation struct {
     BookingCustomerInformationBase
-    // The ID of the bookingCustomer for this appointment. If no ID is specified when an appointment is created, then a new bookingCustomer object is created. Once set, you should consider the customerId immutable.
-    customerId *string
-    // It consists of the list of custom questions and answers given by the customer as part of the appointment
-    customQuestionAnswers []BookingQuestionAnswerable
-    // The SMTP address of the bookingCustomer who is booking the appointment
-    emailAddress *string
-    // Represents location information for the bookingCustomer who is booking the appointment.
-    location Locationable
-    // The customer's name.
-    name *string
-    // Notes from the customer associated with this appointment. You can get the value only when reading this bookingAppointment by its ID. You can set this property only when initially creating an appointment with a new customer. After that point, the value is computed from the customer represented by the customerId.
-    notes *string
-    // The customer's phone number.
-    phone *string
-    // The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
-    timeZone *string
 }
 // NewBookingCustomerInformation instantiates a new BookingCustomerInformation and sets the default values.
 func NewBookingCustomerInformation()(*BookingCustomerInformation) {
@@ -43,17 +27,38 @@ func CreateBookingCustomerInformationFromDiscriminatorValue(parseNode i878a80d23
 // GetCustomerId gets the customerId property value. The ID of the bookingCustomer for this appointment. If no ID is specified when an appointment is created, then a new bookingCustomer object is created. Once set, you should consider the customerId immutable.
 // returns a *string when successful
 func (m *BookingCustomerInformation) GetCustomerId()(*string) {
-    return m.customerId
+    val, err := m.GetBackingStore().Get("customerId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCustomQuestionAnswers gets the customQuestionAnswers property value. It consists of the list of custom questions and answers given by the customer as part of the appointment
 // returns a []BookingQuestionAnswerable when successful
 func (m *BookingCustomerInformation) GetCustomQuestionAnswers()([]BookingQuestionAnswerable) {
-    return m.customQuestionAnswers
+    val, err := m.GetBackingStore().Get("customQuestionAnswers")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]BookingQuestionAnswerable)
+    }
+    return nil
 }
 // GetEmailAddress gets the emailAddress property value. The SMTP address of the bookingCustomer who is booking the appointment
 // returns a *string when successful
 func (m *BookingCustomerInformation) GetEmailAddress()(*string) {
-    return m.emailAddress
+    val, err := m.GetBackingStore().Get("emailAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -150,27 +155,62 @@ func (m *BookingCustomerInformation) GetFieldDeserializers()(map[string]func(i87
 // GetLocation gets the location property value. Represents location information for the bookingCustomer who is booking the appointment.
 // returns a Locationable when successful
 func (m *BookingCustomerInformation) GetLocation()(Locationable) {
-    return m.location
+    val, err := m.GetBackingStore().Get("location")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Locationable)
+    }
+    return nil
 }
 // GetName gets the name property value. The customer's name.
 // returns a *string when successful
 func (m *BookingCustomerInformation) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetNotes gets the notes property value. Notes from the customer associated with this appointment. You can get the value only when reading this bookingAppointment by its ID. You can set this property only when initially creating an appointment with a new customer. After that point, the value is computed from the customer represented by the customerId.
 // returns a *string when successful
 func (m *BookingCustomerInformation) GetNotes()(*string) {
-    return m.notes
+    val, err := m.GetBackingStore().Get("notes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPhone gets the phone property value. The customer's phone number.
 // returns a *string when successful
 func (m *BookingCustomerInformation) GetPhone()(*string) {
-    return m.phone
+    val, err := m.GetBackingStore().Get("phone")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTimeZone gets the timeZone property value. The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
 // returns a *string when successful
 func (m *BookingCustomerInformation) GetTimeZone()(*string) {
-    return m.timeZone
+    val, err := m.GetBackingStore().Get("timeZone")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BookingCustomerInformation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -236,35 +276,59 @@ func (m *BookingCustomerInformation) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetCustomerId sets the customerId property value. The ID of the bookingCustomer for this appointment. If no ID is specified when an appointment is created, then a new bookingCustomer object is created. Once set, you should consider the customerId immutable.
 func (m *BookingCustomerInformation) SetCustomerId(value *string)() {
-    m.customerId = value
+    err := m.GetBackingStore().Set("customerId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCustomQuestionAnswers sets the customQuestionAnswers property value. It consists of the list of custom questions and answers given by the customer as part of the appointment
 func (m *BookingCustomerInformation) SetCustomQuestionAnswers(value []BookingQuestionAnswerable)() {
-    m.customQuestionAnswers = value
+    err := m.GetBackingStore().Set("customQuestionAnswers", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEmailAddress sets the emailAddress property value. The SMTP address of the bookingCustomer who is booking the appointment
 func (m *BookingCustomerInformation) SetEmailAddress(value *string)() {
-    m.emailAddress = value
+    err := m.GetBackingStore().Set("emailAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLocation sets the location property value. Represents location information for the bookingCustomer who is booking the appointment.
 func (m *BookingCustomerInformation) SetLocation(value Locationable)() {
-    m.location = value
+    err := m.GetBackingStore().Set("location", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The customer's name.
 func (m *BookingCustomerInformation) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNotes sets the notes property value. Notes from the customer associated with this appointment. You can get the value only when reading this bookingAppointment by its ID. You can set this property only when initially creating an appointment with a new customer. After that point, the value is computed from the customer represented by the customerId.
 func (m *BookingCustomerInformation) SetNotes(value *string)() {
-    m.notes = value
+    err := m.GetBackingStore().Set("notes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPhone sets the phone property value. The customer's phone number.
 func (m *BookingCustomerInformation) SetPhone(value *string)() {
-    m.phone = value
+    err := m.GetBackingStore().Set("phone", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTimeZone sets the timeZone property value. The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
 func (m *BookingCustomerInformation) SetTimeZone(value *string)() {
-    m.timeZone = value
+    err := m.GetBackingStore().Set("timeZone", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BookingCustomerInformationable interface {
     BookingCustomerInformationBaseable

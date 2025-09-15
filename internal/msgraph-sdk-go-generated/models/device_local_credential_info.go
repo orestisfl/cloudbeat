@@ -10,14 +10,6 @@ import (
 
 type DeviceLocalCredentialInfo struct {
     Entity
-    // The credentials of the device's local administrator account backed up to Azure Active Directory.
-    credentials []DeviceLocalCredentialable
-    // Display name of the device that the local credentials are associated with.
-    deviceName *string
-    // When the local administrator account credential was backed up to Azure Active Directory.
-    lastBackupDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // When the local administrator account credential will be refreshed and backed up to Azure Active Directory.
-    refreshDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewDeviceLocalCredentialInfo instantiates a new DeviceLocalCredentialInfo and sets the default values.
 func NewDeviceLocalCredentialInfo()(*DeviceLocalCredentialInfo) {
@@ -34,12 +26,26 @@ func CreateDeviceLocalCredentialInfoFromDiscriminatorValue(parseNode i878a80d233
 // GetCredentials gets the credentials property value. The credentials of the device's local administrator account backed up to Azure Active Directory.
 // returns a []DeviceLocalCredentialable when successful
 func (m *DeviceLocalCredentialInfo) GetCredentials()([]DeviceLocalCredentialable) {
-    return m.credentials
+    val, err := m.GetBackingStore().Get("credentials")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DeviceLocalCredentialable)
+    }
+    return nil
 }
 // GetDeviceName gets the deviceName property value. Display name of the device that the local credentials are associated with.
 // returns a *string when successful
 func (m *DeviceLocalCredentialInfo) GetDeviceName()(*string) {
-    return m.deviceName
+    val, err := m.GetBackingStore().Get("deviceName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -96,12 +102,26 @@ func (m *DeviceLocalCredentialInfo) GetFieldDeserializers()(map[string]func(i878
 // GetLastBackupDateTime gets the lastBackupDateTime property value. When the local administrator account credential was backed up to Azure Active Directory.
 // returns a *Time when successful
 func (m *DeviceLocalCredentialInfo) GetLastBackupDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastBackupDateTime
+    val, err := m.GetBackingStore().Get("lastBackupDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRefreshDateTime gets the refreshDateTime property value. When the local administrator account credential will be refreshed and backed up to Azure Active Directory.
 // returns a *Time when successful
 func (m *DeviceLocalCredentialInfo) GetRefreshDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.refreshDateTime
+    val, err := m.GetBackingStore().Get("refreshDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeviceLocalCredentialInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -143,19 +163,31 @@ func (m *DeviceLocalCredentialInfo) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetCredentials sets the credentials property value. The credentials of the device's local administrator account backed up to Azure Active Directory.
 func (m *DeviceLocalCredentialInfo) SetCredentials(value []DeviceLocalCredentialable)() {
-    m.credentials = value
+    err := m.GetBackingStore().Set("credentials", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceName sets the deviceName property value. Display name of the device that the local credentials are associated with.
 func (m *DeviceLocalCredentialInfo) SetDeviceName(value *string)() {
-    m.deviceName = value
+    err := m.GetBackingStore().Set("deviceName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastBackupDateTime sets the lastBackupDateTime property value. When the local administrator account credential was backed up to Azure Active Directory.
 func (m *DeviceLocalCredentialInfo) SetLastBackupDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastBackupDateTime = value
+    err := m.GetBackingStore().Set("lastBackupDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRefreshDateTime sets the refreshDateTime property value. When the local administrator account credential will be refreshed and backed up to Azure Active Directory.
 func (m *DeviceLocalCredentialInfo) SetRefreshDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.refreshDateTime = value
+    err := m.GetBackingStore().Set("refreshDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceLocalCredentialInfoable interface {
     Entityable

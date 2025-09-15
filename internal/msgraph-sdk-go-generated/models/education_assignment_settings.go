@@ -9,10 +9,6 @@ import (
 
 type EducationAssignmentSettings struct {
     Entity
-    // When set, enables users to weight assignments differently when computing a class average grade.
-    gradingCategories []EducationGradingCategoryable
-    // Indicates whether to show the turn-in celebration animation. If true, indicates to skip the animation. The default value is false.
-    submissionAnimationDisabled *bool
 }
 // NewEducationAssignmentSettings instantiates a new EducationAssignmentSettings and sets the default values.
 func NewEducationAssignmentSettings()(*EducationAssignmentSettings) {
@@ -61,12 +57,26 @@ func (m *EducationAssignmentSettings) GetFieldDeserializers()(map[string]func(i8
 // GetGradingCategories gets the gradingCategories property value. When set, enables users to weight assignments differently when computing a class average grade.
 // returns a []EducationGradingCategoryable when successful
 func (m *EducationAssignmentSettings) GetGradingCategories()([]EducationGradingCategoryable) {
-    return m.gradingCategories
+    val, err := m.GetBackingStore().Get("gradingCategories")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]EducationGradingCategoryable)
+    }
+    return nil
 }
 // GetSubmissionAnimationDisabled gets the submissionAnimationDisabled property value. Indicates whether to show the turn-in celebration animation. If true, indicates to skip the animation. The default value is false.
 // returns a *bool when successful
 func (m *EducationAssignmentSettings) GetSubmissionAnimationDisabled()(*bool) {
-    return m.submissionAnimationDisabled
+    val, err := m.GetBackingStore().Get("submissionAnimationDisabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationAssignmentSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -96,11 +106,17 @@ func (m *EducationAssignmentSettings) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetGradingCategories sets the gradingCategories property value. When set, enables users to weight assignments differently when computing a class average grade.
 func (m *EducationAssignmentSettings) SetGradingCategories(value []EducationGradingCategoryable)() {
-    m.gradingCategories = value
+    err := m.GetBackingStore().Set("gradingCategories", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmissionAnimationDisabled sets the submissionAnimationDisabled property value. Indicates whether to show the turn-in celebration animation. If true, indicates to skip the animation. The default value is false.
 func (m *EducationAssignmentSettings) SetSubmissionAnimationDisabled(value *bool)() {
-    m.submissionAnimationDisabled = value
+    err := m.GetBackingStore().Set("submissionAnimationDisabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationAssignmentSettingsable interface {
     Entityable

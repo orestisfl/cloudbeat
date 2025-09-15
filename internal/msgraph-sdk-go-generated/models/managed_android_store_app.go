@@ -10,12 +10,6 @@ import (
 // ManagedAndroidStoreApp contains properties and inherited properties for Android store apps that you can manage with an Intune app protection policy.
 type ManagedAndroidStoreApp struct {
     ManagedApp
-    // The Android AppStoreUrl.
-    appStoreUrl *string
-    // Contains properties for the minimum operating system required for an Android mobile app.
-    minimumSupportedOperatingSystem AndroidMinimumOperatingSystemable
-    // The app's package ID.
-    packageId *string
 }
 // NewManagedAndroidStoreApp instantiates a new ManagedAndroidStoreApp and sets the default values.
 func NewManagedAndroidStoreApp()(*ManagedAndroidStoreApp) {
@@ -34,7 +28,14 @@ func CreateManagedAndroidStoreAppFromDiscriminatorValue(parseNode i878a80d2330e8
 // GetAppStoreUrl gets the appStoreUrl property value. The Android AppStoreUrl.
 // returns a *string when successful
 func (m *ManagedAndroidStoreApp) GetAppStoreUrl()(*string) {
-    return m.appStoreUrl
+    val, err := m.GetBackingStore().Get("appStoreUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -75,12 +76,26 @@ func (m *ManagedAndroidStoreApp) GetFieldDeserializers()(map[string]func(i878a80
 // GetMinimumSupportedOperatingSystem gets the minimumSupportedOperatingSystem property value. Contains properties for the minimum operating system required for an Android mobile app.
 // returns a AndroidMinimumOperatingSystemable when successful
 func (m *ManagedAndroidStoreApp) GetMinimumSupportedOperatingSystem()(AndroidMinimumOperatingSystemable) {
-    return m.minimumSupportedOperatingSystem
+    val, err := m.GetBackingStore().Get("minimumSupportedOperatingSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AndroidMinimumOperatingSystemable)
+    }
+    return nil
 }
 // GetPackageId gets the packageId property value. The app's package ID.
 // returns a *string when successful
 func (m *ManagedAndroidStoreApp) GetPackageId()(*string) {
-    return m.packageId
+    val, err := m.GetBackingStore().Get("packageId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ManagedAndroidStoreApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -110,15 +125,24 @@ func (m *ManagedAndroidStoreApp) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetAppStoreUrl sets the appStoreUrl property value. The Android AppStoreUrl.
 func (m *ManagedAndroidStoreApp) SetAppStoreUrl(value *string)() {
-    m.appStoreUrl = value
+    err := m.GetBackingStore().Set("appStoreUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMinimumSupportedOperatingSystem sets the minimumSupportedOperatingSystem property value. Contains properties for the minimum operating system required for an Android mobile app.
 func (m *ManagedAndroidStoreApp) SetMinimumSupportedOperatingSystem(value AndroidMinimumOperatingSystemable)() {
-    m.minimumSupportedOperatingSystem = value
+    err := m.GetBackingStore().Set("minimumSupportedOperatingSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPackageId sets the packageId property value. The app's package ID.
 func (m *ManagedAndroidStoreApp) SetPackageId(value *string)() {
-    m.packageId = value
+    err := m.GetBackingStore().Set("packageId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ManagedAndroidStoreAppable interface {
     ManagedAppable

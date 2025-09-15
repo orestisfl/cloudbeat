@@ -9,12 +9,6 @@ import (
 
 type VirtualEventSession struct {
     OnlineMeetingBase
-    // The virtual event session end time.
-    endDateTime DateTimeTimeZoneable
-    // The virtual event session start time.
-    startDateTime DateTimeTimeZoneable
-    // The URL of the video on demand (VOD) for Microsoft Teams events that allows webinar and town hall organizers to quickly publish and share event recordings.
-    videoOnDemandWebUrl *string
 }
 // NewVirtualEventSession instantiates a new VirtualEventSession and sets the default values.
 func NewVirtualEventSession()(*VirtualEventSession) {
@@ -33,7 +27,14 @@ func CreateVirtualEventSessionFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetEndDateTime gets the endDateTime property value. The virtual event session end time.
 // returns a DateTimeTimeZoneable when successful
 func (m *VirtualEventSession) GetEndDateTime()(DateTimeTimeZoneable) {
-    return m.endDateTime
+    val, err := m.GetBackingStore().Get("endDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DateTimeTimeZoneable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -74,12 +75,26 @@ func (m *VirtualEventSession) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetStartDateTime gets the startDateTime property value. The virtual event session start time.
 // returns a DateTimeTimeZoneable when successful
 func (m *VirtualEventSession) GetStartDateTime()(DateTimeTimeZoneable) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DateTimeTimeZoneable)
+    }
+    return nil
 }
 // GetVideoOnDemandWebUrl gets the videoOnDemandWebUrl property value. The URL of the video on demand (VOD) for Microsoft Teams events that allows webinar and town hall organizers to quickly publish and share event recordings.
 // returns a *string when successful
 func (m *VirtualEventSession) GetVideoOnDemandWebUrl()(*string) {
-    return m.videoOnDemandWebUrl
+    val, err := m.GetBackingStore().Get("videoOnDemandWebUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventSession) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *VirtualEventSession) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetEndDateTime sets the endDateTime property value. The virtual event session end time.
 func (m *VirtualEventSession) SetEndDateTime(value DateTimeTimeZoneable)() {
-    m.endDateTime = value
+    err := m.GetBackingStore().Set("endDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. The virtual event session start time.
 func (m *VirtualEventSession) SetStartDateTime(value DateTimeTimeZoneable)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVideoOnDemandWebUrl sets the videoOnDemandWebUrl property value. The URL of the video on demand (VOD) for Microsoft Teams events that allows webinar and town hall organizers to quickly publish and share event recordings.
 func (m *VirtualEventSession) SetVideoOnDemandWebUrl(value *string)() {
-    m.videoOnDemandWebUrl = value
+    err := m.GetBackingStore().Set("videoOnDemandWebUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventSessionable interface {
     OnlineMeetingBaseable

@@ -9,10 +9,6 @@ import (
 
 type IdentityUserFlow struct {
     Entity
-    // The userFlowType property
-    userFlowType *UserFlowType
-    // The userFlowTypeVersion property
-    userFlowTypeVersion *float32
 }
 // NewIdentityUserFlow instantiates a new IdentityUserFlow and sets the default values.
 func NewIdentityUserFlow()(*IdentityUserFlow) {
@@ -73,12 +69,26 @@ func (m *IdentityUserFlow) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetUserFlowType gets the userFlowType property value. The userFlowType property
 // returns a *UserFlowType when successful
 func (m *IdentityUserFlow) GetUserFlowType()(*UserFlowType) {
-    return m.userFlowType
+    val, err := m.GetBackingStore().Get("userFlowType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*UserFlowType)
+    }
+    return nil
 }
 // GetUserFlowTypeVersion gets the userFlowTypeVersion property value. The userFlowTypeVersion property
 // returns a *float32 when successful
 func (m *IdentityUserFlow) GetUserFlowTypeVersion()(*float32) {
-    return m.userFlowTypeVersion
+    val, err := m.GetBackingStore().Get("userFlowTypeVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*float32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *IdentityUserFlow) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -103,11 +113,17 @@ func (m *IdentityUserFlow) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetUserFlowType sets the userFlowType property value. The userFlowType property
 func (m *IdentityUserFlow) SetUserFlowType(value *UserFlowType)() {
-    m.userFlowType = value
+    err := m.GetBackingStore().Set("userFlowType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserFlowTypeVersion sets the userFlowTypeVersion property value. The userFlowTypeVersion property
 func (m *IdentityUserFlow) SetUserFlowTypeVersion(value *float32)() {
-    m.userFlowTypeVersion = value
+    err := m.GetBackingStore().Set("userFlowTypeVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type IdentityUserFlowable interface {
     Entityable

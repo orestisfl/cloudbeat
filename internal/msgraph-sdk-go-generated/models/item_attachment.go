@@ -9,8 +9,6 @@ import (
 
 type ItemAttachment struct {
     Attachment
-    // The attached message or event. Navigation property.
-    item OutlookItemable
 }
 // NewItemAttachment instantiates a new ItemAttachment and sets the default values.
 func NewItemAttachment()(*ItemAttachment) {
@@ -45,7 +43,14 @@ func (m *ItemAttachment) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetItem gets the item property value. The attached message or event. Navigation property.
 // returns a OutlookItemable when successful
 func (m *ItemAttachment) GetItem()(OutlookItemable) {
-    return m.item
+    val, err := m.GetBackingStore().Get("item")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OutlookItemable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ItemAttachment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *ItemAttachment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetItem sets the item property value. The attached message or event. Navigation property.
 func (m *ItemAttachment) SetItem(value OutlookItemable)() {
-    m.item = value
+    err := m.GetBackingStore().Set("item", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ItemAttachmentable interface {
     Attachmentable

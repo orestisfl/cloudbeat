@@ -9,10 +9,6 @@ import (
 
 type EducationGradingCategory struct {
     Entity
-    // The name of the grading category.
-    displayName *string
-    // The weight of the category; an integer between 0 and 100.
-    percentageWeight *int32
 }
 // NewEducationGradingCategory instantiates a new EducationGradingCategory and sets the default values.
 func NewEducationGradingCategory()(*EducationGradingCategory) {
@@ -29,7 +25,14 @@ func CreateEducationGradingCategoryFromDiscriminatorValue(parseNode i878a80d2330
 // GetDisplayName gets the displayName property value. The name of the grading category.
 // returns a *string when successful
 func (m *EducationGradingCategory) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *EducationGradingCategory) GetFieldDeserializers()(map[string]func(i878a
 // GetPercentageWeight gets the percentageWeight property value. The weight of the category; an integer between 0 and 100.
 // returns a *int32 when successful
 func (m *EducationGradingCategory) GetPercentageWeight()(*int32) {
-    return m.percentageWeight
+    val, err := m.GetBackingStore().Get("percentageWeight")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationGradingCategory) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *EducationGradingCategory) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetDisplayName sets the displayName property value. The name of the grading category.
 func (m *EducationGradingCategory) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPercentageWeight sets the percentageWeight property value. The weight of the category; an integer between 0 and 100.
 func (m *EducationGradingCategory) SetPercentageWeight(value *int32)() {
-    m.percentageWeight = value
+    err := m.GetBackingStore().Set("percentageWeight", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationGradingCategoryable interface {
     Entityable

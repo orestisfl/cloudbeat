@@ -9,12 +9,6 @@ import (
 
 type AuthenticationStrengthRoot struct {
     Entity
-    // Names and descriptions of all valid authentication method modes in the system.
-    authenticationMethodModes []AuthenticationMethodModeDetailable
-    // The combinations property
-    combinations []AuthenticationMethodModes
-    // A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
-    policies []AuthenticationStrengthPolicyable
 }
 // NewAuthenticationStrengthRoot instantiates a new AuthenticationStrengthRoot and sets the default values.
 func NewAuthenticationStrengthRoot()(*AuthenticationStrengthRoot) {
@@ -31,12 +25,26 @@ func CreateAuthenticationStrengthRootFromDiscriminatorValue(parseNode i878a80d23
 // GetAuthenticationMethodModes gets the authenticationMethodModes property value. Names and descriptions of all valid authentication method modes in the system.
 // returns a []AuthenticationMethodModeDetailable when successful
 func (m *AuthenticationStrengthRoot) GetAuthenticationMethodModes()([]AuthenticationMethodModeDetailable) {
-    return m.authenticationMethodModes
+    val, err := m.GetBackingStore().Get("authenticationMethodModes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationMethodModeDetailable)
+    }
+    return nil
 }
 // GetCombinations gets the combinations property value. The combinations property
 // returns a []AuthenticationMethodModes when successful
 func (m *AuthenticationStrengthRoot) GetCombinations()([]AuthenticationMethodModes) {
-    return m.combinations
+    val, err := m.GetBackingStore().Get("combinations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationMethodModes)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -95,7 +103,14 @@ func (m *AuthenticationStrengthRoot) GetFieldDeserializers()(map[string]func(i87
 // GetPolicies gets the policies property value. A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
 // returns a []AuthenticationStrengthPolicyable when successful
 func (m *AuthenticationStrengthRoot) GetPolicies()([]AuthenticationStrengthPolicyable) {
-    return m.policies
+    val, err := m.GetBackingStore().Get("policies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationStrengthPolicyable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AuthenticationStrengthRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -137,15 +152,24 @@ func (m *AuthenticationStrengthRoot) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetAuthenticationMethodModes sets the authenticationMethodModes property value. Names and descriptions of all valid authentication method modes in the system.
 func (m *AuthenticationStrengthRoot) SetAuthenticationMethodModes(value []AuthenticationMethodModeDetailable)() {
-    m.authenticationMethodModes = value
+    err := m.GetBackingStore().Set("authenticationMethodModes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCombinations sets the combinations property value. The combinations property
 func (m *AuthenticationStrengthRoot) SetCombinations(value []AuthenticationMethodModes)() {
-    m.combinations = value
+    err := m.GetBackingStore().Set("combinations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPolicies sets the policies property value. A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
 func (m *AuthenticationStrengthRoot) SetPolicies(value []AuthenticationStrengthPolicyable)() {
-    m.policies = value
+    err := m.GetBackingStore().Set("policies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AuthenticationStrengthRootable interface {
     Entityable

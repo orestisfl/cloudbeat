@@ -10,10 +10,6 @@ import (
 // ManagedEBookAssignment contains properties used to assign a eBook to a group.
 type ManagedEBookAssignment struct {
     Entity
-    // Possible values for the install intent chosen by the admin.
-    installIntent *InstallIntent
-    // The assignment target for eBook.
-    target DeviceAndAppManagementAssignmentTargetable
 }
 // NewManagedEBookAssignment instantiates a new ManagedEBookAssignment and sets the default values.
 func NewManagedEBookAssignment()(*ManagedEBookAssignment) {
@@ -74,12 +70,26 @@ func (m *ManagedEBookAssignment) GetFieldDeserializers()(map[string]func(i878a80
 // GetInstallIntent gets the installIntent property value. Possible values for the install intent chosen by the admin.
 // returns a *InstallIntent when successful
 func (m *ManagedEBookAssignment) GetInstallIntent()(*InstallIntent) {
-    return m.installIntent
+    val, err := m.GetBackingStore().Get("installIntent")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*InstallIntent)
+    }
+    return nil
 }
 // GetTarget gets the target property value. The assignment target for eBook.
 // returns a DeviceAndAppManagementAssignmentTargetable when successful
 func (m *ManagedEBookAssignment) GetTarget()(DeviceAndAppManagementAssignmentTargetable) {
-    return m.target
+    val, err := m.GetBackingStore().Get("target")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DeviceAndAppManagementAssignmentTargetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ManagedEBookAssignment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -104,11 +114,17 @@ func (m *ManagedEBookAssignment) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetInstallIntent sets the installIntent property value. Possible values for the install intent chosen by the admin.
 func (m *ManagedEBookAssignment) SetInstallIntent(value *InstallIntent)() {
-    m.installIntent = value
+    err := m.GetBackingStore().Set("installIntent", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTarget sets the target property value. The assignment target for eBook.
 func (m *ManagedEBookAssignment) SetTarget(value DeviceAndAppManagementAssignmentTargetable)() {
-    m.target = value
+    err := m.GetBackingStore().Set("target", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ManagedEBookAssignmentable interface {
     Entityable

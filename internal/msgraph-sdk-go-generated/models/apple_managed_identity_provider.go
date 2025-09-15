@@ -9,14 +9,6 @@ import (
 
 type AppleManagedIdentityProvider struct {
     IdentityProviderBase
-    // The certificate data, which is a long string of text from the certificate. Can be null.
-    certificateData *string
-    // The Apple developer identifier. Required.
-    developerId *string
-    // The Apple key identifier. Required.
-    keyId *string
-    // The Apple service identifier. Required.
-    serviceId *string
 }
 // NewAppleManagedIdentityProvider instantiates a new AppleManagedIdentityProvider and sets the default values.
 func NewAppleManagedIdentityProvider()(*AppleManagedIdentityProvider) {
@@ -35,12 +27,26 @@ func CreateAppleManagedIdentityProviderFromDiscriminatorValue(parseNode i878a80d
 // GetCertificateData gets the certificateData property value. The certificate data, which is a long string of text from the certificate. Can be null.
 // returns a *string when successful
 func (m *AppleManagedIdentityProvider) GetCertificateData()(*string) {
-    return m.certificateData
+    val, err := m.GetBackingStore().Get("certificateData")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDeveloperId gets the developerId property value. The Apple developer identifier. Required.
 // returns a *string when successful
 func (m *AppleManagedIdentityProvider) GetDeveloperId()(*string) {
-    return m.developerId
+    val, err := m.GetBackingStore().Get("developerId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -91,12 +97,26 @@ func (m *AppleManagedIdentityProvider) GetFieldDeserializers()(map[string]func(i
 // GetKeyId gets the keyId property value. The Apple key identifier. Required.
 // returns a *string when successful
 func (m *AppleManagedIdentityProvider) GetKeyId()(*string) {
-    return m.keyId
+    val, err := m.GetBackingStore().Get("keyId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetServiceId gets the serviceId property value. The Apple service identifier. Required.
 // returns a *string when successful
 func (m *AppleManagedIdentityProvider) GetServiceId()(*string) {
-    return m.serviceId
+    val, err := m.GetBackingStore().Get("serviceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AppleManagedIdentityProvider) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *AppleManagedIdentityProvider) Serialize(writer i878a80d2330e89d26896388
 }
 // SetCertificateData sets the certificateData property value. The certificate data, which is a long string of text from the certificate. Can be null.
 func (m *AppleManagedIdentityProvider) SetCertificateData(value *string)() {
-    m.certificateData = value
+    err := m.GetBackingStore().Set("certificateData", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeveloperId sets the developerId property value. The Apple developer identifier. Required.
 func (m *AppleManagedIdentityProvider) SetDeveloperId(value *string)() {
-    m.developerId = value
+    err := m.GetBackingStore().Set("developerId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetKeyId sets the keyId property value. The Apple key identifier. Required.
 func (m *AppleManagedIdentityProvider) SetKeyId(value *string)() {
-    m.keyId = value
+    err := m.GetBackingStore().Set("keyId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServiceId sets the serviceId property value. The Apple service identifier. Required.
 func (m *AppleManagedIdentityProvider) SetServiceId(value *string)() {
-    m.serviceId = value
+    err := m.GetBackingStore().Set("serviceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AppleManagedIdentityProviderable interface {
     IdentityProviderBaseable

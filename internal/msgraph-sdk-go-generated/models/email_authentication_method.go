@@ -9,8 +9,6 @@ import (
 
 type EmailAuthenticationMethod struct {
     AuthenticationMethod
-    // The email address registered to this user.
-    emailAddress *string
 }
 // NewEmailAuthenticationMethod instantiates a new EmailAuthenticationMethod and sets the default values.
 func NewEmailAuthenticationMethod()(*EmailAuthenticationMethod) {
@@ -29,7 +27,14 @@ func CreateEmailAuthenticationMethodFromDiscriminatorValue(parseNode i878a80d233
 // GetEmailAddress gets the emailAddress property value. The email address registered to this user.
 // returns a *string when successful
 func (m *EmailAuthenticationMethod) GetEmailAddress()(*string) {
-    return m.emailAddress
+    val, err := m.GetBackingStore().Get("emailAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *EmailAuthenticationMethod) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetEmailAddress sets the emailAddress property value. The email address registered to this user.
 func (m *EmailAuthenticationMethod) SetEmailAddress(value *string)() {
-    m.emailAddress = value
+    err := m.GetBackingStore().Set("emailAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EmailAuthenticationMethodable interface {
     AuthenticationMethodable

@@ -9,10 +9,6 @@ import (
 
 type PolicyTemplate struct {
     Entity
-    // Defines an optional cross-tenant access policy template with user synchronization settings for a multitenant organization.
-    multiTenantOrganizationIdentitySynchronization MultiTenantOrganizationIdentitySyncPolicyTemplateable
-    // Defines an optional cross-tenant access policy template with inbound and outbound partner configuration settings for a multitenant organization.
-    multiTenantOrganizationPartnerConfiguration MultiTenantOrganizationPartnerConfigurationTemplateable
 }
 // NewPolicyTemplate instantiates a new PolicyTemplate and sets the default values.
 func NewPolicyTemplate()(*PolicyTemplate) {
@@ -55,12 +51,26 @@ func (m *PolicyTemplate) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetMultiTenantOrganizationIdentitySynchronization gets the multiTenantOrganizationIdentitySynchronization property value. Defines an optional cross-tenant access policy template with user synchronization settings for a multitenant organization.
 // returns a MultiTenantOrganizationIdentitySyncPolicyTemplateable when successful
 func (m *PolicyTemplate) GetMultiTenantOrganizationIdentitySynchronization()(MultiTenantOrganizationIdentitySyncPolicyTemplateable) {
-    return m.multiTenantOrganizationIdentitySynchronization
+    val, err := m.GetBackingStore().Get("multiTenantOrganizationIdentitySynchronization")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(MultiTenantOrganizationIdentitySyncPolicyTemplateable)
+    }
+    return nil
 }
 // GetMultiTenantOrganizationPartnerConfiguration gets the multiTenantOrganizationPartnerConfiguration property value. Defines an optional cross-tenant access policy template with inbound and outbound partner configuration settings for a multitenant organization.
 // returns a MultiTenantOrganizationPartnerConfigurationTemplateable when successful
 func (m *PolicyTemplate) GetMultiTenantOrganizationPartnerConfiguration()(MultiTenantOrganizationPartnerConfigurationTemplateable) {
-    return m.multiTenantOrganizationPartnerConfiguration
+    val, err := m.GetBackingStore().Get("multiTenantOrganizationPartnerConfiguration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(MultiTenantOrganizationPartnerConfigurationTemplateable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PolicyTemplate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *PolicyTemplate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetMultiTenantOrganizationIdentitySynchronization sets the multiTenantOrganizationIdentitySynchronization property value. Defines an optional cross-tenant access policy template with user synchronization settings for a multitenant organization.
 func (m *PolicyTemplate) SetMultiTenantOrganizationIdentitySynchronization(value MultiTenantOrganizationIdentitySyncPolicyTemplateable)() {
-    m.multiTenantOrganizationIdentitySynchronization = value
+    err := m.GetBackingStore().Set("multiTenantOrganizationIdentitySynchronization", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMultiTenantOrganizationPartnerConfiguration sets the multiTenantOrganizationPartnerConfiguration property value. Defines an optional cross-tenant access policy template with inbound and outbound partner configuration settings for a multitenant organization.
 func (m *PolicyTemplate) SetMultiTenantOrganizationPartnerConfiguration(value MultiTenantOrganizationPartnerConfigurationTemplateable)() {
-    m.multiTenantOrganizationPartnerConfiguration = value
+    err := m.GetBackingStore().Set("multiTenantOrganizationPartnerConfiguration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PolicyTemplateable interface {
     Entityable

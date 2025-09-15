@@ -9,16 +9,6 @@ import (
 
 type CalendarPermission struct {
     Entity
-    // List of allowed sharing or delegating permission levels for the calendar. Possible values are: none, freeBusyRead, limitedRead, read, write, delegateWithoutPrivateEventAccess, delegateWithPrivateEventAccess, custom.
-    allowedRoles []CalendarRoleType
-    // Represents a share recipient or delegate who has access to the calendar. For the 'My Organization' share recipient, the address property is null. Read-only.
-    emailAddress EmailAddressable
-    // True if the user in context (recipient or delegate) is inside the same organization as the calendar owner.
-    isInsideOrganization *bool
-    // True if the user can be removed from the list of recipients or delegates for the specified calendar, false otherwise. The 'My organization' user determines the permissions other people within your organization have to the given calendar. You can't remove 'My organization' as a share recipient to a calendar.
-    isRemovable *bool
-    // Current permission level of the calendar share recipient or delegate.
-    role *CalendarRoleType
 }
 // NewCalendarPermission instantiates a new CalendarPermission and sets the default values.
 func NewCalendarPermission()(*CalendarPermission) {
@@ -35,12 +25,26 @@ func CreateCalendarPermissionFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetAllowedRoles gets the allowedRoles property value. List of allowed sharing or delegating permission levels for the calendar. Possible values are: none, freeBusyRead, limitedRead, read, write, delegateWithoutPrivateEventAccess, delegateWithPrivateEventAccess, custom.
 // returns a []CalendarRoleType when successful
 func (m *CalendarPermission) GetAllowedRoles()([]CalendarRoleType) {
-    return m.allowedRoles
+    val, err := m.GetBackingStore().Get("allowedRoles")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CalendarRoleType)
+    }
+    return nil
 }
 // GetEmailAddress gets the emailAddress property value. Represents a share recipient or delegate who has access to the calendar. For the 'My Organization' share recipient, the address property is null. Read-only.
 // returns a EmailAddressable when successful
 func (m *CalendarPermission) GetEmailAddress()(EmailAddressable) {
-    return m.emailAddress
+    val, err := m.GetBackingStore().Get("emailAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EmailAddressable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -107,17 +111,38 @@ func (m *CalendarPermission) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetIsInsideOrganization gets the isInsideOrganization property value. True if the user in context (recipient or delegate) is inside the same organization as the calendar owner.
 // returns a *bool when successful
 func (m *CalendarPermission) GetIsInsideOrganization()(*bool) {
-    return m.isInsideOrganization
+    val, err := m.GetBackingStore().Get("isInsideOrganization")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsRemovable gets the isRemovable property value. True if the user can be removed from the list of recipients or delegates for the specified calendar, false otherwise. The 'My organization' user determines the permissions other people within your organization have to the given calendar. You can't remove 'My organization' as a share recipient to a calendar.
 // returns a *bool when successful
 func (m *CalendarPermission) GetIsRemovable()(*bool) {
-    return m.isRemovable
+    val, err := m.GetBackingStore().Get("isRemovable")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetRole gets the role property value. Current permission level of the calendar share recipient or delegate.
 // returns a *CalendarRoleType when successful
 func (m *CalendarPermission) GetRole()(*CalendarRoleType) {
-    return m.role
+    val, err := m.GetBackingStore().Get("role")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*CalendarRoleType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CalendarPermission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -160,23 +185,38 @@ func (m *CalendarPermission) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetAllowedRoles sets the allowedRoles property value. List of allowed sharing or delegating permission levels for the calendar. Possible values are: none, freeBusyRead, limitedRead, read, write, delegateWithoutPrivateEventAccess, delegateWithPrivateEventAccess, custom.
 func (m *CalendarPermission) SetAllowedRoles(value []CalendarRoleType)() {
-    m.allowedRoles = value
+    err := m.GetBackingStore().Set("allowedRoles", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEmailAddress sets the emailAddress property value. Represents a share recipient or delegate who has access to the calendar. For the 'My Organization' share recipient, the address property is null. Read-only.
 func (m *CalendarPermission) SetEmailAddress(value EmailAddressable)() {
-    m.emailAddress = value
+    err := m.GetBackingStore().Set("emailAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsInsideOrganization sets the isInsideOrganization property value. True if the user in context (recipient or delegate) is inside the same organization as the calendar owner.
 func (m *CalendarPermission) SetIsInsideOrganization(value *bool)() {
-    m.isInsideOrganization = value
+    err := m.GetBackingStore().Set("isInsideOrganization", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsRemovable sets the isRemovable property value. True if the user can be removed from the list of recipients or delegates for the specified calendar, false otherwise. The 'My organization' user determines the permissions other people within your organization have to the given calendar. You can't remove 'My organization' as a share recipient to a calendar.
 func (m *CalendarPermission) SetIsRemovable(value *bool)() {
-    m.isRemovable = value
+    err := m.GetBackingStore().Set("isRemovable", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRole sets the role property value. Current permission level of the calendar share recipient or delegate.
 func (m *CalendarPermission) SetRole(value *CalendarRoleType)() {
-    m.role = value
+    err := m.GetBackingStore().Set("role", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CalendarPermissionable interface {
     Entityable

@@ -9,30 +9,6 @@ import (
 
 type EntitlementManagement struct {
     Entity
-    // Approval stages for decisions associated with access package assignment requests.
-    accessPackageAssignmentApprovals []Approvalable
-    // Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
-    accessPackages []AccessPackageable
-    // Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
-    assignmentPolicies []AccessPackageAssignmentPolicyable
-    // Access package assignment requests created by or on behalf of a subject.
-    assignmentRequests []AccessPackageAssignmentRequestable
-    // The assignment of an access package to a subject for a period of time.
-    assignments []AccessPackageAssignmentable
-    // A container for access packages.
-    catalogs []AccessPackageCatalogable
-    // References to a directory or domain of another organization whose users can request access.
-    connectedOrganizations []ConnectedOrganizationable
-    // A reference to the geolocation environments in which a resource is located.
-    resourceEnvironments []AccessPackageResourceEnvironmentable
-    // Represents a request to add or remove a resource to or from a catalog respectively.
-    resourceRequests []AccessPackageResourceRequestable
-    // The resourceRoleScopes property
-    resourceRoleScopes []AccessPackageResourceRoleScopeable
-    // The resources associated with the catalogs.
-    resources []AccessPackageResourceable
-    // The settings that control the behavior of Microsoft Entra entitlement management.
-    settings EntitlementManagementSettingsable
 }
 // NewEntitlementManagement instantiates a new EntitlementManagement and sets the default values.
 func NewEntitlementManagement()(*EntitlementManagement) {
@@ -49,37 +25,86 @@ func CreateEntitlementManagementFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetAccessPackageAssignmentApprovals gets the accessPackageAssignmentApprovals property value. Approval stages for decisions associated with access package assignment requests.
 // returns a []Approvalable when successful
 func (m *EntitlementManagement) GetAccessPackageAssignmentApprovals()([]Approvalable) {
-    return m.accessPackageAssignmentApprovals
+    val, err := m.GetBackingStore().Get("accessPackageAssignmentApprovals")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Approvalable)
+    }
+    return nil
 }
 // GetAccessPackages gets the accessPackages property value. Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
 // returns a []AccessPackageable when successful
 func (m *EntitlementManagement) GetAccessPackages()([]AccessPackageable) {
-    return m.accessPackages
+    val, err := m.GetBackingStore().Get("accessPackages")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageable)
+    }
+    return nil
 }
 // GetAssignmentPolicies gets the assignmentPolicies property value. Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
 // returns a []AccessPackageAssignmentPolicyable when successful
 func (m *EntitlementManagement) GetAssignmentPolicies()([]AccessPackageAssignmentPolicyable) {
-    return m.assignmentPolicies
+    val, err := m.GetBackingStore().Get("assignmentPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageAssignmentPolicyable)
+    }
+    return nil
 }
 // GetAssignmentRequests gets the assignmentRequests property value. Access package assignment requests created by or on behalf of a subject.
 // returns a []AccessPackageAssignmentRequestable when successful
 func (m *EntitlementManagement) GetAssignmentRequests()([]AccessPackageAssignmentRequestable) {
-    return m.assignmentRequests
+    val, err := m.GetBackingStore().Get("assignmentRequests")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageAssignmentRequestable)
+    }
+    return nil
 }
 // GetAssignments gets the assignments property value. The assignment of an access package to a subject for a period of time.
 // returns a []AccessPackageAssignmentable when successful
 func (m *EntitlementManagement) GetAssignments()([]AccessPackageAssignmentable) {
-    return m.assignments
+    val, err := m.GetBackingStore().Get("assignments")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageAssignmentable)
+    }
+    return nil
 }
 // GetCatalogs gets the catalogs property value. A container for access packages.
 // returns a []AccessPackageCatalogable when successful
 func (m *EntitlementManagement) GetCatalogs()([]AccessPackageCatalogable) {
-    return m.catalogs
+    val, err := m.GetBackingStore().Get("catalogs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageCatalogable)
+    }
+    return nil
 }
 // GetConnectedOrganizations gets the connectedOrganizations property value. References to a directory or domain of another organization whose users can request access.
 // returns a []ConnectedOrganizationable when successful
 func (m *EntitlementManagement) GetConnectedOrganizations()([]ConnectedOrganizationable) {
-    return m.connectedOrganizations
+    val, err := m.GetBackingStore().Get("connectedOrganizations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ConnectedOrganizationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -276,27 +301,62 @@ func (m *EntitlementManagement) GetFieldDeserializers()(map[string]func(i878a80d
 // GetResourceEnvironments gets the resourceEnvironments property value. A reference to the geolocation environments in which a resource is located.
 // returns a []AccessPackageResourceEnvironmentable when successful
 func (m *EntitlementManagement) GetResourceEnvironments()([]AccessPackageResourceEnvironmentable) {
-    return m.resourceEnvironments
+    val, err := m.GetBackingStore().Get("resourceEnvironments")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageResourceEnvironmentable)
+    }
+    return nil
 }
 // GetResourceRequests gets the resourceRequests property value. Represents a request to add or remove a resource to or from a catalog respectively.
 // returns a []AccessPackageResourceRequestable when successful
 func (m *EntitlementManagement) GetResourceRequests()([]AccessPackageResourceRequestable) {
-    return m.resourceRequests
+    val, err := m.GetBackingStore().Get("resourceRequests")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageResourceRequestable)
+    }
+    return nil
 }
 // GetResourceRoleScopes gets the resourceRoleScopes property value. The resourceRoleScopes property
 // returns a []AccessPackageResourceRoleScopeable when successful
 func (m *EntitlementManagement) GetResourceRoleScopes()([]AccessPackageResourceRoleScopeable) {
-    return m.resourceRoleScopes
+    val, err := m.GetBackingStore().Get("resourceRoleScopes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageResourceRoleScopeable)
+    }
+    return nil
 }
 // GetResources gets the resources property value. The resources associated with the catalogs.
 // returns a []AccessPackageResourceable when successful
 func (m *EntitlementManagement) GetResources()([]AccessPackageResourceable) {
-    return m.resources
+    val, err := m.GetBackingStore().Get("resources")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AccessPackageResourceable)
+    }
+    return nil
 }
 // GetSettings gets the settings property value. The settings that control the behavior of Microsoft Entra entitlement management.
 // returns a EntitlementManagementSettingsable when successful
 func (m *EntitlementManagement) GetSettings()(EntitlementManagementSettingsable) {
-    return m.settings
+    val, err := m.GetBackingStore().Get("settings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EntitlementManagementSettingsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EntitlementManagement) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -446,51 +506,87 @@ func (m *EntitlementManagement) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetAccessPackageAssignmentApprovals sets the accessPackageAssignmentApprovals property value. Approval stages for decisions associated with access package assignment requests.
 func (m *EntitlementManagement) SetAccessPackageAssignmentApprovals(value []Approvalable)() {
-    m.accessPackageAssignmentApprovals = value
+    err := m.GetBackingStore().Set("accessPackageAssignmentApprovals", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAccessPackages sets the accessPackages property value. Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
 func (m *EntitlementManagement) SetAccessPackages(value []AccessPackageable)() {
-    m.accessPackages = value
+    err := m.GetBackingStore().Set("accessPackages", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAssignmentPolicies sets the assignmentPolicies property value. Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
 func (m *EntitlementManagement) SetAssignmentPolicies(value []AccessPackageAssignmentPolicyable)() {
-    m.assignmentPolicies = value
+    err := m.GetBackingStore().Set("assignmentPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAssignmentRequests sets the assignmentRequests property value. Access package assignment requests created by or on behalf of a subject.
 func (m *EntitlementManagement) SetAssignmentRequests(value []AccessPackageAssignmentRequestable)() {
-    m.assignmentRequests = value
+    err := m.GetBackingStore().Set("assignmentRequests", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAssignments sets the assignments property value. The assignment of an access package to a subject for a period of time.
 func (m *EntitlementManagement) SetAssignments(value []AccessPackageAssignmentable)() {
-    m.assignments = value
+    err := m.GetBackingStore().Set("assignments", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCatalogs sets the catalogs property value. A container for access packages.
 func (m *EntitlementManagement) SetCatalogs(value []AccessPackageCatalogable)() {
-    m.catalogs = value
+    err := m.GetBackingStore().Set("catalogs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetConnectedOrganizations sets the connectedOrganizations property value. References to a directory or domain of another organization whose users can request access.
 func (m *EntitlementManagement) SetConnectedOrganizations(value []ConnectedOrganizationable)() {
-    m.connectedOrganizations = value
+    err := m.GetBackingStore().Set("connectedOrganizations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceEnvironments sets the resourceEnvironments property value. A reference to the geolocation environments in which a resource is located.
 func (m *EntitlementManagement) SetResourceEnvironments(value []AccessPackageResourceEnvironmentable)() {
-    m.resourceEnvironments = value
+    err := m.GetBackingStore().Set("resourceEnvironments", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceRequests sets the resourceRequests property value. Represents a request to add or remove a resource to or from a catalog respectively.
 func (m *EntitlementManagement) SetResourceRequests(value []AccessPackageResourceRequestable)() {
-    m.resourceRequests = value
+    err := m.GetBackingStore().Set("resourceRequests", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceRoleScopes sets the resourceRoleScopes property value. The resourceRoleScopes property
 func (m *EntitlementManagement) SetResourceRoleScopes(value []AccessPackageResourceRoleScopeable)() {
-    m.resourceRoleScopes = value
+    err := m.GetBackingStore().Set("resourceRoleScopes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResources sets the resources property value. The resources associated with the catalogs.
 func (m *EntitlementManagement) SetResources(value []AccessPackageResourceable)() {
-    m.resources = value
+    err := m.GetBackingStore().Set("resources", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettings sets the settings property value. The settings that control the behavior of Microsoft Entra entitlement management.
 func (m *EntitlementManagement) SetSettings(value EntitlementManagementSettingsable)() {
-    m.settings = value
+    err := m.GetBackingStore().Set("settings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EntitlementManagementable interface {
     Entityable

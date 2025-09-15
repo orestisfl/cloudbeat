@@ -9,14 +9,6 @@ import (
 
 type OpenShift struct {
     ChangeTrackedEntity
-    // Draft changes in the openShift are only visible to managers until they're shared.
-    draftOpenShift OpenShiftItemable
-    // The openShift is marked for deletion, a process that is finalized when the schedule is shared.
-    isStagedForDeletion *bool
-    // The ID of the schedulingGroup that contains the openShift.
-    schedulingGroupId *string
-    // The shared version of this openShift that is viewable by both employees and managers.
-    sharedOpenShift OpenShiftItemable
 }
 // NewOpenShift instantiates a new OpenShift and sets the default values.
 func NewOpenShift()(*OpenShift) {
@@ -35,7 +27,14 @@ func CreateOpenShiftFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetDraftOpenShift gets the draftOpenShift property value. Draft changes in the openShift are only visible to managers until they're shared.
 // returns a OpenShiftItemable when successful
 func (m *OpenShift) GetDraftOpenShift()(OpenShiftItemable) {
-    return m.draftOpenShift
+    val, err := m.GetBackingStore().Get("draftOpenShift")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OpenShiftItemable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,17 +85,38 @@ func (m *OpenShift) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetIsStagedForDeletion gets the isStagedForDeletion property value. The openShift is marked for deletion, a process that is finalized when the schedule is shared.
 // returns a *bool when successful
 func (m *OpenShift) GetIsStagedForDeletion()(*bool) {
-    return m.isStagedForDeletion
+    val, err := m.GetBackingStore().Get("isStagedForDeletion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetSchedulingGroupId gets the schedulingGroupId property value. The ID of the schedulingGroup that contains the openShift.
 // returns a *string when successful
 func (m *OpenShift) GetSchedulingGroupId()(*string) {
-    return m.schedulingGroupId
+    val, err := m.GetBackingStore().Get("schedulingGroupId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSharedOpenShift gets the sharedOpenShift property value. The shared version of this openShift that is viewable by both employees and managers.
 // returns a OpenShiftItemable when successful
 func (m *OpenShift) GetSharedOpenShift()(OpenShiftItemable) {
-    return m.sharedOpenShift
+    val, err := m.GetBackingStore().Get("sharedOpenShift")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OpenShiftItemable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OpenShift) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *OpenShift) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetDraftOpenShift sets the draftOpenShift property value. Draft changes in the openShift are only visible to managers until they're shared.
 func (m *OpenShift) SetDraftOpenShift(value OpenShiftItemable)() {
-    m.draftOpenShift = value
+    err := m.GetBackingStore().Set("draftOpenShift", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsStagedForDeletion sets the isStagedForDeletion property value. The openShift is marked for deletion, a process that is finalized when the schedule is shared.
 func (m *OpenShift) SetIsStagedForDeletion(value *bool)() {
-    m.isStagedForDeletion = value
+    err := m.GetBackingStore().Set("isStagedForDeletion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSchedulingGroupId sets the schedulingGroupId property value. The ID of the schedulingGroup that contains the openShift.
 func (m *OpenShift) SetSchedulingGroupId(value *string)() {
-    m.schedulingGroupId = value
+    err := m.GetBackingStore().Set("schedulingGroupId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSharedOpenShift sets the sharedOpenShift property value. The shared version of this openShift that is viewable by both employees and managers.
 func (m *OpenShift) SetSharedOpenShift(value OpenShiftItemable)() {
-    m.sharedOpenShift = value
+    err := m.GetBackingStore().Set("sharedOpenShift", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OpenShiftable interface {
     ChangeTrackedEntityable

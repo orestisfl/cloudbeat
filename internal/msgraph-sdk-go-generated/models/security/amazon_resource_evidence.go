@@ -9,14 +9,6 @@ import (
 
 type AmazonResourceEvidence struct {
     AlertEvidence
-    // The unique identifier for the Amazon account.
-    amazonAccountId *string
-    // The Amazon resource identifier (ARN) for the cloud resource.
-    amazonResourceId *string
-    // The name of the resource.
-    resourceName *string
-    // The type of the resource.
-    resourceType *string
 }
 // NewAmazonResourceEvidence instantiates a new AmazonResourceEvidence and sets the default values.
 func NewAmazonResourceEvidence()(*AmazonResourceEvidence) {
@@ -35,12 +27,26 @@ func CreateAmazonResourceEvidenceFromDiscriminatorValue(parseNode i878a80d2330e8
 // GetAmazonAccountId gets the amazonAccountId property value. The unique identifier for the Amazon account.
 // returns a *string when successful
 func (m *AmazonResourceEvidence) GetAmazonAccountId()(*string) {
-    return m.amazonAccountId
+    val, err := m.GetBackingStore().Get("amazonAccountId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetAmazonResourceId gets the amazonResourceId property value. The Amazon resource identifier (ARN) for the cloud resource.
 // returns a *string when successful
 func (m *AmazonResourceEvidence) GetAmazonResourceId()(*string) {
-    return m.amazonResourceId
+    val, err := m.GetBackingStore().Get("amazonResourceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -91,12 +97,26 @@ func (m *AmazonResourceEvidence) GetFieldDeserializers()(map[string]func(i878a80
 // GetResourceName gets the resourceName property value. The name of the resource.
 // returns a *string when successful
 func (m *AmazonResourceEvidence) GetResourceName()(*string) {
-    return m.resourceName
+    val, err := m.GetBackingStore().Get("resourceName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetResourceType gets the resourceType property value. The type of the resource.
 // returns a *string when successful
 func (m *AmazonResourceEvidence) GetResourceType()(*string) {
-    return m.resourceType
+    val, err := m.GetBackingStore().Get("resourceType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AmazonResourceEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *AmazonResourceEvidence) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetAmazonAccountId sets the amazonAccountId property value. The unique identifier for the Amazon account.
 func (m *AmazonResourceEvidence) SetAmazonAccountId(value *string)() {
-    m.amazonAccountId = value
+    err := m.GetBackingStore().Set("amazonAccountId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAmazonResourceId sets the amazonResourceId property value. The Amazon resource identifier (ARN) for the cloud resource.
 func (m *AmazonResourceEvidence) SetAmazonResourceId(value *string)() {
-    m.amazonResourceId = value
+    err := m.GetBackingStore().Set("amazonResourceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceName sets the resourceName property value. The name of the resource.
 func (m *AmazonResourceEvidence) SetResourceName(value *string)() {
-    m.resourceName = value
+    err := m.GetBackingStore().Set("resourceName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceType sets the resourceType property value. The type of the resource.
 func (m *AmazonResourceEvidence) SetResourceType(value *string)() {
-    m.resourceType = value
+    err := m.GetBackingStore().Set("resourceType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AmazonResourceEvidenceable interface {
     AlertEvidenceable

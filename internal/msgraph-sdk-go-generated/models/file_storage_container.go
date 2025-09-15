@@ -11,32 +11,6 @@ import (
 
 type FileStorageContainer struct {
     Entity
-    // The columns property
-    columns []ColumnDefinitionable
-    // Container type ID of the fileStorageContainer. For details about container types, see Container Types. Each container must have only one container type. Read-only.
-    containerTypeId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // Date and time of the fileStorageContainer creation. Read-only.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Custom property collection for the fileStorageContainer. Read-write.
-    customProperties FileStorageContainerCustomPropertyDictionaryable
-    // Provides a user-visible description of the fileStorageContainer. Read-write.
-    description *string
-    // The display name of the fileStorageContainer. Read-write.
-    displayName *string
-    // The drive of the resource fileStorageContainer. Read-only.
-    drive Driveable
-    // Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
-    lockState *SiteLockState
-    // The set of permissions for users in the fileStorageContainer. Permission for each user is set by the roles property. The possible values are: reader, writer, manager, and owner. Read-write.
-    permissions []Permissionable
-    // Recycle bin of the fileStorageContainer. Read-only.
-    recycleBin RecycleBinable
-    // The settings property
-    settings FileStorageContainerSettingsable
-    // Status of the fileStorageContainer. Containers are created as inactive and require activation. Inactive containers are subjected to automatic deletion in 24 hours. The possible values are: inactive, active. Read-only.
-    status *FileStorageContainerStatus
-    // Data specific to the current user. Read-only.
-    viewpoint FileStorageContainerViewpointable
 }
 // NewFileStorageContainer instantiates a new FileStorageContainer and sets the default values.
 func NewFileStorageContainer()(*FileStorageContainer) {
@@ -53,37 +27,86 @@ func CreateFileStorageContainerFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetColumns gets the columns property value. The columns property
 // returns a []ColumnDefinitionable when successful
 func (m *FileStorageContainer) GetColumns()([]ColumnDefinitionable) {
-    return m.columns
+    val, err := m.GetBackingStore().Get("columns")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ColumnDefinitionable)
+    }
+    return nil
 }
 // GetContainerTypeId gets the containerTypeId property value. Container type ID of the fileStorageContainer. For details about container types, see Container Types. Each container must have only one container type. Read-only.
 // returns a *UUID when successful
 func (m *FileStorageContainer) GetContainerTypeId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.containerTypeId
+    val, err := m.GetBackingStore().Get("containerTypeId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. Date and time of the fileStorageContainer creation. Read-only.
 // returns a *Time when successful
 func (m *FileStorageContainer) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetCustomProperties gets the customProperties property value. Custom property collection for the fileStorageContainer. Read-write.
 // returns a FileStorageContainerCustomPropertyDictionaryable when successful
 func (m *FileStorageContainer) GetCustomProperties()(FileStorageContainerCustomPropertyDictionaryable) {
-    return m.customProperties
+    val, err := m.GetBackingStore().Get("customProperties")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FileStorageContainerCustomPropertyDictionaryable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. Provides a user-visible description of the fileStorageContainer. Read-write.
 // returns a *string when successful
 func (m *FileStorageContainer) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The display name of the fileStorageContainer. Read-write.
 // returns a *string when successful
 func (m *FileStorageContainer) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDrive gets the drive property value. The drive of the resource fileStorageContainer. Read-only.
 // returns a Driveable when successful
 func (m *FileStorageContainer) GetDrive()(Driveable) {
-    return m.drive
+    val, err := m.GetBackingStore().Get("drive")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Driveable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -236,32 +259,74 @@ func (m *FileStorageContainer) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetLockState gets the lockState property value. Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
 // returns a *SiteLockState when successful
 func (m *FileStorageContainer) GetLockState()(*SiteLockState) {
-    return m.lockState
+    val, err := m.GetBackingStore().Get("lockState")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*SiteLockState)
+    }
+    return nil
 }
 // GetPermissions gets the permissions property value. The set of permissions for users in the fileStorageContainer. Permission for each user is set by the roles property. The possible values are: reader, writer, manager, and owner. Read-write.
 // returns a []Permissionable when successful
 func (m *FileStorageContainer) GetPermissions()([]Permissionable) {
-    return m.permissions
+    val, err := m.GetBackingStore().Get("permissions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Permissionable)
+    }
+    return nil
 }
 // GetRecycleBin gets the recycleBin property value. Recycle bin of the fileStorageContainer. Read-only.
 // returns a RecycleBinable when successful
 func (m *FileStorageContainer) GetRecycleBin()(RecycleBinable) {
-    return m.recycleBin
+    val, err := m.GetBackingStore().Get("recycleBin")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(RecycleBinable)
+    }
+    return nil
 }
 // GetSettings gets the settings property value. The settings property
 // returns a FileStorageContainerSettingsable when successful
 func (m *FileStorageContainer) GetSettings()(FileStorageContainerSettingsable) {
-    return m.settings
+    val, err := m.GetBackingStore().Get("settings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FileStorageContainerSettingsable)
+    }
+    return nil
 }
 // GetStatus gets the status property value. Status of the fileStorageContainer. Containers are created as inactive and require activation. Inactive containers are subjected to automatic deletion in 24 hours. The possible values are: inactive, active. Read-only.
 // returns a *FileStorageContainerStatus when successful
 func (m *FileStorageContainer) GetStatus()(*FileStorageContainerStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*FileStorageContainerStatus)
+    }
+    return nil
 }
 // GetViewpoint gets the viewpoint property value. Data specific to the current user. Read-only.
 // returns a FileStorageContainerViewpointable when successful
 func (m *FileStorageContainer) GetViewpoint()(FileStorageContainerViewpointable) {
-    return m.viewpoint
+    val, err := m.GetBackingStore().Get("viewpoint")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FileStorageContainerViewpointable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *FileStorageContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -365,55 +430,94 @@ func (m *FileStorageContainer) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetColumns sets the columns property value. The columns property
 func (m *FileStorageContainer) SetColumns(value []ColumnDefinitionable)() {
-    m.columns = value
+    err := m.GetBackingStore().Set("columns", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetContainerTypeId sets the containerTypeId property value. Container type ID of the fileStorageContainer. For details about container types, see Container Types. Each container must have only one container type. Read-only.
 func (m *FileStorageContainer) SetContainerTypeId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.containerTypeId = value
+    err := m.GetBackingStore().Set("containerTypeId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. Date and time of the fileStorageContainer creation. Read-only.
 func (m *FileStorageContainer) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCustomProperties sets the customProperties property value. Custom property collection for the fileStorageContainer. Read-write.
 func (m *FileStorageContainer) SetCustomProperties(value FileStorageContainerCustomPropertyDictionaryable)() {
-    m.customProperties = value
+    err := m.GetBackingStore().Set("customProperties", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. Provides a user-visible description of the fileStorageContainer. Read-write.
 func (m *FileStorageContainer) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The display name of the fileStorageContainer. Read-write.
 func (m *FileStorageContainer) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDrive sets the drive property value. The drive of the resource fileStorageContainer. Read-only.
 func (m *FileStorageContainer) SetDrive(value Driveable)() {
-    m.drive = value
+    err := m.GetBackingStore().Set("drive", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLockState sets the lockState property value. Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
 func (m *FileStorageContainer) SetLockState(value *SiteLockState)() {
-    m.lockState = value
+    err := m.GetBackingStore().Set("lockState", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPermissions sets the permissions property value. The set of permissions for users in the fileStorageContainer. Permission for each user is set by the roles property. The possible values are: reader, writer, manager, and owner. Read-write.
 func (m *FileStorageContainer) SetPermissions(value []Permissionable)() {
-    m.permissions = value
+    err := m.GetBackingStore().Set("permissions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecycleBin sets the recycleBin property value. Recycle bin of the fileStorageContainer. Read-only.
 func (m *FileStorageContainer) SetRecycleBin(value RecycleBinable)() {
-    m.recycleBin = value
+    err := m.GetBackingStore().Set("recycleBin", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettings sets the settings property value. The settings property
 func (m *FileStorageContainer) SetSettings(value FileStorageContainerSettingsable)() {
-    m.settings = value
+    err := m.GetBackingStore().Set("settings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. Status of the fileStorageContainer. Containers are created as inactive and require activation. Inactive containers are subjected to automatic deletion in 24 hours. The possible values are: inactive, active. Read-only.
 func (m *FileStorageContainer) SetStatus(value *FileStorageContainerStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetViewpoint sets the viewpoint property value. Data specific to the current user. Read-only.
 func (m *FileStorageContainer) SetViewpoint(value FileStorageContainerViewpointable)() {
-    m.viewpoint = value
+    err := m.GetBackingStore().Set("viewpoint", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type FileStorageContainerable interface {
     Entityable

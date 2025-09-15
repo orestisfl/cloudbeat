@@ -5,24 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type DeviceMetadata struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Optional. The general type of the device (for example, 'Managed', 'Unmanaged').
-    deviceType *string
-    // The Internet Protocol (IP) address of the device.
-    ipAddress *string
-    // The OdataType property
-    odataType *string
-    // Details about the operating system platform and version.
-    operatingSystemSpecifications OperatingSystemSpecificationsable
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewDeviceMetadata instantiates a new DeviceMetadata and sets the default values.
 func NewDeviceMetadata()(*DeviceMetadata) {
     m := &DeviceMetadata{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -34,12 +28,32 @@ func CreateDeviceMetadataFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *DeviceMetadata) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *DeviceMetadata) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetDeviceType gets the deviceType property value. Optional. The general type of the device (for example, 'Managed', 'Unmanaged').
 // returns a *string when successful
 func (m *DeviceMetadata) GetDeviceType()(*string) {
-    return m.deviceType
+    val, err := m.GetBackingStore().Get("deviceType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -90,17 +104,38 @@ func (m *DeviceMetadata) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetIpAddress gets the ipAddress property value. The Internet Protocol (IP) address of the device.
 // returns a *string when successful
 func (m *DeviceMetadata) GetIpAddress()(*string) {
-    return m.ipAddress
+    val, err := m.GetBackingStore().Get("ipAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *DeviceMetadata) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOperatingSystemSpecifications gets the operatingSystemSpecifications property value. Details about the operating system platform and version.
 // returns a OperatingSystemSpecificationsable when successful
 func (m *DeviceMetadata) GetOperatingSystemSpecifications()(OperatingSystemSpecificationsable) {
-    return m.operatingSystemSpecifications
+    val, err := m.GetBackingStore().Get("operatingSystemSpecifications")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OperatingSystemSpecificationsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeviceMetadata) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -138,31 +173,53 @@ func (m *DeviceMetadata) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *DeviceMetadata) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *DeviceMetadata) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetDeviceType sets the deviceType property value. Optional. The general type of the device (for example, 'Managed', 'Unmanaged').
 func (m *DeviceMetadata) SetDeviceType(value *string)() {
-    m.deviceType = value
+    err := m.GetBackingStore().Set("deviceType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIpAddress sets the ipAddress property value. The Internet Protocol (IP) address of the device.
 func (m *DeviceMetadata) SetIpAddress(value *string)() {
-    m.ipAddress = value
+    err := m.GetBackingStore().Set("ipAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *DeviceMetadata) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOperatingSystemSpecifications sets the operatingSystemSpecifications property value. Details about the operating system platform and version.
 func (m *DeviceMetadata) SetOperatingSystemSpecifications(value OperatingSystemSpecificationsable)() {
-    m.operatingSystemSpecifications = value
+    err := m.GetBackingStore().Set("operatingSystemSpecifications", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceMetadataable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetDeviceType()(*string)
     GetIpAddress()(*string)
     GetOdataType()(*string)
     GetOperatingSystemSpecifications()(OperatingSystemSpecificationsable)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetDeviceType(value *string)()
     SetIpAddress(value *string)()
     SetOdataType(value *string)()

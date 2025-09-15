@@ -9,24 +9,6 @@ import (
 
 type CloudPcGalleryImage struct {
     Entity
-    // The display name of this gallery image. For example, Windows 11 Enterprise + Microsoft 365 Apps 22H2. Read-only.
-    displayName *string
-    // The date when the status of the image becomes supportedWithWarning. Users can still provision new Cloud PCs if the current time is later than endDate and earlier than expirationDate. For example, assume the endDate of a gallery image is 2023-9-14 and expirationDate is 2024-3-14, users are able to provision new Cloud PCs if today is 2023-10-01. Read-only.
-    endDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
-    // The date when the image is no longer available. Users are unable to provision new Cloud PCs if the current time is later than expirationDate. The value is usually endDate plus six months. For example, if the startDate is 2025-10-14, the expirationDate is usually 2026-04-14. Read-only.
-    expirationDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
-    // The offer name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
-    offerName *string
-    // The publisher name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
-    publisherName *string
-    // Indicates the size of this image in gigabytes. For example, 64. Read-only.
-    sizeInGB *int32
-    // The SKU name of this image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
-    skuName *string
-    // The date when the Cloud PC image is available for provisioning new Cloud PCs. For example, 2022-09-20. Read-only.
-    startDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
-    // The status of the gallery image on the Cloud PC. Possible values are: supported, supportedWithWarning, notSupported, unknownFutureValue. The default value is supported. Read-only.
-    status *CloudPcGalleryImageStatus
 }
 // NewCloudPcGalleryImage instantiates a new CloudPcGalleryImage and sets the default values.
 func NewCloudPcGalleryImage()(*CloudPcGalleryImage) {
@@ -43,17 +25,38 @@ func CreateCloudPcGalleryImageFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetDisplayName gets the displayName property value. The display name of this gallery image. For example, Windows 11 Enterprise + Microsoft 365 Apps 22H2. Read-only.
 // returns a *string when successful
 func (m *CloudPcGalleryImage) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetEndDate gets the endDate property value. The date when the status of the image becomes supportedWithWarning. Users can still provision new Cloud PCs if the current time is later than endDate and earlier than expirationDate. For example, assume the endDate of a gallery image is 2023-9-14 and expirationDate is 2024-3-14, users are able to provision new Cloud PCs if today is 2023-10-01. Read-only.
 // returns a *DateOnly when successful
 func (m *CloudPcGalleryImage) GetEndDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly) {
-    return m.endDate
+    val, err := m.GetBackingStore().Get("endDate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    }
+    return nil
 }
 // GetExpirationDate gets the expirationDate property value. The date when the image is no longer available. Users are unable to provision new Cloud PCs if the current time is later than expirationDate. The value is usually endDate plus six months. For example, if the startDate is 2025-10-14, the expirationDate is usually 2026-04-14. Read-only.
 // returns a *DateOnly when successful
 func (m *CloudPcGalleryImage) GetExpirationDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly) {
-    return m.expirationDate
+    val, err := m.GetBackingStore().Get("expirationDate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -154,32 +157,74 @@ func (m *CloudPcGalleryImage) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetOfferName gets the offerName property value. The offer name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
 // returns a *string when successful
 func (m *CloudPcGalleryImage) GetOfferName()(*string) {
-    return m.offerName
+    val, err := m.GetBackingStore().Get("offerName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPublisherName gets the publisherName property value. The publisher name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
 // returns a *string when successful
 func (m *CloudPcGalleryImage) GetPublisherName()(*string) {
-    return m.publisherName
+    val, err := m.GetBackingStore().Get("publisherName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSizeInGB gets the sizeInGB property value. Indicates the size of this image in gigabytes. For example, 64. Read-only.
 // returns a *int32 when successful
 func (m *CloudPcGalleryImage) GetSizeInGB()(*int32) {
-    return m.sizeInGB
+    val, err := m.GetBackingStore().Get("sizeInGB")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetSkuName gets the skuName property value. The SKU name of this image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
 // returns a *string when successful
 func (m *CloudPcGalleryImage) GetSkuName()(*string) {
-    return m.skuName
+    val, err := m.GetBackingStore().Get("skuName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetStartDate gets the startDate property value. The date when the Cloud PC image is available for provisioning new Cloud PCs. For example, 2022-09-20. Read-only.
 // returns a *DateOnly when successful
 func (m *CloudPcGalleryImage) GetStartDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly) {
-    return m.startDate
+    val, err := m.GetBackingStore().Get("startDate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the gallery image on the Cloud PC. Possible values are: supported, supportedWithWarning, notSupported, unknownFutureValue. The default value is supported. Read-only.
 // returns a *CloudPcGalleryImageStatus when successful
 func (m *CloudPcGalleryImage) GetStatus()(*CloudPcGalleryImageStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*CloudPcGalleryImageStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CloudPcGalleryImage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -246,39 +291,66 @@ func (m *CloudPcGalleryImage) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetDisplayName sets the displayName property value. The display name of this gallery image. For example, Windows 11 Enterprise + Microsoft 365 Apps 22H2. Read-only.
 func (m *CloudPcGalleryImage) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEndDate sets the endDate property value. The date when the status of the image becomes supportedWithWarning. Users can still provision new Cloud PCs if the current time is later than endDate and earlier than expirationDate. For example, assume the endDate of a gallery image is 2023-9-14 and expirationDate is 2024-3-14, users are able to provision new Cloud PCs if today is 2023-10-01. Read-only.
 func (m *CloudPcGalleryImage) SetEndDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)() {
-    m.endDate = value
+    err := m.GetBackingStore().Set("endDate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExpirationDate sets the expirationDate property value. The date when the image is no longer available. Users are unable to provision new Cloud PCs if the current time is later than expirationDate. The value is usually endDate plus six months. For example, if the startDate is 2025-10-14, the expirationDate is usually 2026-04-14. Read-only.
 func (m *CloudPcGalleryImage) SetExpirationDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)() {
-    m.expirationDate = value
+    err := m.GetBackingStore().Set("expirationDate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOfferName sets the offerName property value. The offer name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
 func (m *CloudPcGalleryImage) SetOfferName(value *string)() {
-    m.offerName = value
+    err := m.GetBackingStore().Set("offerName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPublisherName sets the publisherName property value. The publisher name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
 func (m *CloudPcGalleryImage) SetPublisherName(value *string)() {
-    m.publisherName = value
+    err := m.GetBackingStore().Set("publisherName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSizeInGB sets the sizeInGB property value. Indicates the size of this image in gigabytes. For example, 64. Read-only.
 func (m *CloudPcGalleryImage) SetSizeInGB(value *int32)() {
-    m.sizeInGB = value
+    err := m.GetBackingStore().Set("sizeInGB", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSkuName sets the skuName property value. The SKU name of this image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.
 func (m *CloudPcGalleryImage) SetSkuName(value *string)() {
-    m.skuName = value
+    err := m.GetBackingStore().Set("skuName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDate sets the startDate property value. The date when the Cloud PC image is available for provisioning new Cloud PCs. For example, 2022-09-20. Read-only.
 func (m *CloudPcGalleryImage) SetStartDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)() {
-    m.startDate = value
+    err := m.GetBackingStore().Set("startDate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the gallery image on the Cloud PC. Possible values are: supported, supportedWithWarning, notSupported, unknownFutureValue. The default value is supported. Read-only.
 func (m *CloudPcGalleryImage) SetStatus(value *CloudPcGalleryImageStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CloudPcGalleryImageable interface {
     Entityable

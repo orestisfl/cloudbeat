@@ -9,12 +9,6 @@ import (
 
 type ContentActivity struct {
     Entity
-    // The contentMetadata property
-    contentMetadata ProcessContentRequestable
-    // The scope identified from computed protection scopes.
-    scopeIdentifier *string
-    // ID of the user.
-    userId *string
 }
 // NewContentActivity instantiates a new ContentActivity and sets the default values.
 func NewContentActivity()(*ContentActivity) {
@@ -31,7 +25,14 @@ func CreateContentActivityFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetContentMetadata gets the contentMetadata property value. The contentMetadata property
 // returns a ProcessContentRequestable when successful
 func (m *ContentActivity) GetContentMetadata()(ProcessContentRequestable) {
-    return m.contentMetadata
+    val, err := m.GetBackingStore().Get("contentMetadata")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ProcessContentRequestable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -72,12 +73,26 @@ func (m *ContentActivity) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetScopeIdentifier gets the scopeIdentifier property value. The scope identified from computed protection scopes.
 // returns a *string when successful
 func (m *ContentActivity) GetScopeIdentifier()(*string) {
-    return m.scopeIdentifier
+    val, err := m.GetBackingStore().Get("scopeIdentifier")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUserId gets the userId property value. ID of the user.
 // returns a *string when successful
 func (m *ContentActivity) GetUserId()(*string) {
-    return m.userId
+    val, err := m.GetBackingStore().Get("userId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ContentActivity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -107,15 +122,24 @@ func (m *ContentActivity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetContentMetadata sets the contentMetadata property value. The contentMetadata property
 func (m *ContentActivity) SetContentMetadata(value ProcessContentRequestable)() {
-    m.contentMetadata = value
+    err := m.GetBackingStore().Set("contentMetadata", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetScopeIdentifier sets the scopeIdentifier property value. The scope identified from computed protection scopes.
 func (m *ContentActivity) SetScopeIdentifier(value *string)() {
-    m.scopeIdentifier = value
+    err := m.GetBackingStore().Set("scopeIdentifier", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserId sets the userId property value. ID of the user.
 func (m *ContentActivity) SetUserId(value *string)() {
-    m.userId = value
+    err := m.GetBackingStore().Set("userId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ContentActivityable interface {
     Entityable

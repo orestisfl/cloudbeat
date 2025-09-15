@@ -10,26 +10,6 @@ import (
 
 type FilePlanDescriptor struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Represents the file plan descriptor of type authority applied to a particular retention label.
-    authority FilePlanAuthorityable
-    // Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
-    authorityTemplate AuthorityTemplateable
-    // The category property
-    category FilePlanAppliedCategoryable
-    // Specifies a group of similar types of content in a particular department.
-    categoryTemplate CategoryTemplateable
-    // Represents the file plan descriptor of type citation applied to a particular retention label.
-    citation FilePlanCitationable
-    // The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
-    citationTemplate CitationTemplateable
-    // Represents the file plan descriptor of type department applied to a particular retention label.
-    department FilePlanDepartmentable
-    // Specifies the  department or business unit of an organization to which a label belongs.
-    departmentTemplate DepartmentTemplateable
-    // Represents the file plan descriptor of type filePlanReference applied to a particular retention label.
-    filePlanReference FilePlanReferenceable
-    // Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
-    filePlanReferenceTemplate FilePlanReferenceTemplateable
 }
 // NewFilePlanDescriptor instantiates a new FilePlanDescriptor and sets the default values.
 func NewFilePlanDescriptor()(*FilePlanDescriptor) {
@@ -46,42 +26,98 @@ func CreateFilePlanDescriptorFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetAuthority gets the authority property value. Represents the file plan descriptor of type authority applied to a particular retention label.
 // returns a FilePlanAuthorityable when successful
 func (m *FilePlanDescriptor) GetAuthority()(FilePlanAuthorityable) {
-    return m.authority
+    val, err := m.GetBackingStore().Get("authority")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FilePlanAuthorityable)
+    }
+    return nil
 }
 // GetAuthorityTemplate gets the authorityTemplate property value. Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
 // returns a AuthorityTemplateable when successful
 func (m *FilePlanDescriptor) GetAuthorityTemplate()(AuthorityTemplateable) {
-    return m.authorityTemplate
+    val, err := m.GetBackingStore().Get("authorityTemplate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AuthorityTemplateable)
+    }
+    return nil
 }
 // GetCategory gets the category property value. The category property
 // returns a FilePlanAppliedCategoryable when successful
 func (m *FilePlanDescriptor) GetCategory()(FilePlanAppliedCategoryable) {
-    return m.category
+    val, err := m.GetBackingStore().Get("category")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FilePlanAppliedCategoryable)
+    }
+    return nil
 }
 // GetCategoryTemplate gets the categoryTemplate property value. Specifies a group of similar types of content in a particular department.
 // returns a CategoryTemplateable when successful
 func (m *FilePlanDescriptor) GetCategoryTemplate()(CategoryTemplateable) {
-    return m.categoryTemplate
+    val, err := m.GetBackingStore().Get("categoryTemplate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CategoryTemplateable)
+    }
+    return nil
 }
 // GetCitation gets the citation property value. Represents the file plan descriptor of type citation applied to a particular retention label.
 // returns a FilePlanCitationable when successful
 func (m *FilePlanDescriptor) GetCitation()(FilePlanCitationable) {
-    return m.citation
+    val, err := m.GetBackingStore().Get("citation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FilePlanCitationable)
+    }
+    return nil
 }
 // GetCitationTemplate gets the citationTemplate property value. The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
 // returns a CitationTemplateable when successful
 func (m *FilePlanDescriptor) GetCitationTemplate()(CitationTemplateable) {
-    return m.citationTemplate
+    val, err := m.GetBackingStore().Get("citationTemplate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CitationTemplateable)
+    }
+    return nil
 }
 // GetDepartment gets the department property value. Represents the file plan descriptor of type department applied to a particular retention label.
 // returns a FilePlanDepartmentable when successful
 func (m *FilePlanDescriptor) GetDepartment()(FilePlanDepartmentable) {
-    return m.department
+    val, err := m.GetBackingStore().Get("department")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FilePlanDepartmentable)
+    }
+    return nil
 }
 // GetDepartmentTemplate gets the departmentTemplate property value. Specifies the  department or business unit of an organization to which a label belongs.
 // returns a DepartmentTemplateable when successful
 func (m *FilePlanDescriptor) GetDepartmentTemplate()(DepartmentTemplateable) {
-    return m.departmentTemplate
+    val, err := m.GetBackingStore().Get("departmentTemplate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DepartmentTemplateable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -192,12 +228,26 @@ func (m *FilePlanDescriptor) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetFilePlanReference gets the filePlanReference property value. Represents the file plan descriptor of type filePlanReference applied to a particular retention label.
 // returns a FilePlanReferenceable when successful
 func (m *FilePlanDescriptor) GetFilePlanReference()(FilePlanReferenceable) {
-    return m.filePlanReference
+    val, err := m.GetBackingStore().Get("filePlanReference")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FilePlanReferenceable)
+    }
+    return nil
 }
 // GetFilePlanReferenceTemplate gets the filePlanReferenceTemplate property value. Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
 // returns a FilePlanReferenceTemplateable when successful
 func (m *FilePlanDescriptor) GetFilePlanReferenceTemplate()(FilePlanReferenceTemplateable) {
-    return m.filePlanReferenceTemplate
+    val, err := m.GetBackingStore().Get("filePlanReferenceTemplate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FilePlanReferenceTemplateable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *FilePlanDescriptor) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -269,43 +319,73 @@ func (m *FilePlanDescriptor) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetAuthority sets the authority property value. Represents the file plan descriptor of type authority applied to a particular retention label.
 func (m *FilePlanDescriptor) SetAuthority(value FilePlanAuthorityable)() {
-    m.authority = value
+    err := m.GetBackingStore().Set("authority", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthorityTemplate sets the authorityTemplate property value. Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
 func (m *FilePlanDescriptor) SetAuthorityTemplate(value AuthorityTemplateable)() {
-    m.authorityTemplate = value
+    err := m.GetBackingStore().Set("authorityTemplate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCategory sets the category property value. The category property
 func (m *FilePlanDescriptor) SetCategory(value FilePlanAppliedCategoryable)() {
-    m.category = value
+    err := m.GetBackingStore().Set("category", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCategoryTemplate sets the categoryTemplate property value. Specifies a group of similar types of content in a particular department.
 func (m *FilePlanDescriptor) SetCategoryTemplate(value CategoryTemplateable)() {
-    m.categoryTemplate = value
+    err := m.GetBackingStore().Set("categoryTemplate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCitation sets the citation property value. Represents the file plan descriptor of type citation applied to a particular retention label.
 func (m *FilePlanDescriptor) SetCitation(value FilePlanCitationable)() {
-    m.citation = value
+    err := m.GetBackingStore().Set("citation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCitationTemplate sets the citationTemplate property value. The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
 func (m *FilePlanDescriptor) SetCitationTemplate(value CitationTemplateable)() {
-    m.citationTemplate = value
+    err := m.GetBackingStore().Set("citationTemplate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDepartment sets the department property value. Represents the file plan descriptor of type department applied to a particular retention label.
 func (m *FilePlanDescriptor) SetDepartment(value FilePlanDepartmentable)() {
-    m.department = value
+    err := m.GetBackingStore().Set("department", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDepartmentTemplate sets the departmentTemplate property value. Specifies the  department or business unit of an organization to which a label belongs.
 func (m *FilePlanDescriptor) SetDepartmentTemplate(value DepartmentTemplateable)() {
-    m.departmentTemplate = value
+    err := m.GetBackingStore().Set("departmentTemplate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFilePlanReference sets the filePlanReference property value. Represents the file plan descriptor of type filePlanReference applied to a particular retention label.
 func (m *FilePlanDescriptor) SetFilePlanReference(value FilePlanReferenceable)() {
-    m.filePlanReference = value
+    err := m.GetBackingStore().Set("filePlanReference", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFilePlanReferenceTemplate sets the filePlanReferenceTemplate property value. Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
 func (m *FilePlanDescriptor) SetFilePlanReferenceTemplate(value FilePlanReferenceTemplateable)() {
-    m.filePlanReferenceTemplate = value
+    err := m.GetBackingStore().Set("filePlanReferenceTemplate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type FilePlanDescriptorable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

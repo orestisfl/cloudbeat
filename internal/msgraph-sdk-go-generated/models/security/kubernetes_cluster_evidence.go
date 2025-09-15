@@ -9,16 +9,6 @@ import (
 
 type KubernetesClusterEvidence struct {
     AlertEvidence
-    // The cloud identifier of the cluster. Can be either an amazonResourceEvidence, azureResourceEvidence, or googleCloudResourceEvidence object.
-    cloudResource AlertEvidenceable
-    // The distribution type of the cluster.
-    distribution *string
-    // The cluster name.
-    name *string
-    // The platform the cluster runs on. Possible values are: unknown, aks, eks, gke, arc, unknownFutureValue.
-    platform *KubernetesPlatform
-    // The kubernetes version of the cluster.
-    version *string
 }
 // NewKubernetesClusterEvidence instantiates a new KubernetesClusterEvidence and sets the default values.
 func NewKubernetesClusterEvidence()(*KubernetesClusterEvidence) {
@@ -37,12 +27,26 @@ func CreateKubernetesClusterEvidenceFromDiscriminatorValue(parseNode i878a80d233
 // GetCloudResource gets the cloudResource property value. The cloud identifier of the cluster. Can be either an amazonResourceEvidence, azureResourceEvidence, or googleCloudResourceEvidence object.
 // returns a AlertEvidenceable when successful
 func (m *KubernetesClusterEvidence) GetCloudResource()(AlertEvidenceable) {
-    return m.cloudResource
+    val, err := m.GetBackingStore().Get("cloudResource")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AlertEvidenceable)
+    }
+    return nil
 }
 // GetDistribution gets the distribution property value. The distribution type of the cluster.
 // returns a *string when successful
 func (m *KubernetesClusterEvidence) GetDistribution()(*string) {
-    return m.distribution
+    val, err := m.GetBackingStore().Get("distribution")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -103,17 +107,38 @@ func (m *KubernetesClusterEvidence) GetFieldDeserializers()(map[string]func(i878
 // GetName gets the name property value. The cluster name.
 // returns a *string when successful
 func (m *KubernetesClusterEvidence) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPlatform gets the platform property value. The platform the cluster runs on. Possible values are: unknown, aks, eks, gke, arc, unknownFutureValue.
 // returns a *KubernetesPlatform when successful
 func (m *KubernetesClusterEvidence) GetPlatform()(*KubernetesPlatform) {
-    return m.platform
+    val, err := m.GetBackingStore().Get("platform")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*KubernetesPlatform)
+    }
+    return nil
 }
 // GetVersion gets the version property value. The kubernetes version of the cluster.
 // returns a *string when successful
 func (m *KubernetesClusterEvidence) GetVersion()(*string) {
-    return m.version
+    val, err := m.GetBackingStore().Get("version")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *KubernetesClusterEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -156,23 +181,38 @@ func (m *KubernetesClusterEvidence) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetCloudResource sets the cloudResource property value. The cloud identifier of the cluster. Can be either an amazonResourceEvidence, azureResourceEvidence, or googleCloudResourceEvidence object.
 func (m *KubernetesClusterEvidence) SetCloudResource(value AlertEvidenceable)() {
-    m.cloudResource = value
+    err := m.GetBackingStore().Set("cloudResource", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDistribution sets the distribution property value. The distribution type of the cluster.
 func (m *KubernetesClusterEvidence) SetDistribution(value *string)() {
-    m.distribution = value
+    err := m.GetBackingStore().Set("distribution", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The cluster name.
 func (m *KubernetesClusterEvidence) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPlatform sets the platform property value. The platform the cluster runs on. Possible values are: unknown, aks, eks, gke, arc, unknownFutureValue.
 func (m *KubernetesClusterEvidence) SetPlatform(value *KubernetesPlatform)() {
-    m.platform = value
+    err := m.GetBackingStore().Set("platform", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVersion sets the version property value. The kubernetes version of the cluster.
 func (m *KubernetesClusterEvidence) SetVersion(value *string)() {
-    m.version = value
+    err := m.GetBackingStore().Set("version", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type KubernetesClusterEvidenceable interface {
     AlertEvidenceable

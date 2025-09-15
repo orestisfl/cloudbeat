@@ -5,34 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type AccessPackageAssignmentRequestorSettings struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // False indicates that the requestor isn't permitted to include a schedule in their request.
-    allowCustomAssignmentSchedule *bool
-    // True allows on-behalf-of requestors to create a request to add access for another principal.
-    enableOnBehalfRequestorsToAddAccess *bool
-    // True allows on-behalf-of requestors to create a request to remove access for another principal.
-    enableOnBehalfRequestorsToRemoveAccess *bool
-    // True allows on-behalf-of requestors to create a request to update access for another principal.
-    enableOnBehalfRequestorsToUpdateAccess *bool
-    // True allows requestors to create a request to add access for themselves.
-    enableTargetsToSelfAddAccess *bool
-    // True allows requestors to create a request to remove their access.
-    enableTargetsToSelfRemoveAccess *bool
-    // True allows requestors to create a request to update their access.
-    enableTargetsToSelfUpdateAccess *bool
-    // The OdataType property
-    odataType *string
-    // The principals who can request on-behalf-of others.
-    onBehalfRequestors []SubjectSetable
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewAccessPackageAssignmentRequestorSettings instantiates a new AccessPackageAssignmentRequestorSettings and sets the default values.
 func NewAccessPackageAssignmentRequestorSettings()(*AccessPackageAssignmentRequestorSettings) {
     m := &AccessPackageAssignmentRequestorSettings{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -44,42 +28,104 @@ func CreateAccessPackageAssignmentRequestorSettingsFromDiscriminatorValue(parseN
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
 }
 // GetAllowCustomAssignmentSchedule gets the allowCustomAssignmentSchedule property value. False indicates that the requestor isn't permitted to include a schedule in their request.
 // returns a *bool when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetAllowCustomAssignmentSchedule()(*bool) {
-    return m.allowCustomAssignmentSchedule
+    val, err := m.GetBackingStore().Get("allowCustomAssignmentSchedule")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *AccessPackageAssignmentRequestorSettings) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetEnableOnBehalfRequestorsToAddAccess gets the enableOnBehalfRequestorsToAddAccess property value. True allows on-behalf-of requestors to create a request to add access for another principal.
 // returns a *bool when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableOnBehalfRequestorsToAddAccess()(*bool) {
-    return m.enableOnBehalfRequestorsToAddAccess
+    val, err := m.GetBackingStore().Get("enableOnBehalfRequestorsToAddAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetEnableOnBehalfRequestorsToRemoveAccess gets the enableOnBehalfRequestorsToRemoveAccess property value. True allows on-behalf-of requestors to create a request to remove access for another principal.
 // returns a *bool when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableOnBehalfRequestorsToRemoveAccess()(*bool) {
-    return m.enableOnBehalfRequestorsToRemoveAccess
+    val, err := m.GetBackingStore().Get("enableOnBehalfRequestorsToRemoveAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetEnableOnBehalfRequestorsToUpdateAccess gets the enableOnBehalfRequestorsToUpdateAccess property value. True allows on-behalf-of requestors to create a request to update access for another principal.
 // returns a *bool when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableOnBehalfRequestorsToUpdateAccess()(*bool) {
-    return m.enableOnBehalfRequestorsToUpdateAccess
+    val, err := m.GetBackingStore().Get("enableOnBehalfRequestorsToUpdateAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetEnableTargetsToSelfAddAccess gets the enableTargetsToSelfAddAccess property value. True allows requestors to create a request to add access for themselves.
 // returns a *bool when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableTargetsToSelfAddAccess()(*bool) {
-    return m.enableTargetsToSelfAddAccess
+    val, err := m.GetBackingStore().Get("enableTargetsToSelfAddAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetEnableTargetsToSelfRemoveAccess gets the enableTargetsToSelfRemoveAccess property value. True allows requestors to create a request to remove their access.
 // returns a *bool when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableTargetsToSelfRemoveAccess()(*bool) {
-    return m.enableTargetsToSelfRemoveAccess
+    val, err := m.GetBackingStore().Get("enableTargetsToSelfRemoveAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetEnableTargetsToSelfUpdateAccess gets the enableTargetsToSelfUpdateAccess property value. True allows requestors to create a request to update their access.
 // returns a *bool when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableTargetsToSelfUpdateAccess()(*bool) {
-    return m.enableTargetsToSelfUpdateAccess
+    val, err := m.GetBackingStore().Get("enableTargetsToSelfUpdateAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -186,12 +232,26 @@ func (m *AccessPackageAssignmentRequestorSettings) GetFieldDeserializers()(map[s
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOnBehalfRequestors gets the onBehalfRequestors property value. The principals who can request on-behalf-of others.
 // returns a []SubjectSetable when successful
 func (m *AccessPackageAssignmentRequestorSettings) GetOnBehalfRequestors()([]SubjectSetable) {
-    return m.onBehalfRequestors
+    val, err := m.GetBackingStore().Get("onBehalfRequestors")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SubjectSetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AccessPackageAssignmentRequestorSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -265,48 +325,84 @@ func (m *AccessPackageAssignmentRequestorSettings) Serialize(writer i878a80d2330
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AccessPackageAssignmentRequestorSettings) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAllowCustomAssignmentSchedule sets the allowCustomAssignmentSchedule property value. False indicates that the requestor isn't permitted to include a schedule in their request.
 func (m *AccessPackageAssignmentRequestorSettings) SetAllowCustomAssignmentSchedule(value *bool)() {
-    m.allowCustomAssignmentSchedule = value
+    err := m.GetBackingStore().Set("allowCustomAssignmentSchedule", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *AccessPackageAssignmentRequestorSettings) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetEnableOnBehalfRequestorsToAddAccess sets the enableOnBehalfRequestorsToAddAccess property value. True allows on-behalf-of requestors to create a request to add access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableOnBehalfRequestorsToAddAccess(value *bool)() {
-    m.enableOnBehalfRequestorsToAddAccess = value
+    err := m.GetBackingStore().Set("enableOnBehalfRequestorsToAddAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEnableOnBehalfRequestorsToRemoveAccess sets the enableOnBehalfRequestorsToRemoveAccess property value. True allows on-behalf-of requestors to create a request to remove access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableOnBehalfRequestorsToRemoveAccess(value *bool)() {
-    m.enableOnBehalfRequestorsToRemoveAccess = value
+    err := m.GetBackingStore().Set("enableOnBehalfRequestorsToRemoveAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEnableOnBehalfRequestorsToUpdateAccess sets the enableOnBehalfRequestorsToUpdateAccess property value. True allows on-behalf-of requestors to create a request to update access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableOnBehalfRequestorsToUpdateAccess(value *bool)() {
-    m.enableOnBehalfRequestorsToUpdateAccess = value
+    err := m.GetBackingStore().Set("enableOnBehalfRequestorsToUpdateAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEnableTargetsToSelfAddAccess sets the enableTargetsToSelfAddAccess property value. True allows requestors to create a request to add access for themselves.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableTargetsToSelfAddAccess(value *bool)() {
-    m.enableTargetsToSelfAddAccess = value
+    err := m.GetBackingStore().Set("enableTargetsToSelfAddAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEnableTargetsToSelfRemoveAccess sets the enableTargetsToSelfRemoveAccess property value. True allows requestors to create a request to remove their access.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableTargetsToSelfRemoveAccess(value *bool)() {
-    m.enableTargetsToSelfRemoveAccess = value
+    err := m.GetBackingStore().Set("enableTargetsToSelfRemoveAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEnableTargetsToSelfUpdateAccess sets the enableTargetsToSelfUpdateAccess property value. True allows requestors to create a request to update their access.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableTargetsToSelfUpdateAccess(value *bool)() {
-    m.enableTargetsToSelfUpdateAccess = value
+    err := m.GetBackingStore().Set("enableTargetsToSelfUpdateAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AccessPackageAssignmentRequestorSettings) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnBehalfRequestors sets the onBehalfRequestors property value. The principals who can request on-behalf-of others.
 func (m *AccessPackageAssignmentRequestorSettings) SetOnBehalfRequestors(value []SubjectSetable)() {
-    m.onBehalfRequestors = value
+    err := m.GetBackingStore().Set("onBehalfRequestors", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AccessPackageAssignmentRequestorSettingsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAllowCustomAssignmentSchedule()(*bool)
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetEnableOnBehalfRequestorsToAddAccess()(*bool)
     GetEnableOnBehalfRequestorsToRemoveAccess()(*bool)
     GetEnableOnBehalfRequestorsToUpdateAccess()(*bool)
@@ -316,6 +412,7 @@ type AccessPackageAssignmentRequestorSettingsable interface {
     GetOdataType()(*string)
     GetOnBehalfRequestors()([]SubjectSetable)
     SetAllowCustomAssignmentSchedule(value *bool)()
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetEnableOnBehalfRequestorsToAddAccess(value *bool)()
     SetEnableOnBehalfRequestorsToRemoveAccess(value *bool)()
     SetEnableOnBehalfRequestorsToUpdateAccess(value *bool)()

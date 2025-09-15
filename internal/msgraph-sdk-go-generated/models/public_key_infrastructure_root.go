@@ -9,8 +9,6 @@ import (
 
 type PublicKeyInfrastructureRoot struct {
     Entity
-    // The collection of public key infrastructure instances for the certificate-based authentication feature for users.
-    certificateBasedAuthConfigurations []CertificateBasedAuthPkiable
 }
 // NewPublicKeyInfrastructureRoot instantiates a new PublicKeyInfrastructureRoot and sets the default values.
 func NewPublicKeyInfrastructureRoot()(*PublicKeyInfrastructureRoot) {
@@ -27,7 +25,14 @@ func CreatePublicKeyInfrastructureRootFromDiscriminatorValue(parseNode i878a80d2
 // GetCertificateBasedAuthConfigurations gets the certificateBasedAuthConfigurations property value. The collection of public key infrastructure instances for the certificate-based authentication feature for users.
 // returns a []CertificateBasedAuthPkiable when successful
 func (m *PublicKeyInfrastructureRoot) GetCertificateBasedAuthConfigurations()([]CertificateBasedAuthPkiable) {
-    return m.certificateBasedAuthConfigurations
+    val, err := m.GetBackingStore().Get("certificateBasedAuthConfigurations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CertificateBasedAuthPkiable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -73,7 +78,10 @@ func (m *PublicKeyInfrastructureRoot) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetCertificateBasedAuthConfigurations sets the certificateBasedAuthConfigurations property value. The collection of public key infrastructure instances for the certificate-based authentication feature for users.
 func (m *PublicKeyInfrastructureRoot) SetCertificateBasedAuthConfigurations(value []CertificateBasedAuthPkiable)() {
-    m.certificateBasedAuthConfigurations = value
+    err := m.GetBackingStore().Set("certificateBasedAuthConfigurations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PublicKeyInfrastructureRootable interface {
     Entityable

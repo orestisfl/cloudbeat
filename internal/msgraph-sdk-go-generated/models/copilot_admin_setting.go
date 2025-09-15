@@ -9,8 +9,6 @@ import (
 
 type CopilotAdminSetting struct {
     Entity
-    // The limitedMode property
-    limitedMode CopilotAdminLimitedModeable
 }
 // NewCopilotAdminSetting instantiates a new CopilotAdminSetting and sets the default values.
 func NewCopilotAdminSetting()(*CopilotAdminSetting) {
@@ -43,7 +41,14 @@ func (m *CopilotAdminSetting) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetLimitedMode gets the limitedMode property value. The limitedMode property
 // returns a CopilotAdminLimitedModeable when successful
 func (m *CopilotAdminSetting) GetLimitedMode()(CopilotAdminLimitedModeable) {
-    return m.limitedMode
+    val, err := m.GetBackingStore().Get("limitedMode")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CopilotAdminLimitedModeable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CopilotAdminSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *CopilotAdminSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetLimitedMode sets the limitedMode property value. The limitedMode property
 func (m *CopilotAdminSetting) SetLimitedMode(value CopilotAdminLimitedModeable)() {
-    m.limitedMode = value
+    err := m.GetBackingStore().Set("limitedMode", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CopilotAdminSettingable interface {
     Entityable

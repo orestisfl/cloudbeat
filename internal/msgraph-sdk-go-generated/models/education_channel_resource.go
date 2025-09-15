@@ -9,8 +9,6 @@ import (
 
 type EducationChannelResource struct {
     EducationResource
-    // URL of the channel resource.
-    url *string
 }
 // NewEducationChannelResource instantiates a new EducationChannelResource and sets the default values.
 func NewEducationChannelResource()(*EducationChannelResource) {
@@ -45,7 +43,14 @@ func (m *EducationChannelResource) GetFieldDeserializers()(map[string]func(i878a
 // GetUrl gets the url property value. URL of the channel resource.
 // returns a *string when successful
 func (m *EducationChannelResource) GetUrl()(*string) {
-    return m.url
+    val, err := m.GetBackingStore().Get("url")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationChannelResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *EducationChannelResource) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetUrl sets the url property value. URL of the channel resource.
 func (m *EducationChannelResource) SetUrl(value *string)() {
-    m.url = value
+    err := m.GetBackingStore().Set("url", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationChannelResourceable interface {
     EducationResourceable

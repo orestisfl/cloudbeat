@@ -9,10 +9,6 @@ import (
 
 type SiteRestoreArtifactsBulkAdditionRequest struct {
     RestoreArtifactsBulkRequestBase
-    // The list of SharePoint site IDs that are added to the corresponding SharePoint restore session in a bulk operation.
-    siteIds []string
-    // The list of SharePoint site URLs that are added to the corresponding SharePoint restore session in a bulk operation.
-    siteWebUrls []string
 }
 // NewSiteRestoreArtifactsBulkAdditionRequest instantiates a new SiteRestoreArtifactsBulkAdditionRequest and sets the default values.
 func NewSiteRestoreArtifactsBulkAdditionRequest()(*SiteRestoreArtifactsBulkAdditionRequest) {
@@ -67,12 +63,26 @@ func (m *SiteRestoreArtifactsBulkAdditionRequest) GetFieldDeserializers()(map[st
 // GetSiteIds gets the siteIds property value. The list of SharePoint site IDs that are added to the corresponding SharePoint restore session in a bulk operation.
 // returns a []string when successful
 func (m *SiteRestoreArtifactsBulkAdditionRequest) GetSiteIds()([]string) {
-    return m.siteIds
+    val, err := m.GetBackingStore().Get("siteIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetSiteWebUrls gets the siteWebUrls property value. The list of SharePoint site URLs that are added to the corresponding SharePoint restore session in a bulk operation.
 // returns a []string when successful
 func (m *SiteRestoreArtifactsBulkAdditionRequest) GetSiteWebUrls()([]string) {
-    return m.siteWebUrls
+    val, err := m.GetBackingStore().Get("siteWebUrls")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SiteRestoreArtifactsBulkAdditionRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -96,11 +106,17 @@ func (m *SiteRestoreArtifactsBulkAdditionRequest) Serialize(writer i878a80d2330e
 }
 // SetSiteIds sets the siteIds property value. The list of SharePoint site IDs that are added to the corresponding SharePoint restore session in a bulk operation.
 func (m *SiteRestoreArtifactsBulkAdditionRequest) SetSiteIds(value []string)() {
-    m.siteIds = value
+    err := m.GetBackingStore().Set("siteIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteWebUrls sets the siteWebUrls property value. The list of SharePoint site URLs that are added to the corresponding SharePoint restore session in a bulk operation.
 func (m *SiteRestoreArtifactsBulkAdditionRequest) SetSiteWebUrls(value []string)() {
-    m.siteWebUrls = value
+    err := m.GetBackingStore().Set("siteWebUrls", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SiteRestoreArtifactsBulkAdditionRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

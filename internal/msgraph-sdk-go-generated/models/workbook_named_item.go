@@ -9,20 +9,6 @@ import (
 
 type WorkbookNamedItem struct {
     Entity
-    // The comment associated with this name.
-    comment *string
-    // The name of the object. Read-only.
-    name *string
-    // Indicates whether the name is scoped to the workbook or to a specific worksheet. Read-only.
-    scope *string
-    // The type of reference is associated with the name. Possible values are: String, Integer, Double, Boolean, Range. Read-only.
-    typeEscaped *string
-    // The formula that the name is defined to refer to. For example, =Sheet14!$B$2:$H$12 and =4.75. Read-only.
-    value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // Indicates whether the object is visible.
-    visible *bool
-    // Returns the worksheet to which the named item is scoped. Available only if the item is scoped to the worksheet. Read-only.
-    worksheet WorkbookWorksheetable
 }
 // NewWorkbookNamedItem instantiates a new WorkbookNamedItem and sets the default values.
 func NewWorkbookNamedItem()(*WorkbookNamedItem) {
@@ -39,7 +25,14 @@ func CreateWorkbookNamedItemFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetComment gets the comment property value. The comment associated with this name.
 // returns a *string when successful
 func (m *WorkbookNamedItem) GetComment()(*string) {
-    return m.comment
+    val, err := m.GetBackingStore().Get("comment")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -120,32 +113,74 @@ func (m *WorkbookNamedItem) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetName gets the name property value. The name of the object. Read-only.
 // returns a *string when successful
 func (m *WorkbookNamedItem) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetScope gets the scope property value. Indicates whether the name is scoped to the workbook or to a specific worksheet. Read-only.
 // returns a *string when successful
 func (m *WorkbookNamedItem) GetScope()(*string) {
-    return m.scope
+    val, err := m.GetBackingStore().Get("scope")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTypeEscaped gets the type property value. The type of reference is associated with the name. Possible values are: String, Integer, Double, Boolean, Range. Read-only.
 // returns a *string when successful
 func (m *WorkbookNamedItem) GetTypeEscaped()(*string) {
-    return m.typeEscaped
+    val, err := m.GetBackingStore().Get("typeEscaped")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetValue gets the value property value. The formula that the name is defined to refer to. For example, =Sheet14!$B$2:$H$12 and =4.75. Read-only.
 // returns a UntypedNodeable when successful
 func (m *WorkbookNamedItem) GetValue()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetVisible gets the visible property value. Indicates whether the object is visible.
 // returns a *bool when successful
 func (m *WorkbookNamedItem) GetVisible()(*bool) {
-    return m.visible
+    val, err := m.GetBackingStore().Get("visible")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetWorksheet gets the worksheet property value. Returns the worksheet to which the named item is scoped. Available only if the item is scoped to the worksheet. Read-only.
 // returns a WorkbookWorksheetable when successful
 func (m *WorkbookNamedItem) GetWorksheet()(WorkbookWorksheetable) {
-    return m.worksheet
+    val, err := m.GetBackingStore().Get("worksheet")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookWorksheetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookNamedItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -199,31 +234,52 @@ func (m *WorkbookNamedItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetComment sets the comment property value. The comment associated with this name.
 func (m *WorkbookNamedItem) SetComment(value *string)() {
-    m.comment = value
+    err := m.GetBackingStore().Set("comment", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The name of the object. Read-only.
 func (m *WorkbookNamedItem) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetScope sets the scope property value. Indicates whether the name is scoped to the workbook or to a specific worksheet. Read-only.
 func (m *WorkbookNamedItem) SetScope(value *string)() {
-    m.scope = value
+    err := m.GetBackingStore().Set("scope", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTypeEscaped sets the type property value. The type of reference is associated with the name. Possible values are: String, Integer, Double, Boolean, Range. Read-only.
 func (m *WorkbookNamedItem) SetTypeEscaped(value *string)() {
-    m.typeEscaped = value
+    err := m.GetBackingStore().Set("typeEscaped", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValue sets the value property value. The formula that the name is defined to refer to. For example, =Sheet14!$B$2:$H$12 and =4.75. Read-only.
 func (m *WorkbookNamedItem) SetValue(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVisible sets the visible property value. Indicates whether the object is visible.
 func (m *WorkbookNamedItem) SetVisible(value *bool)() {
-    m.visible = value
+    err := m.GetBackingStore().Set("visible", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWorksheet sets the worksheet property value. Returns the worksheet to which the named item is scoped. Available only if the item is scoped to the worksheet. Read-only.
 func (m *WorkbookNamedItem) SetWorksheet(value WorkbookWorksheetable)() {
-    m.worksheet = value
+    err := m.GetBackingStore().Set("worksheet", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookNamedItemable interface {
     Entityable

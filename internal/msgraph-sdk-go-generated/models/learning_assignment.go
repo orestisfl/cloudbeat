@@ -10,16 +10,6 @@ import (
 
 type LearningAssignment struct {
     LearningCourseActivity
-    // Assigned date for the course activity. Optional.
-    assignedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The user ID of the assigner. Optional.
-    assignerUserId *string
-    // The assignmentType property
-    assignmentType *AssignmentType
-    // Due date for the course activity. Optional.
-    dueDateTime DateTimeTimeZoneable
-    // Notes for the course activity. Optional.
-    notes ItemBodyable
 }
 // NewLearningAssignment instantiates a new LearningAssignment and sets the default values.
 func NewLearningAssignment()(*LearningAssignment) {
@@ -36,22 +26,50 @@ func CreateLearningAssignmentFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetAssignedDateTime gets the assignedDateTime property value. Assigned date for the course activity. Optional.
 // returns a *Time when successful
 func (m *LearningAssignment) GetAssignedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.assignedDateTime
+    val, err := m.GetBackingStore().Get("assignedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetAssignerUserId gets the assignerUserId property value. The user ID of the assigner. Optional.
 // returns a *string when successful
 func (m *LearningAssignment) GetAssignerUserId()(*string) {
-    return m.assignerUserId
+    val, err := m.GetBackingStore().Get("assignerUserId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetAssignmentType gets the assignmentType property value. The assignmentType property
 // returns a *AssignmentType when successful
 func (m *LearningAssignment) GetAssignmentType()(*AssignmentType) {
-    return m.assignmentType
+    val, err := m.GetBackingStore().Get("assignmentType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*AssignmentType)
+    }
+    return nil
 }
 // GetDueDateTime gets the dueDateTime property value. Due date for the course activity. Optional.
 // returns a DateTimeTimeZoneable when successful
 func (m *LearningAssignment) GetDueDateTime()(DateTimeTimeZoneable) {
-    return m.dueDateTime
+    val, err := m.GetBackingStore().Get("dueDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DateTimeTimeZoneable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -112,7 +130,14 @@ func (m *LearningAssignment) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetNotes gets the notes property value. Notes for the course activity. Optional.
 // returns a ItemBodyable when successful
 func (m *LearningAssignment) GetNotes()(ItemBodyable) {
-    return m.notes
+    val, err := m.GetBackingStore().Get("notes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ItemBodyable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LearningAssignment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -155,23 +180,38 @@ func (m *LearningAssignment) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetAssignedDateTime sets the assignedDateTime property value. Assigned date for the course activity. Optional.
 func (m *LearningAssignment) SetAssignedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.assignedDateTime = value
+    err := m.GetBackingStore().Set("assignedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAssignerUserId sets the assignerUserId property value. The user ID of the assigner. Optional.
 func (m *LearningAssignment) SetAssignerUserId(value *string)() {
-    m.assignerUserId = value
+    err := m.GetBackingStore().Set("assignerUserId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAssignmentType sets the assignmentType property value. The assignmentType property
 func (m *LearningAssignment) SetAssignmentType(value *AssignmentType)() {
-    m.assignmentType = value
+    err := m.GetBackingStore().Set("assignmentType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDueDateTime sets the dueDateTime property value. Due date for the course activity. Optional.
 func (m *LearningAssignment) SetDueDateTime(value DateTimeTimeZoneable)() {
-    m.dueDateTime = value
+    err := m.GetBackingStore().Set("dueDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNotes sets the notes property value. Notes for the course activity. Optional.
 func (m *LearningAssignment) SetNotes(value ItemBodyable)() {
-    m.notes = value
+    err := m.GetBackingStore().Set("notes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LearningAssignmentable interface {
     LearningCourseActivityable

@@ -9,10 +9,6 @@ import (
 
 type AccessPackageTextInputQuestion struct {
     AccessPackageQuestion
-    // Indicates whether the answer is in single or multiple line format.
-    isSingleLineQuestion *bool
-    // The regular expression pattern that any answer to this question must match.
-    regexPattern *string
 }
 // NewAccessPackageTextInputQuestion instantiates a new AccessPackageTextInputQuestion and sets the default values.
 func NewAccessPackageTextInputQuestion()(*AccessPackageTextInputQuestion) {
@@ -57,12 +53,26 @@ func (m *AccessPackageTextInputQuestion) GetFieldDeserializers()(map[string]func
 // GetIsSingleLineQuestion gets the isSingleLineQuestion property value. Indicates whether the answer is in single or multiple line format.
 // returns a *bool when successful
 func (m *AccessPackageTextInputQuestion) GetIsSingleLineQuestion()(*bool) {
-    return m.isSingleLineQuestion
+    val, err := m.GetBackingStore().Get("isSingleLineQuestion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetRegexPattern gets the regexPattern property value. The regular expression pattern that any answer to this question must match.
 // returns a *string when successful
 func (m *AccessPackageTextInputQuestion) GetRegexPattern()(*string) {
-    return m.regexPattern
+    val, err := m.GetBackingStore().Get("regexPattern")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AccessPackageTextInputQuestion) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *AccessPackageTextInputQuestion) Serialize(writer i878a80d2330e89d268963
 }
 // SetIsSingleLineQuestion sets the isSingleLineQuestion property value. Indicates whether the answer is in single or multiple line format.
 func (m *AccessPackageTextInputQuestion) SetIsSingleLineQuestion(value *bool)() {
-    m.isSingleLineQuestion = value
+    err := m.GetBackingStore().Set("isSingleLineQuestion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegexPattern sets the regexPattern property value. The regular expression pattern that any answer to this question must match.
 func (m *AccessPackageTextInputQuestion) SetRegexPattern(value *string)() {
-    m.regexPattern = value
+    err := m.GetBackingStore().Set("regexPattern", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AccessPackageTextInputQuestionable interface {
     AccessPackageQuestionable

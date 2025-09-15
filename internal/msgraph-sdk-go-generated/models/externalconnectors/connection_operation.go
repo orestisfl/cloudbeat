@@ -10,10 +10,6 @@ import (
 
 type ConnectionOperation struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // If status is failed, provides more information about the error that caused the failure.
-    error i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.PublicErrorable
-    // Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed, unknownFutureValue.
-    status *ConnectionOperationStatus
 }
 // NewConnectionOperation instantiates a new ConnectionOperation and sets the default values.
 func NewConnectionOperation()(*ConnectionOperation) {
@@ -30,7 +26,14 @@ func CreateConnectionOperationFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetError gets the error property value. If status is failed, provides more information about the error that caused the failure.
 // returns a PublicErrorable when successful
 func (m *ConnectionOperation) GetError()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.PublicErrorable) {
-    return m.error
+    val, err := m.GetBackingStore().Get("error")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.PublicErrorable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +64,14 @@ func (m *ConnectionOperation) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetStatus gets the status property value. Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed, unknownFutureValue.
 // returns a *ConnectionOperationStatus when successful
 func (m *ConnectionOperation) GetStatus()(*ConnectionOperationStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ConnectionOperationStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ConnectionOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *ConnectionOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetError sets the error property value. If status is failed, provides more information about the error that caused the failure.
 func (m *ConnectionOperation) SetError(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.PublicErrorable)() {
-    m.error = value
+    err := m.GetBackingStore().Set("error", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed, unknownFutureValue.
 func (m *ConnectionOperation) SetStatus(value *ConnectionOperationStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ConnectionOperationable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

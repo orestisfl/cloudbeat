@@ -10,26 +10,6 @@ import (
 
 type ReflectCheckInResponse struct {
     Entity
-    // Identifier for the Reflect check-in.
-    checkInId *string
-    // The question or prompt of the Reflect check-in that this response addresses.
-    checkInTitle *string
-    // ID of the class associated with the Reflect check-in.
-    classId *string
-    // Date and time when the Reflect check-in was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // ID of the user who created the Reflect check-in.
-    creatorId *string
-    // Indicates whether the Reflect check-in is closed (true) or open (false).
-    isClosed *bool
-    // ID of the user who responded to the Reflect check-in.
-    responderId *string
-    // The responseEmotion property
-    responseEmotion *ResponseEmotionType
-    // The responseFeedback property
-    responseFeedback *ResponseFeedbackType
-    // Date and time when the response to the Reflect check-in was submitted. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    submitDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewReflectCheckInResponse instantiates a new ReflectCheckInResponse and sets the default values.
 func NewReflectCheckInResponse()(*ReflectCheckInResponse) {
@@ -46,27 +26,62 @@ func CreateReflectCheckInResponseFromDiscriminatorValue(parseNode i878a80d2330e8
 // GetCheckInId gets the checkInId property value. Identifier for the Reflect check-in.
 // returns a *string when successful
 func (m *ReflectCheckInResponse) GetCheckInId()(*string) {
-    return m.checkInId
+    val, err := m.GetBackingStore().Get("checkInId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCheckInTitle gets the checkInTitle property value. The question or prompt of the Reflect check-in that this response addresses.
 // returns a *string when successful
 func (m *ReflectCheckInResponse) GetCheckInTitle()(*string) {
-    return m.checkInTitle
+    val, err := m.GetBackingStore().Get("checkInTitle")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetClassId gets the classId property value. ID of the class associated with the Reflect check-in.
 // returns a *string when successful
 func (m *ReflectCheckInResponse) GetClassId()(*string) {
-    return m.classId
+    val, err := m.GetBackingStore().Get("classId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. Date and time when the Reflect check-in was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *ReflectCheckInResponse) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetCreatorId gets the creatorId property value. ID of the user who created the Reflect check-in.
 // returns a *string when successful
 func (m *ReflectCheckInResponse) GetCreatorId()(*string) {
-    return m.creatorId
+    val, err := m.GetBackingStore().Get("creatorId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -177,27 +192,62 @@ func (m *ReflectCheckInResponse) GetFieldDeserializers()(map[string]func(i878a80
 // GetIsClosed gets the isClosed property value. Indicates whether the Reflect check-in is closed (true) or open (false).
 // returns a *bool when successful
 func (m *ReflectCheckInResponse) GetIsClosed()(*bool) {
-    return m.isClosed
+    val, err := m.GetBackingStore().Get("isClosed")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetResponderId gets the responderId property value. ID of the user who responded to the Reflect check-in.
 // returns a *string when successful
 func (m *ReflectCheckInResponse) GetResponderId()(*string) {
-    return m.responderId
+    val, err := m.GetBackingStore().Get("responderId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetResponseEmotion gets the responseEmotion property value. The responseEmotion property
 // returns a *ResponseEmotionType when successful
 func (m *ReflectCheckInResponse) GetResponseEmotion()(*ResponseEmotionType) {
-    return m.responseEmotion
+    val, err := m.GetBackingStore().Get("responseEmotion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ResponseEmotionType)
+    }
+    return nil
 }
 // GetResponseFeedback gets the responseFeedback property value. The responseFeedback property
 // returns a *ResponseFeedbackType when successful
 func (m *ReflectCheckInResponse) GetResponseFeedback()(*ResponseFeedbackType) {
-    return m.responseFeedback
+    val, err := m.GetBackingStore().Get("responseFeedback")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ResponseFeedbackType)
+    }
+    return nil
 }
 // GetSubmitDateTime gets the submitDateTime property value. Date and time when the response to the Reflect check-in was submitted. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *ReflectCheckInResponse) GetSubmitDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.submitDateTime
+    val, err := m.GetBackingStore().Get("submitDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ReflectCheckInResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -271,43 +321,73 @@ func (m *ReflectCheckInResponse) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetCheckInId sets the checkInId property value. Identifier for the Reflect check-in.
 func (m *ReflectCheckInResponse) SetCheckInId(value *string)() {
-    m.checkInId = value
+    err := m.GetBackingStore().Set("checkInId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCheckInTitle sets the checkInTitle property value. The question or prompt of the Reflect check-in that this response addresses.
 func (m *ReflectCheckInResponse) SetCheckInTitle(value *string)() {
-    m.checkInTitle = value
+    err := m.GetBackingStore().Set("checkInTitle", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetClassId sets the classId property value. ID of the class associated with the Reflect check-in.
 func (m *ReflectCheckInResponse) SetClassId(value *string)() {
-    m.classId = value
+    err := m.GetBackingStore().Set("classId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. Date and time when the Reflect check-in was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ReflectCheckInResponse) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatorId sets the creatorId property value. ID of the user who created the Reflect check-in.
 func (m *ReflectCheckInResponse) SetCreatorId(value *string)() {
-    m.creatorId = value
+    err := m.GetBackingStore().Set("creatorId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsClosed sets the isClosed property value. Indicates whether the Reflect check-in is closed (true) or open (false).
 func (m *ReflectCheckInResponse) SetIsClosed(value *bool)() {
-    m.isClosed = value
+    err := m.GetBackingStore().Set("isClosed", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResponderId sets the responderId property value. ID of the user who responded to the Reflect check-in.
 func (m *ReflectCheckInResponse) SetResponderId(value *string)() {
-    m.responderId = value
+    err := m.GetBackingStore().Set("responderId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResponseEmotion sets the responseEmotion property value. The responseEmotion property
 func (m *ReflectCheckInResponse) SetResponseEmotion(value *ResponseEmotionType)() {
-    m.responseEmotion = value
+    err := m.GetBackingStore().Set("responseEmotion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResponseFeedback sets the responseFeedback property value. The responseFeedback property
 func (m *ReflectCheckInResponse) SetResponseFeedback(value *ResponseFeedbackType)() {
-    m.responseFeedback = value
+    err := m.GetBackingStore().Set("responseFeedback", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmitDateTime sets the submitDateTime property value. Date and time when the response to the Reflect check-in was submitted. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ReflectCheckInResponse) SetSubmitDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.submitDateTime = value
+    err := m.GetBackingStore().Set("submitDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ReflectCheckInResponseable interface {
     Entityable

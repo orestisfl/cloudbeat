@@ -9,10 +9,6 @@ import (
 
 type FileHashEvidence struct {
     AlertEvidence
-    // The algorithm property
-    algorithm *FileHashAlgorithm
-    // The value property
-    value *string
 }
 // NewFileHashEvidence instantiates a new FileHashEvidence and sets the default values.
 func NewFileHashEvidence()(*FileHashEvidence) {
@@ -31,7 +27,14 @@ func CreateFileHashEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 // GetAlgorithm gets the algorithm property value. The algorithm property
 // returns a *FileHashAlgorithm when successful
 func (m *FileHashEvidence) GetAlgorithm()(*FileHashAlgorithm) {
-    return m.algorithm
+    val, err := m.GetBackingStore().Get("algorithm")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*FileHashAlgorithm)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -62,7 +65,14 @@ func (m *FileHashEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetValue gets the value property value. The value property
 // returns a *string when successful
 func (m *FileHashEvidence) GetValue()(*string) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *FileHashEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -87,11 +97,17 @@ func (m *FileHashEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetAlgorithm sets the algorithm property value. The algorithm property
 func (m *FileHashEvidence) SetAlgorithm(value *FileHashAlgorithm)() {
-    m.algorithm = value
+    err := m.GetBackingStore().Set("algorithm", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValue sets the value property value. The value property
 func (m *FileHashEvidence) SetValue(value *string)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type FileHashEvidenceable interface {
     AlertEvidenceable

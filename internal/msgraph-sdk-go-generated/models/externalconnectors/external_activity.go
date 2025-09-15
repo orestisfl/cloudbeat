@@ -11,12 +11,6 @@ import (
 
 type ExternalActivity struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Represents an identity used to identify who is responsible for the activity.
-    performedBy Identityable
-    // The date and time when the particular activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    startDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The type property
-    typeEscaped *ExternalActivityType
 }
 // NewExternalActivity instantiates a new ExternalActivity and sets the default values.
 func NewExternalActivity()(*ExternalActivity) {
@@ -87,17 +81,38 @@ func (m *ExternalActivity) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetPerformedBy gets the performedBy property value. Represents an identity used to identify who is responsible for the activity.
 // returns a Identityable when successful
 func (m *ExternalActivity) GetPerformedBy()(Identityable) {
-    return m.performedBy
+    val, err := m.GetBackingStore().Get("performedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Identityable)
+    }
+    return nil
 }
 // GetStartDateTime gets the startDateTime property value. The date and time when the particular activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *ExternalActivity) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetTypeEscaped gets the type property value. The type property
 // returns a *ExternalActivityType when successful
 func (m *ExternalActivity) GetTypeEscaped()(*ExternalActivityType) {
-    return m.typeEscaped
+    val, err := m.GetBackingStore().Get("typeEscaped")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ExternalActivityType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ExternalActivity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -128,15 +143,24 @@ func (m *ExternalActivity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetPerformedBy sets the performedBy property value. Represents an identity used to identify who is responsible for the activity.
 func (m *ExternalActivity) SetPerformedBy(value Identityable)() {
-    m.performedBy = value
+    err := m.GetBackingStore().Set("performedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. The date and time when the particular activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ExternalActivity) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTypeEscaped sets the type property value. The type property
 func (m *ExternalActivity) SetTypeEscaped(value *ExternalActivityType)() {
-    m.typeEscaped = value
+    err := m.GetBackingStore().Set("typeEscaped", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ExternalActivityable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

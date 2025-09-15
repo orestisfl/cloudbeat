@@ -9,8 +9,6 @@ import (
 
 type ActivitiesContainer struct {
     Entity
-    // Collection of activity logs related to content processing.
-    contentActivities []ContentActivityable
 }
 // NewActivitiesContainer instantiates a new ActivitiesContainer and sets the default values.
 func NewActivitiesContainer()(*ActivitiesContainer) {
@@ -27,7 +25,14 @@ func CreateActivitiesContainerFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetContentActivities gets the contentActivities property value. Collection of activity logs related to content processing.
 // returns a []ContentActivityable when successful
 func (m *ActivitiesContainer) GetContentActivities()([]ContentActivityable) {
-    return m.contentActivities
+    val, err := m.GetBackingStore().Get("contentActivities")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ContentActivityable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -73,7 +78,10 @@ func (m *ActivitiesContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetContentActivities sets the contentActivities property value. Collection of activity logs related to content processing.
 func (m *ActivitiesContainer) SetContentActivities(value []ContentActivityable)() {
-    m.contentActivities = value
+    err := m.GetBackingStore().Set("contentActivities", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ActivitiesContainerable interface {
     Entityable

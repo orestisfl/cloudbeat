@@ -10,10 +10,6 @@ import (
 
 type ParticipantBase struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // List of administrativeUnitInfo objects for the call participant.
-    administrativeUnitInfos []AdministrativeUnitInfoable
-    // The identity of the call participant.
-    identity i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.CommunicationsIdentitySetable
 }
 // NewParticipantBase instantiates a new ParticipantBase and sets the default values.
 func NewParticipantBase()(*ParticipantBase) {
@@ -50,7 +46,14 @@ func CreateParticipantBaseFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetAdministrativeUnitInfos gets the administrativeUnitInfos property value. List of administrativeUnitInfo objects for the call participant.
 // returns a []AdministrativeUnitInfoable when successful
 func (m *ParticipantBase) GetAdministrativeUnitInfos()([]AdministrativeUnitInfoable) {
-    return m.administrativeUnitInfos
+    val, err := m.GetBackingStore().Get("administrativeUnitInfos")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AdministrativeUnitInfoable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -87,7 +90,14 @@ func (m *ParticipantBase) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetIdentity gets the identity property value. The identity of the call participant.
 // returns a CommunicationsIdentitySetable when successful
 func (m *ParticipantBase) GetIdentity()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.CommunicationsIdentitySetable) {
-    return m.identity
+    val, err := m.GetBackingStore().Get("identity")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.CommunicationsIdentitySetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ParticipantBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -117,11 +127,17 @@ func (m *ParticipantBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetAdministrativeUnitInfos sets the administrativeUnitInfos property value. List of administrativeUnitInfo objects for the call participant.
 func (m *ParticipantBase) SetAdministrativeUnitInfos(value []AdministrativeUnitInfoable)() {
-    m.administrativeUnitInfos = value
+    err := m.GetBackingStore().Set("administrativeUnitInfos", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentity sets the identity property value. The identity of the call participant.
 func (m *ParticipantBase) SetIdentity(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.CommunicationsIdentitySetable)() {
-    m.identity = value
+    err := m.GetBackingStore().Set("identity", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ParticipantBaseable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

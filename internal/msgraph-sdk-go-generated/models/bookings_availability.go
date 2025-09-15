@@ -5,22 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type BookingsAvailability struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The availabilityType property
-    availabilityType *BookingsServiceAvailabilityType
-    // The hours of operation in a week. The business hours value is set to null if the availability type isn't customWeeklyHours.
-    businessHours []BookingWorkHoursable
-    // The OdataType property
-    odataType *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewBookingsAvailability instantiates a new BookingsAvailability and sets the default values.
 func NewBookingsAvailability()(*BookingsAvailability) {
     m := &BookingsAvailability{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -50,17 +46,44 @@ func CreateBookingsAvailabilityFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *BookingsAvailability) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
 }
 // GetAvailabilityType gets the availabilityType property value. The availabilityType property
 // returns a *BookingsServiceAvailabilityType when successful
 func (m *BookingsAvailability) GetAvailabilityType()(*BookingsServiceAvailabilityType) {
-    return m.availabilityType
+    val, err := m.GetBackingStore().Get("availabilityType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*BookingsServiceAvailabilityType)
+    }
+    return nil
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *BookingsAvailability) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetBusinessHours gets the businessHours property value. The hours of operation in a week. The business hours value is set to null if the availability type isn't customWeeklyHours.
 // returns a []BookingWorkHoursable when successful
 func (m *BookingsAvailability) GetBusinessHours()([]BookingWorkHoursable) {
-    return m.businessHours
+    val, err := m.GetBackingStore().Get("businessHours")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]BookingWorkHoursable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -107,7 +130,14 @@ func (m *BookingsAvailability) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *BookingsAvailability) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BookingsAvailability) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -146,27 +176,46 @@ func (m *BookingsAvailability) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *BookingsAvailability) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAvailabilityType sets the availabilityType property value. The availabilityType property
 func (m *BookingsAvailability) SetAvailabilityType(value *BookingsServiceAvailabilityType)() {
-    m.availabilityType = value
+    err := m.GetBackingStore().Set("availabilityType", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *BookingsAvailability) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetBusinessHours sets the businessHours property value. The hours of operation in a week. The business hours value is set to null if the availability type isn't customWeeklyHours.
 func (m *BookingsAvailability) SetBusinessHours(value []BookingWorkHoursable)() {
-    m.businessHours = value
+    err := m.GetBackingStore().Set("businessHours", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *BookingsAvailability) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BookingsAvailabilityable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAvailabilityType()(*BookingsServiceAvailabilityType)
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetBusinessHours()([]BookingWorkHoursable)
     GetOdataType()(*string)
     SetAvailabilityType(value *BookingsServiceAvailabilityType)()
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetBusinessHours(value []BookingWorkHoursable)()
     SetOdataType(value *string)()
 }

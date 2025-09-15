@@ -9,58 +9,6 @@ import (
 
 type IoTDeviceEvidence struct {
     AlertEvidence
-    // The device ID.
-    deviceId *string
-    // The friendly name of the device.
-    deviceName *string
-    // The URL to the device page in the IoT Defender portal.
-    devicePageLink *string
-    // The device subtype.
-    deviceSubType *string
-    // The type of the device. For example, 'temperature sensor,' 'freezer,' 'wind turbine,' and so on.
-    deviceType *string
-    // The importance level for the IoT device. Possible values are low, normal, high, and unknownFutureValue.
-    importance *IoTDeviceImportanceType
-    // The azureResourceEvidence entity that represents the IoT Hub that the device belongs to.
-    ioTHub AzureResourceEvidenceable
-    // The ID of the Azure Security Center for the IoT agent that is running on the device.
-    ioTSecurityAgentId *string
-    // The current IP address of the device.
-    ipAddress IpEvidenceable
-    // Indicates whether the device classified as an authorized device.
-    isAuthorized *bool
-    // Indicates whether the device classified as a programming device.
-    isProgramming *bool
-    // Indicates whether the device classified as a scanner.
-    isScanner *bool
-    // The MAC address of the device.
-    macAddress *string
-    // The manufacturer of the device.
-    manufacturer *string
-    // The model of the device.
-    model *string
-    // The current network interface controllers on the device.
-    nics []NicEvidenceable
-    // The operating system the device is running.
-    operatingSystem *string
-    // The owners for the device.
-    owners []string
-    // The list of protocols that the device supports.
-    protocols []string
-    // The Purdue Layer of the device.
-    purdueLayer *string
-    // The sensor that monitors the device.
-    sensor *string
-    // The serial number of the device.
-    serialNumber *string
-    // The site location of the device.
-    site *string
-    // The source (microsoft/vendor) of the device entity.
-    source *string
-    // A URL reference to the source item where the device is managed.
-    sourceRef UrlEvidenceable
-    // The zone location of the device within a site.
-    zone *string
 }
 // NewIoTDeviceEvidence instantiates a new IoTDeviceEvidence and sets the default values.
 func NewIoTDeviceEvidence()(*IoTDeviceEvidence) {
@@ -79,27 +27,62 @@ func CreateIoTDeviceEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetDeviceId gets the deviceId property value. The device ID.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetDeviceId()(*string) {
-    return m.deviceId
+    val, err := m.GetBackingStore().Get("deviceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDeviceName gets the deviceName property value. The friendly name of the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetDeviceName()(*string) {
-    return m.deviceName
+    val, err := m.GetBackingStore().Get("deviceName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDevicePageLink gets the devicePageLink property value. The URL to the device page in the IoT Defender portal.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetDevicePageLink()(*string) {
-    return m.devicePageLink
+    val, err := m.GetBackingStore().Get("devicePageLink")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDeviceSubType gets the deviceSubType property value. The device subtype.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetDeviceSubType()(*string) {
-    return m.deviceSubType
+    val, err := m.GetBackingStore().Get("deviceSubType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDeviceType gets the deviceType property value. The type of the device. For example, 'temperature sensor,' 'freezer,' 'wind turbine,' and so on.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetDeviceType()(*string) {
-    return m.deviceType
+    val, err := m.GetBackingStore().Get("deviceType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -388,107 +371,254 @@ func (m *IoTDeviceEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetImportance gets the importance property value. The importance level for the IoT device. Possible values are low, normal, high, and unknownFutureValue.
 // returns a *IoTDeviceImportanceType when successful
 func (m *IoTDeviceEvidence) GetImportance()(*IoTDeviceImportanceType) {
-    return m.importance
+    val, err := m.GetBackingStore().Get("importance")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*IoTDeviceImportanceType)
+    }
+    return nil
 }
 // GetIoTHub gets the ioTHub property value. The azureResourceEvidence entity that represents the IoT Hub that the device belongs to.
 // returns a AzureResourceEvidenceable when successful
 func (m *IoTDeviceEvidence) GetIoTHub()(AzureResourceEvidenceable) {
-    return m.ioTHub
+    val, err := m.GetBackingStore().Get("ioTHub")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AzureResourceEvidenceable)
+    }
+    return nil
 }
 // GetIoTSecurityAgentId gets the ioTSecurityAgentId property value. The ID of the Azure Security Center for the IoT agent that is running on the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetIoTSecurityAgentId()(*string) {
-    return m.ioTSecurityAgentId
+    val, err := m.GetBackingStore().Get("ioTSecurityAgentId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIpAddress gets the ipAddress property value. The current IP address of the device.
 // returns a IpEvidenceable when successful
 func (m *IoTDeviceEvidence) GetIpAddress()(IpEvidenceable) {
-    return m.ipAddress
+    val, err := m.GetBackingStore().Get("ipAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IpEvidenceable)
+    }
+    return nil
 }
 // GetIsAuthorized gets the isAuthorized property value. Indicates whether the device classified as an authorized device.
 // returns a *bool when successful
 func (m *IoTDeviceEvidence) GetIsAuthorized()(*bool) {
-    return m.isAuthorized
+    val, err := m.GetBackingStore().Get("isAuthorized")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsProgramming gets the isProgramming property value. Indicates whether the device classified as a programming device.
 // returns a *bool when successful
 func (m *IoTDeviceEvidence) GetIsProgramming()(*bool) {
-    return m.isProgramming
+    val, err := m.GetBackingStore().Get("isProgramming")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsScanner gets the isScanner property value. Indicates whether the device classified as a scanner.
 // returns a *bool when successful
 func (m *IoTDeviceEvidence) GetIsScanner()(*bool) {
-    return m.isScanner
+    val, err := m.GetBackingStore().Get("isScanner")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetMacAddress gets the macAddress property value. The MAC address of the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetMacAddress()(*string) {
-    return m.macAddress
+    val, err := m.GetBackingStore().Get("macAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetManufacturer gets the manufacturer property value. The manufacturer of the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetManufacturer()(*string) {
-    return m.manufacturer
+    val, err := m.GetBackingStore().Get("manufacturer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetModel gets the model property value. The model of the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetModel()(*string) {
-    return m.model
+    val, err := m.GetBackingStore().Get("model")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetNics gets the nics property value. The current network interface controllers on the device.
 // returns a []NicEvidenceable when successful
 func (m *IoTDeviceEvidence) GetNics()([]NicEvidenceable) {
-    return m.nics
+    val, err := m.GetBackingStore().Get("nics")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]NicEvidenceable)
+    }
+    return nil
 }
 // GetOperatingSystem gets the operatingSystem property value. The operating system the device is running.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetOperatingSystem()(*string) {
-    return m.operatingSystem
+    val, err := m.GetBackingStore().Get("operatingSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOwners gets the owners property value. The owners for the device.
 // returns a []string when successful
 func (m *IoTDeviceEvidence) GetOwners()([]string) {
-    return m.owners
+    val, err := m.GetBackingStore().Get("owners")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetProtocols gets the protocols property value. The list of protocols that the device supports.
 // returns a []string when successful
 func (m *IoTDeviceEvidence) GetProtocols()([]string) {
-    return m.protocols
+    val, err := m.GetBackingStore().Get("protocols")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetPurdueLayer gets the purdueLayer property value. The Purdue Layer of the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetPurdueLayer()(*string) {
-    return m.purdueLayer
+    val, err := m.GetBackingStore().Get("purdueLayer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSensor gets the sensor property value. The sensor that monitors the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetSensor()(*string) {
-    return m.sensor
+    val, err := m.GetBackingStore().Get("sensor")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSerialNumber gets the serialNumber property value. The serial number of the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetSerialNumber()(*string) {
-    return m.serialNumber
+    val, err := m.GetBackingStore().Get("serialNumber")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSite gets the site property value. The site location of the device.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetSite()(*string) {
-    return m.site
+    val, err := m.GetBackingStore().Get("site")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSource gets the source property value. The source (microsoft/vendor) of the device entity.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetSource()(*string) {
-    return m.source
+    val, err := m.GetBackingStore().Get("source")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSourceRef gets the sourceRef property value. A URL reference to the source item where the device is managed.
 // returns a UrlEvidenceable when successful
 func (m *IoTDeviceEvidence) GetSourceRef()(UrlEvidenceable) {
-    return m.sourceRef
+    val, err := m.GetBackingStore().Get("sourceRef")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UrlEvidenceable)
+    }
+    return nil
 }
 // GetZone gets the zone property value. The zone location of the device within a site.
 // returns a *string when successful
 func (m *IoTDeviceEvidence) GetZone()(*string) {
-    return m.zone
+    val, err := m.GetBackingStore().Get("zone")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *IoTDeviceEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -663,107 +793,185 @@ func (m *IoTDeviceEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetDeviceId sets the deviceId property value. The device ID.
 func (m *IoTDeviceEvidence) SetDeviceId(value *string)() {
-    m.deviceId = value
+    err := m.GetBackingStore().Set("deviceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceName sets the deviceName property value. The friendly name of the device.
 func (m *IoTDeviceEvidence) SetDeviceName(value *string)() {
-    m.deviceName = value
+    err := m.GetBackingStore().Set("deviceName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDevicePageLink sets the devicePageLink property value. The URL to the device page in the IoT Defender portal.
 func (m *IoTDeviceEvidence) SetDevicePageLink(value *string)() {
-    m.devicePageLink = value
+    err := m.GetBackingStore().Set("devicePageLink", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceSubType sets the deviceSubType property value. The device subtype.
 func (m *IoTDeviceEvidence) SetDeviceSubType(value *string)() {
-    m.deviceSubType = value
+    err := m.GetBackingStore().Set("deviceSubType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceType sets the deviceType property value. The type of the device. For example, 'temperature sensor,' 'freezer,' 'wind turbine,' and so on.
 func (m *IoTDeviceEvidence) SetDeviceType(value *string)() {
-    m.deviceType = value
+    err := m.GetBackingStore().Set("deviceType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetImportance sets the importance property value. The importance level for the IoT device. Possible values are low, normal, high, and unknownFutureValue.
 func (m *IoTDeviceEvidence) SetImportance(value *IoTDeviceImportanceType)() {
-    m.importance = value
+    err := m.GetBackingStore().Set("importance", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIoTHub sets the ioTHub property value. The azureResourceEvidence entity that represents the IoT Hub that the device belongs to.
 func (m *IoTDeviceEvidence) SetIoTHub(value AzureResourceEvidenceable)() {
-    m.ioTHub = value
+    err := m.GetBackingStore().Set("ioTHub", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIoTSecurityAgentId sets the ioTSecurityAgentId property value. The ID of the Azure Security Center for the IoT agent that is running on the device.
 func (m *IoTDeviceEvidence) SetIoTSecurityAgentId(value *string)() {
-    m.ioTSecurityAgentId = value
+    err := m.GetBackingStore().Set("ioTSecurityAgentId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIpAddress sets the ipAddress property value. The current IP address of the device.
 func (m *IoTDeviceEvidence) SetIpAddress(value IpEvidenceable)() {
-    m.ipAddress = value
+    err := m.GetBackingStore().Set("ipAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsAuthorized sets the isAuthorized property value. Indicates whether the device classified as an authorized device.
 func (m *IoTDeviceEvidence) SetIsAuthorized(value *bool)() {
-    m.isAuthorized = value
+    err := m.GetBackingStore().Set("isAuthorized", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsProgramming sets the isProgramming property value. Indicates whether the device classified as a programming device.
 func (m *IoTDeviceEvidence) SetIsProgramming(value *bool)() {
-    m.isProgramming = value
+    err := m.GetBackingStore().Set("isProgramming", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsScanner sets the isScanner property value. Indicates whether the device classified as a scanner.
 func (m *IoTDeviceEvidence) SetIsScanner(value *bool)() {
-    m.isScanner = value
+    err := m.GetBackingStore().Set("isScanner", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMacAddress sets the macAddress property value. The MAC address of the device.
 func (m *IoTDeviceEvidence) SetMacAddress(value *string)() {
-    m.macAddress = value
+    err := m.GetBackingStore().Set("macAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetManufacturer sets the manufacturer property value. The manufacturer of the device.
 func (m *IoTDeviceEvidence) SetManufacturer(value *string)() {
-    m.manufacturer = value
+    err := m.GetBackingStore().Set("manufacturer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetModel sets the model property value. The model of the device.
 func (m *IoTDeviceEvidence) SetModel(value *string)() {
-    m.model = value
+    err := m.GetBackingStore().Set("model", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNics sets the nics property value. The current network interface controllers on the device.
 func (m *IoTDeviceEvidence) SetNics(value []NicEvidenceable)() {
-    m.nics = value
+    err := m.GetBackingStore().Set("nics", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOperatingSystem sets the operatingSystem property value. The operating system the device is running.
 func (m *IoTDeviceEvidence) SetOperatingSystem(value *string)() {
-    m.operatingSystem = value
+    err := m.GetBackingStore().Set("operatingSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwners sets the owners property value. The owners for the device.
 func (m *IoTDeviceEvidence) SetOwners(value []string)() {
-    m.owners = value
+    err := m.GetBackingStore().Set("owners", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProtocols sets the protocols property value. The list of protocols that the device supports.
 func (m *IoTDeviceEvidence) SetProtocols(value []string)() {
-    m.protocols = value
+    err := m.GetBackingStore().Set("protocols", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPurdueLayer sets the purdueLayer property value. The Purdue Layer of the device.
 func (m *IoTDeviceEvidence) SetPurdueLayer(value *string)() {
-    m.purdueLayer = value
+    err := m.GetBackingStore().Set("purdueLayer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSensor sets the sensor property value. The sensor that monitors the device.
 func (m *IoTDeviceEvidence) SetSensor(value *string)() {
-    m.sensor = value
+    err := m.GetBackingStore().Set("sensor", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSerialNumber sets the serialNumber property value. The serial number of the device.
 func (m *IoTDeviceEvidence) SetSerialNumber(value *string)() {
-    m.serialNumber = value
+    err := m.GetBackingStore().Set("serialNumber", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSite sets the site property value. The site location of the device.
 func (m *IoTDeviceEvidence) SetSite(value *string)() {
-    m.site = value
+    err := m.GetBackingStore().Set("site", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSource sets the source property value. The source (microsoft/vendor) of the device entity.
 func (m *IoTDeviceEvidence) SetSource(value *string)() {
-    m.source = value
+    err := m.GetBackingStore().Set("source", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceRef sets the sourceRef property value. A URL reference to the source item where the device is managed.
 func (m *IoTDeviceEvidence) SetSourceRef(value UrlEvidenceable)() {
-    m.sourceRef = value
+    err := m.GetBackingStore().Set("sourceRef", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetZone sets the zone property value. The zone location of the device within a site.
 func (m *IoTDeviceEvidence) SetZone(value *string)() {
-    m.zone = value
+    err := m.GetBackingStore().Set("zone", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type IoTDeviceEvidenceable interface {
     AlertEvidenceable

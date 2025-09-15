@@ -10,8 +10,6 @@ import (
 // InsightValueDouble the value in an user experience analytics insight.
 type InsightValueDouble struct {
     UserExperienceAnalyticsInsightValue
-    // The double value of the user experience analytics insight.
-    value *float64
 }
 // NewInsightValueDouble instantiates a new InsightValueDouble and sets the default values.
 func NewInsightValueDouble()(*InsightValueDouble) {
@@ -46,7 +44,14 @@ func (m *InsightValueDouble) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetValue gets the value property value. The double value of the user experience analytics insight.
 // returns a *float64 when successful
 func (m *InsightValueDouble) GetValue()(*float64) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*float64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *InsightValueDouble) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *InsightValueDouble) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetValue sets the value property value. The double value of the user experience analytics insight.
 func (m *InsightValueDouble) SetValue(value *float64)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type InsightValueDoubleable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -10,18 +10,6 @@ import (
 
 type MailboxConfigurationEvidence struct {
     AlertEvidence
-    // The configurationId property
-    configurationId *string
-    // The configurationType property
-    configurationType *MailboxConfigurationType
-    // The displayName property
-    displayName *string
-    // The externalDirectoryObjectId property
-    externalDirectoryObjectId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The mailboxPrimaryAddress property
-    mailboxPrimaryAddress *string
-    // The upn property
-    upn *string
 }
 // NewMailboxConfigurationEvidence instantiates a new MailboxConfigurationEvidence and sets the default values.
 func NewMailboxConfigurationEvidence()(*MailboxConfigurationEvidence) {
@@ -40,22 +28,50 @@ func CreateMailboxConfigurationEvidenceFromDiscriminatorValue(parseNode i878a80d
 // GetConfigurationId gets the configurationId property value. The configurationId property
 // returns a *string when successful
 func (m *MailboxConfigurationEvidence) GetConfigurationId()(*string) {
-    return m.configurationId
+    val, err := m.GetBackingStore().Get("configurationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetConfigurationType gets the configurationType property value. The configurationType property
 // returns a *MailboxConfigurationType when successful
 func (m *MailboxConfigurationEvidence) GetConfigurationType()(*MailboxConfigurationType) {
-    return m.configurationType
+    val, err := m.GetBackingStore().Get("configurationType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*MailboxConfigurationType)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The displayName property
 // returns a *string when successful
 func (m *MailboxConfigurationEvidence) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExternalDirectoryObjectId gets the externalDirectoryObjectId property value. The externalDirectoryObjectId property
 // returns a *UUID when successful
 func (m *MailboxConfigurationEvidence) GetExternalDirectoryObjectId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.externalDirectoryObjectId
+    val, err := m.GetBackingStore().Get("externalDirectoryObjectId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -126,12 +142,26 @@ func (m *MailboxConfigurationEvidence) GetFieldDeserializers()(map[string]func(i
 // GetMailboxPrimaryAddress gets the mailboxPrimaryAddress property value. The mailboxPrimaryAddress property
 // returns a *string when successful
 func (m *MailboxConfigurationEvidence) GetMailboxPrimaryAddress()(*string) {
-    return m.mailboxPrimaryAddress
+    val, err := m.GetBackingStore().Get("mailboxPrimaryAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUpn gets the upn property value. The upn property
 // returns a *string when successful
 func (m *MailboxConfigurationEvidence) GetUpn()(*string) {
-    return m.upn
+    val, err := m.GetBackingStore().Get("upn")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MailboxConfigurationEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -180,27 +210,45 @@ func (m *MailboxConfigurationEvidence) Serialize(writer i878a80d2330e89d26896388
 }
 // SetConfigurationId sets the configurationId property value. The configurationId property
 func (m *MailboxConfigurationEvidence) SetConfigurationId(value *string)() {
-    m.configurationId = value
+    err := m.GetBackingStore().Set("configurationId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetConfigurationType sets the configurationType property value. The configurationType property
 func (m *MailboxConfigurationEvidence) SetConfigurationType(value *MailboxConfigurationType)() {
-    m.configurationType = value
+    err := m.GetBackingStore().Set("configurationType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The displayName property
 func (m *MailboxConfigurationEvidence) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalDirectoryObjectId sets the externalDirectoryObjectId property value. The externalDirectoryObjectId property
 func (m *MailboxConfigurationEvidence) SetExternalDirectoryObjectId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.externalDirectoryObjectId = value
+    err := m.GetBackingStore().Set("externalDirectoryObjectId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxPrimaryAddress sets the mailboxPrimaryAddress property value. The mailboxPrimaryAddress property
 func (m *MailboxConfigurationEvidence) SetMailboxPrimaryAddress(value *string)() {
-    m.mailboxPrimaryAddress = value
+    err := m.GetBackingStore().Set("mailboxPrimaryAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUpn sets the upn property value. The upn property
 func (m *MailboxConfigurationEvidence) SetUpn(value *string)() {
-    m.upn = value
+    err := m.GetBackingStore().Set("upn", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MailboxConfigurationEvidenceable interface {
     AlertEvidenceable

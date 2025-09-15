@@ -10,20 +10,6 @@ import (
 
 type ProtectionUnitBase struct {
     Entity
-    // The identity of person who created the protection unit.
-    createdBy IdentitySetable
-    // The time of creation of the protection unit.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Contains error details if an error occurred while creating a protection unit.
-    error PublicErrorable
-    // The identity of person who last modified the protection unit.
-    lastModifiedBy IdentitySetable
-    // Timestamp of the last modification of this protection unit.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The unique identifier of the protection policy based on which protection unit was created.
-    policyId *string
-    // The status of the protection unit. The possible values are: protectRequested, protected, unprotectRequested, unprotected, removeRequested, unknownFutureValue.
-    status *ProtectionUnitStatus
 }
 // NewProtectionUnitBase instantiates a new ProtectionUnitBase and sets the default values.
 func NewProtectionUnitBase()(*ProtectionUnitBase) {
@@ -62,17 +48,38 @@ func CreateProtectionUnitBaseFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetCreatedBy gets the createdBy property value. The identity of person who created the protection unit.
 // returns a IdentitySetable when successful
 func (m *ProtectionUnitBase) GetCreatedBy()(IdentitySetable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The time of creation of the protection unit.
 // returns a *Time when successful
 func (m *ProtectionUnitBase) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetError gets the error property value. Contains error details if an error occurred while creating a protection unit.
 // returns a PublicErrorable when successful
 func (m *ProtectionUnitBase) GetError()(PublicErrorable) {
-    return m.error
+    val, err := m.GetBackingStore().Get("error")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PublicErrorable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -153,22 +160,50 @@ func (m *ProtectionUnitBase) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetLastModifiedBy gets the lastModifiedBy property value. The identity of person who last modified the protection unit.
 // returns a IdentitySetable when successful
 func (m *ProtectionUnitBase) GetLastModifiedBy()(IdentitySetable) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Timestamp of the last modification of this protection unit.
 // returns a *Time when successful
 func (m *ProtectionUnitBase) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetPolicyId gets the policyId property value. The unique identifier of the protection policy based on which protection unit was created.
 // returns a *string when successful
 func (m *ProtectionUnitBase) GetPolicyId()(*string) {
-    return m.policyId
+    val, err := m.GetBackingStore().Get("policyId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the protection unit. The possible values are: protectRequested, protected, unprotectRequested, unprotected, removeRequested, unknownFutureValue.
 // returns a *ProtectionUnitStatus when successful
 func (m *ProtectionUnitBase) GetStatus()(*ProtectionUnitStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ProtectionUnitStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProtectionUnitBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -223,31 +258,52 @@ func (m *ProtectionUnitBase) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetCreatedBy sets the createdBy property value. The identity of person who created the protection unit.
 func (m *ProtectionUnitBase) SetCreatedBy(value IdentitySetable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The time of creation of the protection unit.
 func (m *ProtectionUnitBase) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetError sets the error property value. Contains error details if an error occurred while creating a protection unit.
 func (m *ProtectionUnitBase) SetError(value PublicErrorable)() {
-    m.error = value
+    err := m.GetBackingStore().Set("error", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. The identity of person who last modified the protection unit.
 func (m *ProtectionUnitBase) SetLastModifiedBy(value IdentitySetable)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Timestamp of the last modification of this protection unit.
 func (m *ProtectionUnitBase) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPolicyId sets the policyId property value. The unique identifier of the protection policy based on which protection unit was created.
 func (m *ProtectionUnitBase) SetPolicyId(value *string)() {
-    m.policyId = value
+    err := m.GetBackingStore().Set("policyId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the protection unit. The possible values are: protectRequested, protected, unprotectRequested, unprotected, removeRequested, unknownFutureValue.
 func (m *ProtectionUnitBase) SetStatus(value *ProtectionUnitStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProtectionUnitBaseable interface {
     Entityable

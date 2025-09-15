@@ -9,8 +9,6 @@ import (
 
 type OnAttributeCollectionStartListener struct {
     AuthenticationEventListener
-    // Configuration for what to invoke if the event resolves to this listener.
-    handler OnAttributeCollectionStartHandlerable
 }
 // NewOnAttributeCollectionStartListener instantiates a new OnAttributeCollectionStartListener and sets the default values.
 func NewOnAttributeCollectionStartListener()(*OnAttributeCollectionStartListener) {
@@ -45,7 +43,14 @@ func (m *OnAttributeCollectionStartListener) GetFieldDeserializers()(map[string]
 // GetHandler gets the handler property value. Configuration for what to invoke if the event resolves to this listener.
 // returns a OnAttributeCollectionStartHandlerable when successful
 func (m *OnAttributeCollectionStartListener) GetHandler()(OnAttributeCollectionStartHandlerable) {
-    return m.handler
+    val, err := m.GetBackingStore().Get("handler")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnAttributeCollectionStartHandlerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnAttributeCollectionStartListener) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *OnAttributeCollectionStartListener) Serialize(writer i878a80d2330e89d26
 }
 // SetHandler sets the handler property value. Configuration for what to invoke if the event resolves to this listener.
 func (m *OnAttributeCollectionStartListener) SetHandler(value OnAttributeCollectionStartHandlerable)() {
-    m.handler = value
+    err := m.GetBackingStore().Set("handler", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnAttributeCollectionStartListenerable interface {
     AuthenticationEventListenerable

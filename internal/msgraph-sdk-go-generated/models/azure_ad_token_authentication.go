@@ -9,8 +9,6 @@ import (
 
 type AzureAdTokenAuthentication struct {
     CustomExtensionAuthenticationConfiguration
-    // The appID of the Microsoft Entra application to use to authenticate an app with a custom extension.
-    resourceId *string
 }
 // NewAzureAdTokenAuthentication instantiates a new AzureAdTokenAuthentication and sets the default values.
 func NewAzureAdTokenAuthentication()(*AzureAdTokenAuthentication) {
@@ -45,7 +43,14 @@ func (m *AzureAdTokenAuthentication) GetFieldDeserializers()(map[string]func(i87
 // GetResourceId gets the resourceId property value. The appID of the Microsoft Entra application to use to authenticate an app with a custom extension.
 // returns a *string when successful
 func (m *AzureAdTokenAuthentication) GetResourceId()(*string) {
-    return m.resourceId
+    val, err := m.GetBackingStore().Get("resourceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AzureAdTokenAuthentication) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *AzureAdTokenAuthentication) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetResourceId sets the resourceId property value. The appID of the Microsoft Entra application to use to authenticate an app with a custom extension.
 func (m *AzureAdTokenAuthentication) SetResourceId(value *string)() {
-    m.resourceId = value
+    err := m.GetBackingStore().Set("resourceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AzureAdTokenAuthenticationable interface {
     CustomExtensionAuthenticationConfigurationable

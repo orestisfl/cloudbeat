@@ -10,10 +10,6 @@ import (
 
 type Indicator struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The artifact property
-    artifact Artifactable
-    // The source property
-    source *IndicatorSource
 }
 // NewIndicator instantiates a new Indicator and sets the default values.
 func NewIndicator()(*Indicator) {
@@ -50,7 +46,14 @@ func CreateIndicatorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetArtifact gets the artifact property value. The artifact property
 // returns a Artifactable when successful
 func (m *Indicator) GetArtifact()(Artifactable) {
-    return m.artifact
+    val, err := m.GetBackingStore().Get("artifact")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Artifactable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -81,7 +84,14 @@ func (m *Indicator) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetSource gets the source property value. The source property
 // returns a *IndicatorSource when successful
 func (m *Indicator) GetSource()(*IndicatorSource) {
-    return m.source
+    val, err := m.GetBackingStore().Get("source")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*IndicatorSource)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Indicator) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -106,11 +116,17 @@ func (m *Indicator) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetArtifact sets the artifact property value. The artifact property
 func (m *Indicator) SetArtifact(value Artifactable)() {
-    m.artifact = value
+    err := m.GetBackingStore().Set("artifact", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSource sets the source property value. The source property
 func (m *Indicator) SetSource(value *IndicatorSource)() {
-    m.source = value
+    err := m.GetBackingStore().Set("source", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Indicatorable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

@@ -9,8 +9,6 @@ import (
 
 type Approval struct {
     Entity
-    // A collection of stages in the approval decision.
-    stages []ApprovalStageable
 }
 // NewApproval instantiates a new Approval and sets the default values.
 func NewApproval()(*Approval) {
@@ -49,7 +47,14 @@ func (m *Approval) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetStages gets the stages property value. A collection of stages in the approval decision.
 // returns a []ApprovalStageable when successful
 func (m *Approval) GetStages()([]ApprovalStageable) {
-    return m.stages
+    val, err := m.GetBackingStore().Get("stages")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ApprovalStageable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Approval) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *Approval) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetStages sets the stages property value. A collection of stages in the approval decision.
 func (m *Approval) SetStages(value []ApprovalStageable)() {
-    m.stages = value
+    err := m.GetBackingStore().Set("stages", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Approvalable interface {
     Entityable

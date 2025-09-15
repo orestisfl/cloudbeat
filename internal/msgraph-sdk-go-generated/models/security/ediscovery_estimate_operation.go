@@ -9,24 +9,6 @@ import (
 
 type EdiscoveryEstimateOperation struct {
     CaseOperation
-    // The estimated count of items for the search that matched the content query.
-    indexedItemCount *int64
-    // The estimated size of items for the search that matched the content query.
-    indexedItemsSize *int64
-    // The number of mailboxes that had search hits.
-    mailboxCount *int32
-    // Contains the properties for report file metadata, including downloadUrl, fileName, and size.
-    reportFileMetadata []ReportFileMetadataable
-    // eDiscovery search.
-    search EdiscoverySearchable
-    // The number of mailboxes that had search hits.
-    siteCount *int32
-    // The options to generate statistics. Possible values are: includeRefiners, includeQueryStats, includeUnindexedStats, advancedIndexing, locationsWithoutHits, unknownFutureValue.
-    statisticsOptions *StatisticsOptions
-    // The estimated count of unindexed items for the collection.
-    unindexedItemCount *int64
-    // The estimated size of unindexed items for the collection.
-    unindexedItemsSize *int64
 }
 // NewEdiscoveryEstimateOperation instantiates a new EdiscoveryEstimateOperation and sets the default values.
 func NewEdiscoveryEstimateOperation()(*EdiscoveryEstimateOperation) {
@@ -145,47 +127,110 @@ func (m *EdiscoveryEstimateOperation) GetFieldDeserializers()(map[string]func(i8
 // GetIndexedItemCount gets the indexedItemCount property value. The estimated count of items for the search that matched the content query.
 // returns a *int64 when successful
 func (m *EdiscoveryEstimateOperation) GetIndexedItemCount()(*int64) {
-    return m.indexedItemCount
+    val, err := m.GetBackingStore().Get("indexedItemCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetIndexedItemsSize gets the indexedItemsSize property value. The estimated size of items for the search that matched the content query.
 // returns a *int64 when successful
 func (m *EdiscoveryEstimateOperation) GetIndexedItemsSize()(*int64) {
-    return m.indexedItemsSize
+    val, err := m.GetBackingStore().Get("indexedItemsSize")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetMailboxCount gets the mailboxCount property value. The number of mailboxes that had search hits.
 // returns a *int32 when successful
 func (m *EdiscoveryEstimateOperation) GetMailboxCount()(*int32) {
-    return m.mailboxCount
+    val, err := m.GetBackingStore().Get("mailboxCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetReportFileMetadata gets the reportFileMetadata property value. Contains the properties for report file metadata, including downloadUrl, fileName, and size.
 // returns a []ReportFileMetadataable when successful
 func (m *EdiscoveryEstimateOperation) GetReportFileMetadata()([]ReportFileMetadataable) {
-    return m.reportFileMetadata
+    val, err := m.GetBackingStore().Get("reportFileMetadata")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ReportFileMetadataable)
+    }
+    return nil
 }
 // GetSearch gets the search property value. eDiscovery search.
 // returns a EdiscoverySearchable when successful
 func (m *EdiscoveryEstimateOperation) GetSearch()(EdiscoverySearchable) {
-    return m.search
+    val, err := m.GetBackingStore().Get("search")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EdiscoverySearchable)
+    }
+    return nil
 }
 // GetSiteCount gets the siteCount property value. The number of mailboxes that had search hits.
 // returns a *int32 when successful
 func (m *EdiscoveryEstimateOperation) GetSiteCount()(*int32) {
-    return m.siteCount
+    val, err := m.GetBackingStore().Get("siteCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetStatisticsOptions gets the statisticsOptions property value. The options to generate statistics. Possible values are: includeRefiners, includeQueryStats, includeUnindexedStats, advancedIndexing, locationsWithoutHits, unknownFutureValue.
 // returns a *StatisticsOptions when successful
 func (m *EdiscoveryEstimateOperation) GetStatisticsOptions()(*StatisticsOptions) {
-    return m.statisticsOptions
+    val, err := m.GetBackingStore().Get("statisticsOptions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*StatisticsOptions)
+    }
+    return nil
 }
 // GetUnindexedItemCount gets the unindexedItemCount property value. The estimated count of unindexed items for the collection.
 // returns a *int64 when successful
 func (m *EdiscoveryEstimateOperation) GetUnindexedItemCount()(*int64) {
-    return m.unindexedItemCount
+    val, err := m.GetBackingStore().Get("unindexedItemCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetUnindexedItemsSize gets the unindexedItemsSize property value. The estimated size of unindexed items for the collection.
 // returns a *int64 when successful
 func (m *EdiscoveryEstimateOperation) GetUnindexedItemsSize()(*int64) {
-    return m.unindexedItemsSize
+    val, err := m.GetBackingStore().Get("unindexedItemsSize")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EdiscoveryEstimateOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -258,39 +303,66 @@ func (m *EdiscoveryEstimateOperation) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetIndexedItemCount sets the indexedItemCount property value. The estimated count of items for the search that matched the content query.
 func (m *EdiscoveryEstimateOperation) SetIndexedItemCount(value *int64)() {
-    m.indexedItemCount = value
+    err := m.GetBackingStore().Set("indexedItemCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIndexedItemsSize sets the indexedItemsSize property value. The estimated size of items for the search that matched the content query.
 func (m *EdiscoveryEstimateOperation) SetIndexedItemsSize(value *int64)() {
-    m.indexedItemsSize = value
+    err := m.GetBackingStore().Set("indexedItemsSize", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMailboxCount sets the mailboxCount property value. The number of mailboxes that had search hits.
 func (m *EdiscoveryEstimateOperation) SetMailboxCount(value *int32)() {
-    m.mailboxCount = value
+    err := m.GetBackingStore().Set("mailboxCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReportFileMetadata sets the reportFileMetadata property value. Contains the properties for report file metadata, including downloadUrl, fileName, and size.
 func (m *EdiscoveryEstimateOperation) SetReportFileMetadata(value []ReportFileMetadataable)() {
-    m.reportFileMetadata = value
+    err := m.GetBackingStore().Set("reportFileMetadata", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSearch sets the search property value. eDiscovery search.
 func (m *EdiscoveryEstimateOperation) SetSearch(value EdiscoverySearchable)() {
-    m.search = value
+    err := m.GetBackingStore().Set("search", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteCount sets the siteCount property value. The number of mailboxes that had search hits.
 func (m *EdiscoveryEstimateOperation) SetSiteCount(value *int32)() {
-    m.siteCount = value
+    err := m.GetBackingStore().Set("siteCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatisticsOptions sets the statisticsOptions property value. The options to generate statistics. Possible values are: includeRefiners, includeQueryStats, includeUnindexedStats, advancedIndexing, locationsWithoutHits, unknownFutureValue.
 func (m *EdiscoveryEstimateOperation) SetStatisticsOptions(value *StatisticsOptions)() {
-    m.statisticsOptions = value
+    err := m.GetBackingStore().Set("statisticsOptions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnindexedItemCount sets the unindexedItemCount property value. The estimated count of unindexed items for the collection.
 func (m *EdiscoveryEstimateOperation) SetUnindexedItemCount(value *int64)() {
-    m.unindexedItemCount = value
+    err := m.GetBackingStore().Set("unindexedItemCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnindexedItemsSize sets the unindexedItemsSize property value. The estimated size of unindexed items for the collection.
 func (m *EdiscoveryEstimateOperation) SetUnindexedItemsSize(value *int64)() {
-    m.unindexedItemsSize = value
+    err := m.GetBackingStore().Set("unindexedItemsSize", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EdiscoveryEstimateOperationable interface {
     CaseOperationable

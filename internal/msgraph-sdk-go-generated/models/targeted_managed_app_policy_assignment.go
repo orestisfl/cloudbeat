@@ -10,8 +10,6 @@ import (
 // TargetedManagedAppPolicyAssignment the type for deployment of groups or apps.
 type TargetedManagedAppPolicyAssignment struct {
     Entity
-    // Identifier for deployment to a group or app
-    target DeviceAndAppManagementAssignmentTargetable
 }
 // NewTargetedManagedAppPolicyAssignment instantiates a new TargetedManagedAppPolicyAssignment and sets the default values.
 func NewTargetedManagedAppPolicyAssignment()(*TargetedManagedAppPolicyAssignment) {
@@ -44,7 +42,14 @@ func (m *TargetedManagedAppPolicyAssignment) GetFieldDeserializers()(map[string]
 // GetTarget gets the target property value. Identifier for deployment to a group or app
 // returns a DeviceAndAppManagementAssignmentTargetable when successful
 func (m *TargetedManagedAppPolicyAssignment) GetTarget()(DeviceAndAppManagementAssignmentTargetable) {
-    return m.target
+    val, err := m.GetBackingStore().Get("target")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DeviceAndAppManagementAssignmentTargetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TargetedManagedAppPolicyAssignment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -62,7 +67,10 @@ func (m *TargetedManagedAppPolicyAssignment) Serialize(writer i878a80d2330e89d26
 }
 // SetTarget sets the target property value. Identifier for deployment to a group or app
 func (m *TargetedManagedAppPolicyAssignment) SetTarget(value DeviceAndAppManagementAssignmentTargetable)() {
-    m.target = value
+    err := m.GetBackingStore().Set("target", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TargetedManagedAppPolicyAssignmentable interface {
     Entityable

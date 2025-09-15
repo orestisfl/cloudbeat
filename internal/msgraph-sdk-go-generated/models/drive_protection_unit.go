@@ -9,12 +9,6 @@ import (
 
 type DriveProtectionUnit struct {
     ProtectionUnitBase
-    // ID of the directory object.
-    directoryObjectId *string
-    // Display name of the directory object.
-    displayName *string
-    // Email associated with the directory object.
-    email *string
 }
 // NewDriveProtectionUnit instantiates a new DriveProtectionUnit and sets the default values.
 func NewDriveProtectionUnit()(*DriveProtectionUnit) {
@@ -33,17 +27,38 @@ func CreateDriveProtectionUnitFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetDirectoryObjectId gets the directoryObjectId property value. ID of the directory object.
 // returns a *string when successful
 func (m *DriveProtectionUnit) GetDirectoryObjectId()(*string) {
-    return m.directoryObjectId
+    val, err := m.GetBackingStore().Get("directoryObjectId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. Display name of the directory object.
 // returns a *string when successful
 func (m *DriveProtectionUnit) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetEmail gets the email property value. Email associated with the directory object.
 // returns a *string when successful
 func (m *DriveProtectionUnit) GetEmail()(*string) {
-    return m.email
+    val, err := m.GetBackingStore().Get("email")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -97,15 +112,24 @@ func (m *DriveProtectionUnit) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetDirectoryObjectId sets the directoryObjectId property value. ID of the directory object.
 func (m *DriveProtectionUnit) SetDirectoryObjectId(value *string)() {
-    m.directoryObjectId = value
+    err := m.GetBackingStore().Set("directoryObjectId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. Display name of the directory object.
 func (m *DriveProtectionUnit) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEmail sets the email property value. Email associated with the directory object.
 func (m *DriveProtectionUnit) SetEmail(value *string)() {
-    m.email = value
+    err := m.GetBackingStore().Set("email", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DriveProtectionUnitable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -9,10 +9,6 @@ import (
 
 type AuthenticationEventListener struct {
     Entity
-    // The identifier of the authenticationEventsFlow object.
-    authenticationEventsFlowId *string
-    // The conditions on which this authenticationEventListener should trigger.
-    conditions AuthenticationConditionsable
 }
 // NewAuthenticationEventListener instantiates a new AuthenticationEventListener and sets the default values.
 func NewAuthenticationEventListener()(*AuthenticationEventListener) {
@@ -61,12 +57,26 @@ func CreateAuthenticationEventListenerFromDiscriminatorValue(parseNode i878a80d2
 // GetAuthenticationEventsFlowId gets the authenticationEventsFlowId property value. The identifier of the authenticationEventsFlow object.
 // returns a *string when successful
 func (m *AuthenticationEventListener) GetAuthenticationEventsFlowId()(*string) {
-    return m.authenticationEventsFlowId
+    val, err := m.GetBackingStore().Get("authenticationEventsFlowId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetConditions gets the conditions property value. The conditions on which this authenticationEventListener should trigger.
 // returns a AuthenticationConditionsable when successful
 func (m *AuthenticationEventListener) GetConditions()(AuthenticationConditionsable) {
-    return m.conditions
+    val, err := m.GetBackingStore().Get("conditions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AuthenticationConditionsable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -116,11 +126,17 @@ func (m *AuthenticationEventListener) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetAuthenticationEventsFlowId sets the authenticationEventsFlowId property value. The identifier of the authenticationEventsFlow object.
 func (m *AuthenticationEventListener) SetAuthenticationEventsFlowId(value *string)() {
-    m.authenticationEventsFlowId = value
+    err := m.GetBackingStore().Set("authenticationEventsFlowId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetConditions sets the conditions property value. The conditions on which this authenticationEventListener should trigger.
 func (m *AuthenticationEventListener) SetConditions(value AuthenticationConditionsable)() {
-    m.conditions = value
+    err := m.GetBackingStore().Set("conditions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AuthenticationEventListenerable interface {
     Entityable

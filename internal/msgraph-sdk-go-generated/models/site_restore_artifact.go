@@ -9,12 +9,6 @@ import (
 
 type SiteRestoreArtifact struct {
     RestoreArtifactBase
-    // The new site identifier if the value of the destinationType property is new, and the existing site ID if the value is inPlace.
-    restoredSiteId *string
-    // The name of the restored site.
-    restoredSiteName *string
-    // The web URL of the restored site.
-    restoredSiteWebUrl *string
 }
 // NewSiteRestoreArtifact instantiates a new SiteRestoreArtifact and sets the default values.
 func NewSiteRestoreArtifact()(*SiteRestoreArtifact) {
@@ -67,17 +61,38 @@ func (m *SiteRestoreArtifact) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetRestoredSiteId gets the restoredSiteId property value. The new site identifier if the value of the destinationType property is new, and the existing site ID if the value is inPlace.
 // returns a *string when successful
 func (m *SiteRestoreArtifact) GetRestoredSiteId()(*string) {
-    return m.restoredSiteId
+    val, err := m.GetBackingStore().Get("restoredSiteId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRestoredSiteName gets the restoredSiteName property value. The name of the restored site.
 // returns a *string when successful
 func (m *SiteRestoreArtifact) GetRestoredSiteName()(*string) {
-    return m.restoredSiteName
+    val, err := m.GetBackingStore().Get("restoredSiteName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRestoredSiteWebUrl gets the restoredSiteWebUrl property value. The web URL of the restored site.
 // returns a *string when successful
 func (m *SiteRestoreArtifact) GetRestoredSiteWebUrl()(*string) {
-    return m.restoredSiteWebUrl
+    val, err := m.GetBackingStore().Get("restoredSiteWebUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SiteRestoreArtifact) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -95,15 +110,24 @@ func (m *SiteRestoreArtifact) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetRestoredSiteId sets the restoredSiteId property value. The new site identifier if the value of the destinationType property is new, and the existing site ID if the value is inPlace.
 func (m *SiteRestoreArtifact) SetRestoredSiteId(value *string)() {
-    m.restoredSiteId = value
+    err := m.GetBackingStore().Set("restoredSiteId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoredSiteName sets the restoredSiteName property value. The name of the restored site.
 func (m *SiteRestoreArtifact) SetRestoredSiteName(value *string)() {
-    m.restoredSiteName = value
+    err := m.GetBackingStore().Set("restoredSiteName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestoredSiteWebUrl sets the restoredSiteWebUrl property value. The web URL of the restored site.
 func (m *SiteRestoreArtifact) SetRestoredSiteWebUrl(value *string)() {
-    m.restoredSiteWebUrl = value
+    err := m.GetBackingStore().Set("restoredSiteWebUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SiteRestoreArtifactable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -9,8 +9,6 @@ import (
 
 type SiteProtectionRule struct {
     ProtectionRuleBase
-    // Contains a site expression. For examples, see siteExpression example.
-    siteExpression *string
 }
 // NewSiteProtectionRule instantiates a new SiteProtectionRule and sets the default values.
 func NewSiteProtectionRule()(*SiteProtectionRule) {
@@ -45,7 +43,14 @@ func (m *SiteProtectionRule) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetSiteExpression gets the siteExpression property value. Contains a site expression. For examples, see siteExpression example.
 // returns a *string when successful
 func (m *SiteProtectionRule) GetSiteExpression()(*string) {
-    return m.siteExpression
+    val, err := m.GetBackingStore().Get("siteExpression")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SiteProtectionRule) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *SiteProtectionRule) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetSiteExpression sets the siteExpression property value. Contains a site expression. For examples, see siteExpression example.
 func (m *SiteProtectionRule) SetSiteExpression(value *string)() {
-    m.siteExpression = value
+    err := m.GetBackingStore().Set("siteExpression", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SiteProtectionRuleable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

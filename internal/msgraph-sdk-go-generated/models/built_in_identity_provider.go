@@ -9,8 +9,6 @@ import (
 
 type BuiltInIdentityProvider struct {
     IdentityProviderBase
-    // The identity provider type. For a B2B scenario, possible values: AADSignup, MicrosoftAccount, EmailOTP. Required.
-    identityProviderType *string
 }
 // NewBuiltInIdentityProvider instantiates a new BuiltInIdentityProvider and sets the default values.
 func NewBuiltInIdentityProvider()(*BuiltInIdentityProvider) {
@@ -45,7 +43,14 @@ func (m *BuiltInIdentityProvider) GetFieldDeserializers()(map[string]func(i878a8
 // GetIdentityProviderType gets the identityProviderType property value. The identity provider type. For a B2B scenario, possible values: AADSignup, MicrosoftAccount, EmailOTP. Required.
 // returns a *string when successful
 func (m *BuiltInIdentityProvider) GetIdentityProviderType()(*string) {
-    return m.identityProviderType
+    val, err := m.GetBackingStore().Get("identityProviderType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BuiltInIdentityProvider) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *BuiltInIdentityProvider) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetIdentityProviderType sets the identityProviderType property value. The identity provider type. For a B2B scenario, possible values: AADSignup, MicrosoftAccount, EmailOTP. Required.
 func (m *BuiltInIdentityProvider) SetIdentityProviderType(value *string)() {
-    m.identityProviderType = value
+    err := m.GetBackingStore().Set("identityProviderType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BuiltInIdentityProviderable interface {
     IdentityProviderBaseable

@@ -9,10 +9,6 @@ import (
 
 type X509CertificateCombinationConfiguration struct {
     AuthenticationCombinationConfiguration
-    // A list of allowed subject key identifier values.
-    allowedIssuerSkis []string
-    // A list of allowed policy OIDs.
-    allowedPolicyOIDs []string
 }
 // NewX509CertificateCombinationConfiguration instantiates a new X509CertificateCombinationConfiguration and sets the default values.
 func NewX509CertificateCombinationConfiguration()(*X509CertificateCombinationConfiguration) {
@@ -31,12 +27,26 @@ func CreateX509CertificateCombinationConfigurationFromDiscriminatorValue(parseNo
 // GetAllowedIssuerSkis gets the allowedIssuerSkis property value. A list of allowed subject key identifier values.
 // returns a []string when successful
 func (m *X509CertificateCombinationConfiguration) GetAllowedIssuerSkis()([]string) {
-    return m.allowedIssuerSkis
+    val, err := m.GetBackingStore().Get("allowedIssuerSkis")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetAllowedPolicyOIDs gets the allowedPolicyOIDs property value. A list of allowed policy OIDs.
 // returns a []string when successful
 func (m *X509CertificateCombinationConfiguration) GetAllowedPolicyOIDs()([]string) {
-    return m.allowedPolicyOIDs
+    val, err := m.GetBackingStore().Get("allowedPolicyOIDs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -98,11 +108,17 @@ func (m *X509CertificateCombinationConfiguration) Serialize(writer i878a80d2330e
 }
 // SetAllowedIssuerSkis sets the allowedIssuerSkis property value. A list of allowed subject key identifier values.
 func (m *X509CertificateCombinationConfiguration) SetAllowedIssuerSkis(value []string)() {
-    m.allowedIssuerSkis = value
+    err := m.GetBackingStore().Set("allowedIssuerSkis", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAllowedPolicyOIDs sets the allowedPolicyOIDs property value. A list of allowed policy OIDs.
 func (m *X509CertificateCombinationConfiguration) SetAllowedPolicyOIDs(value []string)() {
-    m.allowedPolicyOIDs = value
+    err := m.GetBackingStore().Set("allowedPolicyOIDs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type X509CertificateCombinationConfigurationable interface {
     AuthenticationCombinationConfigurationable

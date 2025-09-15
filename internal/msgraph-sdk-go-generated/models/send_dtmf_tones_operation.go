@@ -9,8 +9,6 @@ import (
 
 type SendDtmfTonesOperation struct {
     CommsOperation
-    // The results of the action. Possible values are: unknown, completedSuccessfully, mediaOperationCanceled, unknownfutureValue.
-    completionReason *SendDtmfCompletionReason
 }
 // NewSendDtmfTonesOperation instantiates a new SendDtmfTonesOperation and sets the default values.
 func NewSendDtmfTonesOperation()(*SendDtmfTonesOperation) {
@@ -27,7 +25,14 @@ func CreateSendDtmfTonesOperationFromDiscriminatorValue(parseNode i878a80d2330e8
 // GetCompletionReason gets the completionReason property value. The results of the action. Possible values are: unknown, completedSuccessfully, mediaOperationCanceled, unknownfutureValue.
 // returns a *SendDtmfCompletionReason when successful
 func (m *SendDtmfTonesOperation) GetCompletionReason()(*SendDtmfCompletionReason) {
-    return m.completionReason
+    val, err := m.GetBackingStore().Get("completionReason")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*SendDtmfCompletionReason)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -62,7 +67,10 @@ func (m *SendDtmfTonesOperation) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetCompletionReason sets the completionReason property value. The results of the action. Possible values are: unknown, completedSuccessfully, mediaOperationCanceled, unknownfutureValue.
 func (m *SendDtmfTonesOperation) SetCompletionReason(value *SendDtmfCompletionReason)() {
-    m.completionReason = value
+    err := m.GetBackingStore().Set("completionReason", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SendDtmfTonesOperationable interface {
     CommsOperationable

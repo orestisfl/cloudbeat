@@ -9,16 +9,6 @@ import (
 
 type CustomTrainingSetting struct {
     TrainingSetting
-    // A user collection that specifies to whom the training should be assigned. Possible values are: none, allUsers, clickedPayload, compromised, reportedPhish, readButNotClicked, didNothing, unknownFutureValue.
-    assignedTo []TrainingAssignedTo
-    // The description of the custom training setting.
-    description *string
-    // The display name of the custom training setting.
-    displayName *string
-    // Training duration.
-    durationInMinutes *int32
-    // The training URL.
-    url *string
 }
 // NewCustomTrainingSetting instantiates a new CustomTrainingSetting and sets the default values.
 func NewCustomTrainingSetting()(*CustomTrainingSetting) {
@@ -37,22 +27,50 @@ func CreateCustomTrainingSettingFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetAssignedTo gets the assignedTo property value. A user collection that specifies to whom the training should be assigned. Possible values are: none, allUsers, clickedPayload, compromised, reportedPhish, readButNotClicked, didNothing, unknownFutureValue.
 // returns a []TrainingAssignedTo when successful
 func (m *CustomTrainingSetting) GetAssignedTo()([]TrainingAssignedTo) {
-    return m.assignedTo
+    val, err := m.GetBackingStore().Get("assignedTo")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TrainingAssignedTo)
+    }
+    return nil
 }
 // GetDescription gets the description property value. The description of the custom training setting.
 // returns a *string when successful
 func (m *CustomTrainingSetting) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The display name of the custom training setting.
 // returns a *string when successful
 func (m *CustomTrainingSetting) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDurationInMinutes gets the durationInMinutes property value. Training duration.
 // returns a *int32 when successful
 func (m *CustomTrainingSetting) GetDurationInMinutes()(*int32) {
-    return m.durationInMinutes
+    val, err := m.GetBackingStore().Get("durationInMinutes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -119,7 +137,14 @@ func (m *CustomTrainingSetting) GetFieldDeserializers()(map[string]func(i878a80d
 // GetUrl gets the url property value. The training URL.
 // returns a *string when successful
 func (m *CustomTrainingSetting) GetUrl()(*string) {
-    return m.url
+    val, err := m.GetBackingStore().Get("url")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CustomTrainingSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -161,23 +186,38 @@ func (m *CustomTrainingSetting) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetAssignedTo sets the assignedTo property value. A user collection that specifies to whom the training should be assigned. Possible values are: none, allUsers, clickedPayload, compromised, reportedPhish, readButNotClicked, didNothing, unknownFutureValue.
 func (m *CustomTrainingSetting) SetAssignedTo(value []TrainingAssignedTo)() {
-    m.assignedTo = value
+    err := m.GetBackingStore().Set("assignedTo", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. The description of the custom training setting.
 func (m *CustomTrainingSetting) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The display name of the custom training setting.
 func (m *CustomTrainingSetting) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDurationInMinutes sets the durationInMinutes property value. Training duration.
 func (m *CustomTrainingSetting) SetDurationInMinutes(value *int32)() {
-    m.durationInMinutes = value
+    err := m.GetBackingStore().Set("durationInMinutes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUrl sets the url property value. The training URL.
 func (m *CustomTrainingSetting) SetUrl(value *string)() {
-    m.url = value
+    err := m.GetBackingStore().Set("url", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CustomTrainingSettingable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

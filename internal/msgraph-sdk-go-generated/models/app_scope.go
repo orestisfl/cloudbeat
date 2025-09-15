@@ -9,10 +9,6 @@ import (
 
 type AppScope struct {
     Entity
-    // Provides the display name of the app-specific resource represented by the app scope. Read-only.
-    displayName *string
-    // Describes the type of app-specific resource represented by the app scope. Read-only.
-    typeEscaped *string
 }
 // NewAppScope instantiates a new AppScope and sets the default values.
 func NewAppScope()(*AppScope) {
@@ -29,7 +25,14 @@ func CreateAppScopeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
 // GetDisplayName gets the displayName property value. Provides the display name of the app-specific resource represented by the app scope. Read-only.
 // returns a *string when successful
 func (m *AppScope) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *AppScope) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetTypeEscaped gets the type property value. Describes the type of app-specific resource represented by the app scope. Read-only.
 // returns a *string when successful
 func (m *AppScope) GetTypeEscaped()(*string) {
-    return m.typeEscaped
+    val, err := m.GetBackingStore().Get("typeEscaped")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AppScope) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *AppScope) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetDisplayName sets the displayName property value. Provides the display name of the app-specific resource represented by the app scope. Read-only.
 func (m *AppScope) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTypeEscaped sets the type property value. Describes the type of app-specific resource represented by the app scope. Read-only.
 func (m *AppScope) SetTypeEscaped(value *string)() {
-    m.typeEscaped = value
+    err := m.GetBackingStore().Set("typeEscaped", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AppScopeable interface {
     Entityable

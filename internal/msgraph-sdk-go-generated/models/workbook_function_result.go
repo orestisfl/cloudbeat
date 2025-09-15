@@ -9,10 +9,6 @@ import (
 
 type WorkbookFunctionResult struct {
     Entity
-    // The error property
-    error *string
-    // The value property
-    value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
 }
 // NewWorkbookFunctionResult instantiates a new WorkbookFunctionResult and sets the default values.
 func NewWorkbookFunctionResult()(*WorkbookFunctionResult) {
@@ -29,7 +25,14 @@ func CreateWorkbookFunctionResultFromDiscriminatorValue(parseNode i878a80d2330e8
 // GetError gets the error property value. The error property
 // returns a *string when successful
 func (m *WorkbookFunctionResult) GetError()(*string) {
-    return m.error
+    val, err := m.GetBackingStore().Get("error")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *WorkbookFunctionResult) GetFieldDeserializers()(map[string]func(i878a80
 // GetValue gets the value property value. The value property
 // returns a UntypedNodeable when successful
 func (m *WorkbookFunctionResult) GetValue()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookFunctionResult) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *WorkbookFunctionResult) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetError sets the error property value. The error property
 func (m *WorkbookFunctionResult) SetError(value *string)() {
-    m.error = value
+    err := m.GetBackingStore().Set("error", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValue sets the value property value. The value property
 func (m *WorkbookFunctionResult) SetValue(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookFunctionResultable interface {
     Entityable

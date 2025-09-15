@@ -9,12 +9,6 @@ import (
 
 type WorkbookChartAxes struct {
     Entity
-    // Represents the category axis in a chart. Read-only.
-    categoryAxis WorkbookChartAxisable
-    // Represents the series axis of a 3-dimensional chart. Read-only.
-    seriesAxis WorkbookChartAxisable
-    // Represents the value axis in an axis. Read-only.
-    valueAxis WorkbookChartAxisable
 }
 // NewWorkbookChartAxes instantiates a new WorkbookChartAxes and sets the default values.
 func NewWorkbookChartAxes()(*WorkbookChartAxes) {
@@ -31,7 +25,14 @@ func CreateWorkbookChartAxesFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetCategoryAxis gets the categoryAxis property value. Represents the category axis in a chart. Read-only.
 // returns a WorkbookChartAxisable when successful
 func (m *WorkbookChartAxes) GetCategoryAxis()(WorkbookChartAxisable) {
-    return m.categoryAxis
+    val, err := m.GetBackingStore().Get("categoryAxis")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartAxisable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -72,12 +73,26 @@ func (m *WorkbookChartAxes) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetSeriesAxis gets the seriesAxis property value. Represents the series axis of a 3-dimensional chart. Read-only.
 // returns a WorkbookChartAxisable when successful
 func (m *WorkbookChartAxes) GetSeriesAxis()(WorkbookChartAxisable) {
-    return m.seriesAxis
+    val, err := m.GetBackingStore().Get("seriesAxis")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartAxisable)
+    }
+    return nil
 }
 // GetValueAxis gets the valueAxis property value. Represents the value axis in an axis. Read-only.
 // returns a WorkbookChartAxisable when successful
 func (m *WorkbookChartAxes) GetValueAxis()(WorkbookChartAxisable) {
-    return m.valueAxis
+    val, err := m.GetBackingStore().Get("valueAxis")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartAxisable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookChartAxes) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -107,15 +122,24 @@ func (m *WorkbookChartAxes) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetCategoryAxis sets the categoryAxis property value. Represents the category axis in a chart. Read-only.
 func (m *WorkbookChartAxes) SetCategoryAxis(value WorkbookChartAxisable)() {
-    m.categoryAxis = value
+    err := m.GetBackingStore().Set("categoryAxis", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSeriesAxis sets the seriesAxis property value. Represents the series axis of a 3-dimensional chart. Read-only.
 func (m *WorkbookChartAxes) SetSeriesAxis(value WorkbookChartAxisable)() {
-    m.seriesAxis = value
+    err := m.GetBackingStore().Set("seriesAxis", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValueAxis sets the valueAxis property value. Represents the value axis in an axis. Read-only.
 func (m *WorkbookChartAxes) SetValueAxis(value WorkbookChartAxisable)() {
-    m.valueAxis = value
+    err := m.GetBackingStore().Set("valueAxis", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookChartAxesable interface {
     Entityable

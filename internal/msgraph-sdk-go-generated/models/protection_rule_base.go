@@ -10,20 +10,6 @@ import (
 
 type ProtectionRuleBase struct {
     Entity
-    // The identity of person who created the rule.
-    createdBy IdentitySetable
-    // The time of creation of the rule.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Contains error details if an operation on a rule fails.
-    error PublicErrorable
-    // The isAutoApplyEnabled property
-    isAutoApplyEnabled *bool
-    // The identity of the person who last modified the rule.
-    lastModifiedBy IdentitySetable
-    // Timestamp of the last modification made to the rule.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The status of the protection rule. The possible values are: draft, active, completed, completedWithErrors, unknownFutureValue. The draft member is currently unsupported.
-    status *ProtectionRuleStatus
 }
 // NewProtectionRuleBase instantiates a new ProtectionRuleBase and sets the default values.
 func NewProtectionRuleBase()(*ProtectionRuleBase) {
@@ -62,17 +48,38 @@ func CreateProtectionRuleBaseFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetCreatedBy gets the createdBy property value. The identity of person who created the rule.
 // returns a IdentitySetable when successful
 func (m *ProtectionRuleBase) GetCreatedBy()(IdentitySetable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The time of creation of the rule.
 // returns a *Time when successful
 func (m *ProtectionRuleBase) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetError gets the error property value. Contains error details if an operation on a rule fails.
 // returns a PublicErrorable when successful
 func (m *ProtectionRuleBase) GetError()(PublicErrorable) {
-    return m.error
+    val, err := m.GetBackingStore().Get("error")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PublicErrorable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -153,22 +160,50 @@ func (m *ProtectionRuleBase) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetIsAutoApplyEnabled gets the isAutoApplyEnabled property value. The isAutoApplyEnabled property
 // returns a *bool when successful
 func (m *ProtectionRuleBase) GetIsAutoApplyEnabled()(*bool) {
-    return m.isAutoApplyEnabled
+    val, err := m.GetBackingStore().Get("isAutoApplyEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetLastModifiedBy gets the lastModifiedBy property value. The identity of the person who last modified the rule.
 // returns a IdentitySetable when successful
 func (m *ProtectionRuleBase) GetLastModifiedBy()(IdentitySetable) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Timestamp of the last modification made to the rule.
 // returns a *Time when successful
 func (m *ProtectionRuleBase) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the protection rule. The possible values are: draft, active, completed, completedWithErrors, unknownFutureValue. The draft member is currently unsupported.
 // returns a *ProtectionRuleStatus when successful
 func (m *ProtectionRuleBase) GetStatus()(*ProtectionRuleStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ProtectionRuleStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProtectionRuleBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -223,31 +258,52 @@ func (m *ProtectionRuleBase) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetCreatedBy sets the createdBy property value. The identity of person who created the rule.
 func (m *ProtectionRuleBase) SetCreatedBy(value IdentitySetable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The time of creation of the rule.
 func (m *ProtectionRuleBase) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetError sets the error property value. Contains error details if an operation on a rule fails.
 func (m *ProtectionRuleBase) SetError(value PublicErrorable)() {
-    m.error = value
+    err := m.GetBackingStore().Set("error", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsAutoApplyEnabled sets the isAutoApplyEnabled property value. The isAutoApplyEnabled property
 func (m *ProtectionRuleBase) SetIsAutoApplyEnabled(value *bool)() {
-    m.isAutoApplyEnabled = value
+    err := m.GetBackingStore().Set("isAutoApplyEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. The identity of the person who last modified the rule.
 func (m *ProtectionRuleBase) SetLastModifiedBy(value IdentitySetable)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Timestamp of the last modification made to the rule.
 func (m *ProtectionRuleBase) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the protection rule. The possible values are: draft, active, completed, completedWithErrors, unknownFutureValue. The draft member is currently unsupported.
 func (m *ProtectionRuleBase) SetStatus(value *ProtectionRuleStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProtectionRuleBaseable interface {
     Entityable

@@ -10,46 +10,6 @@ import (
 
 type EducationSubmission struct {
     Entity
-    // The unique identifier for the assignment with which this submission is associated. A submission is always associated with one and only one assignment.
-    assignmentId *string
-    // The user that marked the submission as excused.
-    excusedBy IdentitySetable
-    // The time that the submission was excused. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    excusedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The identities of those who modified the submission.
-    lastModifiedBy IdentitySetable
-    // The date and time the submission was modified.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The outcomes property
-    outcomes []EducationOutcomeable
-    // User who moved the status of this submission to reassigned.
-    reassignedBy IdentitySetable
-    // Moment in time when the submission was reassigned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    reassignedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Who this submission is assigned to.
-    recipient EducationSubmissionRecipientable
-    // The resources property
-    resources []EducationSubmissionResourceable
-    // Folder where all file resources for this submission need to be stored.
-    resourcesFolderUrl *string
-    // User who moved the status of this submission to returned.
-    returnedBy IdentitySetable
-    // Moment in time when the submission was returned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    returnedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Read-only. Possible values are: excused, reassigned, returned, submitted and working. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: excused and reassigned.
-    status *EducationSubmissionStatus
-    // User who moved the resource into the submitted state.
-    submittedBy IdentitySetable
-    // Moment in time when the submission was moved into the submitted state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    submittedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The submittedResources property
-    submittedResources []EducationSubmissionResourceable
-    // User who moved the resource from submitted into the working state.
-    unsubmittedBy IdentitySetable
-    // Moment in time when the submission was moved from submitted into the working state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    unsubmittedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The deep link URL for the given submission.
-    webUrl *string
 }
 // NewEducationSubmission instantiates a new EducationSubmission and sets the default values.
 func NewEducationSubmission()(*EducationSubmission) {
@@ -66,17 +26,38 @@ func CreateEducationSubmissionFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetAssignmentId gets the assignmentId property value. The unique identifier for the assignment with which this submission is associated. A submission is always associated with one and only one assignment.
 // returns a *string when successful
 func (m *EducationSubmission) GetAssignmentId()(*string) {
-    return m.assignmentId
+    val, err := m.GetBackingStore().Get("assignmentId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExcusedBy gets the excusedBy property value. The user that marked the submission as excused.
 // returns a IdentitySetable when successful
 func (m *EducationSubmission) GetExcusedBy()(IdentitySetable) {
-    return m.excusedBy
+    val, err := m.GetBackingStore().Get("excusedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetExcusedDateTime gets the excusedDateTime property value. The time that the submission was excused. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *EducationSubmission) GetExcusedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.excusedDateTime
+    val, err := m.GetBackingStore().Get("excusedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -305,87 +286,206 @@ func (m *EducationSubmission) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetLastModifiedBy gets the lastModifiedBy property value. The identities of those who modified the submission.
 // returns a IdentitySetable when successful
 func (m *EducationSubmission) GetLastModifiedBy()(IdentitySetable) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. The date and time the submission was modified.
 // returns a *Time when successful
 func (m *EducationSubmission) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetOutcomes gets the outcomes property value. The outcomes property
 // returns a []EducationOutcomeable when successful
 func (m *EducationSubmission) GetOutcomes()([]EducationOutcomeable) {
-    return m.outcomes
+    val, err := m.GetBackingStore().Get("outcomes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]EducationOutcomeable)
+    }
+    return nil
 }
 // GetReassignedBy gets the reassignedBy property value. User who moved the status of this submission to reassigned.
 // returns a IdentitySetable when successful
 func (m *EducationSubmission) GetReassignedBy()(IdentitySetable) {
-    return m.reassignedBy
+    val, err := m.GetBackingStore().Get("reassignedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetReassignedDateTime gets the reassignedDateTime property value. Moment in time when the submission was reassigned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *EducationSubmission) GetReassignedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.reassignedDateTime
+    val, err := m.GetBackingStore().Get("reassignedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRecipient gets the recipient property value. Who this submission is assigned to.
 // returns a EducationSubmissionRecipientable when successful
 func (m *EducationSubmission) GetRecipient()(EducationSubmissionRecipientable) {
-    return m.recipient
+    val, err := m.GetBackingStore().Get("recipient")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EducationSubmissionRecipientable)
+    }
+    return nil
 }
 // GetResources gets the resources property value. The resources property
 // returns a []EducationSubmissionResourceable when successful
 func (m *EducationSubmission) GetResources()([]EducationSubmissionResourceable) {
-    return m.resources
+    val, err := m.GetBackingStore().Get("resources")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]EducationSubmissionResourceable)
+    }
+    return nil
 }
 // GetResourcesFolderUrl gets the resourcesFolderUrl property value. Folder where all file resources for this submission need to be stored.
 // returns a *string when successful
 func (m *EducationSubmission) GetResourcesFolderUrl()(*string) {
-    return m.resourcesFolderUrl
+    val, err := m.GetBackingStore().Get("resourcesFolderUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetReturnedBy gets the returnedBy property value. User who moved the status of this submission to returned.
 // returns a IdentitySetable when successful
 func (m *EducationSubmission) GetReturnedBy()(IdentitySetable) {
-    return m.returnedBy
+    val, err := m.GetBackingStore().Get("returnedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetReturnedDateTime gets the returnedDateTime property value. Moment in time when the submission was returned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *EducationSubmission) GetReturnedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.returnedDateTime
+    val, err := m.GetBackingStore().Get("returnedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetStatus gets the status property value. Read-only. Possible values are: excused, reassigned, returned, submitted and working. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: excused and reassigned.
 // returns a *EducationSubmissionStatus when successful
 func (m *EducationSubmission) GetStatus()(*EducationSubmissionStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EducationSubmissionStatus)
+    }
+    return nil
 }
 // GetSubmittedBy gets the submittedBy property value. User who moved the resource into the submitted state.
 // returns a IdentitySetable when successful
 func (m *EducationSubmission) GetSubmittedBy()(IdentitySetable) {
-    return m.submittedBy
+    val, err := m.GetBackingStore().Get("submittedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetSubmittedDateTime gets the submittedDateTime property value. Moment in time when the submission was moved into the submitted state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *EducationSubmission) GetSubmittedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.submittedDateTime
+    val, err := m.GetBackingStore().Get("submittedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetSubmittedResources gets the submittedResources property value. The submittedResources property
 // returns a []EducationSubmissionResourceable when successful
 func (m *EducationSubmission) GetSubmittedResources()([]EducationSubmissionResourceable) {
-    return m.submittedResources
+    val, err := m.GetBackingStore().Get("submittedResources")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]EducationSubmissionResourceable)
+    }
+    return nil
 }
 // GetUnsubmittedBy gets the unsubmittedBy property value. User who moved the resource from submitted into the working state.
 // returns a IdentitySetable when successful
 func (m *EducationSubmission) GetUnsubmittedBy()(IdentitySetable) {
-    return m.unsubmittedBy
+    val, err := m.GetBackingStore().Get("unsubmittedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetUnsubmittedDateTime gets the unsubmittedDateTime property value. Moment in time when the submission was moved from submitted into the working state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *EducationSubmission) GetUnsubmittedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.unsubmittedDateTime
+    val, err := m.GetBackingStore().Get("unsubmittedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetWebUrl gets the webUrl property value. The deep link URL for the given submission.
 // returns a *string when successful
 func (m *EducationSubmission) GetWebUrl()(*string) {
-    return m.webUrl
+    val, err := m.GetBackingStore().Get("webUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -439,83 +539,143 @@ func (m *EducationSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetAssignmentId sets the assignmentId property value. The unique identifier for the assignment with which this submission is associated. A submission is always associated with one and only one assignment.
 func (m *EducationSubmission) SetAssignmentId(value *string)() {
-    m.assignmentId = value
+    err := m.GetBackingStore().Set("assignmentId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExcusedBy sets the excusedBy property value. The user that marked the submission as excused.
 func (m *EducationSubmission) SetExcusedBy(value IdentitySetable)() {
-    m.excusedBy = value
+    err := m.GetBackingStore().Set("excusedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExcusedDateTime sets the excusedDateTime property value. The time that the submission was excused. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *EducationSubmission) SetExcusedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.excusedDateTime = value
+    err := m.GetBackingStore().Set("excusedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. The identities of those who modified the submission.
 func (m *EducationSubmission) SetLastModifiedBy(value IdentitySetable)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. The date and time the submission was modified.
 func (m *EducationSubmission) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOutcomes sets the outcomes property value. The outcomes property
 func (m *EducationSubmission) SetOutcomes(value []EducationOutcomeable)() {
-    m.outcomes = value
+    err := m.GetBackingStore().Set("outcomes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReassignedBy sets the reassignedBy property value. User who moved the status of this submission to reassigned.
 func (m *EducationSubmission) SetReassignedBy(value IdentitySetable)() {
-    m.reassignedBy = value
+    err := m.GetBackingStore().Set("reassignedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReassignedDateTime sets the reassignedDateTime property value. Moment in time when the submission was reassigned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *EducationSubmission) SetReassignedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.reassignedDateTime = value
+    err := m.GetBackingStore().Set("reassignedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecipient sets the recipient property value. Who this submission is assigned to.
 func (m *EducationSubmission) SetRecipient(value EducationSubmissionRecipientable)() {
-    m.recipient = value
+    err := m.GetBackingStore().Set("recipient", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResources sets the resources property value. The resources property
 func (m *EducationSubmission) SetResources(value []EducationSubmissionResourceable)() {
-    m.resources = value
+    err := m.GetBackingStore().Set("resources", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourcesFolderUrl sets the resourcesFolderUrl property value. Folder where all file resources for this submission need to be stored.
 func (m *EducationSubmission) SetResourcesFolderUrl(value *string)() {
-    m.resourcesFolderUrl = value
+    err := m.GetBackingStore().Set("resourcesFolderUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReturnedBy sets the returnedBy property value. User who moved the status of this submission to returned.
 func (m *EducationSubmission) SetReturnedBy(value IdentitySetable)() {
-    m.returnedBy = value
+    err := m.GetBackingStore().Set("returnedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReturnedDateTime sets the returnedDateTime property value. Moment in time when the submission was returned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *EducationSubmission) SetReturnedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.returnedDateTime = value
+    err := m.GetBackingStore().Set("returnedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. Read-only. Possible values are: excused, reassigned, returned, submitted and working. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: excused and reassigned.
 func (m *EducationSubmission) SetStatus(value *EducationSubmissionStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmittedBy sets the submittedBy property value. User who moved the resource into the submitted state.
 func (m *EducationSubmission) SetSubmittedBy(value IdentitySetable)() {
-    m.submittedBy = value
+    err := m.GetBackingStore().Set("submittedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmittedDateTime sets the submittedDateTime property value. Moment in time when the submission was moved into the submitted state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *EducationSubmission) SetSubmittedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.submittedDateTime = value
+    err := m.GetBackingStore().Set("submittedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmittedResources sets the submittedResources property value. The submittedResources property
 func (m *EducationSubmission) SetSubmittedResources(value []EducationSubmissionResourceable)() {
-    m.submittedResources = value
+    err := m.GetBackingStore().Set("submittedResources", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnsubmittedBy sets the unsubmittedBy property value. User who moved the resource from submitted into the working state.
 func (m *EducationSubmission) SetUnsubmittedBy(value IdentitySetable)() {
-    m.unsubmittedBy = value
+    err := m.GetBackingStore().Set("unsubmittedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnsubmittedDateTime sets the unsubmittedDateTime property value. Moment in time when the submission was moved from submitted into the working state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *EducationSubmission) SetUnsubmittedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.unsubmittedDateTime = value
+    err := m.GetBackingStore().Set("unsubmittedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWebUrl sets the webUrl property value. The deep link URL for the given submission.
 func (m *EducationSubmission) SetWebUrl(value *string)() {
-    m.webUrl = value
+    err := m.GetBackingStore().Set("webUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationSubmissionable interface {
     Entityable

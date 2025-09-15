@@ -11,54 +11,6 @@ import (
 
 type TeamsMessageEvidence struct {
     AlertEvidence
-    // The identifier of the campaign that this Teams message is part of.
-    campaignId *string
-    // The channel ID associated with this Teams message.
-    channelId *string
-    // The delivery action of this Teams message. Possible values are: unknown, deliveredAsSpam, delivered, blocked, replaced, unknownFutureValue.
-    deliveryAction *TeamsMessageDeliveryAction
-    // The delivery location of this Teams message. Possible values are: unknown, teams, quarantine, failed, unknownFutureValue.
-    deliveryLocation *TeamsDeliveryLocation
-    // The list of file entities that are attached to this Teams message.
-    files []FileEvidenceable
-    // The identifier of the team or group that this message is part of.
-    groupId *string
-    // Indicates whether the message is owned by the organization that reported the security detection alert.
-    isExternal *bool
-    // Indicates whether the message is owned by your organization.
-    isOwned *bool
-    // Date and time when the message was last edited. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The direction of the Teams message. The possible values are: unknown, inbound, outbound, intraorg, unknownFutureValue.
-    messageDirection *AntispamTeamsDirection
-    // Message identifier unique within the thread.
-    messageId *string
-    // Tenant ID (GUID) of the owner of the message.
-    owningTenantId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // Identifier of the message to which the current message is a reply; otherwise, it's the same as the messageId.
-    parentMessageId *string
-    // The received date of this message. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    receivedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The recipients of this Teams message.
-    recipients []string
-    // The SMTP format address of the sender.
-    senderFromAddress *string
-    // The IP address of the sender.
-    senderIP *string
-    // Source of the message; for example, desktop and mobile.
-    sourceAppName *string
-    // The source ID of this Teams message.
-    sourceId *string
-    // The subject of this Teams message.
-    subject *string
-    // The list of recipients who were detected as suspicious.
-    suspiciousRecipients []string
-    // Identifier of the channel or chat that this message is part of.
-    threadId *string
-    // The Teams message type. Supported values are: Chat, Topic, Space, and Meeting.
-    threadType *string
-    // The URLs contained in this Teams message.
-    urls []UrlEvidenceable
 }
 // NewTeamsMessageEvidence instantiates a new TeamsMessageEvidence and sets the default values.
 func NewTeamsMessageEvidence()(*TeamsMessageEvidence) {
@@ -77,22 +29,50 @@ func CreateTeamsMessageEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetCampaignId gets the campaignId property value. The identifier of the campaign that this Teams message is part of.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetCampaignId()(*string) {
-    return m.campaignId
+    val, err := m.GetBackingStore().Get("campaignId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetChannelId gets the channelId property value. The channel ID associated with this Teams message.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetChannelId()(*string) {
-    return m.channelId
+    val, err := m.GetBackingStore().Get("channelId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDeliveryAction gets the deliveryAction property value. The delivery action of this Teams message. Possible values are: unknown, deliveredAsSpam, delivered, blocked, replaced, unknownFutureValue.
 // returns a *TeamsMessageDeliveryAction when successful
 func (m *TeamsMessageEvidence) GetDeliveryAction()(*TeamsMessageDeliveryAction) {
-    return m.deliveryAction
+    val, err := m.GetBackingStore().Get("deliveryAction")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TeamsMessageDeliveryAction)
+    }
+    return nil
 }
 // GetDeliveryLocation gets the deliveryLocation property value. The delivery location of this Teams message. Possible values are: unknown, teams, quarantine, failed, unknownFutureValue.
 // returns a *TeamsDeliveryLocation when successful
 func (m *TeamsMessageEvidence) GetDeliveryLocation()(*TeamsDeliveryLocation) {
-    return m.deliveryLocation
+    val, err := m.GetBackingStore().Get("deliveryLocation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TeamsDeliveryLocation)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -367,102 +347,242 @@ func (m *TeamsMessageEvidence) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetFiles gets the files property value. The list of file entities that are attached to this Teams message.
 // returns a []FileEvidenceable when successful
 func (m *TeamsMessageEvidence) GetFiles()([]FileEvidenceable) {
-    return m.files
+    val, err := m.GetBackingStore().Get("files")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]FileEvidenceable)
+    }
+    return nil
 }
 // GetGroupId gets the groupId property value. The identifier of the team or group that this message is part of.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetGroupId()(*string) {
-    return m.groupId
+    val, err := m.GetBackingStore().Get("groupId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIsExternal gets the isExternal property value. Indicates whether the message is owned by the organization that reported the security detection alert.
 // returns a *bool when successful
 func (m *TeamsMessageEvidence) GetIsExternal()(*bool) {
-    return m.isExternal
+    val, err := m.GetBackingStore().Get("isExternal")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsOwned gets the isOwned property value. Indicates whether the message is owned by your organization.
 // returns a *bool when successful
 func (m *TeamsMessageEvidence) GetIsOwned()(*bool) {
-    return m.isOwned
+    val, err := m.GetBackingStore().Get("isOwned")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Date and time when the message was last edited. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *TeamsMessageEvidence) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetMessageDirection gets the messageDirection property value. The direction of the Teams message. The possible values are: unknown, inbound, outbound, intraorg, unknownFutureValue.
 // returns a *AntispamTeamsDirection when successful
 func (m *TeamsMessageEvidence) GetMessageDirection()(*AntispamTeamsDirection) {
-    return m.messageDirection
+    val, err := m.GetBackingStore().Get("messageDirection")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*AntispamTeamsDirection)
+    }
+    return nil
 }
 // GetMessageId gets the messageId property value. Message identifier unique within the thread.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetMessageId()(*string) {
-    return m.messageId
+    val, err := m.GetBackingStore().Get("messageId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOwningTenantId gets the owningTenantId property value. Tenant ID (GUID) of the owner of the message.
 // returns a *UUID when successful
 func (m *TeamsMessageEvidence) GetOwningTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
-    return m.owningTenantId
+    val, err := m.GetBackingStore().Get("owningTenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    }
+    return nil
 }
 // GetParentMessageId gets the parentMessageId property value. Identifier of the message to which the current message is a reply; otherwise, it's the same as the messageId.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetParentMessageId()(*string) {
-    return m.parentMessageId
+    val, err := m.GetBackingStore().Get("parentMessageId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetReceivedDateTime gets the receivedDateTime property value. The received date of this message. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *TeamsMessageEvidence) GetReceivedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.receivedDateTime
+    val, err := m.GetBackingStore().Get("receivedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRecipients gets the recipients property value. The recipients of this Teams message.
 // returns a []string when successful
 func (m *TeamsMessageEvidence) GetRecipients()([]string) {
-    return m.recipients
+    val, err := m.GetBackingStore().Get("recipients")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetSenderFromAddress gets the senderFromAddress property value. The SMTP format address of the sender.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetSenderFromAddress()(*string) {
-    return m.senderFromAddress
+    val, err := m.GetBackingStore().Get("senderFromAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSenderIP gets the senderIP property value. The IP address of the sender.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetSenderIP()(*string) {
-    return m.senderIP
+    val, err := m.GetBackingStore().Get("senderIP")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSourceAppName gets the sourceAppName property value. Source of the message; for example, desktop and mobile.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetSourceAppName()(*string) {
-    return m.sourceAppName
+    val, err := m.GetBackingStore().Get("sourceAppName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSourceId gets the sourceId property value. The source ID of this Teams message.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetSourceId()(*string) {
-    return m.sourceId
+    val, err := m.GetBackingStore().Get("sourceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSubject gets the subject property value. The subject of this Teams message.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetSubject()(*string) {
-    return m.subject
+    val, err := m.GetBackingStore().Get("subject")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSuspiciousRecipients gets the suspiciousRecipients property value. The list of recipients who were detected as suspicious.
 // returns a []string when successful
 func (m *TeamsMessageEvidence) GetSuspiciousRecipients()([]string) {
-    return m.suspiciousRecipients
+    val, err := m.GetBackingStore().Get("suspiciousRecipients")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetThreadId gets the threadId property value. Identifier of the channel or chat that this message is part of.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetThreadId()(*string) {
-    return m.threadId
+    val, err := m.GetBackingStore().Get("threadId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetThreadType gets the threadType property value. The Teams message type. Supported values are: Chat, Topic, Space, and Meeting.
 // returns a *string when successful
 func (m *TeamsMessageEvidence) GetThreadType()(*string) {
-    return m.threadType
+    val, err := m.GetBackingStore().Get("threadType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUrls gets the urls property value. The URLs contained in this Teams message.
 // returns a []UrlEvidenceable when successful
 func (m *TeamsMessageEvidence) GetUrls()([]UrlEvidenceable) {
-    return m.urls
+    val, err := m.GetBackingStore().Get("urls")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UrlEvidenceable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TeamsMessageEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -633,99 +753,171 @@ func (m *TeamsMessageEvidence) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetCampaignId sets the campaignId property value. The identifier of the campaign that this Teams message is part of.
 func (m *TeamsMessageEvidence) SetCampaignId(value *string)() {
-    m.campaignId = value
+    err := m.GetBackingStore().Set("campaignId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetChannelId sets the channelId property value. The channel ID associated with this Teams message.
 func (m *TeamsMessageEvidence) SetChannelId(value *string)() {
-    m.channelId = value
+    err := m.GetBackingStore().Set("channelId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeliveryAction sets the deliveryAction property value. The delivery action of this Teams message. Possible values are: unknown, deliveredAsSpam, delivered, blocked, replaced, unknownFutureValue.
 func (m *TeamsMessageEvidence) SetDeliveryAction(value *TeamsMessageDeliveryAction)() {
-    m.deliveryAction = value
+    err := m.GetBackingStore().Set("deliveryAction", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeliveryLocation sets the deliveryLocation property value. The delivery location of this Teams message. Possible values are: unknown, teams, quarantine, failed, unknownFutureValue.
 func (m *TeamsMessageEvidence) SetDeliveryLocation(value *TeamsDeliveryLocation)() {
-    m.deliveryLocation = value
+    err := m.GetBackingStore().Set("deliveryLocation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFiles sets the files property value. The list of file entities that are attached to this Teams message.
 func (m *TeamsMessageEvidence) SetFiles(value []FileEvidenceable)() {
-    m.files = value
+    err := m.GetBackingStore().Set("files", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetGroupId sets the groupId property value. The identifier of the team or group that this message is part of.
 func (m *TeamsMessageEvidence) SetGroupId(value *string)() {
-    m.groupId = value
+    err := m.GetBackingStore().Set("groupId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsExternal sets the isExternal property value. Indicates whether the message is owned by the organization that reported the security detection alert.
 func (m *TeamsMessageEvidence) SetIsExternal(value *bool)() {
-    m.isExternal = value
+    err := m.GetBackingStore().Set("isExternal", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsOwned sets the isOwned property value. Indicates whether the message is owned by your organization.
 func (m *TeamsMessageEvidence) SetIsOwned(value *bool)() {
-    m.isOwned = value
+    err := m.GetBackingStore().Set("isOwned", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Date and time when the message was last edited. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *TeamsMessageEvidence) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMessageDirection sets the messageDirection property value. The direction of the Teams message. The possible values are: unknown, inbound, outbound, intraorg, unknownFutureValue.
 func (m *TeamsMessageEvidence) SetMessageDirection(value *AntispamTeamsDirection)() {
-    m.messageDirection = value
+    err := m.GetBackingStore().Set("messageDirection", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMessageId sets the messageId property value. Message identifier unique within the thread.
 func (m *TeamsMessageEvidence) SetMessageId(value *string)() {
-    m.messageId = value
+    err := m.GetBackingStore().Set("messageId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwningTenantId sets the owningTenantId property value. Tenant ID (GUID) of the owner of the message.
 func (m *TeamsMessageEvidence) SetOwningTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
-    m.owningTenantId = value
+    err := m.GetBackingStore().Set("owningTenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParentMessageId sets the parentMessageId property value. Identifier of the message to which the current message is a reply; otherwise, it's the same as the messageId.
 func (m *TeamsMessageEvidence) SetParentMessageId(value *string)() {
-    m.parentMessageId = value
+    err := m.GetBackingStore().Set("parentMessageId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReceivedDateTime sets the receivedDateTime property value. The received date of this message. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *TeamsMessageEvidence) SetReceivedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.receivedDateTime = value
+    err := m.GetBackingStore().Set("receivedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecipients sets the recipients property value. The recipients of this Teams message.
 func (m *TeamsMessageEvidence) SetRecipients(value []string)() {
-    m.recipients = value
+    err := m.GetBackingStore().Set("recipients", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSenderFromAddress sets the senderFromAddress property value. The SMTP format address of the sender.
 func (m *TeamsMessageEvidence) SetSenderFromAddress(value *string)() {
-    m.senderFromAddress = value
+    err := m.GetBackingStore().Set("senderFromAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSenderIP sets the senderIP property value. The IP address of the sender.
 func (m *TeamsMessageEvidence) SetSenderIP(value *string)() {
-    m.senderIP = value
+    err := m.GetBackingStore().Set("senderIP", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceAppName sets the sourceAppName property value. Source of the message; for example, desktop and mobile.
 func (m *TeamsMessageEvidence) SetSourceAppName(value *string)() {
-    m.sourceAppName = value
+    err := m.GetBackingStore().Set("sourceAppName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceId sets the sourceId property value. The source ID of this Teams message.
 func (m *TeamsMessageEvidence) SetSourceId(value *string)() {
-    m.sourceId = value
+    err := m.GetBackingStore().Set("sourceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubject sets the subject property value. The subject of this Teams message.
 func (m *TeamsMessageEvidence) SetSubject(value *string)() {
-    m.subject = value
+    err := m.GetBackingStore().Set("subject", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSuspiciousRecipients sets the suspiciousRecipients property value. The list of recipients who were detected as suspicious.
 func (m *TeamsMessageEvidence) SetSuspiciousRecipients(value []string)() {
-    m.suspiciousRecipients = value
+    err := m.GetBackingStore().Set("suspiciousRecipients", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetThreadId sets the threadId property value. Identifier of the channel or chat that this message is part of.
 func (m *TeamsMessageEvidence) SetThreadId(value *string)() {
-    m.threadId = value
+    err := m.GetBackingStore().Set("threadId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetThreadType sets the threadType property value. The Teams message type. Supported values are: Chat, Topic, Space, and Meeting.
 func (m *TeamsMessageEvidence) SetThreadType(value *string)() {
-    m.threadType = value
+    err := m.GetBackingStore().Set("threadType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUrls sets the urls property value. The URLs contained in this Teams message.
 func (m *TeamsMessageEvidence) SetUrls(value []UrlEvidenceable)() {
-    m.urls = value
+    err := m.GetBackingStore().Set("urls", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TeamsMessageEvidenceable interface {
     AlertEvidenceable

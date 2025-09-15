@@ -9,8 +9,6 @@ import (
 
 type TextContent struct {
     ContentBase
-    // The text content data. Inherits properties from contentBase.
-    data *string
 }
 // NewTextContent instantiates a new TextContent and sets the default values.
 func NewTextContent()(*TextContent) {
@@ -29,7 +27,14 @@ func CreateTextContentFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 // GetData gets the data property value. The text content data. Inherits properties from contentBase.
 // returns a *string when successful
 func (m *TextContent) GetData()(*string) {
-    return m.data
+    val, err := m.GetBackingStore().Get("data")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *TextContent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetData sets the data property value. The text content data. Inherits properties from contentBase.
 func (m *TextContent) SetData(value *string)() {
-    m.data = value
+    err := m.GetBackingStore().Set("data", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TextContentable interface {
     ContentBaseable

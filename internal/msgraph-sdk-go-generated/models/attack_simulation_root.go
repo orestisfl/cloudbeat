@@ -9,22 +9,6 @@ import (
 
 type AttackSimulationRoot struct {
     Entity
-    // Represents an end user's notification for an attack simulation training.
-    endUserNotifications []EndUserNotificationable
-    // Represents an attack simulation training landing page.
-    landingPages []LandingPageable
-    // Represents an attack simulation training login page.
-    loginPages []LoginPageable
-    // Represents an attack simulation training operation.
-    operations []AttackSimulationOperationable
-    // Represents an attack simulation training campaign payload in a tenant.
-    payloads []Payloadable
-    // Represents simulation automation created to run on a tenant.
-    simulationAutomations []SimulationAutomationable
-    // Represents an attack simulation training campaign in a tenant.
-    simulations []Simulationable
-    // Represents details about attack simulation trainings.
-    trainings []Trainingable
 }
 // NewAttackSimulationRoot instantiates a new AttackSimulationRoot and sets the default values.
 func NewAttackSimulationRoot()(*AttackSimulationRoot) {
@@ -41,7 +25,14 @@ func CreateAttackSimulationRootFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetEndUserNotifications gets the endUserNotifications property value. Represents an end user's notification for an attack simulation training.
 // returns a []EndUserNotificationable when successful
 func (m *AttackSimulationRoot) GetEndUserNotifications()([]EndUserNotificationable) {
-    return m.endUserNotifications
+    val, err := m.GetBackingStore().Get("endUserNotifications")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]EndUserNotificationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -180,37 +171,86 @@ func (m *AttackSimulationRoot) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetLandingPages gets the landingPages property value. Represents an attack simulation training landing page.
 // returns a []LandingPageable when successful
 func (m *AttackSimulationRoot) GetLandingPages()([]LandingPageable) {
-    return m.landingPages
+    val, err := m.GetBackingStore().Get("landingPages")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]LandingPageable)
+    }
+    return nil
 }
 // GetLoginPages gets the loginPages property value. Represents an attack simulation training login page.
 // returns a []LoginPageable when successful
 func (m *AttackSimulationRoot) GetLoginPages()([]LoginPageable) {
-    return m.loginPages
+    val, err := m.GetBackingStore().Get("loginPages")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]LoginPageable)
+    }
+    return nil
 }
 // GetOperations gets the operations property value. Represents an attack simulation training operation.
 // returns a []AttackSimulationOperationable when successful
 func (m *AttackSimulationRoot) GetOperations()([]AttackSimulationOperationable) {
-    return m.operations
+    val, err := m.GetBackingStore().Get("operations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AttackSimulationOperationable)
+    }
+    return nil
 }
 // GetPayloads gets the payloads property value. Represents an attack simulation training campaign payload in a tenant.
 // returns a []Payloadable when successful
 func (m *AttackSimulationRoot) GetPayloads()([]Payloadable) {
-    return m.payloads
+    val, err := m.GetBackingStore().Get("payloads")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Payloadable)
+    }
+    return nil
 }
 // GetSimulationAutomations gets the simulationAutomations property value. Represents simulation automation created to run on a tenant.
 // returns a []SimulationAutomationable when successful
 func (m *AttackSimulationRoot) GetSimulationAutomations()([]SimulationAutomationable) {
-    return m.simulationAutomations
+    val, err := m.GetBackingStore().Get("simulationAutomations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SimulationAutomationable)
+    }
+    return nil
 }
 // GetSimulations gets the simulations property value. Represents an attack simulation training campaign in a tenant.
 // returns a []Simulationable when successful
 func (m *AttackSimulationRoot) GetSimulations()([]Simulationable) {
-    return m.simulations
+    val, err := m.GetBackingStore().Get("simulations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Simulationable)
+    }
+    return nil
 }
 // GetTrainings gets the trainings property value. Represents details about attack simulation trainings.
 // returns a []Trainingable when successful
 func (m *AttackSimulationRoot) GetTrainings()([]Trainingable) {
-    return m.trainings
+    val, err := m.GetBackingStore().Get("trainings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Trainingable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AttackSimulationRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -318,35 +358,59 @@ func (m *AttackSimulationRoot) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetEndUserNotifications sets the endUserNotifications property value. Represents an end user's notification for an attack simulation training.
 func (m *AttackSimulationRoot) SetEndUserNotifications(value []EndUserNotificationable)() {
-    m.endUserNotifications = value
+    err := m.GetBackingStore().Set("endUserNotifications", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLandingPages sets the landingPages property value. Represents an attack simulation training landing page.
 func (m *AttackSimulationRoot) SetLandingPages(value []LandingPageable)() {
-    m.landingPages = value
+    err := m.GetBackingStore().Set("landingPages", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLoginPages sets the loginPages property value. Represents an attack simulation training login page.
 func (m *AttackSimulationRoot) SetLoginPages(value []LoginPageable)() {
-    m.loginPages = value
+    err := m.GetBackingStore().Set("loginPages", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOperations sets the operations property value. Represents an attack simulation training operation.
 func (m *AttackSimulationRoot) SetOperations(value []AttackSimulationOperationable)() {
-    m.operations = value
+    err := m.GetBackingStore().Set("operations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPayloads sets the payloads property value. Represents an attack simulation training campaign payload in a tenant.
 func (m *AttackSimulationRoot) SetPayloads(value []Payloadable)() {
-    m.payloads = value
+    err := m.GetBackingStore().Set("payloads", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSimulationAutomations sets the simulationAutomations property value. Represents simulation automation created to run on a tenant.
 func (m *AttackSimulationRoot) SetSimulationAutomations(value []SimulationAutomationable)() {
-    m.simulationAutomations = value
+    err := m.GetBackingStore().Set("simulationAutomations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSimulations sets the simulations property value. Represents an attack simulation training campaign in a tenant.
 func (m *AttackSimulationRoot) SetSimulations(value []Simulationable)() {
-    m.simulations = value
+    err := m.GetBackingStore().Set("simulations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTrainings sets the trainings property value. Represents details about attack simulation trainings.
 func (m *AttackSimulationRoot) SetTrainings(value []Trainingable)() {
-    m.trainings = value
+    err := m.GetBackingStore().Set("trainings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AttackSimulationRootable interface {
     Entityable

@@ -9,22 +9,6 @@ import (
 
 type Agreement struct {
     Entity
-    // Read-only. Information about acceptances of this agreement.
-    acceptances []AgreementAcceptanceable
-    // Display name of the agreement. The display name is used for internal tracking of the agreement but isn't shown to end users who view the agreement. Supports $filter (eq).
-    displayName *string
-    // Default PDF linked to this agreement.
-    file AgreementFileable
-    // PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
-    files []AgreementFileLocalizationable
-    // Indicates whether end users are required to accept this agreement on every device that they access it from. The end user is required to register their device in Microsoft Entra ID, if they haven't already done so. Supports $filter (eq).
-    isPerDeviceAcceptanceRequired *bool
-    // Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).
-    isViewingBeforeAcceptanceRequired *bool
-    // Expiration schedule and frequency of agreement for all users. Supports $filter (eq).
-    termsExpiration TermsExpirationable
-    // The duration after which the user must reaccept the terms of use. The value is represented in ISO 8601 format for durations. Supports $filter (eq).
-    userReacceptRequiredFrequency *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
 }
 // NewAgreement instantiates a new Agreement and sets the default values.
 func NewAgreement()(*Agreement) {
@@ -41,12 +25,26 @@ func CreateAgreementFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetAcceptances gets the acceptances property value. Read-only. Information about acceptances of this agreement.
 // returns a []AgreementAcceptanceable when successful
 func (m *Agreement) GetAcceptances()([]AgreementAcceptanceable) {
-    return m.acceptances
+    val, err := m.GetBackingStore().Get("acceptances")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AgreementAcceptanceable)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. Display name of the agreement. The display name is used for internal tracking of the agreement but isn't shown to end users who view the agreement. Supports $filter (eq).
 // returns a *string when successful
 func (m *Agreement) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -149,32 +147,74 @@ func (m *Agreement) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetFile gets the file property value. Default PDF linked to this agreement.
 // returns a AgreementFileable when successful
 func (m *Agreement) GetFile()(AgreementFileable) {
-    return m.file
+    val, err := m.GetBackingStore().Get("file")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AgreementFileable)
+    }
+    return nil
 }
 // GetFiles gets the files property value. PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
 // returns a []AgreementFileLocalizationable when successful
 func (m *Agreement) GetFiles()([]AgreementFileLocalizationable) {
-    return m.files
+    val, err := m.GetBackingStore().Get("files")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AgreementFileLocalizationable)
+    }
+    return nil
 }
 // GetIsPerDeviceAcceptanceRequired gets the isPerDeviceAcceptanceRequired property value. Indicates whether end users are required to accept this agreement on every device that they access it from. The end user is required to register their device in Microsoft Entra ID, if they haven't already done so. Supports $filter (eq).
 // returns a *bool when successful
 func (m *Agreement) GetIsPerDeviceAcceptanceRequired()(*bool) {
-    return m.isPerDeviceAcceptanceRequired
+    val, err := m.GetBackingStore().Get("isPerDeviceAcceptanceRequired")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsViewingBeforeAcceptanceRequired gets the isViewingBeforeAcceptanceRequired property value. Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).
 // returns a *bool when successful
 func (m *Agreement) GetIsViewingBeforeAcceptanceRequired()(*bool) {
-    return m.isViewingBeforeAcceptanceRequired
+    val, err := m.GetBackingStore().Get("isViewingBeforeAcceptanceRequired")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetTermsExpiration gets the termsExpiration property value. Expiration schedule and frequency of agreement for all users. Supports $filter (eq).
 // returns a TermsExpirationable when successful
 func (m *Agreement) GetTermsExpiration()(TermsExpirationable) {
-    return m.termsExpiration
+    val, err := m.GetBackingStore().Get("termsExpiration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TermsExpirationable)
+    }
+    return nil
 }
 // GetUserReacceptRequiredFrequency gets the userReacceptRequiredFrequency property value. The duration after which the user must reaccept the terms of use. The value is represented in ISO 8601 format for durations. Supports $filter (eq).
 // returns a *ISODuration when successful
 func (m *Agreement) GetUserReacceptRequiredFrequency()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration) {
-    return m.userReacceptRequiredFrequency
+    val, err := m.GetBackingStore().Get("userReacceptRequiredFrequency")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Agreement) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -246,35 +286,59 @@ func (m *Agreement) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetAcceptances sets the acceptances property value. Read-only. Information about acceptances of this agreement.
 func (m *Agreement) SetAcceptances(value []AgreementAcceptanceable)() {
-    m.acceptances = value
+    err := m.GetBackingStore().Set("acceptances", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. Display name of the agreement. The display name is used for internal tracking of the agreement but isn't shown to end users who view the agreement. Supports $filter (eq).
 func (m *Agreement) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFile sets the file property value. Default PDF linked to this agreement.
 func (m *Agreement) SetFile(value AgreementFileable)() {
-    m.file = value
+    err := m.GetBackingStore().Set("file", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFiles sets the files property value. PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
 func (m *Agreement) SetFiles(value []AgreementFileLocalizationable)() {
-    m.files = value
+    err := m.GetBackingStore().Set("files", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsPerDeviceAcceptanceRequired sets the isPerDeviceAcceptanceRequired property value. Indicates whether end users are required to accept this agreement on every device that they access it from. The end user is required to register their device in Microsoft Entra ID, if they haven't already done so. Supports $filter (eq).
 func (m *Agreement) SetIsPerDeviceAcceptanceRequired(value *bool)() {
-    m.isPerDeviceAcceptanceRequired = value
+    err := m.GetBackingStore().Set("isPerDeviceAcceptanceRequired", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsViewingBeforeAcceptanceRequired sets the isViewingBeforeAcceptanceRequired property value. Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).
 func (m *Agreement) SetIsViewingBeforeAcceptanceRequired(value *bool)() {
-    m.isViewingBeforeAcceptanceRequired = value
+    err := m.GetBackingStore().Set("isViewingBeforeAcceptanceRequired", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTermsExpiration sets the termsExpiration property value. Expiration schedule and frequency of agreement for all users. Supports $filter (eq).
 func (m *Agreement) SetTermsExpiration(value TermsExpirationable)() {
-    m.termsExpiration = value
+    err := m.GetBackingStore().Set("termsExpiration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserReacceptRequiredFrequency sets the userReacceptRequiredFrequency property value. The duration after which the user must reaccept the terms of use. The value is represented in ISO 8601 format for durations. Supports $filter (eq).
 func (m *Agreement) SetUserReacceptRequiredFrequency(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
-    m.userReacceptRequiredFrequency = value
+    err := m.GetBackingStore().Set("userReacceptRequiredFrequency", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Agreementable interface {
     Entityable

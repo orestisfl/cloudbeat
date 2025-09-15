@@ -9,10 +9,6 @@ import (
 
 type DelegatedAdminServiceManagementDetail struct {
     Entity
-    // The URL of the management portal for the managed service. Read-only.
-    serviceManagementUrl *string
-    // The name of a managed service. Read-only.
-    serviceName *string
 }
 // NewDelegatedAdminServiceManagementDetail instantiates a new DelegatedAdminServiceManagementDetail and sets the default values.
 func NewDelegatedAdminServiceManagementDetail()(*DelegatedAdminServiceManagementDetail) {
@@ -55,12 +51,26 @@ func (m *DelegatedAdminServiceManagementDetail) GetFieldDeserializers()(map[stri
 // GetServiceManagementUrl gets the serviceManagementUrl property value. The URL of the management portal for the managed service. Read-only.
 // returns a *string when successful
 func (m *DelegatedAdminServiceManagementDetail) GetServiceManagementUrl()(*string) {
-    return m.serviceManagementUrl
+    val, err := m.GetBackingStore().Get("serviceManagementUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetServiceName gets the serviceName property value. The name of a managed service. Read-only.
 // returns a *string when successful
 func (m *DelegatedAdminServiceManagementDetail) GetServiceName()(*string) {
-    return m.serviceName
+    val, err := m.GetBackingStore().Get("serviceName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DelegatedAdminServiceManagementDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *DelegatedAdminServiceManagementDetail) Serialize(writer i878a80d2330e89
 }
 // SetServiceManagementUrl sets the serviceManagementUrl property value. The URL of the management portal for the managed service. Read-only.
 func (m *DelegatedAdminServiceManagementDetail) SetServiceManagementUrl(value *string)() {
-    m.serviceManagementUrl = value
+    err := m.GetBackingStore().Set("serviceManagementUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServiceName sets the serviceName property value. The name of a managed service. Read-only.
 func (m *DelegatedAdminServiceManagementDetail) SetServiceName(value *string)() {
-    m.serviceName = value
+    err := m.GetBackingStore().Set("serviceName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DelegatedAdminServiceManagementDetailable interface {
     Entityable

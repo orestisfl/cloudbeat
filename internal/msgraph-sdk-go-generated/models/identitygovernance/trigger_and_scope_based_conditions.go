@@ -10,10 +10,6 @@ import (
 
 type TriggerAndScopeBasedConditions struct {
     WorkflowExecutionConditions
-    // Defines who the workflow runs for.
-    scope i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.SubjectSetable
-    // What triggers a workflow to run.
-    trigger WorkflowExecutionTriggerable
 }
 // NewTriggerAndScopeBasedConditions instantiates a new TriggerAndScopeBasedConditions and sets the default values.
 func NewTriggerAndScopeBasedConditions()(*TriggerAndScopeBasedConditions) {
@@ -58,12 +54,26 @@ func (m *TriggerAndScopeBasedConditions) GetFieldDeserializers()(map[string]func
 // GetScope gets the scope property value. Defines who the workflow runs for.
 // returns a SubjectSetable when successful
 func (m *TriggerAndScopeBasedConditions) GetScope()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.SubjectSetable) {
-    return m.scope
+    val, err := m.GetBackingStore().Get("scope")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.SubjectSetable)
+    }
+    return nil
 }
 // GetTrigger gets the trigger property value. What triggers a workflow to run.
 // returns a WorkflowExecutionTriggerable when successful
 func (m *TriggerAndScopeBasedConditions) GetTrigger()(WorkflowExecutionTriggerable) {
-    return m.trigger
+    val, err := m.GetBackingStore().Get("trigger")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkflowExecutionTriggerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TriggerAndScopeBasedConditions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -87,11 +97,17 @@ func (m *TriggerAndScopeBasedConditions) Serialize(writer i878a80d2330e89d268963
 }
 // SetScope sets the scope property value. Defines who the workflow runs for.
 func (m *TriggerAndScopeBasedConditions) SetScope(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.SubjectSetable)() {
-    m.scope = value
+    err := m.GetBackingStore().Set("scope", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTrigger sets the trigger property value. What triggers a workflow to run.
 func (m *TriggerAndScopeBasedConditions) SetTrigger(value WorkflowExecutionTriggerable)() {
-    m.trigger = value
+    err := m.GetBackingStore().Set("trigger", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TriggerAndScopeBasedConditionsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

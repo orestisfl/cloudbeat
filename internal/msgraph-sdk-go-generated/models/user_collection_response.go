@@ -9,8 +9,6 @@ import (
 
 type UserCollectionResponse struct {
     BaseCollectionPaginationCountResponse
-    // The value property
-    value []Userable
 }
 // NewUserCollectionResponse instantiates a new UserCollectionResponse and sets the default values.
 func NewUserCollectionResponse()(*UserCollectionResponse) {
@@ -49,7 +47,14 @@ func (m *UserCollectionResponse) GetFieldDeserializers()(map[string]func(i878a80
 // GetValue gets the value property value. The value property
 // returns a []Userable when successful
 func (m *UserCollectionResponse) GetValue()([]Userable) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Userable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *UserCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetValue sets the value property value. The value property
 func (m *UserCollectionResponse) SetValue(value []Userable)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserCollectionResponseable interface {
     BaseCollectionPaginationCountResponseable

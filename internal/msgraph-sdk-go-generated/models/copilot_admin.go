@@ -9,8 +9,6 @@ import (
 
 type CopilotAdmin struct {
     Entity
-    // The settings property
-    settings CopilotAdminSettingable
 }
 // NewCopilotAdmin instantiates a new CopilotAdmin and sets the default values.
 func NewCopilotAdmin()(*CopilotAdmin) {
@@ -43,7 +41,14 @@ func (m *CopilotAdmin) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetSettings gets the settings property value. The settings property
 // returns a CopilotAdminSettingable when successful
 func (m *CopilotAdmin) GetSettings()(CopilotAdminSettingable) {
-    return m.settings
+    val, err := m.GetBackingStore().Get("settings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CopilotAdminSettingable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CopilotAdmin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *CopilotAdmin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetSettings sets the settings property value. The settings property
 func (m *CopilotAdmin) SetSettings(value CopilotAdminSettingable)() {
-    m.settings = value
+    err := m.GetBackingStore().Set("settings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CopilotAdminable interface {
     Entityable

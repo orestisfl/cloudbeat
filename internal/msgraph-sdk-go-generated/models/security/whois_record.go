@@ -9,8 +9,6 @@ import (
 
 type WhoisRecord struct {
     WhoisBaseRecord
-    // The collection of historical records associated to this WHOIS object.
-    history []WhoisHistoryRecordable
 }
 // NewWhoisRecord instantiates a new WhoisRecord and sets the default values.
 func NewWhoisRecord()(*WhoisRecord) {
@@ -51,7 +49,14 @@ func (m *WhoisRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetHistory gets the history property value. The collection of historical records associated to this WHOIS object.
 // returns a []WhoisHistoryRecordable when successful
 func (m *WhoisRecord) GetHistory()([]WhoisHistoryRecordable) {
-    return m.history
+    val, err := m.GetBackingStore().Get("history")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WhoisHistoryRecordable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WhoisRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -75,7 +80,10 @@ func (m *WhoisRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetHistory sets the history property value. The collection of historical records associated to this WHOIS object.
 func (m *WhoisRecord) SetHistory(value []WhoisHistoryRecordable)() {
-    m.history = value
+    err := m.GetBackingStore().Set("history", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WhoisRecordable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

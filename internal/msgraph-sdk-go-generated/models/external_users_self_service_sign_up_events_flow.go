@@ -9,18 +9,6 @@ import (
 
 type ExternalUsersSelfServiceSignUpEventsFlow struct {
     AuthenticationEventsFlow
-    // The configuration for what to invoke when attributes are ready to be collected from the user.
-    onAttributeCollection OnAttributeCollectionHandlerable
-    // The configuration for what to invoke when attribution collection starts.
-    onAttributeCollectionStart OnAttributeCollectionStartHandlerable
-    // The configuration for what to invoke when attributes are submitted at the end of attribution collection.
-    onAttributeCollectionSubmit OnAttributeCollectionSubmitHandlerable
-    // Required. The configuration for what to invoke when authentication methods are ready to be presented to the user. Must have at least one identity provider linked.  Supports $filter (eq). See support for filtering on user flows for syntax information.
-    onAuthenticationMethodLoadStart OnAuthenticationMethodLoadStartHandlerable
-    // Required. The configuration for what to invoke when an authentication flow is ready to be initiated.
-    onInteractiveAuthFlowStart OnInteractiveAuthFlowStartHandlerable
-    // The configuration for what to invoke during user creation.
-    onUserCreateStart OnUserCreateStartHandlerable
 }
 // NewExternalUsersSelfServiceSignUpEventsFlow instantiates a new ExternalUsersSelfServiceSignUpEventsFlow and sets the default values.
 func NewExternalUsersSelfServiceSignUpEventsFlow()(*ExternalUsersSelfServiceSignUpEventsFlow) {
@@ -105,32 +93,74 @@ func (m *ExternalUsersSelfServiceSignUpEventsFlow) GetFieldDeserializers()(map[s
 // GetOnAttributeCollection gets the onAttributeCollection property value. The configuration for what to invoke when attributes are ready to be collected from the user.
 // returns a OnAttributeCollectionHandlerable when successful
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) GetOnAttributeCollection()(OnAttributeCollectionHandlerable) {
-    return m.onAttributeCollection
+    val, err := m.GetBackingStore().Get("onAttributeCollection")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnAttributeCollectionHandlerable)
+    }
+    return nil
 }
 // GetOnAttributeCollectionStart gets the onAttributeCollectionStart property value. The configuration for what to invoke when attribution collection starts.
 // returns a OnAttributeCollectionStartHandlerable when successful
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) GetOnAttributeCollectionStart()(OnAttributeCollectionStartHandlerable) {
-    return m.onAttributeCollectionStart
+    val, err := m.GetBackingStore().Get("onAttributeCollectionStart")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnAttributeCollectionStartHandlerable)
+    }
+    return nil
 }
 // GetOnAttributeCollectionSubmit gets the onAttributeCollectionSubmit property value. The configuration for what to invoke when attributes are submitted at the end of attribution collection.
 // returns a OnAttributeCollectionSubmitHandlerable when successful
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) GetOnAttributeCollectionSubmit()(OnAttributeCollectionSubmitHandlerable) {
-    return m.onAttributeCollectionSubmit
+    val, err := m.GetBackingStore().Get("onAttributeCollectionSubmit")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnAttributeCollectionSubmitHandlerable)
+    }
+    return nil
 }
 // GetOnAuthenticationMethodLoadStart gets the onAuthenticationMethodLoadStart property value. Required. The configuration for what to invoke when authentication methods are ready to be presented to the user. Must have at least one identity provider linked.  Supports $filter (eq). See support for filtering on user flows for syntax information.
 // returns a OnAuthenticationMethodLoadStartHandlerable when successful
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) GetOnAuthenticationMethodLoadStart()(OnAuthenticationMethodLoadStartHandlerable) {
-    return m.onAuthenticationMethodLoadStart
+    val, err := m.GetBackingStore().Get("onAuthenticationMethodLoadStart")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnAuthenticationMethodLoadStartHandlerable)
+    }
+    return nil
 }
 // GetOnInteractiveAuthFlowStart gets the onInteractiveAuthFlowStart property value. Required. The configuration for what to invoke when an authentication flow is ready to be initiated.
 // returns a OnInteractiveAuthFlowStartHandlerable when successful
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) GetOnInteractiveAuthFlowStart()(OnInteractiveAuthFlowStartHandlerable) {
-    return m.onInteractiveAuthFlowStart
+    val, err := m.GetBackingStore().Get("onInteractiveAuthFlowStart")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnInteractiveAuthFlowStartHandlerable)
+    }
+    return nil
 }
 // GetOnUserCreateStart gets the onUserCreateStart property value. The configuration for what to invoke during user creation.
 // returns a OnUserCreateStartHandlerable when successful
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) GetOnUserCreateStart()(OnUserCreateStartHandlerable) {
-    return m.onUserCreateStart
+    val, err := m.GetBackingStore().Get("onUserCreateStart")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnUserCreateStartHandlerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -178,27 +208,45 @@ func (m *ExternalUsersSelfServiceSignUpEventsFlow) Serialize(writer i878a80d2330
 }
 // SetOnAttributeCollection sets the onAttributeCollection property value. The configuration for what to invoke when attributes are ready to be collected from the user.
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) SetOnAttributeCollection(value OnAttributeCollectionHandlerable)() {
-    m.onAttributeCollection = value
+    err := m.GetBackingStore().Set("onAttributeCollection", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnAttributeCollectionStart sets the onAttributeCollectionStart property value. The configuration for what to invoke when attribution collection starts.
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) SetOnAttributeCollectionStart(value OnAttributeCollectionStartHandlerable)() {
-    m.onAttributeCollectionStart = value
+    err := m.GetBackingStore().Set("onAttributeCollectionStart", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnAttributeCollectionSubmit sets the onAttributeCollectionSubmit property value. The configuration for what to invoke when attributes are submitted at the end of attribution collection.
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) SetOnAttributeCollectionSubmit(value OnAttributeCollectionSubmitHandlerable)() {
-    m.onAttributeCollectionSubmit = value
+    err := m.GetBackingStore().Set("onAttributeCollectionSubmit", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnAuthenticationMethodLoadStart sets the onAuthenticationMethodLoadStart property value. Required. The configuration for what to invoke when authentication methods are ready to be presented to the user. Must have at least one identity provider linked.  Supports $filter (eq). See support for filtering on user flows for syntax information.
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) SetOnAuthenticationMethodLoadStart(value OnAuthenticationMethodLoadStartHandlerable)() {
-    m.onAuthenticationMethodLoadStart = value
+    err := m.GetBackingStore().Set("onAuthenticationMethodLoadStart", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnInteractiveAuthFlowStart sets the onInteractiveAuthFlowStart property value. Required. The configuration for what to invoke when an authentication flow is ready to be initiated.
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) SetOnInteractiveAuthFlowStart(value OnInteractiveAuthFlowStartHandlerable)() {
-    m.onInteractiveAuthFlowStart = value
+    err := m.GetBackingStore().Set("onInteractiveAuthFlowStart", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnUserCreateStart sets the onUserCreateStart property value. The configuration for what to invoke during user creation.
 func (m *ExternalUsersSelfServiceSignUpEventsFlow) SetOnUserCreateStart(value OnUserCreateStartHandlerable)() {
-    m.onUserCreateStart = value
+    err := m.GetBackingStore().Set("onUserCreateStart", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ExternalUsersSelfServiceSignUpEventsFlowable interface {
     AuthenticationEventsFlowable

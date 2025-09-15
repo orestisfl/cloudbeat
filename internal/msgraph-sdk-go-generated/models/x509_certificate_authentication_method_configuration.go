@@ -9,14 +9,6 @@ import (
 
 type X509CertificateAuthenticationMethodConfiguration struct {
     AuthenticationMethodConfiguration
-    // Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.
-    authenticationModeConfiguration X509CertificateAuthenticationModeConfigurationable
-    // Defines fields in the X.509 certificate that map to attributes of the Microsoft Entra user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.
-    certificateUserBindings []X509CertificateUserBindingable
-    // The crlValidationConfiguration property
-    crlValidationConfiguration X509CertificateCRLValidationConfigurationable
-    // A collection of groups that are enabled to use the authentication method.
-    includeTargets []AuthenticationMethodTargetable
 }
 // NewX509CertificateAuthenticationMethodConfiguration instantiates a new X509CertificateAuthenticationMethodConfiguration and sets the default values.
 func NewX509CertificateAuthenticationMethodConfiguration()(*X509CertificateAuthenticationMethodConfiguration) {
@@ -35,17 +27,38 @@ func CreateX509CertificateAuthenticationMethodConfigurationFromDiscriminatorValu
 // GetAuthenticationModeConfiguration gets the authenticationModeConfiguration property value. Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.
 // returns a X509CertificateAuthenticationModeConfigurationable when successful
 func (m *X509CertificateAuthenticationMethodConfiguration) GetAuthenticationModeConfiguration()(X509CertificateAuthenticationModeConfigurationable) {
-    return m.authenticationModeConfiguration
+    val, err := m.GetBackingStore().Get("authenticationModeConfiguration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(X509CertificateAuthenticationModeConfigurationable)
+    }
+    return nil
 }
 // GetCertificateUserBindings gets the certificateUserBindings property value. Defines fields in the X.509 certificate that map to attributes of the Microsoft Entra user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.
 // returns a []X509CertificateUserBindingable when successful
 func (m *X509CertificateAuthenticationMethodConfiguration) GetCertificateUserBindings()([]X509CertificateUserBindingable) {
-    return m.certificateUserBindings
+    val, err := m.GetBackingStore().Get("certificateUserBindings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]X509CertificateUserBindingable)
+    }
+    return nil
 }
 // GetCrlValidationConfiguration gets the crlValidationConfiguration property value. The crlValidationConfiguration property
 // returns a X509CertificateCRLValidationConfigurationable when successful
 func (m *X509CertificateAuthenticationMethodConfiguration) GetCrlValidationConfiguration()(X509CertificateCRLValidationConfigurationable) {
-    return m.crlValidationConfiguration
+    val, err := m.GetBackingStore().Get("crlValidationConfiguration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(X509CertificateCRLValidationConfigurationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -108,7 +121,14 @@ func (m *X509CertificateAuthenticationMethodConfiguration) GetFieldDeserializers
 // GetIncludeTargets gets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
 // returns a []AuthenticationMethodTargetable when successful
 func (m *X509CertificateAuthenticationMethodConfiguration) GetIncludeTargets()([]AuthenticationMethodTargetable) {
-    return m.includeTargets
+    val, err := m.GetBackingStore().Get("includeTargets")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationMethodTargetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *X509CertificateAuthenticationMethodConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -156,19 +176,31 @@ func (m *X509CertificateAuthenticationMethodConfiguration) Serialize(writer i878
 }
 // SetAuthenticationModeConfiguration sets the authenticationModeConfiguration property value. Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.
 func (m *X509CertificateAuthenticationMethodConfiguration) SetAuthenticationModeConfiguration(value X509CertificateAuthenticationModeConfigurationable)() {
-    m.authenticationModeConfiguration = value
+    err := m.GetBackingStore().Set("authenticationModeConfiguration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCertificateUserBindings sets the certificateUserBindings property value. Defines fields in the X.509 certificate that map to attributes of the Microsoft Entra user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.
 func (m *X509CertificateAuthenticationMethodConfiguration) SetCertificateUserBindings(value []X509CertificateUserBindingable)() {
-    m.certificateUserBindings = value
+    err := m.GetBackingStore().Set("certificateUserBindings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCrlValidationConfiguration sets the crlValidationConfiguration property value. The crlValidationConfiguration property
 func (m *X509CertificateAuthenticationMethodConfiguration) SetCrlValidationConfiguration(value X509CertificateCRLValidationConfigurationable)() {
-    m.crlValidationConfiguration = value
+    err := m.GetBackingStore().Set("crlValidationConfiguration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIncludeTargets sets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
 func (m *X509CertificateAuthenticationMethodConfiguration) SetIncludeTargets(value []AuthenticationMethodTargetable)() {
-    m.includeTargets = value
+    err := m.GetBackingStore().Set("includeTargets", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type X509CertificateAuthenticationMethodConfigurationable interface {
     AuthenticationMethodConfigurationable

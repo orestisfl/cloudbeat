@@ -9,14 +9,6 @@ import (
 
 type CrossTenantAccessPolicy struct {
     PolicyBase
-    // Used to specify which Microsoft clouds an organization would like to collaborate with. By default, this value is empty. Supported values for this field are: microsoftonline.com, microsoftonline.us, and partner.microsoftonline.cn.
-    allowedCloudEndpoints []string
-    // Defines the default configuration for how your organization interacts with external Microsoft Entra organizations.
-    defaultEscaped CrossTenantAccessPolicyConfigurationDefaultable
-    // Defines partner-specific configurations for external Microsoft Entra organizations.
-    partners []CrossTenantAccessPolicyConfigurationPartnerable
-    // Represents the base policy in the directory for multitenant organization settings.
-    templates PolicyTemplateable
 }
 // NewCrossTenantAccessPolicy instantiates a new CrossTenantAccessPolicy and sets the default values.
 func NewCrossTenantAccessPolicy()(*CrossTenantAccessPolicy) {
@@ -35,12 +27,26 @@ func CreateCrossTenantAccessPolicyFromDiscriminatorValue(parseNode i878a80d2330e
 // GetAllowedCloudEndpoints gets the allowedCloudEndpoints property value. Used to specify which Microsoft clouds an organization would like to collaborate with. By default, this value is empty. Supported values for this field are: microsoftonline.com, microsoftonline.us, and partner.microsoftonline.cn.
 // returns a []string when successful
 func (m *CrossTenantAccessPolicy) GetAllowedCloudEndpoints()([]string) {
-    return m.allowedCloudEndpoints
+    val, err := m.GetBackingStore().Get("allowedCloudEndpoints")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetDefaultEscaped gets the default property value. Defines the default configuration for how your organization interacts with external Microsoft Entra organizations.
 // returns a CrossTenantAccessPolicyConfigurationDefaultable when successful
 func (m *CrossTenantAccessPolicy) GetDefaultEscaped()(CrossTenantAccessPolicyConfigurationDefaultable) {
-    return m.defaultEscaped
+    val, err := m.GetBackingStore().Get("defaultEscaped")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantAccessPolicyConfigurationDefaultable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -103,12 +109,26 @@ func (m *CrossTenantAccessPolicy) GetFieldDeserializers()(map[string]func(i878a8
 // GetPartners gets the partners property value. Defines partner-specific configurations for external Microsoft Entra organizations.
 // returns a []CrossTenantAccessPolicyConfigurationPartnerable when successful
 func (m *CrossTenantAccessPolicy) GetPartners()([]CrossTenantAccessPolicyConfigurationPartnerable) {
-    return m.partners
+    val, err := m.GetBackingStore().Get("partners")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CrossTenantAccessPolicyConfigurationPartnerable)
+    }
+    return nil
 }
 // GetTemplates gets the templates property value. Represents the base policy in the directory for multitenant organization settings.
 // returns a PolicyTemplateable when successful
 func (m *CrossTenantAccessPolicy) GetTemplates()(PolicyTemplateable) {
-    return m.templates
+    val, err := m.GetBackingStore().Get("templates")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PolicyTemplateable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CrossTenantAccessPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -150,19 +170,31 @@ func (m *CrossTenantAccessPolicy) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetAllowedCloudEndpoints sets the allowedCloudEndpoints property value. Used to specify which Microsoft clouds an organization would like to collaborate with. By default, this value is empty. Supported values for this field are: microsoftonline.com, microsoftonline.us, and partner.microsoftonline.cn.
 func (m *CrossTenantAccessPolicy) SetAllowedCloudEndpoints(value []string)() {
-    m.allowedCloudEndpoints = value
+    err := m.GetBackingStore().Set("allowedCloudEndpoints", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDefaultEscaped sets the default property value. Defines the default configuration for how your organization interacts with external Microsoft Entra organizations.
 func (m *CrossTenantAccessPolicy) SetDefaultEscaped(value CrossTenantAccessPolicyConfigurationDefaultable)() {
-    m.defaultEscaped = value
+    err := m.GetBackingStore().Set("defaultEscaped", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPartners sets the partners property value. Defines partner-specific configurations for external Microsoft Entra organizations.
 func (m *CrossTenantAccessPolicy) SetPartners(value []CrossTenantAccessPolicyConfigurationPartnerable)() {
-    m.partners = value
+    err := m.GetBackingStore().Set("partners", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTemplates sets the templates property value. Represents the base policy in the directory for multitenant organization settings.
 func (m *CrossTenantAccessPolicy) SetTemplates(value PolicyTemplateable)() {
-    m.templates = value
+    err := m.GetBackingStore().Set("templates", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CrossTenantAccessPolicyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -10,24 +10,6 @@ import (
 
 type SubmissionMailEvidence struct {
     AlertEvidence
-    // The networkMessageId property
-    networkMessageId *string
-    // The recipient property
-    recipient *string
-    // The reportType property
-    reportType *string
-    // The sender property
-    sender *string
-    // The senderIp property
-    senderIp *string
-    // The subject property
-    subject *string
-    // The submissionDateTime property
-    submissionDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The submissionId property
-    submissionId *string
-    // The submitter property
-    submitter *string
 }
 // NewSubmissionMailEvidence instantiates a new SubmissionMailEvidence and sets the default values.
 func NewSubmissionMailEvidence()(*SubmissionMailEvidence) {
@@ -142,47 +124,110 @@ func (m *SubmissionMailEvidence) GetFieldDeserializers()(map[string]func(i878a80
 // GetNetworkMessageId gets the networkMessageId property value. The networkMessageId property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetNetworkMessageId()(*string) {
-    return m.networkMessageId
+    val, err := m.GetBackingStore().Get("networkMessageId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRecipient gets the recipient property value. The recipient property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetRecipient()(*string) {
-    return m.recipient
+    val, err := m.GetBackingStore().Get("recipient")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetReportType gets the reportType property value. The reportType property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetReportType()(*string) {
-    return m.reportType
+    val, err := m.GetBackingStore().Get("reportType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSender gets the sender property value. The sender property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetSender()(*string) {
-    return m.sender
+    val, err := m.GetBackingStore().Get("sender")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSenderIp gets the senderIp property value. The senderIp property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetSenderIp()(*string) {
-    return m.senderIp
+    val, err := m.GetBackingStore().Get("senderIp")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSubject gets the subject property value. The subject property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetSubject()(*string) {
-    return m.subject
+    val, err := m.GetBackingStore().Get("subject")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSubmissionDateTime gets the submissionDateTime property value. The submissionDateTime property
 // returns a *Time when successful
 func (m *SubmissionMailEvidence) GetSubmissionDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.submissionDateTime
+    val, err := m.GetBackingStore().Get("submissionDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetSubmissionId gets the submissionId property value. The submissionId property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetSubmissionId()(*string) {
-    return m.submissionId
+    val, err := m.GetBackingStore().Get("submissionId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSubmitter gets the submitter property value. The submitter property
 // returns a *string when successful
 func (m *SubmissionMailEvidence) GetSubmitter()(*string) {
-    return m.submitter
+    val, err := m.GetBackingStore().Get("submitter")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SubmissionMailEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -248,39 +293,66 @@ func (m *SubmissionMailEvidence) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetNetworkMessageId sets the networkMessageId property value. The networkMessageId property
 func (m *SubmissionMailEvidence) SetNetworkMessageId(value *string)() {
-    m.networkMessageId = value
+    err := m.GetBackingStore().Set("networkMessageId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecipient sets the recipient property value. The recipient property
 func (m *SubmissionMailEvidence) SetRecipient(value *string)() {
-    m.recipient = value
+    err := m.GetBackingStore().Set("recipient", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReportType sets the reportType property value. The reportType property
 func (m *SubmissionMailEvidence) SetReportType(value *string)() {
-    m.reportType = value
+    err := m.GetBackingStore().Set("reportType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSender sets the sender property value. The sender property
 func (m *SubmissionMailEvidence) SetSender(value *string)() {
-    m.sender = value
+    err := m.GetBackingStore().Set("sender", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSenderIp sets the senderIp property value. The senderIp property
 func (m *SubmissionMailEvidence) SetSenderIp(value *string)() {
-    m.senderIp = value
+    err := m.GetBackingStore().Set("senderIp", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubject sets the subject property value. The subject property
 func (m *SubmissionMailEvidence) SetSubject(value *string)() {
-    m.subject = value
+    err := m.GetBackingStore().Set("subject", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmissionDateTime sets the submissionDateTime property value. The submissionDateTime property
 func (m *SubmissionMailEvidence) SetSubmissionDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.submissionDateTime = value
+    err := m.GetBackingStore().Set("submissionDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmissionId sets the submissionId property value. The submissionId property
 func (m *SubmissionMailEvidence) SetSubmissionId(value *string)() {
-    m.submissionId = value
+    err := m.GetBackingStore().Set("submissionId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmitter sets the submitter property value. The submitter property
 func (m *SubmissionMailEvidence) SetSubmitter(value *string)() {
-    m.submitter = value
+    err := m.GetBackingStore().Set("submitter", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SubmissionMailEvidenceable interface {
     AlertEvidenceable

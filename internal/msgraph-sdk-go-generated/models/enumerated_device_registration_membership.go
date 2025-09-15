@@ -9,10 +9,6 @@ import (
 
 type EnumeratedDeviceRegistrationMembership struct {
     DeviceRegistrationMembership
-    // The groups property
-    groups []string
-    // The users property
-    users []string
 }
 // NewEnumeratedDeviceRegistrationMembership instantiates a new EnumeratedDeviceRegistrationMembership and sets the default values.
 func NewEnumeratedDeviceRegistrationMembership()(*EnumeratedDeviceRegistrationMembership) {
@@ -69,12 +65,26 @@ func (m *EnumeratedDeviceRegistrationMembership) GetFieldDeserializers()(map[str
 // GetGroups gets the groups property value. The groups property
 // returns a []string when successful
 func (m *EnumeratedDeviceRegistrationMembership) GetGroups()([]string) {
-    return m.groups
+    val, err := m.GetBackingStore().Get("groups")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetUsers gets the users property value. The users property
 // returns a []string when successful
 func (m *EnumeratedDeviceRegistrationMembership) GetUsers()([]string) {
-    return m.users
+    val, err := m.GetBackingStore().Get("users")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EnumeratedDeviceRegistrationMembership) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -98,11 +108,17 @@ func (m *EnumeratedDeviceRegistrationMembership) Serialize(writer i878a80d2330e8
 }
 // SetGroups sets the groups property value. The groups property
 func (m *EnumeratedDeviceRegistrationMembership) SetGroups(value []string)() {
-    m.groups = value
+    err := m.GetBackingStore().Set("groups", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUsers sets the users property value. The users property
 func (m *EnumeratedDeviceRegistrationMembership) SetUsers(value []string)() {
-    m.users = value
+    err := m.GetBackingStore().Set("users", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EnumeratedDeviceRegistrationMembershipable interface {
     DeviceRegistrationMembershipable

@@ -5,26 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type ImportedWindowsAutopilotDeviceIdentityState struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Device error code reported by Device Directory Service(DDS).
-    deviceErrorCode *int32
-    // Device error name reported by Device Directory Service(DDS).
-    deviceErrorName *string
-    // The deviceImportStatus property
-    deviceImportStatus *ImportedWindowsAutopilotDeviceIdentityImportStatus
-    // Device Registration ID for successfully added device reported by Device Directory Service(DDS).
-    deviceRegistrationId *string
-    // The OdataType property
-    odataType *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewImportedWindowsAutopilotDeviceIdentityState instantiates a new ImportedWindowsAutopilotDeviceIdentityState and sets the default values.
 func NewImportedWindowsAutopilotDeviceIdentityState()(*ImportedWindowsAutopilotDeviceIdentityState) {
     m := &ImportedWindowsAutopilotDeviceIdentityState{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -36,27 +28,68 @@ func CreateImportedWindowsAutopilotDeviceIdentityStateFromDiscriminatorValue(par
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *ImportedWindowsAutopilotDeviceIdentityState) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *ImportedWindowsAutopilotDeviceIdentityState) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetDeviceErrorCode gets the deviceErrorCode property value. Device error code reported by Device Directory Service(DDS).
 // returns a *int32 when successful
 func (m *ImportedWindowsAutopilotDeviceIdentityState) GetDeviceErrorCode()(*int32) {
-    return m.deviceErrorCode
+    val, err := m.GetBackingStore().Get("deviceErrorCode")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetDeviceErrorName gets the deviceErrorName property value. Device error name reported by Device Directory Service(DDS).
 // returns a *string when successful
 func (m *ImportedWindowsAutopilotDeviceIdentityState) GetDeviceErrorName()(*string) {
-    return m.deviceErrorName
+    val, err := m.GetBackingStore().Get("deviceErrorName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDeviceImportStatus gets the deviceImportStatus property value. The deviceImportStatus property
 // returns a *ImportedWindowsAutopilotDeviceIdentityImportStatus when successful
 func (m *ImportedWindowsAutopilotDeviceIdentityState) GetDeviceImportStatus()(*ImportedWindowsAutopilotDeviceIdentityImportStatus) {
-    return m.deviceImportStatus
+    val, err := m.GetBackingStore().Get("deviceImportStatus")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ImportedWindowsAutopilotDeviceIdentityImportStatus)
+    }
+    return nil
 }
 // GetDeviceRegistrationId gets the deviceRegistrationId property value. Device Registration ID for successfully added device reported by Device Directory Service(DDS).
 // returns a *string when successful
 func (m *ImportedWindowsAutopilotDeviceIdentityState) GetDeviceRegistrationId()(*string) {
-    return m.deviceRegistrationId
+    val, err := m.GetBackingStore().Get("deviceRegistrationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -117,7 +150,14 @@ func (m *ImportedWindowsAutopilotDeviceIdentityState) GetFieldDeserializers()(ma
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *ImportedWindowsAutopilotDeviceIdentityState) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ImportedWindowsAutopilotDeviceIdentityState) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -162,36 +202,61 @@ func (m *ImportedWindowsAutopilotDeviceIdentityState) Serialize(writer i878a80d2
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ImportedWindowsAutopilotDeviceIdentityState) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *ImportedWindowsAutopilotDeviceIdentityState) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetDeviceErrorCode sets the deviceErrorCode property value. Device error code reported by Device Directory Service(DDS).
 func (m *ImportedWindowsAutopilotDeviceIdentityState) SetDeviceErrorCode(value *int32)() {
-    m.deviceErrorCode = value
+    err := m.GetBackingStore().Set("deviceErrorCode", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceErrorName sets the deviceErrorName property value. Device error name reported by Device Directory Service(DDS).
 func (m *ImportedWindowsAutopilotDeviceIdentityState) SetDeviceErrorName(value *string)() {
-    m.deviceErrorName = value
+    err := m.GetBackingStore().Set("deviceErrorName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceImportStatus sets the deviceImportStatus property value. The deviceImportStatus property
 func (m *ImportedWindowsAutopilotDeviceIdentityState) SetDeviceImportStatus(value *ImportedWindowsAutopilotDeviceIdentityImportStatus)() {
-    m.deviceImportStatus = value
+    err := m.GetBackingStore().Set("deviceImportStatus", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceRegistrationId sets the deviceRegistrationId property value. Device Registration ID for successfully added device reported by Device Directory Service(DDS).
 func (m *ImportedWindowsAutopilotDeviceIdentityState) SetDeviceRegistrationId(value *string)() {
-    m.deviceRegistrationId = value
+    err := m.GetBackingStore().Set("deviceRegistrationId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ImportedWindowsAutopilotDeviceIdentityState) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ImportedWindowsAutopilotDeviceIdentityStateable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetDeviceErrorCode()(*int32)
     GetDeviceErrorName()(*string)
     GetDeviceImportStatus()(*ImportedWindowsAutopilotDeviceIdentityImportStatus)
     GetDeviceRegistrationId()(*string)
     GetOdataType()(*string)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetDeviceErrorCode(value *int32)()
     SetDeviceErrorName(value *string)()
     SetDeviceImportStatus(value *ImportedWindowsAutopilotDeviceIdentityImportStatus)()

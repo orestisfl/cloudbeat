@@ -9,10 +9,6 @@ import (
 
 type OneDriveForBusinessRestoreSession struct {
     RestoreSessionBase
-    // A collection of restore points and destination details that can be used to restore a OneDrive for work or school drive.
-    driveRestoreArtifacts []DriveRestoreArtifactable
-    // A collection of user mailboxes and destination details that can be used to restore a OneDrive for work or school drive.
-    driveRestoreArtifactsBulkAdditionRequests []DriveRestoreArtifactsBulkAdditionRequestable
 }
 // NewOneDriveForBusinessRestoreSession instantiates a new OneDriveForBusinessRestoreSession and sets the default values.
 func NewOneDriveForBusinessRestoreSession()(*OneDriveForBusinessRestoreSession) {
@@ -31,12 +27,26 @@ func CreateOneDriveForBusinessRestoreSessionFromDiscriminatorValue(parseNode i87
 // GetDriveRestoreArtifacts gets the driveRestoreArtifacts property value. A collection of restore points and destination details that can be used to restore a OneDrive for work or school drive.
 // returns a []DriveRestoreArtifactable when successful
 func (m *OneDriveForBusinessRestoreSession) GetDriveRestoreArtifacts()([]DriveRestoreArtifactable) {
-    return m.driveRestoreArtifacts
+    val, err := m.GetBackingStore().Get("driveRestoreArtifacts")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveRestoreArtifactable)
+    }
+    return nil
 }
 // GetDriveRestoreArtifactsBulkAdditionRequests gets the driveRestoreArtifactsBulkAdditionRequests property value. A collection of user mailboxes and destination details that can be used to restore a OneDrive for work or school drive.
 // returns a []DriveRestoreArtifactsBulkAdditionRequestable when successful
 func (m *OneDriveForBusinessRestoreSession) GetDriveRestoreArtifactsBulkAdditionRequests()([]DriveRestoreArtifactsBulkAdditionRequestable) {
-    return m.driveRestoreArtifactsBulkAdditionRequests
+    val, err := m.GetBackingStore().Get("driveRestoreArtifactsBulkAdditionRequests")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveRestoreArtifactsBulkAdditionRequestable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -110,11 +120,17 @@ func (m *OneDriveForBusinessRestoreSession) Serialize(writer i878a80d2330e89d268
 }
 // SetDriveRestoreArtifacts sets the driveRestoreArtifacts property value. A collection of restore points and destination details that can be used to restore a OneDrive for work or school drive.
 func (m *OneDriveForBusinessRestoreSession) SetDriveRestoreArtifacts(value []DriveRestoreArtifactable)() {
-    m.driveRestoreArtifacts = value
+    err := m.GetBackingStore().Set("driveRestoreArtifacts", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDriveRestoreArtifactsBulkAdditionRequests sets the driveRestoreArtifactsBulkAdditionRequests property value. A collection of user mailboxes and destination details that can be used to restore a OneDrive for work or school drive.
 func (m *OneDriveForBusinessRestoreSession) SetDriveRestoreArtifactsBulkAdditionRequests(value []DriveRestoreArtifactsBulkAdditionRequestable)() {
-    m.driveRestoreArtifactsBulkAdditionRequests = value
+    err := m.GetBackingStore().Set("driveRestoreArtifactsBulkAdditionRequests", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OneDriveForBusinessRestoreSessionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

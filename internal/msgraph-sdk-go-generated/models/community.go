@@ -10,18 +10,6 @@ import (
 // Community represents a community in Viva Engage that is a central place for conversations,files, events, and updates for people sharing a common interest or goal.
 type Community struct {
     Entity
-    // The description of the community. The maximum length is 1,024 characters.
-    description *string
-    // The name of the community. The maximum length is 255 characters.
-    displayName *string
-    // The Microsoft 365 group that manages the membership of this community.
-    group Groupable
-    // The ID of the Microsoft 365 group that manages the membership of this community.
-    groupId *string
-    // The admins of the community. Limited to 100 users. If this property isn't specified when you create the community, the calling user is automatically assigned as the community owner.
-    owners []Userable
-    // Types of communityPrivacy.
-    privacy *CommunityPrivacy
 }
 // NewCommunity instantiates a new Community and sets the default values.
 func NewCommunity()(*Community) {
@@ -38,12 +26,26 @@ func CreateCommunityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetDescription gets the description property value. The description of the community. The maximum length is 1,024 characters.
 // returns a *string when successful
 func (m *Community) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The name of the community. The maximum length is 255 characters.
 // returns a *string when successful
 func (m *Community) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -120,22 +122,50 @@ func (m *Community) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetGroup gets the group property value. The Microsoft 365 group that manages the membership of this community.
 // returns a Groupable when successful
 func (m *Community) GetGroup()(Groupable) {
-    return m.group
+    val, err := m.GetBackingStore().Get("group")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Groupable)
+    }
+    return nil
 }
 // GetGroupId gets the groupId property value. The ID of the Microsoft 365 group that manages the membership of this community.
 // returns a *string when successful
 func (m *Community) GetGroupId()(*string) {
-    return m.groupId
+    val, err := m.GetBackingStore().Get("groupId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOwners gets the owners property value. The admins of the community. Limited to 100 users. If this property isn't specified when you create the community, the calling user is automatically assigned as the community owner.
 // returns a []Userable when successful
 func (m *Community) GetOwners()([]Userable) {
-    return m.owners
+    val, err := m.GetBackingStore().Get("owners")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Userable)
+    }
+    return nil
 }
 // GetPrivacy gets the privacy property value. Types of communityPrivacy.
 // returns a *CommunityPrivacy when successful
 func (m *Community) GetPrivacy()(*CommunityPrivacy) {
-    return m.privacy
+    val, err := m.GetBackingStore().Get("privacy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*CommunityPrivacy)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Community) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -190,27 +220,45 @@ func (m *Community) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetDescription sets the description property value. The description of the community. The maximum length is 1,024 characters.
 func (m *Community) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The name of the community. The maximum length is 255 characters.
 func (m *Community) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetGroup sets the group property value. The Microsoft 365 group that manages the membership of this community.
 func (m *Community) SetGroup(value Groupable)() {
-    m.group = value
+    err := m.GetBackingStore().Set("group", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetGroupId sets the groupId property value. The ID of the Microsoft 365 group that manages the membership of this community.
 func (m *Community) SetGroupId(value *string)() {
-    m.groupId = value
+    err := m.GetBackingStore().Set("groupId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwners sets the owners property value. The admins of the community. Limited to 100 users. If this property isn't specified when you create the community, the calling user is automatically assigned as the community owner.
 func (m *Community) SetOwners(value []Userable)() {
-    m.owners = value
+    err := m.GetBackingStore().Set("owners", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPrivacy sets the privacy property value. Types of communityPrivacy.
 func (m *Community) SetPrivacy(value *CommunityPrivacy)() {
-    m.privacy = value
+    err := m.GetBackingStore().Set("privacy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Communityable interface {
     Entityable

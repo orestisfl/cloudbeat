@@ -5,22 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type MediaContentRatingCanada struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Movies rating labels in Canada
-    movieRating *RatingCanadaMoviesType
-    // The OdataType property
-    odataType *string
-    // TV content rating labels in Canada
-    tvRating *RatingCanadaTelevisionType
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewMediaContentRatingCanada instantiates a new MediaContentRatingCanada and sets the default values.
 func NewMediaContentRatingCanada()(*MediaContentRatingCanada) {
     m := &MediaContentRatingCanada{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -32,7 +28,20 @@ func CreateMediaContentRatingCanadaFromDiscriminatorValue(parseNode i878a80d2330
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *MediaContentRatingCanada) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *MediaContentRatingCanada) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -73,17 +82,38 @@ func (m *MediaContentRatingCanada) GetFieldDeserializers()(map[string]func(i878a
 // GetMovieRating gets the movieRating property value. Movies rating labels in Canada
 // returns a *RatingCanadaMoviesType when successful
 func (m *MediaContentRatingCanada) GetMovieRating()(*RatingCanadaMoviesType) {
-    return m.movieRating
+    val, err := m.GetBackingStore().Get("movieRating")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*RatingCanadaMoviesType)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *MediaContentRatingCanada) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTvRating gets the tvRating property value. TV content rating labels in Canada
 // returns a *RatingCanadaTelevisionType when successful
 func (m *MediaContentRatingCanada) GetTvRating()(*RatingCanadaTelevisionType) {
-    return m.tvRating
+    val, err := m.GetBackingStore().Get("tvRating")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*RatingCanadaTelevisionType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MediaContentRatingCanada) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -117,26 +147,45 @@ func (m *MediaContentRatingCanada) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *MediaContentRatingCanada) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *MediaContentRatingCanada) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetMovieRating sets the movieRating property value. Movies rating labels in Canada
 func (m *MediaContentRatingCanada) SetMovieRating(value *RatingCanadaMoviesType)() {
-    m.movieRating = value
+    err := m.GetBackingStore().Set("movieRating", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *MediaContentRatingCanada) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTvRating sets the tvRating property value. TV content rating labels in Canada
 func (m *MediaContentRatingCanada) SetTvRating(value *RatingCanadaTelevisionType)() {
-    m.tvRating = value
+    err := m.GetBackingStore().Set("tvRating", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MediaContentRatingCanadaable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetMovieRating()(*RatingCanadaMoviesType)
     GetOdataType()(*string)
     GetTvRating()(*RatingCanadaTelevisionType)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetMovieRating(value *RatingCanadaMoviesType)()
     SetOdataType(value *string)()
     SetTvRating(value *RatingCanadaTelevisionType)()

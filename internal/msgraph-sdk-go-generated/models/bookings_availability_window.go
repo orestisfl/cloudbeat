@@ -9,10 +9,6 @@ import (
 
 type BookingsAvailabilityWindow struct {
     BookingsAvailability
-    // End date of the availability window.
-    endDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
-    // Start date of the availability window.
-    startDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
 }
 // NewBookingsAvailabilityWindow instantiates a new BookingsAvailabilityWindow and sets the default values.
 func NewBookingsAvailabilityWindow()(*BookingsAvailabilityWindow) {
@@ -31,7 +27,14 @@ func CreateBookingsAvailabilityWindowFromDiscriminatorValue(parseNode i878a80d23
 // GetEndDate gets the endDate property value. End date of the availability window.
 // returns a *DateOnly when successful
 func (m *BookingsAvailabilityWindow) GetEndDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly) {
-    return m.endDate
+    val, err := m.GetBackingStore().Get("endDate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -62,7 +65,14 @@ func (m *BookingsAvailabilityWindow) GetFieldDeserializers()(map[string]func(i87
 // GetStartDate gets the startDate property value. Start date of the availability window.
 // returns a *DateOnly when successful
 func (m *BookingsAvailabilityWindow) GetStartDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly) {
-    return m.startDate
+    val, err := m.GetBackingStore().Get("startDate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BookingsAvailabilityWindow) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *BookingsAvailabilityWindow) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetEndDate sets the endDate property value. End date of the availability window.
 func (m *BookingsAvailabilityWindow) SetEndDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)() {
-    m.endDate = value
+    err := m.GetBackingStore().Set("endDate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDate sets the startDate property value. Start date of the availability window.
 func (m *BookingsAvailabilityWindow) SetStartDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)() {
-    m.startDate = value
+    err := m.GetBackingStore().Set("startDate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BookingsAvailabilityWindowable interface {
     BookingsAvailabilityable

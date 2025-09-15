@@ -10,10 +10,6 @@ import (
 
 type BillingReconciliation struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The billed property
-    billed BilledReconciliationable
-    // The unbilled property
-    unbilled UnbilledReconciliationable
 }
 // NewBillingReconciliation instantiates a new BillingReconciliation and sets the default values.
 func NewBillingReconciliation()(*BillingReconciliation) {
@@ -30,7 +26,14 @@ func CreateBillingReconciliationFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetBilled gets the billed property value. The billed property
 // returns a BilledReconciliationable when successful
 func (m *BillingReconciliation) GetBilled()(BilledReconciliationable) {
-    return m.billed
+    val, err := m.GetBackingStore().Get("billed")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(BilledReconciliationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +64,14 @@ func (m *BillingReconciliation) GetFieldDeserializers()(map[string]func(i878a80d
 // GetUnbilled gets the unbilled property value. The unbilled property
 // returns a UnbilledReconciliationable when successful
 func (m *BillingReconciliation) GetUnbilled()(UnbilledReconciliationable) {
-    return m.unbilled
+    val, err := m.GetBackingStore().Get("unbilled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UnbilledReconciliationable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BillingReconciliation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *BillingReconciliation) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetBilled sets the billed property value. The billed property
 func (m *BillingReconciliation) SetBilled(value BilledReconciliationable)() {
-    m.billed = value
+    err := m.GetBackingStore().Set("billed", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnbilled sets the unbilled property value. The unbilled property
 func (m *BillingReconciliation) SetUnbilled(value UnbilledReconciliationable)() {
-    m.unbilled = value
+    err := m.GetBackingStore().Set("unbilled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BillingReconciliationable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

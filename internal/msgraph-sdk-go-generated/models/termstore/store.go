@@ -10,14 +10,6 @@ import (
 
 type Store struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Default language of the term store.
-    defaultLanguageTag *string
-    // Collection of all groups available in the term store.
-    groups []Groupable
-    // List of languages for the term store.
-    languageTags []string
-    // Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
-    sets []Setable
 }
 // NewStore instantiates a new Store and sets the default values.
 func NewStore()(*Store) {
@@ -34,7 +26,14 @@ func CreateStoreFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487e
 // GetDefaultLanguageTag gets the defaultLanguageTag property value. Default language of the term store.
 // returns a *string when successful
 func (m *Store) GetDefaultLanguageTag()(*string) {
-    return m.defaultLanguageTag
+    val, err := m.GetBackingStore().Get("defaultLanguageTag")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -103,17 +102,38 @@ func (m *Store) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
 // GetGroups gets the groups property value. Collection of all groups available in the term store.
 // returns a []Groupable when successful
 func (m *Store) GetGroups()([]Groupable) {
-    return m.groups
+    val, err := m.GetBackingStore().Get("groups")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Groupable)
+    }
+    return nil
 }
 // GetLanguageTags gets the languageTags property value. List of languages for the term store.
 // returns a []string when successful
 func (m *Store) GetLanguageTags()([]string) {
-    return m.languageTags
+    val, err := m.GetBackingStore().Get("languageTags")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetSets gets the sets property value. Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
 // returns a []Setable when successful
 func (m *Store) GetSets()([]Setable) {
-    return m.sets
+    val, err := m.GetBackingStore().Get("sets")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Setable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Store) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -161,19 +181,31 @@ func (m *Store) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
 }
 // SetDefaultLanguageTag sets the defaultLanguageTag property value. Default language of the term store.
 func (m *Store) SetDefaultLanguageTag(value *string)() {
-    m.defaultLanguageTag = value
+    err := m.GetBackingStore().Set("defaultLanguageTag", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetGroups sets the groups property value. Collection of all groups available in the term store.
 func (m *Store) SetGroups(value []Groupable)() {
-    m.groups = value
+    err := m.GetBackingStore().Set("groups", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLanguageTags sets the languageTags property value. List of languages for the term store.
 func (m *Store) SetLanguageTags(value []string)() {
-    m.languageTags = value
+    err := m.GetBackingStore().Set("languageTags", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSets sets the sets property value. Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
 func (m *Store) SetSets(value []Setable)() {
-    m.sets = value
+    err := m.GetBackingStore().Set("sets", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Storeable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

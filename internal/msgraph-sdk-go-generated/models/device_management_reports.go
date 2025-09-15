@@ -9,8 +9,6 @@ import (
 
 type DeviceManagementReports struct {
     Entity
-    // Entity representing a job to export a report
-    exportJobs []DeviceManagementExportJobable
 }
 // NewDeviceManagementReports instantiates a new DeviceManagementReports and sets the default values.
 func NewDeviceManagementReports()(*DeviceManagementReports) {
@@ -27,7 +25,14 @@ func CreateDeviceManagementReportsFromDiscriminatorValue(parseNode i878a80d2330e
 // GetExportJobs gets the exportJobs property value. Entity representing a job to export a report
 // returns a []DeviceManagementExportJobable when successful
 func (m *DeviceManagementReports) GetExportJobs()([]DeviceManagementExportJobable) {
-    return m.exportJobs
+    val, err := m.GetBackingStore().Get("exportJobs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DeviceManagementExportJobable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -73,7 +78,10 @@ func (m *DeviceManagementReports) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetExportJobs sets the exportJobs property value. Entity representing a job to export a report
 func (m *DeviceManagementReports) SetExportJobs(value []DeviceManagementExportJobable)() {
-    m.exportJobs = value
+    err := m.GetBackingStore().Set("exportJobs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceManagementReportsable interface {
     Entityable

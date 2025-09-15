@@ -11,30 +11,6 @@ import (
 
 type TaskReport struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-    completedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-    failedUsersCount *int32
-    // The date and time that the task report was last updated.
-    lastUpdatedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The processingStatus property
-    processingStatus *LifecycleWorkflowProcessingStatus
-    // The unique identifier of the associated run.
-    runId *string
-    // The date time that the associated run started. Value is null if the run has not started.
-    startedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-    successfulUsersCount *int32
-    // The task property
-    task Taskable
-    // The taskDefinition property
-    taskDefinition TaskDefinitionable
-    // The related lifecycle workflow taskProcessingResults.
-    taskProcessingResults []TaskProcessingResultable
-    // The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-    totalUsersCount *int32
-    // The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-    unprocessedUsersCount *int32
 }
 // NewTaskReport instantiates a new TaskReport and sets the default values.
 func NewTaskReport()(*TaskReport) {
@@ -51,12 +27,26 @@ func CreateTaskReportFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 // GetCompletedDateTime gets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 // returns a *Time when successful
 func (m *TaskReport) GetCompletedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.completedDateTime
+    val, err := m.GetBackingStore().Get("completedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFailedUsersCount gets the failedUsersCount property value. The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 // returns a *int32 when successful
 func (m *TaskReport) GetFailedUsersCount()(*int32) {
-    return m.failedUsersCount
+    val, err := m.GetBackingStore().Get("failedUsersCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -193,52 +183,122 @@ func (m *TaskReport) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetLastUpdatedDateTime gets the lastUpdatedDateTime property value. The date and time that the task report was last updated.
 // returns a *Time when successful
 func (m *TaskReport) GetLastUpdatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastUpdatedDateTime
+    val, err := m.GetBackingStore().Get("lastUpdatedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetProcessingStatus gets the processingStatus property value. The processingStatus property
 // returns a *LifecycleWorkflowProcessingStatus when successful
 func (m *TaskReport) GetProcessingStatus()(*LifecycleWorkflowProcessingStatus) {
-    return m.processingStatus
+    val, err := m.GetBackingStore().Get("processingStatus")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*LifecycleWorkflowProcessingStatus)
+    }
+    return nil
 }
 // GetRunId gets the runId property value. The unique identifier of the associated run.
 // returns a *string when successful
 func (m *TaskReport) GetRunId()(*string) {
-    return m.runId
+    val, err := m.GetBackingStore().Get("runId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetStartedDateTime gets the startedDateTime property value. The date time that the associated run started. Value is null if the run has not started.
 // returns a *Time when successful
 func (m *TaskReport) GetStartedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startedDateTime
+    val, err := m.GetBackingStore().Get("startedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetSuccessfulUsersCount gets the successfulUsersCount property value. The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 // returns a *int32 when successful
 func (m *TaskReport) GetSuccessfulUsersCount()(*int32) {
-    return m.successfulUsersCount
+    val, err := m.GetBackingStore().Get("successfulUsersCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetTask gets the task property value. The task property
 // returns a Taskable when successful
 func (m *TaskReport) GetTask()(Taskable) {
-    return m.task
+    val, err := m.GetBackingStore().Get("task")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Taskable)
+    }
+    return nil
 }
 // GetTaskDefinition gets the taskDefinition property value. The taskDefinition property
 // returns a TaskDefinitionable when successful
 func (m *TaskReport) GetTaskDefinition()(TaskDefinitionable) {
-    return m.taskDefinition
+    val, err := m.GetBackingStore().Get("taskDefinition")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TaskDefinitionable)
+    }
+    return nil
 }
 // GetTaskProcessingResults gets the taskProcessingResults property value. The related lifecycle workflow taskProcessingResults.
 // returns a []TaskProcessingResultable when successful
 func (m *TaskReport) GetTaskProcessingResults()([]TaskProcessingResultable) {
-    return m.taskProcessingResults
+    val, err := m.GetBackingStore().Get("taskProcessingResults")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TaskProcessingResultable)
+    }
+    return nil
 }
 // GetTotalUsersCount gets the totalUsersCount property value. The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 // returns a *int32 when successful
 func (m *TaskReport) GetTotalUsersCount()(*int32) {
-    return m.totalUsersCount
+    val, err := m.GetBackingStore().Get("totalUsersCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetUnprocessedUsersCount gets the unprocessedUsersCount property value. The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 // returns a *int32 when successful
 func (m *TaskReport) GetUnprocessedUsersCount()(*int32) {
-    return m.unprocessedUsersCount
+    val, err := m.GetBackingStore().Get("unprocessedUsersCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TaskReport) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -329,51 +389,87 @@ func (m *TaskReport) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetCompletedDateTime sets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 func (m *TaskReport) SetCompletedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.completedDateTime = value
+    err := m.GetBackingStore().Set("completedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFailedUsersCount sets the failedUsersCount property value. The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 func (m *TaskReport) SetFailedUsersCount(value *int32)() {
-    m.failedUsersCount = value
+    err := m.GetBackingStore().Set("failedUsersCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastUpdatedDateTime sets the lastUpdatedDateTime property value. The date and time that the task report was last updated.
 func (m *TaskReport) SetLastUpdatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastUpdatedDateTime = value
+    err := m.GetBackingStore().Set("lastUpdatedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProcessingStatus sets the processingStatus property value. The processingStatus property
 func (m *TaskReport) SetProcessingStatus(value *LifecycleWorkflowProcessingStatus)() {
-    m.processingStatus = value
+    err := m.GetBackingStore().Set("processingStatus", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRunId sets the runId property value. The unique identifier of the associated run.
 func (m *TaskReport) SetRunId(value *string)() {
-    m.runId = value
+    err := m.GetBackingStore().Set("runId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartedDateTime sets the startedDateTime property value. The date time that the associated run started. Value is null if the run has not started.
 func (m *TaskReport) SetStartedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startedDateTime = value
+    err := m.GetBackingStore().Set("startedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSuccessfulUsersCount sets the successfulUsersCount property value. The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 func (m *TaskReport) SetSuccessfulUsersCount(value *int32)() {
-    m.successfulUsersCount = value
+    err := m.GetBackingStore().Set("successfulUsersCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTask sets the task property value. The task property
 func (m *TaskReport) SetTask(value Taskable)() {
-    m.task = value
+    err := m.GetBackingStore().Set("task", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTaskDefinition sets the taskDefinition property value. The taskDefinition property
 func (m *TaskReport) SetTaskDefinition(value TaskDefinitionable)() {
-    m.taskDefinition = value
+    err := m.GetBackingStore().Set("taskDefinition", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTaskProcessingResults sets the taskProcessingResults property value. The related lifecycle workflow taskProcessingResults.
 func (m *TaskReport) SetTaskProcessingResults(value []TaskProcessingResultable)() {
-    m.taskProcessingResults = value
+    err := m.GetBackingStore().Set("taskProcessingResults", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTotalUsersCount sets the totalUsersCount property value. The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 func (m *TaskReport) SetTotalUsersCount(value *int32)() {
-    m.totalUsersCount = value
+    err := m.GetBackingStore().Set("totalUsersCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnprocessedUsersCount sets the unprocessedUsersCount property value. The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 func (m *TaskReport) SetUnprocessedUsersCount(value *int32)() {
-    m.unprocessedUsersCount = value
+    err := m.GetBackingStore().Set("unprocessedUsersCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TaskReportable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

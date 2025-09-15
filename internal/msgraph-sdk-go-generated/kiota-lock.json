@@ -7,7 +7,7 @@
   "typeAccessModifier": "Public",
   "clientNamespaceName": "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated",
   "language": "Go",
-  "usesBackingStore": false,
+  "usesBackingStore": true,
   "excludeBackwardCompatible": false,
   "includeAdditionalData": true,
   "disableSSLValidation": false,

@@ -9,10 +9,6 @@ import (
 
 type ReportsRoot struct {
     Entity
-    // The readingAssignmentSubmissions property
-    readingAssignmentSubmissions []ReadingAssignmentSubmissionable
-    // The reflectCheckInResponses property
-    reflectCheckInResponses []ReflectCheckInResponseable
 }
 // NewReportsRoot instantiates a new ReportsRoot and sets the default values.
 func NewReportsRoot()(*ReportsRoot) {
@@ -67,12 +63,26 @@ func (m *ReportsRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetReadingAssignmentSubmissions gets the readingAssignmentSubmissions property value. The readingAssignmentSubmissions property
 // returns a []ReadingAssignmentSubmissionable when successful
 func (m *ReportsRoot) GetReadingAssignmentSubmissions()([]ReadingAssignmentSubmissionable) {
-    return m.readingAssignmentSubmissions
+    val, err := m.GetBackingStore().Get("readingAssignmentSubmissions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ReadingAssignmentSubmissionable)
+    }
+    return nil
 }
 // GetReflectCheckInResponses gets the reflectCheckInResponses property value. The reflectCheckInResponses property
 // returns a []ReflectCheckInResponseable when successful
 func (m *ReportsRoot) GetReflectCheckInResponses()([]ReflectCheckInResponseable) {
-    return m.reflectCheckInResponses
+    val, err := m.GetBackingStore().Get("reflectCheckInResponses")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ReflectCheckInResponseable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ReportsRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -108,11 +118,17 @@ func (m *ReportsRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetReadingAssignmentSubmissions sets the readingAssignmentSubmissions property value. The readingAssignmentSubmissions property
 func (m *ReportsRoot) SetReadingAssignmentSubmissions(value []ReadingAssignmentSubmissionable)() {
-    m.readingAssignmentSubmissions = value
+    err := m.GetBackingStore().Set("readingAssignmentSubmissions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReflectCheckInResponses sets the reflectCheckInResponses property value. The reflectCheckInResponses property
 func (m *ReportsRoot) SetReflectCheckInResponses(value []ReflectCheckInResponseable)() {
-    m.reflectCheckInResponses = value
+    err := m.GetBackingStore().Set("reflectCheckInResponses", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ReportsRootable interface {
     Entityable

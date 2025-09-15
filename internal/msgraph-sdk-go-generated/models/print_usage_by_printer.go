@@ -9,10 +9,6 @@ import (
 
 type PrintUsageByPrinter struct {
     PrintUsage
-    // The ID of the printer represented by these statistics.
-    printerId *string
-    // The name of the printer represented by these statistics.
-    printerName *string
 }
 // NewPrintUsageByPrinter instantiates a new PrintUsageByPrinter and sets the default values.
 func NewPrintUsageByPrinter()(*PrintUsageByPrinter) {
@@ -57,12 +53,26 @@ func (m *PrintUsageByPrinter) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetPrinterId gets the printerId property value. The ID of the printer represented by these statistics.
 // returns a *string when successful
 func (m *PrintUsageByPrinter) GetPrinterId()(*string) {
-    return m.printerId
+    val, err := m.GetBackingStore().Get("printerId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPrinterName gets the printerName property value. The name of the printer represented by these statistics.
 // returns a *string when successful
 func (m *PrintUsageByPrinter) GetPrinterName()(*string) {
-    return m.printerName
+    val, err := m.GetBackingStore().Get("printerName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PrintUsageByPrinter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *PrintUsageByPrinter) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetPrinterId sets the printerId property value. The ID of the printer represented by these statistics.
 func (m *PrintUsageByPrinter) SetPrinterId(value *string)() {
-    m.printerId = value
+    err := m.GetBackingStore().Set("printerId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPrinterName sets the printerName property value. The name of the printer represented by these statistics.
 func (m *PrintUsageByPrinter) SetPrinterName(value *string)() {
-    m.printerName = value
+    err := m.GetBackingStore().Set("printerName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PrintUsageByPrinterable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

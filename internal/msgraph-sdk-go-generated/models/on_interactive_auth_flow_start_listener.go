@@ -9,8 +9,6 @@ import (
 
 type OnInteractiveAuthFlowStartListener struct {
     AuthenticationEventListener
-    // Required. Configuration for what to invoke if the event resolves to this listener. This lets us define potential handler configurations per-event.
-    handler OnInteractiveAuthFlowStartHandlerable
 }
 // NewOnInteractiveAuthFlowStartListener instantiates a new OnInteractiveAuthFlowStartListener and sets the default values.
 func NewOnInteractiveAuthFlowStartListener()(*OnInteractiveAuthFlowStartListener) {
@@ -45,7 +43,14 @@ func (m *OnInteractiveAuthFlowStartListener) GetFieldDeserializers()(map[string]
 // GetHandler gets the handler property value. Required. Configuration for what to invoke if the event resolves to this listener. This lets us define potential handler configurations per-event.
 // returns a OnInteractiveAuthFlowStartHandlerable when successful
 func (m *OnInteractiveAuthFlowStartListener) GetHandler()(OnInteractiveAuthFlowStartHandlerable) {
-    return m.handler
+    val, err := m.GetBackingStore().Get("handler")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(OnInteractiveAuthFlowStartHandlerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnInteractiveAuthFlowStartListener) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *OnInteractiveAuthFlowStartListener) Serialize(writer i878a80d2330e89d26
 }
 // SetHandler sets the handler property value. Required. Configuration for what to invoke if the event resolves to this listener. This lets us define potential handler configurations per-event.
 func (m *OnInteractiveAuthFlowStartListener) SetHandler(value OnInteractiveAuthFlowStartHandlerable)() {
-    m.handler = value
+    err := m.GetBackingStore().Set("handler", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnInteractiveAuthFlowStartListenerable interface {
     AuthenticationEventListenerable

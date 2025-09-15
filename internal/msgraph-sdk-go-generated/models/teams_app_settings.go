@@ -9,10 +9,6 @@ import (
 
 type TeamsAppSettings struct {
     Entity
-    // Indicates whether users are allowed to request access to the unavailable Teams apps.
-    allowUserRequestsForAppAccess *bool
-    // Indicates whether resource-specific consent for personal scope in Teams apps is enabled for the tenant. True indicates that Teams apps that are allowed in the tenant and require resource-specific permissions can be installed in the personal scope. False blocks the installation of any Teams app that requires resource-specific permissions in the personal scope.
-    isUserPersonalScopeResourceSpecificConsentEnabled *bool
 }
 // NewTeamsAppSettings instantiates a new TeamsAppSettings and sets the default values.
 func NewTeamsAppSettings()(*TeamsAppSettings) {
@@ -29,7 +25,14 @@ func CreateTeamsAppSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 // GetAllowUserRequestsForAppAccess gets the allowUserRequestsForAppAccess property value. Indicates whether users are allowed to request access to the unavailable Teams apps.
 // returns a *bool when successful
 func (m *TeamsAppSettings) GetAllowUserRequestsForAppAccess()(*bool) {
-    return m.allowUserRequestsForAppAccess
+    val, err := m.GetBackingStore().Get("allowUserRequestsForAppAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *TeamsAppSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetIsUserPersonalScopeResourceSpecificConsentEnabled gets the isUserPersonalScopeResourceSpecificConsentEnabled property value. Indicates whether resource-specific consent for personal scope in Teams apps is enabled for the tenant. True indicates that Teams apps that are allowed in the tenant and require resource-specific permissions can be installed in the personal scope. False blocks the installation of any Teams app that requires resource-specific permissions in the personal scope.
 // returns a *bool when successful
 func (m *TeamsAppSettings) GetIsUserPersonalScopeResourceSpecificConsentEnabled()(*bool) {
-    return m.isUserPersonalScopeResourceSpecificConsentEnabled
+    val, err := m.GetBackingStore().Get("isUserPersonalScopeResourceSpecificConsentEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TeamsAppSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *TeamsAppSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetAllowUserRequestsForAppAccess sets the allowUserRequestsForAppAccess property value. Indicates whether users are allowed to request access to the unavailable Teams apps.
 func (m *TeamsAppSettings) SetAllowUserRequestsForAppAccess(value *bool)() {
-    m.allowUserRequestsForAppAccess = value
+    err := m.GetBackingStore().Set("allowUserRequestsForAppAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsUserPersonalScopeResourceSpecificConsentEnabled sets the isUserPersonalScopeResourceSpecificConsentEnabled property value. Indicates whether resource-specific consent for personal scope in Teams apps is enabled for the tenant. True indicates that Teams apps that are allowed in the tenant and require resource-specific permissions can be installed in the personal scope. False blocks the installation of any Teams app that requires resource-specific permissions in the personal scope.
 func (m *TeamsAppSettings) SetIsUserPersonalScopeResourceSpecificConsentEnabled(value *bool)() {
-    m.isUserPersonalScopeResourceSpecificConsentEnabled = value
+    err := m.GetBackingStore().Set("isUserPersonalScopeResourceSpecificConsentEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TeamsAppSettingsable interface {
     Entityable

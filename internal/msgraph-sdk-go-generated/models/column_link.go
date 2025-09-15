@@ -9,8 +9,6 @@ import (
 
 type ColumnLink struct {
     Entity
-    // The name of the column  in this content type.
-    name *string
 }
 // NewColumnLink instantiates a new ColumnLink and sets the default values.
 func NewColumnLink()(*ColumnLink) {
@@ -43,7 +41,14 @@ func (m *ColumnLink) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetName gets the name property value. The name of the column  in this content type.
 // returns a *string when successful
 func (m *ColumnLink) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ColumnLink) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *ColumnLink) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetName sets the name property value. The name of the column  in this content type.
 func (m *ColumnLink) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ColumnLinkable interface {
     Entityable

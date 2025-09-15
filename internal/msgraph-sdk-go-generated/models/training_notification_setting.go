@@ -9,10 +9,6 @@ import (
 
 type TrainingNotificationSetting struct {
     EndUserNotificationSetting
-    // Training assignment details.
-    trainingAssignment BaseEndUserNotificationable
-    // Training reminder details.
-    trainingReminder TrainingReminderNotificationable
 }
 // NewTrainingNotificationSetting instantiates a new TrainingNotificationSetting and sets the default values.
 func NewTrainingNotificationSetting()(*TrainingNotificationSetting) {
@@ -57,12 +53,26 @@ func (m *TrainingNotificationSetting) GetFieldDeserializers()(map[string]func(i8
 // GetTrainingAssignment gets the trainingAssignment property value. Training assignment details.
 // returns a BaseEndUserNotificationable when successful
 func (m *TrainingNotificationSetting) GetTrainingAssignment()(BaseEndUserNotificationable) {
-    return m.trainingAssignment
+    val, err := m.GetBackingStore().Get("trainingAssignment")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(BaseEndUserNotificationable)
+    }
+    return nil
 }
 // GetTrainingReminder gets the trainingReminder property value. Training reminder details.
 // returns a TrainingReminderNotificationable when successful
 func (m *TrainingNotificationSetting) GetTrainingReminder()(TrainingReminderNotificationable) {
-    return m.trainingReminder
+    val, err := m.GetBackingStore().Get("trainingReminder")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TrainingReminderNotificationable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TrainingNotificationSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *TrainingNotificationSetting) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetTrainingAssignment sets the trainingAssignment property value. Training assignment details.
 func (m *TrainingNotificationSetting) SetTrainingAssignment(value BaseEndUserNotificationable)() {
-    m.trainingAssignment = value
+    err := m.GetBackingStore().Set("trainingAssignment", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTrainingReminder sets the trainingReminder property value. Training reminder details.
 func (m *TrainingNotificationSetting) SetTrainingReminder(value TrainingReminderNotificationable)() {
-    m.trainingReminder = value
+    err := m.GetBackingStore().Set("trainingReminder", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TrainingNotificationSettingable interface {
     EndUserNotificationSettingable

@@ -9,20 +9,6 @@ import (
 
 type MultiTenantOrganizationPartnerConfigurationTemplate struct {
     Entity
-    // Determines the partner-specific configuration for automatic user consent settings. Unless configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
-    automaticUserConsentSettings InboundOutboundPolicyConfigurationable
-    // Defines your partner-specific configuration for users from other organizations accessing your resources via Microsoft Entra B2B collaboration.
-    b2bCollaborationInbound CrossTenantAccessPolicyB2BSettingable
-    // Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B collaboration.
-    b2bCollaborationOutbound CrossTenantAccessPolicyB2BSettingable
-    // Defines your partner-specific configuration for users from other organizations accessing your resources via Azure B2B direct connect.
-    b2bDirectConnectInbound CrossTenantAccessPolicyB2BSettingable
-    // Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B direct connect.
-    b2bDirectConnectOutbound CrossTenantAccessPolicyB2BSettingable
-    // Determines the partner-specific configuration for trusting other Conditional Access claims from external Microsoft Entra organizations.
-    inboundTrust CrossTenantAccessPolicyInboundTrustable
-    // The templateApplicationLevel property
-    templateApplicationLevel *TemplateApplicationLevel
 }
 // NewMultiTenantOrganizationPartnerConfigurationTemplate instantiates a new MultiTenantOrganizationPartnerConfigurationTemplate and sets the default values.
 func NewMultiTenantOrganizationPartnerConfigurationTemplate()(*MultiTenantOrganizationPartnerConfigurationTemplate) {
@@ -39,27 +25,62 @@ func CreateMultiTenantOrganizationPartnerConfigurationTemplateFromDiscriminatorV
 // GetAutomaticUserConsentSettings gets the automaticUserConsentSettings property value. Determines the partner-specific configuration for automatic user consent settings. Unless configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
 // returns a InboundOutboundPolicyConfigurationable when successful
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetAutomaticUserConsentSettings()(InboundOutboundPolicyConfigurationable) {
-    return m.automaticUserConsentSettings
+    val, err := m.GetBackingStore().Get("automaticUserConsentSettings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(InboundOutboundPolicyConfigurationable)
+    }
+    return nil
 }
 // GetB2bCollaborationInbound gets the b2bCollaborationInbound property value. Defines your partner-specific configuration for users from other organizations accessing your resources via Microsoft Entra B2B collaboration.
 // returns a CrossTenantAccessPolicyB2BSettingable when successful
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetB2bCollaborationInbound()(CrossTenantAccessPolicyB2BSettingable) {
-    return m.b2bCollaborationInbound
+    val, err := m.GetBackingStore().Get("b2bCollaborationInbound")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantAccessPolicyB2BSettingable)
+    }
+    return nil
 }
 // GetB2bCollaborationOutbound gets the b2bCollaborationOutbound property value. Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B collaboration.
 // returns a CrossTenantAccessPolicyB2BSettingable when successful
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetB2bCollaborationOutbound()(CrossTenantAccessPolicyB2BSettingable) {
-    return m.b2bCollaborationOutbound
+    val, err := m.GetBackingStore().Get("b2bCollaborationOutbound")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantAccessPolicyB2BSettingable)
+    }
+    return nil
 }
 // GetB2bDirectConnectInbound gets the b2bDirectConnectInbound property value. Defines your partner-specific configuration for users from other organizations accessing your resources via Azure B2B direct connect.
 // returns a CrossTenantAccessPolicyB2BSettingable when successful
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetB2bDirectConnectInbound()(CrossTenantAccessPolicyB2BSettingable) {
-    return m.b2bDirectConnectInbound
+    val, err := m.GetBackingStore().Get("b2bDirectConnectInbound")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantAccessPolicyB2BSettingable)
+    }
+    return nil
 }
 // GetB2bDirectConnectOutbound gets the b2bDirectConnectOutbound property value. Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B direct connect.
 // returns a CrossTenantAccessPolicyB2BSettingable when successful
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetB2bDirectConnectOutbound()(CrossTenantAccessPolicyB2BSettingable) {
-    return m.b2bDirectConnectOutbound
+    val, err := m.GetBackingStore().Get("b2bDirectConnectOutbound")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantAccessPolicyB2BSettingable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -140,12 +161,26 @@ func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetFieldDeserializ
 // GetInboundTrust gets the inboundTrust property value. Determines the partner-specific configuration for trusting other Conditional Access claims from external Microsoft Entra organizations.
 // returns a CrossTenantAccessPolicyInboundTrustable when successful
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetInboundTrust()(CrossTenantAccessPolicyInboundTrustable) {
-    return m.inboundTrust
+    val, err := m.GetBackingStore().Get("inboundTrust")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantAccessPolicyInboundTrustable)
+    }
+    return nil
 }
 // GetTemplateApplicationLevel gets the templateApplicationLevel property value. The templateApplicationLevel property
 // returns a *TemplateApplicationLevel when successful
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) GetTemplateApplicationLevel()(*TemplateApplicationLevel) {
-    return m.templateApplicationLevel
+    val, err := m.GetBackingStore().Get("templateApplicationLevel")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TemplateApplicationLevel)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -200,31 +235,52 @@ func (m *MultiTenantOrganizationPartnerConfigurationTemplate) Serialize(writer i
 }
 // SetAutomaticUserConsentSettings sets the automaticUserConsentSettings property value. Determines the partner-specific configuration for automatic user consent settings. Unless configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) SetAutomaticUserConsentSettings(value InboundOutboundPolicyConfigurationable)() {
-    m.automaticUserConsentSettings = value
+    err := m.GetBackingStore().Set("automaticUserConsentSettings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetB2bCollaborationInbound sets the b2bCollaborationInbound property value. Defines your partner-specific configuration for users from other organizations accessing your resources via Microsoft Entra B2B collaboration.
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) SetB2bCollaborationInbound(value CrossTenantAccessPolicyB2BSettingable)() {
-    m.b2bCollaborationInbound = value
+    err := m.GetBackingStore().Set("b2bCollaborationInbound", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetB2bCollaborationOutbound sets the b2bCollaborationOutbound property value. Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B collaboration.
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) SetB2bCollaborationOutbound(value CrossTenantAccessPolicyB2BSettingable)() {
-    m.b2bCollaborationOutbound = value
+    err := m.GetBackingStore().Set("b2bCollaborationOutbound", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetB2bDirectConnectInbound sets the b2bDirectConnectInbound property value. Defines your partner-specific configuration for users from other organizations accessing your resources via Azure B2B direct connect.
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) SetB2bDirectConnectInbound(value CrossTenantAccessPolicyB2BSettingable)() {
-    m.b2bDirectConnectInbound = value
+    err := m.GetBackingStore().Set("b2bDirectConnectInbound", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetB2bDirectConnectOutbound sets the b2bDirectConnectOutbound property value. Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B direct connect.
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) SetB2bDirectConnectOutbound(value CrossTenantAccessPolicyB2BSettingable)() {
-    m.b2bDirectConnectOutbound = value
+    err := m.GetBackingStore().Set("b2bDirectConnectOutbound", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetInboundTrust sets the inboundTrust property value. Determines the partner-specific configuration for trusting other Conditional Access claims from external Microsoft Entra organizations.
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) SetInboundTrust(value CrossTenantAccessPolicyInboundTrustable)() {
-    m.inboundTrust = value
+    err := m.GetBackingStore().Set("inboundTrust", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTemplateApplicationLevel sets the templateApplicationLevel property value. The templateApplicationLevel property
 func (m *MultiTenantOrganizationPartnerConfigurationTemplate) SetTemplateApplicationLevel(value *TemplateApplicationLevel)() {
-    m.templateApplicationLevel = value
+    err := m.GetBackingStore().Set("templateApplicationLevel", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MultiTenantOrganizationPartnerConfigurationTemplateable interface {
     Entityable

@@ -9,14 +9,6 @@ import (
 
 type TimeOff struct {
     ChangeTrackedEntity
-    // The draft version of this timeOff item that is viewable by managers. It must be shared before it's visible to team members. Required.
-    draftTimeOff TimeOffItemable
-    // The timeOff is marked for deletion, a process that is finalized when the schedule is shared.
-    isStagedForDeletion *bool
-    // The shared version of this timeOff that is viewable by both employees and managers. Updates to the sharedTimeOff property send notifications to users in the Teams client. Required.
-    sharedTimeOff TimeOffItemable
-    // ID of the user assigned to the timeOff. Required.
-    userId *string
 }
 // NewTimeOff instantiates a new TimeOff and sets the default values.
 func NewTimeOff()(*TimeOff) {
@@ -35,7 +27,14 @@ func CreateTimeOffFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f48
 // GetDraftTimeOff gets the draftTimeOff property value. The draft version of this timeOff item that is viewable by managers. It must be shared before it's visible to team members. Required.
 // returns a TimeOffItemable when successful
 func (m *TimeOff) GetDraftTimeOff()(TimeOffItemable) {
-    return m.draftTimeOff
+    val, err := m.GetBackingStore().Get("draftTimeOff")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TimeOffItemable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,17 +85,38 @@ func (m *TimeOff) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 // GetIsStagedForDeletion gets the isStagedForDeletion property value. The timeOff is marked for deletion, a process that is finalized when the schedule is shared.
 // returns a *bool when successful
 func (m *TimeOff) GetIsStagedForDeletion()(*bool) {
-    return m.isStagedForDeletion
+    val, err := m.GetBackingStore().Get("isStagedForDeletion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetSharedTimeOff gets the sharedTimeOff property value. The shared version of this timeOff that is viewable by both employees and managers. Updates to the sharedTimeOff property send notifications to users in the Teams client. Required.
 // returns a TimeOffItemable when successful
 func (m *TimeOff) GetSharedTimeOff()(TimeOffItemable) {
-    return m.sharedTimeOff
+    val, err := m.GetBackingStore().Get("sharedTimeOff")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TimeOffItemable)
+    }
+    return nil
 }
 // GetUserId gets the userId property value. ID of the user assigned to the timeOff. Required.
 // returns a *string when successful
 func (m *TimeOff) GetUserId()(*string) {
-    return m.userId
+    val, err := m.GetBackingStore().Get("userId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TimeOff) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *TimeOff) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
 }
 // SetDraftTimeOff sets the draftTimeOff property value. The draft version of this timeOff item that is viewable by managers. It must be shared before it's visible to team members. Required.
 func (m *TimeOff) SetDraftTimeOff(value TimeOffItemable)() {
-    m.draftTimeOff = value
+    err := m.GetBackingStore().Set("draftTimeOff", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsStagedForDeletion sets the isStagedForDeletion property value. The timeOff is marked for deletion, a process that is finalized when the schedule is shared.
 func (m *TimeOff) SetIsStagedForDeletion(value *bool)() {
-    m.isStagedForDeletion = value
+    err := m.GetBackingStore().Set("isStagedForDeletion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSharedTimeOff sets the sharedTimeOff property value. The shared version of this timeOff that is viewable by both employees and managers. Updates to the sharedTimeOff property send notifications to users in the Teams client. Required.
 func (m *TimeOff) SetSharedTimeOff(value TimeOffItemable)() {
-    m.sharedTimeOff = value
+    err := m.GetBackingStore().Set("sharedTimeOff", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserId sets the userId property value. ID of the user assigned to the timeOff. Required.
 func (m *TimeOff) SetUserId(value *string)() {
-    m.userId = value
+    err := m.GetBackingStore().Set("userId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TimeOffable interface {
     ChangeTrackedEntityable

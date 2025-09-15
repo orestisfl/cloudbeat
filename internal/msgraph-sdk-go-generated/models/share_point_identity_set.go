@@ -9,12 +9,6 @@ import (
 
 type SharePointIdentitySet struct {
     IdentitySet
-    // The group associated with this action. Optional.
-    group Identityable
-    // The SharePoint group associated with this action. Optional.
-    siteGroup SharePointIdentityable
-    // The SharePoint user associated with this action. Optional.
-    siteUser SharePointIdentityable
 }
 // NewSharePointIdentitySet instantiates a new SharePointIdentitySet and sets the default values.
 func NewSharePointIdentitySet()(*SharePointIdentitySet) {
@@ -69,17 +63,38 @@ func (m *SharePointIdentitySet) GetFieldDeserializers()(map[string]func(i878a80d
 // GetGroup gets the group property value. The group associated with this action. Optional.
 // returns a Identityable when successful
 func (m *SharePointIdentitySet) GetGroup()(Identityable) {
-    return m.group
+    val, err := m.GetBackingStore().Get("group")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Identityable)
+    }
+    return nil
 }
 // GetSiteGroup gets the siteGroup property value. The SharePoint group associated with this action. Optional.
 // returns a SharePointIdentityable when successful
 func (m *SharePointIdentitySet) GetSiteGroup()(SharePointIdentityable) {
-    return m.siteGroup
+    val, err := m.GetBackingStore().Get("siteGroup")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SharePointIdentityable)
+    }
+    return nil
 }
 // GetSiteUser gets the siteUser property value. The SharePoint user associated with this action. Optional.
 // returns a SharePointIdentityable when successful
 func (m *SharePointIdentitySet) GetSiteUser()(SharePointIdentityable) {
-    return m.siteUser
+    val, err := m.GetBackingStore().Get("siteUser")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SharePointIdentityable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SharePointIdentitySet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *SharePointIdentitySet) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetGroup sets the group property value. The group associated with this action. Optional.
 func (m *SharePointIdentitySet) SetGroup(value Identityable)() {
-    m.group = value
+    err := m.GetBackingStore().Set("group", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteGroup sets the siteGroup property value. The SharePoint group associated with this action. Optional.
 func (m *SharePointIdentitySet) SetSiteGroup(value SharePointIdentityable)() {
-    m.siteGroup = value
+    err := m.GetBackingStore().Set("siteGroup", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteUser sets the siteUser property value. The SharePoint user associated with this action. Optional.
 func (m *SharePointIdentitySet) SetSiteUser(value SharePointIdentityable)() {
-    m.siteUser = value
+    err := m.GetBackingStore().Set("siteUser", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SharePointIdentitySetable interface {
     IdentitySetable

@@ -9,8 +9,6 @@ import (
 
 type SimulationNotification struct {
     BaseEndUserNotification
-    // Target user type. Possible values are: unknown, clicked, compromised, allUsers, unknownFutureValue.
-    targettedUserType *TargettedUserType
 }
 // NewSimulationNotification instantiates a new SimulationNotification and sets the default values.
 func NewSimulationNotification()(*SimulationNotification) {
@@ -45,7 +43,14 @@ func (m *SimulationNotification) GetFieldDeserializers()(map[string]func(i878a80
 // GetTargettedUserType gets the targettedUserType property value. Target user type. Possible values are: unknown, clicked, compromised, allUsers, unknownFutureValue.
 // returns a *TargettedUserType when successful
 func (m *SimulationNotification) GetTargettedUserType()(*TargettedUserType) {
-    return m.targettedUserType
+    val, err := m.GetBackingStore().Get("targettedUserType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TargettedUserType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SimulationNotification) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *SimulationNotification) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetTargettedUserType sets the targettedUserType property value. Target user type. Possible values are: unknown, clicked, compromised, allUsers, unknownFutureValue.
 func (m *SimulationNotification) SetTargettedUserType(value *TargettedUserType)() {
-    m.targettedUserType = value
+    err := m.GetBackingStore().Set("targettedUserType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SimulationNotificationable interface {
     BaseEndUserNotificationable

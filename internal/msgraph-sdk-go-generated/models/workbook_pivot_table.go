@@ -9,10 +9,6 @@ import (
 
 type WorkbookPivotTable struct {
     Entity
-    // The name of the pivot table.
-    name *string
-    // The worksheet that contains the current pivot table. Read-only.
-    worksheet WorkbookWorksheetable
 }
 // NewWorkbookPivotTable instantiates a new WorkbookPivotTable and sets the default values.
 func NewWorkbookPivotTable()(*WorkbookPivotTable) {
@@ -55,12 +51,26 @@ func (m *WorkbookPivotTable) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetName gets the name property value. The name of the pivot table.
 // returns a *string when successful
 func (m *WorkbookPivotTable) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetWorksheet gets the worksheet property value. The worksheet that contains the current pivot table. Read-only.
 // returns a WorkbookWorksheetable when successful
 func (m *WorkbookPivotTable) GetWorksheet()(WorkbookWorksheetable) {
-    return m.worksheet
+    val, err := m.GetBackingStore().Get("worksheet")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookWorksheetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookPivotTable) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *WorkbookPivotTable) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetName sets the name property value. The name of the pivot table.
 func (m *WorkbookPivotTable) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWorksheet sets the worksheet property value. The worksheet that contains the current pivot table. Read-only.
 func (m *WorkbookPivotTable) SetWorksheet(value WorkbookWorksheetable)() {
-    m.worksheet = value
+    err := m.GetBackingStore().Set("worksheet", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookPivotTableable interface {
     Entityable

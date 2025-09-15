@@ -9,8 +9,6 @@ import (
 
 type ContainerRegistryEvidence struct {
     AlertEvidence
-    // The registry URI.
-    registry *string
 }
 // NewContainerRegistryEvidence instantiates a new ContainerRegistryEvidence and sets the default values.
 func NewContainerRegistryEvidence()(*ContainerRegistryEvidence) {
@@ -45,7 +43,14 @@ func (m *ContainerRegistryEvidence) GetFieldDeserializers()(map[string]func(i878
 // GetRegistry gets the registry property value. The registry URI.
 // returns a *string when successful
 func (m *ContainerRegistryEvidence) GetRegistry()(*string) {
-    return m.registry
+    val, err := m.GetBackingStore().Get("registry")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ContainerRegistryEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *ContainerRegistryEvidence) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetRegistry sets the registry property value. The registry URI.
 func (m *ContainerRegistryEvidence) SetRegistry(value *string)() {
-    m.registry = value
+    err := m.GetBackingStore().Set("registry", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ContainerRegistryEvidenceable interface {
     AlertEvidenceable

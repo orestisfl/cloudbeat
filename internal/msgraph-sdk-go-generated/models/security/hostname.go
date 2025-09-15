@@ -9,10 +9,6 @@ import (
 
 type Hostname struct {
     Host
-    // The company or individual who registered this hostname, from WHOIS data.
-    registrant *string
-    // The registrar for this hostname, from WHOIS data.
-    registrar *string
 }
 // NewHostname instantiates a new Hostname and sets the default values.
 func NewHostname()(*Hostname) {
@@ -57,12 +53,26 @@ func (m *Hostname) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetRegistrant gets the registrant property value. The company or individual who registered this hostname, from WHOIS data.
 // returns a *string when successful
 func (m *Hostname) GetRegistrant()(*string) {
-    return m.registrant
+    val, err := m.GetBackingStore().Get("registrant")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRegistrar gets the registrar property value. The registrar for this hostname, from WHOIS data.
 // returns a *string when successful
 func (m *Hostname) GetRegistrar()(*string) {
-    return m.registrar
+    val, err := m.GetBackingStore().Get("registrar")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Hostname) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *Hostname) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetRegistrant sets the registrant property value. The company or individual who registered this hostname, from WHOIS data.
 func (m *Hostname) SetRegistrant(value *string)() {
-    m.registrant = value
+    err := m.GetBackingStore().Set("registrant", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrar sets the registrar property value. The registrar for this hostname, from WHOIS data.
 func (m *Hostname) SetRegistrar(value *string)() {
-    m.registrar = value
+    err := m.GetBackingStore().Set("registrar", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Hostnameable interface {
     Hostable

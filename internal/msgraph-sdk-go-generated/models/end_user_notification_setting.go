@@ -5,24 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type EndUserNotificationSetting struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.
-    notificationPreference *EndUserNotificationPreference
-    // The OdataType property
-    odataType *string
-    // Positive reinforcement detail.
-    positiveReinforcement PositiveReinforcementNotificationable
-    // End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification, unknownFutureValue.
-    settingType *EndUserNotificationSettingType
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewEndUserNotificationSetting instantiates a new EndUserNotificationSetting and sets the default values.
 func NewEndUserNotificationSetting()(*EndUserNotificationSetting) {
     m := &EndUserNotificationSetting{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -54,7 +48,20 @@ func CreateEndUserNotificationSettingFromDiscriminatorValue(parseNode i878a80d23
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *EndUserNotificationSetting) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *EndUserNotificationSetting) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -105,22 +112,50 @@ func (m *EndUserNotificationSetting) GetFieldDeserializers()(map[string]func(i87
 // GetNotificationPreference gets the notificationPreference property value. Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.
 // returns a *EndUserNotificationPreference when successful
 func (m *EndUserNotificationSetting) GetNotificationPreference()(*EndUserNotificationPreference) {
-    return m.notificationPreference
+    val, err := m.GetBackingStore().Get("notificationPreference")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EndUserNotificationPreference)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *EndUserNotificationSetting) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPositiveReinforcement gets the positiveReinforcement property value. Positive reinforcement detail.
 // returns a PositiveReinforcementNotificationable when successful
 func (m *EndUserNotificationSetting) GetPositiveReinforcement()(PositiveReinforcementNotificationable) {
-    return m.positiveReinforcement
+    val, err := m.GetBackingStore().Get("positiveReinforcement")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PositiveReinforcementNotificationable)
+    }
+    return nil
 }
 // GetSettingType gets the settingType property value. End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification, unknownFutureValue.
 // returns a *EndUserNotificationSettingType when successful
 func (m *EndUserNotificationSetting) GetSettingType()(*EndUserNotificationSettingType) {
-    return m.settingType
+    val, err := m.GetBackingStore().Get("settingType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EndUserNotificationSettingType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EndUserNotificationSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -160,31 +195,53 @@ func (m *EndUserNotificationSetting) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *EndUserNotificationSetting) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *EndUserNotificationSetting) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetNotificationPreference sets the notificationPreference property value. Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.
 func (m *EndUserNotificationSetting) SetNotificationPreference(value *EndUserNotificationPreference)() {
-    m.notificationPreference = value
+    err := m.GetBackingStore().Set("notificationPreference", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *EndUserNotificationSetting) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPositiveReinforcement sets the positiveReinforcement property value. Positive reinforcement detail.
 func (m *EndUserNotificationSetting) SetPositiveReinforcement(value PositiveReinforcementNotificationable)() {
-    m.positiveReinforcement = value
+    err := m.GetBackingStore().Set("positiveReinforcement", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettingType sets the settingType property value. End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification, unknownFutureValue.
 func (m *EndUserNotificationSetting) SetSettingType(value *EndUserNotificationSettingType)() {
-    m.settingType = value
+    err := m.GetBackingStore().Set("settingType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EndUserNotificationSettingable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetNotificationPreference()(*EndUserNotificationPreference)
     GetOdataType()(*string)
     GetPositiveReinforcement()(PositiveReinforcementNotificationable)
     GetSettingType()(*EndUserNotificationSettingType)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetNotificationPreference(value *EndUserNotificationPreference)()
     SetOdataType(value *string)()
     SetPositiveReinforcement(value PositiveReinforcementNotificationable)()

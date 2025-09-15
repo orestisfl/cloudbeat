@@ -9,8 +9,6 @@ import (
 
 type ParticipantJoiningNotification struct {
     Entity
-    // The call property
-    call Callable
 }
 // NewParticipantJoiningNotification instantiates a new ParticipantJoiningNotification and sets the default values.
 func NewParticipantJoiningNotification()(*ParticipantJoiningNotification) {
@@ -27,7 +25,14 @@ func CreateParticipantJoiningNotificationFromDiscriminatorValue(parseNode i878a8
 // GetCall gets the call property value. The call property
 // returns a Callable when successful
 func (m *ParticipantJoiningNotification) GetCall()(Callable) {
-    return m.call
+    val, err := m.GetBackingStore().Get("call")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Callable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +66,10 @@ func (m *ParticipantJoiningNotification) Serialize(writer i878a80d2330e89d268963
 }
 // SetCall sets the call property value. The call property
 func (m *ParticipantJoiningNotification) SetCall(value Callable)() {
-    m.call = value
+    err := m.GetBackingStore().Set("call", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ParticipantJoiningNotificationable interface {
     Entityable

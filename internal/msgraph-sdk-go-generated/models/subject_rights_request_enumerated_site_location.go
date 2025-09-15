@@ -9,8 +9,6 @@ import (
 
 type SubjectRightsRequestEnumeratedSiteLocation struct {
     SubjectRightsRequestSiteLocation
-    // Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.
-    urls []string
 }
 // NewSubjectRightsRequestEnumeratedSiteLocation instantiates a new SubjectRightsRequestEnumeratedSiteLocation and sets the default values.
 func NewSubjectRightsRequestEnumeratedSiteLocation()(*SubjectRightsRequestEnumeratedSiteLocation) {
@@ -51,7 +49,14 @@ func (m *SubjectRightsRequestEnumeratedSiteLocation) GetFieldDeserializers()(map
 // GetUrls gets the urls property value. Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.
 // returns a []string when successful
 func (m *SubjectRightsRequestEnumeratedSiteLocation) GetUrls()([]string) {
-    return m.urls
+    val, err := m.GetBackingStore().Get("urls")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SubjectRightsRequestEnumeratedSiteLocation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -69,7 +74,10 @@ func (m *SubjectRightsRequestEnumeratedSiteLocation) Serialize(writer i878a80d23
 }
 // SetUrls sets the urls property value. Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.
 func (m *SubjectRightsRequestEnumeratedSiteLocation) SetUrls(value []string)() {
-    m.urls = value
+    err := m.GetBackingStore().Set("urls", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SubjectRightsRequestEnumeratedSiteLocationable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

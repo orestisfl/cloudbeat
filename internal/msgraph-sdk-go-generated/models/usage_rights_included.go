@@ -9,12 +9,6 @@ import (
 
 type UsageRightsIncluded struct {
     Entity
-    // The email of owner label rights.
-    ownerEmail *string
-    // The email of user with label user rights.
-    userEmail *string
-    // The value property
-    value *UsageRights
 }
 // NewUsageRightsIncluded instantiates a new UsageRightsIncluded and sets the default values.
 func NewUsageRightsIncluded()(*UsageRightsIncluded) {
@@ -67,17 +61,38 @@ func (m *UsageRightsIncluded) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetOwnerEmail gets the ownerEmail property value. The email of owner label rights.
 // returns a *string when successful
 func (m *UsageRightsIncluded) GetOwnerEmail()(*string) {
-    return m.ownerEmail
+    val, err := m.GetBackingStore().Get("ownerEmail")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUserEmail gets the userEmail property value. The email of user with label user rights.
 // returns a *string when successful
 func (m *UsageRightsIncluded) GetUserEmail()(*string) {
-    return m.userEmail
+    val, err := m.GetBackingStore().Get("userEmail")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetValue gets the value property value. The value property
 // returns a *UsageRights when successful
 func (m *UsageRightsIncluded) GetValue()(*UsageRights) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*UsageRights)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UsageRightsIncluded) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -108,15 +123,24 @@ func (m *UsageRightsIncluded) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetOwnerEmail sets the ownerEmail property value. The email of owner label rights.
 func (m *UsageRightsIncluded) SetOwnerEmail(value *string)() {
-    m.ownerEmail = value
+    err := m.GetBackingStore().Set("ownerEmail", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserEmail sets the userEmail property value. The email of user with label user rights.
 func (m *UsageRightsIncluded) SetUserEmail(value *string)() {
-    m.userEmail = value
+    err := m.GetBackingStore().Set("userEmail", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValue sets the value property value. The value property
 func (m *UsageRightsIncluded) SetValue(value *UsageRights)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UsageRightsIncludedable interface {
     Entityable

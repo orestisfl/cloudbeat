@@ -9,8 +9,6 @@ import (
 
 type TimeOffItem struct {
     ScheduleEntity
-    // ID of the timeOffReason for this timeOffItem. Required.
-    timeOffReasonId *string
 }
 // NewTimeOffItem instantiates a new TimeOffItem and sets the default values.
 func NewTimeOffItem()(*TimeOffItem) {
@@ -43,7 +41,14 @@ func (m *TimeOffItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetTimeOffReasonId gets the timeOffReasonId property value. ID of the timeOffReason for this timeOffItem. Required.
 // returns a *string when successful
 func (m *TimeOffItem) GetTimeOffReasonId()(*string) {
-    return m.timeOffReasonId
+    val, err := m.GetBackingStore().Get("timeOffReasonId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TimeOffItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *TimeOffItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetTimeOffReasonId sets the timeOffReasonId property value. ID of the timeOffReason for this timeOffItem. Required.
 func (m *TimeOffItem) SetTimeOffReasonId(value *string)() {
-    m.timeOffReasonId = value
+    err := m.GetBackingStore().Set("timeOffReasonId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TimeOffItemable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

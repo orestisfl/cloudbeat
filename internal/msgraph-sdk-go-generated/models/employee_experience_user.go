@@ -9,8 +9,6 @@ import (
 
 type EmployeeExperienceUser struct {
     Entity
-    // The learningCourseActivities property
-    learningCourseActivities []LearningCourseActivityable
 }
 // NewEmployeeExperienceUser instantiates a new EmployeeExperienceUser and sets the default values.
 func NewEmployeeExperienceUser()(*EmployeeExperienceUser) {
@@ -49,7 +47,14 @@ func (m *EmployeeExperienceUser) GetFieldDeserializers()(map[string]func(i878a80
 // GetLearningCourseActivities gets the learningCourseActivities property value. The learningCourseActivities property
 // returns a []LearningCourseActivityable when successful
 func (m *EmployeeExperienceUser) GetLearningCourseActivities()([]LearningCourseActivityable) {
-    return m.learningCourseActivities
+    val, err := m.GetBackingStore().Get("learningCourseActivities")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]LearningCourseActivityable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EmployeeExperienceUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *EmployeeExperienceUser) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetLearningCourseActivities sets the learningCourseActivities property value. The learningCourseActivities property
 func (m *EmployeeExperienceUser) SetLearningCourseActivities(value []LearningCourseActivityable)() {
-    m.learningCourseActivities = value
+    err := m.GetBackingStore().Set("learningCourseActivities", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EmployeeExperienceUserable interface {
     Entityable

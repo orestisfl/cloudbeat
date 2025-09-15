@@ -9,8 +9,6 @@ import (
 
 type SwapShiftsChangeRequest struct {
     OfferShiftRequest
-    // The recipient's Shift ID
-    recipientShiftId *string
 }
 // NewSwapShiftsChangeRequest instantiates a new SwapShiftsChangeRequest and sets the default values.
 func NewSwapShiftsChangeRequest()(*SwapShiftsChangeRequest) {
@@ -45,7 +43,14 @@ func (m *SwapShiftsChangeRequest) GetFieldDeserializers()(map[string]func(i878a8
 // GetRecipientShiftId gets the recipientShiftId property value. The recipient's Shift ID
 // returns a *string when successful
 func (m *SwapShiftsChangeRequest) GetRecipientShiftId()(*string) {
-    return m.recipientShiftId
+    val, err := m.GetBackingStore().Get("recipientShiftId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SwapShiftsChangeRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *SwapShiftsChangeRequest) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetRecipientShiftId sets the recipientShiftId property value. The recipient's Shift ID
 func (m *SwapShiftsChangeRequest) SetRecipientShiftId(value *string)() {
-    m.recipientShiftId = value
+    err := m.GetBackingStore().Set("recipientShiftId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SwapShiftsChangeRequestable interface {
     OfferShiftRequestable

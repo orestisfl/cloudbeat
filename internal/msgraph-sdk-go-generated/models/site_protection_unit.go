@@ -9,12 +9,6 @@ import (
 
 type SiteProtectionUnit struct {
     ProtectionUnitBase
-    // Unique identifier of the SharePoint site.
-    siteId *string
-    // Name of the SharePoint site.
-    siteName *string
-    // The web URL of the SharePoint site.
-    siteWebUrl *string
 }
 // NewSiteProtectionUnit instantiates a new SiteProtectionUnit and sets the default values.
 func NewSiteProtectionUnit()(*SiteProtectionUnit) {
@@ -69,17 +63,38 @@ func (m *SiteProtectionUnit) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetSiteId gets the siteId property value. Unique identifier of the SharePoint site.
 // returns a *string when successful
 func (m *SiteProtectionUnit) GetSiteId()(*string) {
-    return m.siteId
+    val, err := m.GetBackingStore().Get("siteId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSiteName gets the siteName property value. Name of the SharePoint site.
 // returns a *string when successful
 func (m *SiteProtectionUnit) GetSiteName()(*string) {
-    return m.siteName
+    val, err := m.GetBackingStore().Get("siteName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSiteWebUrl gets the siteWebUrl property value. The web URL of the SharePoint site.
 // returns a *string when successful
 func (m *SiteProtectionUnit) GetSiteWebUrl()(*string) {
-    return m.siteWebUrl
+    val, err := m.GetBackingStore().Get("siteWebUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SiteProtectionUnit) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -97,15 +112,24 @@ func (m *SiteProtectionUnit) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetSiteId sets the siteId property value. Unique identifier of the SharePoint site.
 func (m *SiteProtectionUnit) SetSiteId(value *string)() {
-    m.siteId = value
+    err := m.GetBackingStore().Set("siteId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteName sets the siteName property value. Name of the SharePoint site.
 func (m *SiteProtectionUnit) SetSiteName(value *string)() {
-    m.siteName = value
+    err := m.GetBackingStore().Set("siteName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteWebUrl sets the siteWebUrl property value. The web URL of the SharePoint site.
 func (m *SiteProtectionUnit) SetSiteWebUrl(value *string)() {
-    m.siteWebUrl = value
+    err := m.GetBackingStore().Set("siteWebUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SiteProtectionUnitable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

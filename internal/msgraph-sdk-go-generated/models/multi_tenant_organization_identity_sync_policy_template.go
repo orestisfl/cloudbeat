@@ -9,10 +9,6 @@ import (
 
 type MultiTenantOrganizationIdentitySyncPolicyTemplate struct {
     Entity
-    // The templateApplicationLevel property
-    templateApplicationLevel *TemplateApplicationLevel
-    // Defines whether users can be synchronized from the partner tenant.
-    userSyncInbound CrossTenantUserSyncInboundable
 }
 // NewMultiTenantOrganizationIdentitySyncPolicyTemplate instantiates a new MultiTenantOrganizationIdentitySyncPolicyTemplate and sets the default values.
 func NewMultiTenantOrganizationIdentitySyncPolicyTemplate()(*MultiTenantOrganizationIdentitySyncPolicyTemplate) {
@@ -55,12 +51,26 @@ func (m *MultiTenantOrganizationIdentitySyncPolicyTemplate) GetFieldDeserializer
 // GetTemplateApplicationLevel gets the templateApplicationLevel property value. The templateApplicationLevel property
 // returns a *TemplateApplicationLevel when successful
 func (m *MultiTenantOrganizationIdentitySyncPolicyTemplate) GetTemplateApplicationLevel()(*TemplateApplicationLevel) {
-    return m.templateApplicationLevel
+    val, err := m.GetBackingStore().Get("templateApplicationLevel")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TemplateApplicationLevel)
+    }
+    return nil
 }
 // GetUserSyncInbound gets the userSyncInbound property value. Defines whether users can be synchronized from the partner tenant.
 // returns a CrossTenantUserSyncInboundable when successful
 func (m *MultiTenantOrganizationIdentitySyncPolicyTemplate) GetUserSyncInbound()(CrossTenantUserSyncInboundable) {
-    return m.userSyncInbound
+    val, err := m.GetBackingStore().Get("userSyncInbound")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantUserSyncInboundable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MultiTenantOrganizationIdentitySyncPolicyTemplate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *MultiTenantOrganizationIdentitySyncPolicyTemplate) Serialize(writer i87
 }
 // SetTemplateApplicationLevel sets the templateApplicationLevel property value. The templateApplicationLevel property
 func (m *MultiTenantOrganizationIdentitySyncPolicyTemplate) SetTemplateApplicationLevel(value *TemplateApplicationLevel)() {
-    m.templateApplicationLevel = value
+    err := m.GetBackingStore().Set("templateApplicationLevel", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserSyncInbound sets the userSyncInbound property value. Defines whether users can be synchronized from the partner tenant.
 func (m *MultiTenantOrganizationIdentitySyncPolicyTemplate) SetUserSyncInbound(value CrossTenantUserSyncInboundable)() {
-    m.userSyncInbound = value
+    err := m.GetBackingStore().Set("userSyncInbound", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MultiTenantOrganizationIdentitySyncPolicyTemplateable interface {
     Entityable

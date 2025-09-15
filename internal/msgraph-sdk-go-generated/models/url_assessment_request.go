@@ -9,8 +9,6 @@ import (
 
 type UrlAssessmentRequest struct {
     ThreatAssessmentRequest
-    // The URL string.
-    url *string
 }
 // NewUrlAssessmentRequest instantiates a new UrlAssessmentRequest and sets the default values.
 func NewUrlAssessmentRequest()(*UrlAssessmentRequest) {
@@ -45,7 +43,14 @@ func (m *UrlAssessmentRequest) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetUrl gets the url property value. The URL string.
 // returns a *string when successful
 func (m *UrlAssessmentRequest) GetUrl()(*string) {
-    return m.url
+    val, err := m.GetBackingStore().Get("url")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UrlAssessmentRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *UrlAssessmentRequest) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetUrl sets the url property value. The URL string.
 func (m *UrlAssessmentRequest) SetUrl(value *string)() {
-    m.url = value
+    err := m.GetBackingStore().Set("url", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UrlAssessmentRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

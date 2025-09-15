@@ -9,10 +9,6 @@ import (
 
 type RoomList struct {
     Place
-    // The email address of the room list.
-    emailAddress *string
-    // The rooms property
-    rooms []Roomable
 }
 // NewRoomList instantiates a new RoomList and sets the default values.
 func NewRoomList()(*RoomList) {
@@ -31,7 +27,14 @@ func CreateRoomListFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
 // GetEmailAddress gets the emailAddress property value. The email address of the room list.
 // returns a *string when successful
 func (m *RoomList) GetEmailAddress()(*string) {
-    return m.emailAddress
+    val, err := m.GetBackingStore().Get("emailAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -68,7 +71,14 @@ func (m *RoomList) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetRooms gets the rooms property value. The rooms property
 // returns a []Roomable when successful
 func (m *RoomList) GetRooms()([]Roomable) {
-    return m.rooms
+    val, err := m.GetBackingStore().Get("rooms")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Roomable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *RoomList) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -98,11 +108,17 @@ func (m *RoomList) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetEmailAddress sets the emailAddress property value. The email address of the room list.
 func (m *RoomList) SetEmailAddress(value *string)() {
-    m.emailAddress = value
+    err := m.GetBackingStore().Set("emailAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRooms sets the rooms property value. The rooms property
 func (m *RoomList) SetRooms(value []Roomable)() {
-    m.rooms = value
+    err := m.GetBackingStore().Set("rooms", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type RoomListable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -9,10 +9,6 @@ import (
 
 type UnifiedRbacResourceNamespace struct {
     Entity
-    // The name property
-    name *string
-    // The resourceActions property
-    resourceActions []UnifiedRbacResourceActionable
 }
 // NewUnifiedRbacResourceNamespace instantiates a new UnifiedRbacResourceNamespace and sets the default values.
 func NewUnifiedRbacResourceNamespace()(*UnifiedRbacResourceNamespace) {
@@ -61,12 +57,26 @@ func (m *UnifiedRbacResourceNamespace) GetFieldDeserializers()(map[string]func(i
 // GetName gets the name property value. The name property
 // returns a *string when successful
 func (m *UnifiedRbacResourceNamespace) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetResourceActions gets the resourceActions property value. The resourceActions property
 // returns a []UnifiedRbacResourceActionable when successful
 func (m *UnifiedRbacResourceNamespace) GetResourceActions()([]UnifiedRbacResourceActionable) {
-    return m.resourceActions
+    val, err := m.GetBackingStore().Get("resourceActions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UnifiedRbacResourceActionable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UnifiedRbacResourceNamespace) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -96,11 +106,17 @@ func (m *UnifiedRbacResourceNamespace) Serialize(writer i878a80d2330e89d26896388
 }
 // SetName sets the name property value. The name property
 func (m *UnifiedRbacResourceNamespace) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceActions sets the resourceActions property value. The resourceActions property
 func (m *UnifiedRbacResourceNamespace) SetResourceActions(value []UnifiedRbacResourceActionable)() {
-    m.resourceActions = value
+    err := m.GetBackingStore().Set("resourceActions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UnifiedRbacResourceNamespaceable interface {
     Entityable

@@ -9,10 +9,6 @@ import (
 
 type UserDataSecurityAndGovernance struct {
     DataSecurityAndGovernance
-    // Container for activity logs (content processing and audit) related to this user. ContainsTarget: true.
-    activities ActivitiesContainerable
-    // The protectionScopes property
-    protectionScopes UserProtectionScopeContainerable
 }
 // NewUserDataSecurityAndGovernance instantiates a new UserDataSecurityAndGovernance and sets the default values.
 func NewUserDataSecurityAndGovernance()(*UserDataSecurityAndGovernance) {
@@ -31,7 +27,14 @@ func CreateUserDataSecurityAndGovernanceFromDiscriminatorValue(parseNode i878a80
 // GetActivities gets the activities property value. Container for activity logs (content processing and audit) related to this user. ContainsTarget: true.
 // returns a ActivitiesContainerable when successful
 func (m *UserDataSecurityAndGovernance) GetActivities()(ActivitiesContainerable) {
-    return m.activities
+    val, err := m.GetBackingStore().Get("activities")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ActivitiesContainerable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -62,7 +65,14 @@ func (m *UserDataSecurityAndGovernance) GetFieldDeserializers()(map[string]func(
 // GetProtectionScopes gets the protectionScopes property value. The protectionScopes property
 // returns a UserProtectionScopeContainerable when successful
 func (m *UserDataSecurityAndGovernance) GetProtectionScopes()(UserProtectionScopeContainerable) {
-    return m.protectionScopes
+    val, err := m.GetBackingStore().Get("protectionScopes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UserProtectionScopeContainerable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserDataSecurityAndGovernance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *UserDataSecurityAndGovernance) Serialize(writer i878a80d2330e89d2689638
 }
 // SetActivities sets the activities property value. Container for activity logs (content processing and audit) related to this user. ContainsTarget: true.
 func (m *UserDataSecurityAndGovernance) SetActivities(value ActivitiesContainerable)() {
-    m.activities = value
+    err := m.GetBackingStore().Set("activities", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProtectionScopes sets the protectionScopes property value. The protectionScopes property
 func (m *UserDataSecurityAndGovernance) SetProtectionScopes(value UserProtectionScopeContainerable)() {
-    m.protectionScopes = value
+    err := m.GetBackingStore().Set("protectionScopes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserDataSecurityAndGovernanceable interface {
     DataSecurityAndGovernanceable

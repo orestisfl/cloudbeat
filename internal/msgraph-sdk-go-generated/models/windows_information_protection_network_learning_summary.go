@@ -10,10 +10,6 @@ import (
 // WindowsInformationProtectionNetworkLearningSummary windows Information Protection Network learning Summary entity.
 type WindowsInformationProtectionNetworkLearningSummary struct {
     Entity
-    // Device Count
-    deviceCount *int32
-    // Website url
-    url *string
 }
 // NewWindowsInformationProtectionNetworkLearningSummary instantiates a new WindowsInformationProtectionNetworkLearningSummary and sets the default values.
 func NewWindowsInformationProtectionNetworkLearningSummary()(*WindowsInformationProtectionNetworkLearningSummary) {
@@ -30,7 +26,14 @@ func CreateWindowsInformationProtectionNetworkLearningSummaryFromDiscriminatorVa
 // GetDeviceCount gets the deviceCount property value. Device Count
 // returns a *int32 when successful
 func (m *WindowsInformationProtectionNetworkLearningSummary) GetDeviceCount()(*int32) {
-    return m.deviceCount
+    val, err := m.GetBackingStore().Get("deviceCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +64,14 @@ func (m *WindowsInformationProtectionNetworkLearningSummary) GetFieldDeserialize
 // GetUrl gets the url property value. Website url
 // returns a *string when successful
 func (m *WindowsInformationProtectionNetworkLearningSummary) GetUrl()(*string) {
-    return m.url
+    val, err := m.GetBackingStore().Get("url")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WindowsInformationProtectionNetworkLearningSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *WindowsInformationProtectionNetworkLearningSummary) Serialize(writer i8
 }
 // SetDeviceCount sets the deviceCount property value. Device Count
 func (m *WindowsInformationProtectionNetworkLearningSummary) SetDeviceCount(value *int32)() {
-    m.deviceCount = value
+    err := m.GetBackingStore().Set("deviceCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUrl sets the url property value. Website url
 func (m *WindowsInformationProtectionNetworkLearningSummary) SetUrl(value *string)() {
-    m.url = value
+    err := m.GetBackingStore().Set("url", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WindowsInformationProtectionNetworkLearningSummaryable interface {
     Entityable

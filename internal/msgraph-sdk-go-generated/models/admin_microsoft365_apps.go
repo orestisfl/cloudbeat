@@ -9,8 +9,6 @@ import (
 
 type AdminMicrosoft365Apps struct {
     Entity
-    // A container for tenant-level settings for Microsoft 365 applications.
-    installationOptions M365AppsInstallationOptionsable
 }
 // NewAdminMicrosoft365Apps instantiates a new AdminMicrosoft365Apps and sets the default values.
 func NewAdminMicrosoft365Apps()(*AdminMicrosoft365Apps) {
@@ -43,7 +41,14 @@ func (m *AdminMicrosoft365Apps) GetFieldDeserializers()(map[string]func(i878a80d
 // GetInstallationOptions gets the installationOptions property value. A container for tenant-level settings for Microsoft 365 applications.
 // returns a M365AppsInstallationOptionsable when successful
 func (m *AdminMicrosoft365Apps) GetInstallationOptions()(M365AppsInstallationOptionsable) {
-    return m.installationOptions
+    val, err := m.GetBackingStore().Get("installationOptions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(M365AppsInstallationOptionsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AdminMicrosoft365Apps) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *AdminMicrosoft365Apps) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetInstallationOptions sets the installationOptions property value. A container for tenant-level settings for Microsoft 365 applications.
 func (m *AdminMicrosoft365Apps) SetInstallationOptions(value M365AppsInstallationOptionsable)() {
-    m.installationOptions = value
+    err := m.GetBackingStore().Set("installationOptions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AdminMicrosoft365Appsable interface {
     Entityable

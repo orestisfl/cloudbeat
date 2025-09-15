@@ -9,30 +9,6 @@ import (
 
 type WorkbookRangeView struct {
     Entity
-    // The cell addresses.
-    cellAddresses i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The number of visible columns. Read-only.
-    columnCount *int32
-    // The formula in A1-style notation.
-    formulas i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The formula in A1-style notation, in the user's language and number-formatting locale. For example, the English '=SUM(A1, 1.5)' formula would become '=SUMME(A1; 1,5)' in German.
-    formulasLocal i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // Represents the formula in R1C1-style notation.
-    formulasR1C1 i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The index of the range.
-    index *int32
-    // Excel's number format code for the given cell. Read-only.
-    numberFormat i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The number of visible rows. Read-only.
-    rowCount *int32
-    // The collection of range views associated with the range. Read-only. Read-only.
-    rows []WorkbookRangeViewable
-    // The text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
-    text i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The raw values of the specified range view. The data returned could be of type string, number, or a Boolean. Cell that contains an error returns the error string.
-    values i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
-    // The type of data of each cell. Read-only. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.
-    valueTypes i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
 }
 // NewWorkbookRangeView instantiates a new WorkbookRangeView and sets the default values.
 func NewWorkbookRangeView()(*WorkbookRangeView) {
@@ -49,12 +25,26 @@ func CreateWorkbookRangeViewFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetCellAddresses gets the cellAddresses property value. The cell addresses.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetCellAddresses()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.cellAddresses
+    val, err := m.GetBackingStore().Get("cellAddresses")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetColumnCount gets the columnCount property value. The number of visible columns. Read-only.
 // returns a *int32 when successful
 func (m *WorkbookRangeView) GetColumnCount()(*int32) {
-    return m.columnCount
+    val, err := m.GetBackingStore().Get("columnCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -191,52 +181,122 @@ func (m *WorkbookRangeView) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetFormulas gets the formulas property value. The formula in A1-style notation.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetFormulas()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.formulas
+    val, err := m.GetBackingStore().Get("formulas")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetFormulasLocal gets the formulasLocal property value. The formula in A1-style notation, in the user's language and number-formatting locale. For example, the English '=SUM(A1, 1.5)' formula would become '=SUMME(A1; 1,5)' in German.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetFormulasLocal()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.formulasLocal
+    val, err := m.GetBackingStore().Get("formulasLocal")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetFormulasR1C1 gets the formulasR1C1 property value. Represents the formula in R1C1-style notation.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetFormulasR1C1()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.formulasR1C1
+    val, err := m.GetBackingStore().Get("formulasR1C1")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetIndex gets the index property value. The index of the range.
 // returns a *int32 when successful
 func (m *WorkbookRangeView) GetIndex()(*int32) {
-    return m.index
+    val, err := m.GetBackingStore().Get("index")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetNumberFormat gets the numberFormat property value. Excel's number format code for the given cell. Read-only.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetNumberFormat()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.numberFormat
+    val, err := m.GetBackingStore().Get("numberFormat")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetRowCount gets the rowCount property value. The number of visible rows. Read-only.
 // returns a *int32 when successful
 func (m *WorkbookRangeView) GetRowCount()(*int32) {
-    return m.rowCount
+    val, err := m.GetBackingStore().Get("rowCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetRows gets the rows property value. The collection of range views associated with the range. Read-only. Read-only.
 // returns a []WorkbookRangeViewable when successful
 func (m *WorkbookRangeView) GetRows()([]WorkbookRangeViewable) {
-    return m.rows
+    val, err := m.GetBackingStore().Get("rows")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WorkbookRangeViewable)
+    }
+    return nil
 }
 // GetText gets the text property value. The text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetText()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.text
+    val, err := m.GetBackingStore().Get("text")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetValues gets the values property value. The raw values of the specified range view. The data returned could be of type string, number, or a Boolean. Cell that contains an error returns the error string.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetValues()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.values
+    val, err := m.GetBackingStore().Get("values")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetValueTypes gets the valueTypes property value. The type of data of each cell. Read-only. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.
 // returns a UntypedNodeable when successful
 func (m *WorkbookRangeView) GetValueTypes()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.valueTypes
+    val, err := m.GetBackingStore().Get("valueTypes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookRangeView) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -326,51 +386,87 @@ func (m *WorkbookRangeView) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetCellAddresses sets the cellAddresses property value. The cell addresses.
 func (m *WorkbookRangeView) SetCellAddresses(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.cellAddresses = value
+    err := m.GetBackingStore().Set("cellAddresses", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetColumnCount sets the columnCount property value. The number of visible columns. Read-only.
 func (m *WorkbookRangeView) SetColumnCount(value *int32)() {
-    m.columnCount = value
+    err := m.GetBackingStore().Set("columnCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFormulas sets the formulas property value. The formula in A1-style notation.
 func (m *WorkbookRangeView) SetFormulas(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.formulas = value
+    err := m.GetBackingStore().Set("formulas", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFormulasLocal sets the formulasLocal property value. The formula in A1-style notation, in the user's language and number-formatting locale. For example, the English '=SUM(A1, 1.5)' formula would become '=SUMME(A1; 1,5)' in German.
 func (m *WorkbookRangeView) SetFormulasLocal(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.formulasLocal = value
+    err := m.GetBackingStore().Set("formulasLocal", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFormulasR1C1 sets the formulasR1C1 property value. Represents the formula in R1C1-style notation.
 func (m *WorkbookRangeView) SetFormulasR1C1(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.formulasR1C1 = value
+    err := m.GetBackingStore().Set("formulasR1C1", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIndex sets the index property value. The index of the range.
 func (m *WorkbookRangeView) SetIndex(value *int32)() {
-    m.index = value
+    err := m.GetBackingStore().Set("index", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNumberFormat sets the numberFormat property value. Excel's number format code for the given cell. Read-only.
 func (m *WorkbookRangeView) SetNumberFormat(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.numberFormat = value
+    err := m.GetBackingStore().Set("numberFormat", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRowCount sets the rowCount property value. The number of visible rows. Read-only.
 func (m *WorkbookRangeView) SetRowCount(value *int32)() {
-    m.rowCount = value
+    err := m.GetBackingStore().Set("rowCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRows sets the rows property value. The collection of range views associated with the range. Read-only. Read-only.
 func (m *WorkbookRangeView) SetRows(value []WorkbookRangeViewable)() {
-    m.rows = value
+    err := m.GetBackingStore().Set("rows", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetText sets the text property value. The text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
 func (m *WorkbookRangeView) SetText(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.text = value
+    err := m.GetBackingStore().Set("text", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValues sets the values property value. The raw values of the specified range view. The data returned could be of type string, number, or a Boolean. Cell that contains an error returns the error string.
 func (m *WorkbookRangeView) SetValues(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.values = value
+    err := m.GetBackingStore().Set("values", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValueTypes sets the valueTypes property value. The type of data of each cell. Read-only. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.
 func (m *WorkbookRangeView) SetValueTypes(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.valueTypes = value
+    err := m.GetBackingStore().Set("valueTypes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookRangeViewable interface {
     Entityable

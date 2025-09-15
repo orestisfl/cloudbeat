@@ -9,8 +9,6 @@ import (
 
 type PositiveReinforcementNotification struct {
     BaseEndUserNotification
-    // Delivery preference. Possible values are: unknown, deliverImmedietly, deliverAfterCampaignEnd, unknownFutureValue.
-    deliveryPreference *NotificationDeliveryPreference
 }
 // NewPositiveReinforcementNotification instantiates a new PositiveReinforcementNotification and sets the default values.
 func NewPositiveReinforcementNotification()(*PositiveReinforcementNotification) {
@@ -29,7 +27,14 @@ func CreatePositiveReinforcementNotificationFromDiscriminatorValue(parseNode i87
 // GetDeliveryPreference gets the deliveryPreference property value. Delivery preference. Possible values are: unknown, deliverImmedietly, deliverAfterCampaignEnd, unknownFutureValue.
 // returns a *NotificationDeliveryPreference when successful
 func (m *PositiveReinforcementNotification) GetDeliveryPreference()(*NotificationDeliveryPreference) {
-    return m.deliveryPreference
+    val, err := m.GetBackingStore().Get("deliveryPreference")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*NotificationDeliveryPreference)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *PositiveReinforcementNotification) Serialize(writer i878a80d2330e89d268
 }
 // SetDeliveryPreference sets the deliveryPreference property value. Delivery preference. Possible values are: unknown, deliverImmedietly, deliverAfterCampaignEnd, unknownFutureValue.
 func (m *PositiveReinforcementNotification) SetDeliveryPreference(value *NotificationDeliveryPreference)() {
-    m.deliveryPreference = value
+    err := m.GetBackingStore().Set("deliveryPreference", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PositiveReinforcementNotificationable interface {
     BaseEndUserNotificationable

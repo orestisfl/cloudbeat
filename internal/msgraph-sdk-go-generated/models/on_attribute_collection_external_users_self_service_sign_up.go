@@ -9,10 +9,6 @@ import (
 
 type OnAttributeCollectionExternalUsersSelfServiceSignUp struct {
     OnAttributeCollectionHandler
-    // Required. The configuration for how attributes are displayed in the sign-up experience defined by a user flow, like the externalUsersSelfServiceSignupEventsFlow, specifically on the attribute collection page.
-    attributeCollectionPage AuthenticationAttributeCollectionPageable
-    // The attributes property
-    attributes []IdentityUserFlowAttributeable
 }
 // NewOnAttributeCollectionExternalUsersSelfServiceSignUp instantiates a new OnAttributeCollectionExternalUsersSelfServiceSignUp and sets the default values.
 func NewOnAttributeCollectionExternalUsersSelfServiceSignUp()(*OnAttributeCollectionExternalUsersSelfServiceSignUp) {
@@ -31,12 +27,26 @@ func CreateOnAttributeCollectionExternalUsersSelfServiceSignUpFromDiscriminatorV
 // GetAttributeCollectionPage gets the attributeCollectionPage property value. Required. The configuration for how attributes are displayed in the sign-up experience defined by a user flow, like the externalUsersSelfServiceSignupEventsFlow, specifically on the attribute collection page.
 // returns a AuthenticationAttributeCollectionPageable when successful
 func (m *OnAttributeCollectionExternalUsersSelfServiceSignUp) GetAttributeCollectionPage()(AuthenticationAttributeCollectionPageable) {
-    return m.attributeCollectionPage
+    val, err := m.GetBackingStore().Get("attributeCollectionPage")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AuthenticationAttributeCollectionPageable)
+    }
+    return nil
 }
 // GetAttributes gets the attributes property value. The attributes property
 // returns a []IdentityUserFlowAttributeable when successful
 func (m *OnAttributeCollectionExternalUsersSelfServiceSignUp) GetAttributes()([]IdentityUserFlowAttributeable) {
-    return m.attributes
+    val, err := m.GetBackingStore().Get("attributes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]IdentityUserFlowAttributeable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -98,11 +108,17 @@ func (m *OnAttributeCollectionExternalUsersSelfServiceSignUp) Serialize(writer i
 }
 // SetAttributeCollectionPage sets the attributeCollectionPage property value. Required. The configuration for how attributes are displayed in the sign-up experience defined by a user flow, like the externalUsersSelfServiceSignupEventsFlow, specifically on the attribute collection page.
 func (m *OnAttributeCollectionExternalUsersSelfServiceSignUp) SetAttributeCollectionPage(value AuthenticationAttributeCollectionPageable)() {
-    m.attributeCollectionPage = value
+    err := m.GetBackingStore().Set("attributeCollectionPage", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAttributes sets the attributes property value. The attributes property
 func (m *OnAttributeCollectionExternalUsersSelfServiceSignUp) SetAttributes(value []IdentityUserFlowAttributeable)() {
-    m.attributes = value
+    err := m.GetBackingStore().Set("attributes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnAttributeCollectionExternalUsersSelfServiceSignUpable interface {
     OnAttributeCollectionHandlerable

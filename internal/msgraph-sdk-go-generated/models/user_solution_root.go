@@ -9,8 +9,6 @@ import (
 
 type UserSolutionRoot struct {
     Entity
-    // The working time schedule entity associated with the solution.
-    workingTimeSchedule WorkingTimeScheduleable
 }
 // NewUserSolutionRoot instantiates a new UserSolutionRoot and sets the default values.
 func NewUserSolutionRoot()(*UserSolutionRoot) {
@@ -43,7 +41,14 @@ func (m *UserSolutionRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e
 // GetWorkingTimeSchedule gets the workingTimeSchedule property value. The working time schedule entity associated with the solution.
 // returns a WorkingTimeScheduleable when successful
 func (m *UserSolutionRoot) GetWorkingTimeSchedule()(WorkingTimeScheduleable) {
-    return m.workingTimeSchedule
+    val, err := m.GetBackingStore().Get("workingTimeSchedule")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkingTimeScheduleable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserSolutionRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *UserSolutionRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetWorkingTimeSchedule sets the workingTimeSchedule property value. The working time schedule entity associated with the solution.
 func (m *UserSolutionRoot) SetWorkingTimeSchedule(value WorkingTimeScheduleable)() {
-    m.workingTimeSchedule = value
+    err := m.GetBackingStore().Set("workingTimeSchedule", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserSolutionRootable interface {
     Entityable

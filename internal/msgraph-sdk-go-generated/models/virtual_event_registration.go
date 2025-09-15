@@ -10,30 +10,6 @@ import (
 
 type VirtualEventRegistration struct {
     Entity
-    // Date and time when the registrant cancels their registration for the virtual event. Only appears when applicable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    cancelationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Email address of the registrant.
-    email *string
-    // The external information for a virtual event registration.
-    externalRegistrationInformation VirtualEventExternalRegistrationInformationable
-    // First name of the registrant.
-    firstName *string
-    // Last name of the registrant.
-    lastName *string
-    // The registrant's preferred language.
-    preferredLanguage *string
-    // The registrant's time zone details.
-    preferredTimezone *string
-    // Date and time when the registrant registers for the virtual event. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    registrationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The registrant's answer to the registration questions.
-    registrationQuestionAnswers []VirtualEventRegistrationQuestionAnswerable
-    // Sessions for a registration.
-    sessions []VirtualEventSessionable
-    // Registration status of the registrant. Read-only. Possible values are registered, canceled, waitlisted, pendingApproval, rejectedByOrganizer, and unknownFutureValue.
-    status *VirtualEventAttendeeRegistrationStatus
-    // The registrant's ID in Microsoft Entra ID. Only appears when the registrant is registered in Microsoft Entra ID.
-    userId *string
 }
 // NewVirtualEventRegistration instantiates a new VirtualEventRegistration and sets the default values.
 func NewVirtualEventRegistration()(*VirtualEventRegistration) {
@@ -50,17 +26,38 @@ func CreateVirtualEventRegistrationFromDiscriminatorValue(parseNode i878a80d2330
 // GetCancelationDateTime gets the cancelationDateTime property value. Date and time when the registrant cancels their registration for the virtual event. Only appears when applicable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *VirtualEventRegistration) GetCancelationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.cancelationDateTime
+    val, err := m.GetBackingStore().Get("cancelationDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetEmail gets the email property value. Email address of the registrant.
 // returns a *string when successful
 func (m *VirtualEventRegistration) GetEmail()(*string) {
-    return m.email
+    val, err := m.GetBackingStore().Get("email")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExternalRegistrationInformation gets the externalRegistrationInformation property value. The external information for a virtual event registration.
 // returns a VirtualEventExternalRegistrationInformationable when successful
 func (m *VirtualEventRegistration) GetExternalRegistrationInformation()(VirtualEventExternalRegistrationInformationable) {
-    return m.externalRegistrationInformation
+    val, err := m.GetBackingStore().Get("externalRegistrationInformation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(VirtualEventExternalRegistrationInformationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -203,47 +200,110 @@ func (m *VirtualEventRegistration) GetFieldDeserializers()(map[string]func(i878a
 // GetFirstName gets the firstName property value. First name of the registrant.
 // returns a *string when successful
 func (m *VirtualEventRegistration) GetFirstName()(*string) {
-    return m.firstName
+    val, err := m.GetBackingStore().Get("firstName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLastName gets the lastName property value. Last name of the registrant.
 // returns a *string when successful
 func (m *VirtualEventRegistration) GetLastName()(*string) {
-    return m.lastName
+    val, err := m.GetBackingStore().Get("lastName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPreferredLanguage gets the preferredLanguage property value. The registrant's preferred language.
 // returns a *string when successful
 func (m *VirtualEventRegistration) GetPreferredLanguage()(*string) {
-    return m.preferredLanguage
+    val, err := m.GetBackingStore().Get("preferredLanguage")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPreferredTimezone gets the preferredTimezone property value. The registrant's time zone details.
 // returns a *string when successful
 func (m *VirtualEventRegistration) GetPreferredTimezone()(*string) {
-    return m.preferredTimezone
+    val, err := m.GetBackingStore().Get("preferredTimezone")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRegistrationDateTime gets the registrationDateTime property value. Date and time when the registrant registers for the virtual event. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *VirtualEventRegistration) GetRegistrationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.registrationDateTime
+    val, err := m.GetBackingStore().Get("registrationDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRegistrationQuestionAnswers gets the registrationQuestionAnswers property value. The registrant's answer to the registration questions.
 // returns a []VirtualEventRegistrationQuestionAnswerable when successful
 func (m *VirtualEventRegistration) GetRegistrationQuestionAnswers()([]VirtualEventRegistrationQuestionAnswerable) {
-    return m.registrationQuestionAnswers
+    val, err := m.GetBackingStore().Get("registrationQuestionAnswers")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventRegistrationQuestionAnswerable)
+    }
+    return nil
 }
 // GetSessions gets the sessions property value. Sessions for a registration.
 // returns a []VirtualEventSessionable when successful
 func (m *VirtualEventRegistration) GetSessions()([]VirtualEventSessionable) {
-    return m.sessions
+    val, err := m.GetBackingStore().Get("sessions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventSessionable)
+    }
+    return nil
 }
 // GetStatus gets the status property value. Registration status of the registrant. Read-only. Possible values are registered, canceled, waitlisted, pendingApproval, rejectedByOrganizer, and unknownFutureValue.
 // returns a *VirtualEventAttendeeRegistrationStatus when successful
 func (m *VirtualEventRegistration) GetStatus()(*VirtualEventAttendeeRegistrationStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*VirtualEventAttendeeRegistrationStatus)
+    }
+    return nil
 }
 // GetUserId gets the userId property value. The registrant's ID in Microsoft Entra ID. Only appears when the registrant is registered in Microsoft Entra ID.
 // returns a *string when successful
 func (m *VirtualEventRegistration) GetUserId()(*string) {
-    return m.userId
+    val, err := m.GetBackingStore().Get("userId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventRegistration) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -340,51 +400,87 @@ func (m *VirtualEventRegistration) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetCancelationDateTime sets the cancelationDateTime property value. Date and time when the registrant cancels their registration for the virtual event. Only appears when applicable. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *VirtualEventRegistration) SetCancelationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.cancelationDateTime = value
+    err := m.GetBackingStore().Set("cancelationDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEmail sets the email property value. Email address of the registrant.
 func (m *VirtualEventRegistration) SetEmail(value *string)() {
-    m.email = value
+    err := m.GetBackingStore().Set("email", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalRegistrationInformation sets the externalRegistrationInformation property value. The external information for a virtual event registration.
 func (m *VirtualEventRegistration) SetExternalRegistrationInformation(value VirtualEventExternalRegistrationInformationable)() {
-    m.externalRegistrationInformation = value
+    err := m.GetBackingStore().Set("externalRegistrationInformation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFirstName sets the firstName property value. First name of the registrant.
 func (m *VirtualEventRegistration) SetFirstName(value *string)() {
-    m.firstName = value
+    err := m.GetBackingStore().Set("firstName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastName sets the lastName property value. Last name of the registrant.
 func (m *VirtualEventRegistration) SetLastName(value *string)() {
-    m.lastName = value
+    err := m.GetBackingStore().Set("lastName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPreferredLanguage sets the preferredLanguage property value. The registrant's preferred language.
 func (m *VirtualEventRegistration) SetPreferredLanguage(value *string)() {
-    m.preferredLanguage = value
+    err := m.GetBackingStore().Set("preferredLanguage", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPreferredTimezone sets the preferredTimezone property value. The registrant's time zone details.
 func (m *VirtualEventRegistration) SetPreferredTimezone(value *string)() {
-    m.preferredTimezone = value
+    err := m.GetBackingStore().Set("preferredTimezone", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationDateTime sets the registrationDateTime property value. Date and time when the registrant registers for the virtual event. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *VirtualEventRegistration) SetRegistrationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.registrationDateTime = value
+    err := m.GetBackingStore().Set("registrationDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationQuestionAnswers sets the registrationQuestionAnswers property value. The registrant's answer to the registration questions.
 func (m *VirtualEventRegistration) SetRegistrationQuestionAnswers(value []VirtualEventRegistrationQuestionAnswerable)() {
-    m.registrationQuestionAnswers = value
+    err := m.GetBackingStore().Set("registrationQuestionAnswers", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSessions sets the sessions property value. Sessions for a registration.
 func (m *VirtualEventRegistration) SetSessions(value []VirtualEventSessionable)() {
-    m.sessions = value
+    err := m.GetBackingStore().Set("sessions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. Registration status of the registrant. Read-only. Possible values are registered, canceled, waitlisted, pendingApproval, rejectedByOrganizer, and unknownFutureValue.
 func (m *VirtualEventRegistration) SetStatus(value *VirtualEventAttendeeRegistrationStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserId sets the userId property value. The registrant's ID in Microsoft Entra ID. Only appears when the registrant is registered in Microsoft Entra ID.
 func (m *VirtualEventRegistration) SetUserId(value *string)() {
-    m.userId = value
+    err := m.GetBackingStore().Set("userId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventRegistrationable interface {
     Entityable

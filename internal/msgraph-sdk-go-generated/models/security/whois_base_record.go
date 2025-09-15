@@ -11,42 +11,6 @@ import (
 
 type WhoisBaseRecord struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The contact information for the abuse contact.
-    abuse WhoisContactable
-    // The contact information for the admin contact.
-    admin WhoisContactable
-    // The contact information for the billing contact.
-    billing WhoisContactable
-    // The domain status for this WHOIS object.
-    domainStatus *string
-    // The date and time when this WHOIS record expires with the registrar. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    expirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The first seen date and time of this WHOIS record. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    firstSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The host property
-    host Hostable
-    // The last seen date and time of this WHOIS record. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The date and time when this WHOIS record was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastUpdateDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The nameservers for this WHOIS object.
-    nameservers []WhoisNameserverable
-    // The contact information for the noc contact.
-    noc WhoisContactable
-    // The raw WHOIS details for this WHOIS object.
-    rawWhoisText *string
-    // The contact information for the registrant contact.
-    registrant WhoisContactable
-    // The contact information for the registrar contact.
-    registrar WhoisContactable
-    // The date and time when this WHOIS record was registered with a registrar. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    registrationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The contact information for the technical contact.
-    technical WhoisContactable
-    // The WHOIS server that provides the details.
-    whoisServer *string
-    // The contact information for the zone contact.
-    zone WhoisContactable
 }
 // NewWhoisBaseRecord instantiates a new WhoisBaseRecord and sets the default values.
 func NewWhoisBaseRecord()(*WhoisBaseRecord) {
@@ -83,27 +47,62 @@ func CreateWhoisBaseRecordFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetAbuse gets the abuse property value. The contact information for the abuse contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetAbuse()(WhoisContactable) {
-    return m.abuse
+    val, err := m.GetBackingStore().Get("abuse")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // GetAdmin gets the admin property value. The contact information for the admin contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetAdmin()(WhoisContactable) {
-    return m.admin
+    val, err := m.GetBackingStore().Get("admin")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // GetBilling gets the billing property value. The contact information for the billing contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetBilling()(WhoisContactable) {
-    return m.billing
+    val, err := m.GetBackingStore().Get("billing")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // GetDomainStatus gets the domainStatus property value. The domain status for this WHOIS object.
 // returns a *string when successful
 func (m *WhoisBaseRecord) GetDomainStatus()(*string) {
-    return m.domainStatus
+    val, err := m.GetBackingStore().Get("domainStatus")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExpirationDateTime gets the expirationDateTime property value. The date and time when this WHOIS record expires with the registrar. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *WhoisBaseRecord) GetExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.expirationDateTime
+    val, err := m.GetBackingStore().Get("expirationDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -300,67 +299,158 @@ func (m *WhoisBaseRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetFirstSeenDateTime gets the firstSeenDateTime property value. The first seen date and time of this WHOIS record. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *WhoisBaseRecord) GetFirstSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.firstSeenDateTime
+    val, err := m.GetBackingStore().Get("firstSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetHost gets the host property value. The host property
 // returns a Hostable when successful
 func (m *WhoisBaseRecord) GetHost()(Hostable) {
-    return m.host
+    val, err := m.GetBackingStore().Get("host")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Hostable)
+    }
+    return nil
 }
 // GetLastSeenDateTime gets the lastSeenDateTime property value. The last seen date and time of this WHOIS record. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *WhoisBaseRecord) GetLastSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastSeenDateTime
+    val, err := m.GetBackingStore().Get("lastSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetLastUpdateDateTime gets the lastUpdateDateTime property value. The date and time when this WHOIS record was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *WhoisBaseRecord) GetLastUpdateDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastUpdateDateTime
+    val, err := m.GetBackingStore().Get("lastUpdateDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetNameservers gets the nameservers property value. The nameservers for this WHOIS object.
 // returns a []WhoisNameserverable when successful
 func (m *WhoisBaseRecord) GetNameservers()([]WhoisNameserverable) {
-    return m.nameservers
+    val, err := m.GetBackingStore().Get("nameservers")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WhoisNameserverable)
+    }
+    return nil
 }
 // GetNoc gets the noc property value. The contact information for the noc contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetNoc()(WhoisContactable) {
-    return m.noc
+    val, err := m.GetBackingStore().Get("noc")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // GetRawWhoisText gets the rawWhoisText property value. The raw WHOIS details for this WHOIS object.
 // returns a *string when successful
 func (m *WhoisBaseRecord) GetRawWhoisText()(*string) {
-    return m.rawWhoisText
+    val, err := m.GetBackingStore().Get("rawWhoisText")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRegistrant gets the registrant property value. The contact information for the registrant contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetRegistrant()(WhoisContactable) {
-    return m.registrant
+    val, err := m.GetBackingStore().Get("registrant")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // GetRegistrar gets the registrar property value. The contact information for the registrar contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetRegistrar()(WhoisContactable) {
-    return m.registrar
+    val, err := m.GetBackingStore().Get("registrar")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // GetRegistrationDateTime gets the registrationDateTime property value. The date and time when this WHOIS record was registered with a registrar. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *WhoisBaseRecord) GetRegistrationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.registrationDateTime
+    val, err := m.GetBackingStore().Get("registrationDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetTechnical gets the technical property value. The contact information for the technical contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetTechnical()(WhoisContactable) {
-    return m.technical
+    val, err := m.GetBackingStore().Get("technical")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // GetWhoisServer gets the whoisServer property value. The WHOIS server that provides the details.
 // returns a *string when successful
 func (m *WhoisBaseRecord) GetWhoisServer()(*string) {
-    return m.whoisServer
+    val, err := m.GetBackingStore().Get("whoisServer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetZone gets the zone property value. The contact information for the zone contact.
 // returns a WhoisContactable when successful
 func (m *WhoisBaseRecord) GetZone()(WhoisContactable) {
-    return m.zone
+    val, err := m.GetBackingStore().Get("zone")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WhoisContactable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WhoisBaseRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -486,75 +576,129 @@ func (m *WhoisBaseRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetAbuse sets the abuse property value. The contact information for the abuse contact.
 func (m *WhoisBaseRecord) SetAbuse(value WhoisContactable)() {
-    m.abuse = value
+    err := m.GetBackingStore().Set("abuse", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAdmin sets the admin property value. The contact information for the admin contact.
 func (m *WhoisBaseRecord) SetAdmin(value WhoisContactable)() {
-    m.admin = value
+    err := m.GetBackingStore().Set("admin", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetBilling sets the billing property value. The contact information for the billing contact.
 func (m *WhoisBaseRecord) SetBilling(value WhoisContactable)() {
-    m.billing = value
+    err := m.GetBackingStore().Set("billing", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDomainStatus sets the domainStatus property value. The domain status for this WHOIS object.
 func (m *WhoisBaseRecord) SetDomainStatus(value *string)() {
-    m.domainStatus = value
+    err := m.GetBackingStore().Set("domainStatus", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExpirationDateTime sets the expirationDateTime property value. The date and time when this WHOIS record expires with the registrar. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *WhoisBaseRecord) SetExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.expirationDateTime = value
+    err := m.GetBackingStore().Set("expirationDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFirstSeenDateTime sets the firstSeenDateTime property value. The first seen date and time of this WHOIS record. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *WhoisBaseRecord) SetFirstSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.firstSeenDateTime = value
+    err := m.GetBackingStore().Set("firstSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetHost sets the host property value. The host property
 func (m *WhoisBaseRecord) SetHost(value Hostable)() {
-    m.host = value
+    err := m.GetBackingStore().Set("host", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastSeenDateTime sets the lastSeenDateTime property value. The last seen date and time of this WHOIS record. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *WhoisBaseRecord) SetLastSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastSeenDateTime = value
+    err := m.GetBackingStore().Set("lastSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastUpdateDateTime sets the lastUpdateDateTime property value. The date and time when this WHOIS record was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *WhoisBaseRecord) SetLastUpdateDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastUpdateDateTime = value
+    err := m.GetBackingStore().Set("lastUpdateDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNameservers sets the nameservers property value. The nameservers for this WHOIS object.
 func (m *WhoisBaseRecord) SetNameservers(value []WhoisNameserverable)() {
-    m.nameservers = value
+    err := m.GetBackingStore().Set("nameservers", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNoc sets the noc property value. The contact information for the noc contact.
 func (m *WhoisBaseRecord) SetNoc(value WhoisContactable)() {
-    m.noc = value
+    err := m.GetBackingStore().Set("noc", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRawWhoisText sets the rawWhoisText property value. The raw WHOIS details for this WHOIS object.
 func (m *WhoisBaseRecord) SetRawWhoisText(value *string)() {
-    m.rawWhoisText = value
+    err := m.GetBackingStore().Set("rawWhoisText", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrant sets the registrant property value. The contact information for the registrant contact.
 func (m *WhoisBaseRecord) SetRegistrant(value WhoisContactable)() {
-    m.registrant = value
+    err := m.GetBackingStore().Set("registrant", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrar sets the registrar property value. The contact information for the registrar contact.
 func (m *WhoisBaseRecord) SetRegistrar(value WhoisContactable)() {
-    m.registrar = value
+    err := m.GetBackingStore().Set("registrar", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationDateTime sets the registrationDateTime property value. The date and time when this WHOIS record was registered with a registrar. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *WhoisBaseRecord) SetRegistrationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.registrationDateTime = value
+    err := m.GetBackingStore().Set("registrationDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTechnical sets the technical property value. The contact information for the technical contact.
 func (m *WhoisBaseRecord) SetTechnical(value WhoisContactable)() {
-    m.technical = value
+    err := m.GetBackingStore().Set("technical", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWhoisServer sets the whoisServer property value. The WHOIS server that provides the details.
 func (m *WhoisBaseRecord) SetWhoisServer(value *string)() {
-    m.whoisServer = value
+    err := m.GetBackingStore().Set("whoisServer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetZone sets the zone property value. The contact information for the zone contact.
 func (m *WhoisBaseRecord) SetZone(value WhoisContactable)() {
-    m.zone = value
+    err := m.GetBackingStore().Set("zone", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WhoisBaseRecordable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

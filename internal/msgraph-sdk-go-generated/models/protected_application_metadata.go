@@ -9,8 +9,6 @@ import (
 
 type ProtectedApplicationMetadata struct {
     IntegratedApplicationMetadata
-    // The client (application) ID of the Microsoft Entra application. Required.
-    applicationLocation PolicyLocationable
 }
 // NewProtectedApplicationMetadata instantiates a new ProtectedApplicationMetadata and sets the default values.
 func NewProtectedApplicationMetadata()(*ProtectedApplicationMetadata) {
@@ -29,7 +27,14 @@ func CreateProtectedApplicationMetadataFromDiscriminatorValue(parseNode i878a80d
 // GetApplicationLocation gets the applicationLocation property value. The client (application) ID of the Microsoft Entra application. Required.
 // returns a PolicyLocationable when successful
 func (m *ProtectedApplicationMetadata) GetApplicationLocation()(PolicyLocationable) {
-    return m.applicationLocation
+    val, err := m.GetBackingStore().Get("applicationLocation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PolicyLocationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *ProtectedApplicationMetadata) Serialize(writer i878a80d2330e89d26896388
 }
 // SetApplicationLocation sets the applicationLocation property value. The client (application) ID of the Microsoft Entra application. Required.
 func (m *ProtectedApplicationMetadata) SetApplicationLocation(value PolicyLocationable)() {
-    m.applicationLocation = value
+    err := m.GetBackingStore().Set("applicationLocation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProtectedApplicationMetadataable interface {
     IntegratedApplicationMetadataable

@@ -9,8 +9,6 @@ import (
 
 type OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp struct {
     OnInteractiveAuthFlowStartHandler
-    // Optional. Specifies whether the authentication flow includes an option to sign up (create account) and sign in. Default value is false meaning only sign in is enabled.
-    isSignUpAllowed *bool
 }
 // NewOnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp instantiates a new OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp and sets the default values.
 func NewOnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp()(*OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp) {
@@ -45,7 +43,14 @@ func (m *OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp) GetFieldDeser
 // GetIsSignUpAllowed gets the isSignUpAllowed property value. Optional. Specifies whether the authentication flow includes an option to sign up (create account) and sign in. Default value is false meaning only sign in is enabled.
 // returns a *bool when successful
 func (m *OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp) GetIsSignUpAllowed()(*bool) {
-    return m.isSignUpAllowed
+    val, err := m.GetBackingStore().Get("isSignUpAllowed")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp) Serialize(wri
 }
 // SetIsSignUpAllowed sets the isSignUpAllowed property value. Optional. Specifies whether the authentication flow includes an option to sign up (create account) and sign in. Default value is false meaning only sign in is enabled.
 func (m *OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp) SetIsSignUpAllowed(value *bool)() {
-    m.isSignUpAllowed = value
+    err := m.GetBackingStore().Set("isSignUpAllowed", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUpable interface {
     OnInteractiveAuthFlowStartHandlerable

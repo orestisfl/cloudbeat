@@ -9,14 +9,6 @@ import (
 
 type WorkbookChartTitle struct {
     Entity
-    // The formatting of a chart title, which includes fill and font formatting. Read-only.
-    format WorkbookChartTitleFormatable
-    // Indicates whether the chart title will overlay the chart or not.
-    overlay *bool
-    // The title text of the chart.
-    text *string
-    // Indicates whether the chart title is visible.
-    visible *bool
 }
 // NewWorkbookChartTitle instantiates a new WorkbookChartTitle and sets the default values.
 func NewWorkbookChartTitle()(*WorkbookChartTitle) {
@@ -79,22 +71,50 @@ func (m *WorkbookChartTitle) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetFormat gets the format property value. The formatting of a chart title, which includes fill and font formatting. Read-only.
 // returns a WorkbookChartTitleFormatable when successful
 func (m *WorkbookChartTitle) GetFormat()(WorkbookChartTitleFormatable) {
-    return m.format
+    val, err := m.GetBackingStore().Get("format")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartTitleFormatable)
+    }
+    return nil
 }
 // GetOverlay gets the overlay property value. Indicates whether the chart title will overlay the chart or not.
 // returns a *bool when successful
 func (m *WorkbookChartTitle) GetOverlay()(*bool) {
-    return m.overlay
+    val, err := m.GetBackingStore().Get("overlay")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetText gets the text property value. The title text of the chart.
 // returns a *string when successful
 func (m *WorkbookChartTitle) GetText()(*string) {
-    return m.text
+    val, err := m.GetBackingStore().Get("text")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetVisible gets the visible property value. Indicates whether the chart title is visible.
 // returns a *bool when successful
 func (m *WorkbookChartTitle) GetVisible()(*bool) {
-    return m.visible
+    val, err := m.GetBackingStore().Get("visible")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookChartTitle) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -130,19 +150,31 @@ func (m *WorkbookChartTitle) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetFormat sets the format property value. The formatting of a chart title, which includes fill and font formatting. Read-only.
 func (m *WorkbookChartTitle) SetFormat(value WorkbookChartTitleFormatable)() {
-    m.format = value
+    err := m.GetBackingStore().Set("format", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOverlay sets the overlay property value. Indicates whether the chart title will overlay the chart or not.
 func (m *WorkbookChartTitle) SetOverlay(value *bool)() {
-    m.overlay = value
+    err := m.GetBackingStore().Set("overlay", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetText sets the text property value. The title text of the chart.
 func (m *WorkbookChartTitle) SetText(value *string)() {
-    m.text = value
+    err := m.GetBackingStore().Set("text", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVisible sets the visible property value. Indicates whether the chart title is visible.
 func (m *WorkbookChartTitle) SetVisible(value *bool)() {
-    m.visible = value
+    err := m.GetBackingStore().Set("visible", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookChartTitleable interface {
     Entityable

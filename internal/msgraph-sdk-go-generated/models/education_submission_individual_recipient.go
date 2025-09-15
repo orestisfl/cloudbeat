@@ -9,8 +9,6 @@ import (
 
 type EducationSubmissionIndividualRecipient struct {
     EducationSubmissionRecipient
-    // User ID of the user to whom the submission is assigned.
-    userId *string
 }
 // NewEducationSubmissionIndividualRecipient instantiates a new EducationSubmissionIndividualRecipient and sets the default values.
 func NewEducationSubmissionIndividualRecipient()(*EducationSubmissionIndividualRecipient) {
@@ -45,7 +43,14 @@ func (m *EducationSubmissionIndividualRecipient) GetFieldDeserializers()(map[str
 // GetUserId gets the userId property value. User ID of the user to whom the submission is assigned.
 // returns a *string when successful
 func (m *EducationSubmissionIndividualRecipient) GetUserId()(*string) {
-    return m.userId
+    val, err := m.GetBackingStore().Get("userId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationSubmissionIndividualRecipient) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *EducationSubmissionIndividualRecipient) Serialize(writer i878a80d2330e8
 }
 // SetUserId sets the userId property value. User ID of the user to whom the submission is assigned.
 func (m *EducationSubmissionIndividualRecipient) SetUserId(value *string)() {
-    m.userId = value
+    err := m.GetBackingStore().Set("userId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationSubmissionIndividualRecipientable interface {
     EducationSubmissionRecipientable

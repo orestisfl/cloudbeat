@@ -9,14 +9,6 @@ import (
 
 type TimeOffReason struct {
     ChangeTrackedEntity
-    // The code of the timeOffReason to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
-    code *string
-    // The name of the timeOffReason. Required.
-    displayName *string
-    // Supported icon types are: none, car, calendar, running, plane, firstAid, doctor, notWorking, clock, juryDuty, globe, cup, phone, weather, umbrella, piggyBank, dog, cake, trafficCone, pin, sunny. Required.
-    iconType *TimeOffReasonIconType
-    // Indicates whether the timeOffReason can be used when creating new entities or updating existing ones. Required.
-    isActive *bool
 }
 // NewTimeOffReason instantiates a new TimeOffReason and sets the default values.
 func NewTimeOffReason()(*TimeOffReason) {
@@ -35,12 +27,26 @@ func CreateTimeOffReasonFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 // GetCode gets the code property value. The code of the timeOffReason to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
 // returns a *string when successful
 func (m *TimeOffReason) GetCode()(*string) {
-    return m.code
+    val, err := m.GetBackingStore().Get("code")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The name of the timeOffReason. Required.
 // returns a *string when successful
 func (m *TimeOffReason) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -91,12 +97,26 @@ func (m *TimeOffReason) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
 // GetIconType gets the iconType property value. Supported icon types are: none, car, calendar, running, plane, firstAid, doctor, notWorking, clock, juryDuty, globe, cup, phone, weather, umbrella, piggyBank, dog, cake, trafficCone, pin, sunny. Required.
 // returns a *TimeOffReasonIconType when successful
 func (m *TimeOffReason) GetIconType()(*TimeOffReasonIconType) {
-    return m.iconType
+    val, err := m.GetBackingStore().Get("iconType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TimeOffReasonIconType)
+    }
+    return nil
 }
 // GetIsActive gets the isActive property value. Indicates whether the timeOffReason can be used when creating new entities or updating existing ones. Required.
 // returns a *bool when successful
 func (m *TimeOffReason) GetIsActive()(*bool) {
-    return m.isActive
+    val, err := m.GetBackingStore().Get("isActive")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TimeOffReason) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -133,19 +153,31 @@ func (m *TimeOffReason) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetCode sets the code property value. The code of the timeOffReason to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
 func (m *TimeOffReason) SetCode(value *string)() {
-    m.code = value
+    err := m.GetBackingStore().Set("code", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The name of the timeOffReason. Required.
 func (m *TimeOffReason) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIconType sets the iconType property value. Supported icon types are: none, car, calendar, running, plane, firstAid, doctor, notWorking, clock, juryDuty, globe, cup, phone, weather, umbrella, piggyBank, dog, cake, trafficCone, pin, sunny. Required.
 func (m *TimeOffReason) SetIconType(value *TimeOffReasonIconType)() {
-    m.iconType = value
+    err := m.GetBackingStore().Set("iconType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsActive sets the isActive property value. Indicates whether the timeOffReason can be used when creating new entities or updating existing ones. Required.
 func (m *TimeOffReason) SetIsActive(value *bool)() {
-    m.isActive = value
+    err := m.GetBackingStore().Set("isActive", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TimeOffReasonable interface {
     ChangeTrackedEntityable

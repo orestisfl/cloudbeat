@@ -9,10 +9,6 @@ import (
 
 type SharePointRestoreSession struct {
     RestoreSessionBase
-    // A collection of restore points and destination details that can be used to restore SharePoint sites.
-    siteRestoreArtifacts []SiteRestoreArtifactable
-    // A collection of SharePoint site URLs and destination details that can be used to restore SharePoint sites.
-    siteRestoreArtifactsBulkAdditionRequests []SiteRestoreArtifactsBulkAdditionRequestable
 }
 // NewSharePointRestoreSession instantiates a new SharePointRestoreSession and sets the default values.
 func NewSharePointRestoreSession()(*SharePointRestoreSession) {
@@ -69,12 +65,26 @@ func (m *SharePointRestoreSession) GetFieldDeserializers()(map[string]func(i878a
 // GetSiteRestoreArtifacts gets the siteRestoreArtifacts property value. A collection of restore points and destination details that can be used to restore SharePoint sites.
 // returns a []SiteRestoreArtifactable when successful
 func (m *SharePointRestoreSession) GetSiteRestoreArtifacts()([]SiteRestoreArtifactable) {
-    return m.siteRestoreArtifacts
+    val, err := m.GetBackingStore().Get("siteRestoreArtifacts")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteRestoreArtifactable)
+    }
+    return nil
 }
 // GetSiteRestoreArtifactsBulkAdditionRequests gets the siteRestoreArtifactsBulkAdditionRequests property value. A collection of SharePoint site URLs and destination details that can be used to restore SharePoint sites.
 // returns a []SiteRestoreArtifactsBulkAdditionRequestable when successful
 func (m *SharePointRestoreSession) GetSiteRestoreArtifactsBulkAdditionRequests()([]SiteRestoreArtifactsBulkAdditionRequestable) {
-    return m.siteRestoreArtifactsBulkAdditionRequests
+    val, err := m.GetBackingStore().Get("siteRestoreArtifactsBulkAdditionRequests")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteRestoreArtifactsBulkAdditionRequestable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SharePointRestoreSession) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -110,11 +120,17 @@ func (m *SharePointRestoreSession) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetSiteRestoreArtifacts sets the siteRestoreArtifacts property value. A collection of restore points and destination details that can be used to restore SharePoint sites.
 func (m *SharePointRestoreSession) SetSiteRestoreArtifacts(value []SiteRestoreArtifactable)() {
-    m.siteRestoreArtifacts = value
+    err := m.GetBackingStore().Set("siteRestoreArtifacts", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteRestoreArtifactsBulkAdditionRequests sets the siteRestoreArtifactsBulkAdditionRequests property value. A collection of SharePoint site URLs and destination details that can be used to restore SharePoint sites.
 func (m *SharePointRestoreSession) SetSiteRestoreArtifactsBulkAdditionRequests(value []SiteRestoreArtifactsBulkAdditionRequestable)() {
-    m.siteRestoreArtifactsBulkAdditionRequests = value
+    err := m.GetBackingStore().Set("siteRestoreArtifactsBulkAdditionRequests", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SharePointRestoreSessionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

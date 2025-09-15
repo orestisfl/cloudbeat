@@ -5,24 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type PersonOrGroupColumn struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Indicates whether multiple values can be selected from the source.
-    allowMultipleSelection *bool
-    // Whether to allow selection of people only, or people and groups. Must be one of peopleAndGroups or peopleOnly.
-    chooseFromType *string
-    // How to display the information about the person or group chosen. See below.
-    displayAs *string
-    // The OdataType property
-    odataType *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewPersonOrGroupColumn instantiates a new PersonOrGroupColumn and sets the default values.
 func NewPersonOrGroupColumn()(*PersonOrGroupColumn) {
     m := &PersonOrGroupColumn{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -34,22 +28,56 @@ func CreatePersonOrGroupColumnFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *PersonOrGroupColumn) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
 }
 // GetAllowMultipleSelection gets the allowMultipleSelection property value. Indicates whether multiple values can be selected from the source.
 // returns a *bool when successful
 func (m *PersonOrGroupColumn) GetAllowMultipleSelection()(*bool) {
-    return m.allowMultipleSelection
+    val, err := m.GetBackingStore().Get("allowMultipleSelection")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *PersonOrGroupColumn) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetChooseFromType gets the chooseFromType property value. Whether to allow selection of people only, or people and groups. Must be one of peopleAndGroups or peopleOnly.
 // returns a *string when successful
 func (m *PersonOrGroupColumn) GetChooseFromType()(*string) {
-    return m.chooseFromType
+    val, err := m.GetBackingStore().Get("chooseFromType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayAs gets the displayAs property value. How to display the information about the person or group chosen. See below.
 // returns a *string when successful
 func (m *PersonOrGroupColumn) GetDisplayAs()(*string) {
-    return m.displayAs
+    val, err := m.GetBackingStore().Get("displayAs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -100,7 +128,14 @@ func (m *PersonOrGroupColumn) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *PersonOrGroupColumn) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PersonOrGroupColumn) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -138,32 +173,54 @@ func (m *PersonOrGroupColumn) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PersonOrGroupColumn) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAllowMultipleSelection sets the allowMultipleSelection property value. Indicates whether multiple values can be selected from the source.
 func (m *PersonOrGroupColumn) SetAllowMultipleSelection(value *bool)() {
-    m.allowMultipleSelection = value
+    err := m.GetBackingStore().Set("allowMultipleSelection", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *PersonOrGroupColumn) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetChooseFromType sets the chooseFromType property value. Whether to allow selection of people only, or people and groups. Must be one of peopleAndGroups or peopleOnly.
 func (m *PersonOrGroupColumn) SetChooseFromType(value *string)() {
-    m.chooseFromType = value
+    err := m.GetBackingStore().Set("chooseFromType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayAs sets the displayAs property value. How to display the information about the person or group chosen. See below.
 func (m *PersonOrGroupColumn) SetDisplayAs(value *string)() {
-    m.displayAs = value
+    err := m.GetBackingStore().Set("displayAs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *PersonOrGroupColumn) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PersonOrGroupColumnable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAllowMultipleSelection()(*bool)
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetChooseFromType()(*string)
     GetDisplayAs()(*string)
     GetOdataType()(*string)
     SetAllowMultipleSelection(value *bool)()
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetChooseFromType(value *string)()
     SetDisplayAs(value *string)()
     SetOdataType(value *string)()

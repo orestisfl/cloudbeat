@@ -10,12 +10,6 @@ import (
 // Win32LobAppProductCodeRule a complex type to store the product code and version rule data for a Win32 LOB app. This rule is not supported as a requirement rule.
 type Win32LobAppProductCodeRule struct {
     Win32LobAppRule
-    // The product code of the app.
-    productCode *string
-    // The product version comparison value.
-    productVersion *string
-    // Contains properties for detection operator.
-    productVersionOperator *Win32LobAppRuleOperator
 }
 // NewWin32LobAppProductCodeRule instantiates a new Win32LobAppProductCodeRule and sets the default values.
 func NewWin32LobAppProductCodeRule()(*Win32LobAppProductCodeRule) {
@@ -70,17 +64,38 @@ func (m *Win32LobAppProductCodeRule) GetFieldDeserializers()(map[string]func(i87
 // GetProductCode gets the productCode property value. The product code of the app.
 // returns a *string when successful
 func (m *Win32LobAppProductCodeRule) GetProductCode()(*string) {
-    return m.productCode
+    val, err := m.GetBackingStore().Get("productCode")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetProductVersion gets the productVersion property value. The product version comparison value.
 // returns a *string when successful
 func (m *Win32LobAppProductCodeRule) GetProductVersion()(*string) {
-    return m.productVersion
+    val, err := m.GetBackingStore().Get("productVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetProductVersionOperator gets the productVersionOperator property value. Contains properties for detection operator.
 // returns a *Win32LobAppRuleOperator when successful
 func (m *Win32LobAppProductCodeRule) GetProductVersionOperator()(*Win32LobAppRuleOperator) {
-    return m.productVersionOperator
+    val, err := m.GetBackingStore().Get("productVersionOperator")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*Win32LobAppRuleOperator)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Win32LobAppProductCodeRule) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -111,15 +126,24 @@ func (m *Win32LobAppProductCodeRule) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetProductCode sets the productCode property value. The product code of the app.
 func (m *Win32LobAppProductCodeRule) SetProductCode(value *string)() {
-    m.productCode = value
+    err := m.GetBackingStore().Set("productCode", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProductVersion sets the productVersion property value. The product version comparison value.
 func (m *Win32LobAppProductCodeRule) SetProductVersion(value *string)() {
-    m.productVersion = value
+    err := m.GetBackingStore().Set("productVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProductVersionOperator sets the productVersionOperator property value. Contains properties for detection operator.
 func (m *Win32LobAppProductCodeRule) SetProductVersionOperator(value *Win32LobAppRuleOperator)() {
-    m.productVersionOperator = value
+    err := m.GetBackingStore().Set("productVersionOperator", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Win32LobAppProductCodeRuleable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

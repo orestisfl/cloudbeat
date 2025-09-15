@@ -9,14 +9,6 @@ import (
 
 type PlannerTaskDetails struct {
     Entity
-    // The collection of checklist items on the task.
-    checklist PlannerChecklistItemsable
-    // Description of the task.
-    description *string
-    // This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
-    previewType *PlannerPreviewType
-    // The collection of references on the task.
-    references PlannerExternalReferencesable
 }
 // NewPlannerTaskDetails instantiates a new PlannerTaskDetails and sets the default values.
 func NewPlannerTaskDetails()(*PlannerTaskDetails) {
@@ -33,12 +25,26 @@ func CreatePlannerTaskDetailsFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetChecklist gets the checklist property value. The collection of checklist items on the task.
 // returns a PlannerChecklistItemsable when successful
 func (m *PlannerTaskDetails) GetChecklist()(PlannerChecklistItemsable) {
-    return m.checklist
+    val, err := m.GetBackingStore().Get("checklist")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PlannerChecklistItemsable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. Description of the task.
 // returns a *string when successful
 func (m *PlannerTaskDetails) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -89,12 +95,26 @@ func (m *PlannerTaskDetails) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetPreviewType gets the previewType property value. This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
 // returns a *PlannerPreviewType when successful
 func (m *PlannerTaskDetails) GetPreviewType()(*PlannerPreviewType) {
-    return m.previewType
+    val, err := m.GetBackingStore().Get("previewType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*PlannerPreviewType)
+    }
+    return nil
 }
 // GetReferences gets the references property value. The collection of references on the task.
 // returns a PlannerExternalReferencesable when successful
 func (m *PlannerTaskDetails) GetReferences()(PlannerExternalReferencesable) {
-    return m.references
+    val, err := m.GetBackingStore().Get("references")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PlannerExternalReferencesable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PlannerTaskDetails) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -131,19 +151,31 @@ func (m *PlannerTaskDetails) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetChecklist sets the checklist property value. The collection of checklist items on the task.
 func (m *PlannerTaskDetails) SetChecklist(value PlannerChecklistItemsable)() {
-    m.checklist = value
+    err := m.GetBackingStore().Set("checklist", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. Description of the task.
 func (m *PlannerTaskDetails) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPreviewType sets the previewType property value. This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
 func (m *PlannerTaskDetails) SetPreviewType(value *PlannerPreviewType)() {
-    m.previewType = value
+    err := m.GetBackingStore().Set("previewType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReferences sets the references property value. The collection of references on the task.
 func (m *PlannerTaskDetails) SetReferences(value PlannerExternalReferencesable)() {
-    m.references = value
+    err := m.GetBackingStore().Set("references", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PlannerTaskDetailsable interface {
     Entityable

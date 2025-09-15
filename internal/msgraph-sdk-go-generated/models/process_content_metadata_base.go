@@ -6,36 +6,18 @@ package models
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type ProcessContentMetadataBase struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Represents the actual content, either as text (textContent) or binary data (binaryContent). Optional if metadata alone is sufficient for policy evaluation. Do not use for contentActivities.
-    content ContentBaseable
-    // An identifier used to group multiple related content entries (for example, different parts of the same file upload, messages in a conversation).
-    correlationId *string
-    // Required. Timestamp indicating when the original content was created (for example, file creation time, message sent time).
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Required. A unique identifier for this specific content entry within the context of the calling application or enforcement plane (for example, message ID, file path/URL).
-    identifier *string
-    // Required. Indicates if the provided content has been truncated from its original form (for example, due to size limits).
-    isTruncated *bool
-    // The length of the original content in bytes.
-    length *int64
-    // Required. Timestamp indicating when the original content was last modified. For ephemeral content like messages, this might be the same as createdDateTime.
-    modifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Required. A descriptive name for the content (for example, file name, web page title, 'Chat Message').
-    name *string
-    // The OdataType property
-    odataType *string
-    // A sequence number indicating the order in which content was generated or should be processed, required when correlationId is used.
-    sequenceNumber *int64
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewProcessContentMetadataBase instantiates a new ProcessContentMetadataBase and sets the default values.
 func NewProcessContentMetadataBase()(*ProcessContentMetadataBase) {
     m := &ProcessContentMetadataBase{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -67,22 +49,56 @@ func CreateProcessContentMetadataBaseFromDiscriminatorValue(parseNode i878a80d23
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *ProcessContentMetadataBase) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *ProcessContentMetadataBase) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetContent gets the content property value. Represents the actual content, either as text (textContent) or binary data (binaryContent). Optional if metadata alone is sufficient for policy evaluation. Do not use for contentActivities.
 // returns a ContentBaseable when successful
 func (m *ProcessContentMetadataBase) GetContent()(ContentBaseable) {
-    return m.content
+    val, err := m.GetBackingStore().Get("content")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ContentBaseable)
+    }
+    return nil
 }
 // GetCorrelationId gets the correlationId property value. An identifier used to group multiple related content entries (for example, different parts of the same file upload, messages in a conversation).
 // returns a *string when successful
 func (m *ProcessContentMetadataBase) GetCorrelationId()(*string) {
-    return m.correlationId
+    val, err := m.GetBackingStore().Get("correlationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. Required. Timestamp indicating when the original content was created (for example, file creation time, message sent time).
 // returns a *Time when successful
 func (m *ProcessContentMetadataBase) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -193,37 +209,86 @@ func (m *ProcessContentMetadataBase) GetFieldDeserializers()(map[string]func(i87
 // GetIdentifier gets the identifier property value. Required. A unique identifier for this specific content entry within the context of the calling application or enforcement plane (for example, message ID, file path/URL).
 // returns a *string when successful
 func (m *ProcessContentMetadataBase) GetIdentifier()(*string) {
-    return m.identifier
+    val, err := m.GetBackingStore().Get("identifier")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIsTruncated gets the isTruncated property value. Required. Indicates if the provided content has been truncated from its original form (for example, due to size limits).
 // returns a *bool when successful
 func (m *ProcessContentMetadataBase) GetIsTruncated()(*bool) {
-    return m.isTruncated
+    val, err := m.GetBackingStore().Get("isTruncated")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetLength gets the length property value. The length of the original content in bytes.
 // returns a *int64 when successful
 func (m *ProcessContentMetadataBase) GetLength()(*int64) {
-    return m.length
+    val, err := m.GetBackingStore().Get("length")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetModifiedDateTime gets the modifiedDateTime property value. Required. Timestamp indicating when the original content was last modified. For ephemeral content like messages, this might be the same as createdDateTime.
 // returns a *Time when successful
 func (m *ProcessContentMetadataBase) GetModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.modifiedDateTime
+    val, err := m.GetBackingStore().Get("modifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetName gets the name property value. Required. A descriptive name for the content (for example, file name, web page title, 'Chat Message').
 // returns a *string when successful
 func (m *ProcessContentMetadataBase) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *ProcessContentMetadataBase) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSequenceNumber gets the sequenceNumber property value. A sequence number indicating the order in which content was generated or should be processed, required when correlationId is used.
 // returns a *int64 when successful
 func (m *ProcessContentMetadataBase) GetSequenceNumber()(*int64) {
-    return m.sequenceNumber
+    val, err := m.GetBackingStore().Get("sequenceNumber")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProcessContentMetadataBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -297,51 +362,90 @@ func (m *ProcessContentMetadataBase) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ProcessContentMetadataBase) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *ProcessContentMetadataBase) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetContent sets the content property value. Represents the actual content, either as text (textContent) or binary data (binaryContent). Optional if metadata alone is sufficient for policy evaluation. Do not use for contentActivities.
 func (m *ProcessContentMetadataBase) SetContent(value ContentBaseable)() {
-    m.content = value
+    err := m.GetBackingStore().Set("content", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCorrelationId sets the correlationId property value. An identifier used to group multiple related content entries (for example, different parts of the same file upload, messages in a conversation).
 func (m *ProcessContentMetadataBase) SetCorrelationId(value *string)() {
-    m.correlationId = value
+    err := m.GetBackingStore().Set("correlationId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. Required. Timestamp indicating when the original content was created (for example, file creation time, message sent time).
 func (m *ProcessContentMetadataBase) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentifier sets the identifier property value. Required. A unique identifier for this specific content entry within the context of the calling application or enforcement plane (for example, message ID, file path/URL).
 func (m *ProcessContentMetadataBase) SetIdentifier(value *string)() {
-    m.identifier = value
+    err := m.GetBackingStore().Set("identifier", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsTruncated sets the isTruncated property value. Required. Indicates if the provided content has been truncated from its original form (for example, due to size limits).
 func (m *ProcessContentMetadataBase) SetIsTruncated(value *bool)() {
-    m.isTruncated = value
+    err := m.GetBackingStore().Set("isTruncated", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLength sets the length property value. The length of the original content in bytes.
 func (m *ProcessContentMetadataBase) SetLength(value *int64)() {
-    m.length = value
+    err := m.GetBackingStore().Set("length", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetModifiedDateTime sets the modifiedDateTime property value. Required. Timestamp indicating when the original content was last modified. For ephemeral content like messages, this might be the same as createdDateTime.
 func (m *ProcessContentMetadataBase) SetModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.modifiedDateTime = value
+    err := m.GetBackingStore().Set("modifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. Required. A descriptive name for the content (for example, file name, web page title, 'Chat Message').
 func (m *ProcessContentMetadataBase) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ProcessContentMetadataBase) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSequenceNumber sets the sequenceNumber property value. A sequence number indicating the order in which content was generated or should be processed, required when correlationId is used.
 func (m *ProcessContentMetadataBase) SetSequenceNumber(value *int64)() {
-    m.sequenceNumber = value
+    err := m.GetBackingStore().Set("sequenceNumber", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProcessContentMetadataBaseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetContent()(ContentBaseable)
     GetCorrelationId()(*string)
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
@@ -352,6 +456,7 @@ type ProcessContentMetadataBaseable interface {
     GetName()(*string)
     GetOdataType()(*string)
     GetSequenceNumber()(*int64)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetContent(value ContentBaseable)()
     SetCorrelationId(value *string)()
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()

@@ -9,10 +9,6 @@ import (
 
 type ProcessFileMetadata struct {
     ProcessContentMetadataBase
-    // A dictionary containing custom metadata associated with the file, potentially extracted by the calling application.
-    customProperties CustomMetadataDictionaryable
-    // The unique identifier (for example, Entra User ID or UPN) of the owner of the file.
-    ownerId *string
 }
 // NewProcessFileMetadata instantiates a new ProcessFileMetadata and sets the default values.
 func NewProcessFileMetadata()(*ProcessFileMetadata) {
@@ -31,7 +27,14 @@ func CreateProcessFileMetadataFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetCustomProperties gets the customProperties property value. A dictionary containing custom metadata associated with the file, potentially extracted by the calling application.
 // returns a CustomMetadataDictionaryable when successful
 func (m *ProcessFileMetadata) GetCustomProperties()(CustomMetadataDictionaryable) {
-    return m.customProperties
+    val, err := m.GetBackingStore().Get("customProperties")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CustomMetadataDictionaryable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -62,7 +65,14 @@ func (m *ProcessFileMetadata) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetOwnerId gets the ownerId property value. The unique identifier (for example, Entra User ID or UPN) of the owner of the file.
 // returns a *string when successful
 func (m *ProcessFileMetadata) GetOwnerId()(*string) {
-    return m.ownerId
+    val, err := m.GetBackingStore().Get("ownerId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProcessFileMetadata) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *ProcessFileMetadata) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetCustomProperties sets the customProperties property value. A dictionary containing custom metadata associated with the file, potentially extracted by the calling application.
 func (m *ProcessFileMetadata) SetCustomProperties(value CustomMetadataDictionaryable)() {
-    m.customProperties = value
+    err := m.GetBackingStore().Set("customProperties", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwnerId sets the ownerId property value. The unique identifier (for example, Entra User ID or UPN) of the owner of the file.
 func (m *ProcessFileMetadata) SetOwnerId(value *string)() {
-    m.ownerId = value
+    err := m.GetBackingStore().Set("ownerId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProcessFileMetadataable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

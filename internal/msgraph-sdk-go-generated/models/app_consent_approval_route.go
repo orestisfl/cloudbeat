@@ -9,8 +9,6 @@ import (
 
 type AppConsentApprovalRoute struct {
     Entity
-    // A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.
-    appConsentRequests []AppConsentRequestable
 }
 // NewAppConsentApprovalRoute instantiates a new AppConsentApprovalRoute and sets the default values.
 func NewAppConsentApprovalRoute()(*AppConsentApprovalRoute) {
@@ -27,7 +25,14 @@ func CreateAppConsentApprovalRouteFromDiscriminatorValue(parseNode i878a80d2330e
 // GetAppConsentRequests gets the appConsentRequests property value. A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.
 // returns a []AppConsentRequestable when successful
 func (m *AppConsentApprovalRoute) GetAppConsentRequests()([]AppConsentRequestable) {
-    return m.appConsentRequests
+    val, err := m.GetBackingStore().Get("appConsentRequests")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AppConsentRequestable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -73,7 +78,10 @@ func (m *AppConsentApprovalRoute) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetAppConsentRequests sets the appConsentRequests property value. A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.
 func (m *AppConsentApprovalRoute) SetAppConsentRequests(value []AppConsentRequestable)() {
-    m.appConsentRequests = value
+    err := m.GetBackingStore().Set("appConsentRequests", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AppConsentApprovalRouteable interface {
     Entityable

@@ -10,18 +10,6 @@ import (
 
 type RestoreArtifactBase struct {
     Entity
-    // The time when restoration of restore artifact is completed.
-    completionDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Indicates the restoration destination. The possible values are: new, inPlace, unknownFutureValue.
-    destinationType *DestinationType
-    // Contains error details if the restore session fails or completes with an error.
-    error PublicErrorable
-    // Represents the date and time when an artifact is protected by a protectionPolicy and can be restored.
-    restorePoint RestorePointable
-    // The time when restoration of restore artifact is started.
-    startDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The individual restoration status of the restore artifact. The possible values are: added, scheduling, scheduled, inProgress, succeeded, failed, unknownFutureValue.
-    status *ArtifactRestoreStatus
 }
 // NewRestoreArtifactBase instantiates a new RestoreArtifactBase and sets the default values.
 func NewRestoreArtifactBase()(*RestoreArtifactBase) {
@@ -62,17 +50,38 @@ func CreateRestoreArtifactBaseFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetCompletionDateTime gets the completionDateTime property value. The time when restoration of restore artifact is completed.
 // returns a *Time when successful
 func (m *RestoreArtifactBase) GetCompletionDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.completionDateTime
+    val, err := m.GetBackingStore().Get("completionDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDestinationType gets the destinationType property value. Indicates the restoration destination. The possible values are: new, inPlace, unknownFutureValue.
 // returns a *DestinationType when successful
 func (m *RestoreArtifactBase) GetDestinationType()(*DestinationType) {
-    return m.destinationType
+    val, err := m.GetBackingStore().Get("destinationType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DestinationType)
+    }
+    return nil
 }
 // GetError gets the error property value. Contains error details if the restore session fails or completes with an error.
 // returns a PublicErrorable when successful
 func (m *RestoreArtifactBase) GetError()(PublicErrorable) {
-    return m.error
+    val, err := m.GetBackingStore().Get("error")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PublicErrorable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -143,17 +152,38 @@ func (m *RestoreArtifactBase) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetRestorePoint gets the restorePoint property value. Represents the date and time when an artifact is protected by a protectionPolicy and can be restored.
 // returns a RestorePointable when successful
 func (m *RestoreArtifactBase) GetRestorePoint()(RestorePointable) {
-    return m.restorePoint
+    val, err := m.GetBackingStore().Get("restorePoint")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(RestorePointable)
+    }
+    return nil
 }
 // GetStartDateTime gets the startDateTime property value. The time when restoration of restore artifact is started.
 // returns a *Time when successful
 func (m *RestoreArtifactBase) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The individual restoration status of the restore artifact. The possible values are: added, scheduling, scheduled, inProgress, succeeded, failed, unknownFutureValue.
 // returns a *ArtifactRestoreStatus when successful
 func (m *RestoreArtifactBase) GetStatus()(*ArtifactRestoreStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ArtifactRestoreStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *RestoreArtifactBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -203,27 +233,45 @@ func (m *RestoreArtifactBase) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetCompletionDateTime sets the completionDateTime property value. The time when restoration of restore artifact is completed.
 func (m *RestoreArtifactBase) SetCompletionDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.completionDateTime = value
+    err := m.GetBackingStore().Set("completionDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDestinationType sets the destinationType property value. Indicates the restoration destination. The possible values are: new, inPlace, unknownFutureValue.
 func (m *RestoreArtifactBase) SetDestinationType(value *DestinationType)() {
-    m.destinationType = value
+    err := m.GetBackingStore().Set("destinationType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetError sets the error property value. Contains error details if the restore session fails or completes with an error.
 func (m *RestoreArtifactBase) SetError(value PublicErrorable)() {
-    m.error = value
+    err := m.GetBackingStore().Set("error", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRestorePoint sets the restorePoint property value. Represents the date and time when an artifact is protected by a protectionPolicy and can be restored.
 func (m *RestoreArtifactBase) SetRestorePoint(value RestorePointable)() {
-    m.restorePoint = value
+    err := m.GetBackingStore().Set("restorePoint", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. The time when restoration of restore artifact is started.
 func (m *RestoreArtifactBase) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The individual restoration status of the restore artifact. The possible values are: added, scheduling, scheduled, inProgress, succeeded, failed, unknownFutureValue.
 func (m *RestoreArtifactBase) SetStatus(value *ArtifactRestoreStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type RestoreArtifactBaseable interface {
     Entityable

@@ -9,12 +9,6 @@ import (
 
 type ChannelDeletedEventMessageDetail struct {
     EventMessageDetail
-    // Display name of the channel.
-    channelDisplayName *string
-    // Unique identifier of the channel.
-    channelId *string
-    // Initiator of the event.
-    initiator IdentitySetable
 }
 // NewChannelDeletedEventMessageDetail instantiates a new ChannelDeletedEventMessageDetail and sets the default values.
 func NewChannelDeletedEventMessageDetail()(*ChannelDeletedEventMessageDetail) {
@@ -33,12 +27,26 @@ func CreateChannelDeletedEventMessageDetailFromDiscriminatorValue(parseNode i878
 // GetChannelDisplayName gets the channelDisplayName property value. Display name of the channel.
 // returns a *string when successful
 func (m *ChannelDeletedEventMessageDetail) GetChannelDisplayName()(*string) {
-    return m.channelDisplayName
+    val, err := m.GetBackingStore().Get("channelDisplayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetChannelId gets the channelId property value. Unique identifier of the channel.
 // returns a *string when successful
 func (m *ChannelDeletedEventMessageDetail) GetChannelId()(*string) {
-    return m.channelId
+    val, err := m.GetBackingStore().Get("channelId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -79,7 +87,14 @@ func (m *ChannelDeletedEventMessageDetail) GetFieldDeserializers()(map[string]fu
 // GetInitiator gets the initiator property value. Initiator of the event.
 // returns a IdentitySetable when successful
 func (m *ChannelDeletedEventMessageDetail) GetInitiator()(IdentitySetable) {
-    return m.initiator
+    val, err := m.GetBackingStore().Get("initiator")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ChannelDeletedEventMessageDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *ChannelDeletedEventMessageDetail) Serialize(writer i878a80d2330e89d2689
 }
 // SetChannelDisplayName sets the channelDisplayName property value. Display name of the channel.
 func (m *ChannelDeletedEventMessageDetail) SetChannelDisplayName(value *string)() {
-    m.channelDisplayName = value
+    err := m.GetBackingStore().Set("channelDisplayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetChannelId sets the channelId property value. Unique identifier of the channel.
 func (m *ChannelDeletedEventMessageDetail) SetChannelId(value *string)() {
-    m.channelId = value
+    err := m.GetBackingStore().Set("channelId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetInitiator sets the initiator property value. Initiator of the event.
 func (m *ChannelDeletedEventMessageDetail) SetInitiator(value IdentitySetable)() {
-    m.initiator = value
+    err := m.GetBackingStore().Set("initiator", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ChannelDeletedEventMessageDetailable interface {
     EventMessageDetailable

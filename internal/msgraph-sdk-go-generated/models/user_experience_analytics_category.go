@@ -10,10 +10,6 @@ import (
 // UserExperienceAnalyticsCategory the user experience analytics category entity contains the scores and insights for the various metrics of a category.
 type UserExperienceAnalyticsCategory struct {
     Entity
-    // The insights for the category. Read-only.
-    insights []UserExperienceAnalyticsInsightable
-    // The metric values for the user experience analytics category. Read-only.
-    metricValues []UserExperienceAnalyticsMetricable
 }
 // NewUserExperienceAnalyticsCategory instantiates a new UserExperienceAnalyticsCategory and sets the default values.
 func NewUserExperienceAnalyticsCategory()(*UserExperienceAnalyticsCategory) {
@@ -68,12 +64,26 @@ func (m *UserExperienceAnalyticsCategory) GetFieldDeserializers()(map[string]fun
 // GetInsights gets the insights property value. The insights for the category. Read-only.
 // returns a []UserExperienceAnalyticsInsightable when successful
 func (m *UserExperienceAnalyticsCategory) GetInsights()([]UserExperienceAnalyticsInsightable) {
-    return m.insights
+    val, err := m.GetBackingStore().Get("insights")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UserExperienceAnalyticsInsightable)
+    }
+    return nil
 }
 // GetMetricValues gets the metricValues property value. The metric values for the user experience analytics category. Read-only.
 // returns a []UserExperienceAnalyticsMetricable when successful
 func (m *UserExperienceAnalyticsCategory) GetMetricValues()([]UserExperienceAnalyticsMetricable) {
-    return m.metricValues
+    val, err := m.GetBackingStore().Get("metricValues")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UserExperienceAnalyticsMetricable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserExperienceAnalyticsCategory) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,11 +119,17 @@ func (m *UserExperienceAnalyticsCategory) Serialize(writer i878a80d2330e89d26896
 }
 // SetInsights sets the insights property value. The insights for the category. Read-only.
 func (m *UserExperienceAnalyticsCategory) SetInsights(value []UserExperienceAnalyticsInsightable)() {
-    m.insights = value
+    err := m.GetBackingStore().Set("insights", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMetricValues sets the metricValues property value. The metric values for the user experience analytics category. Read-only.
 func (m *UserExperienceAnalyticsCategory) SetMetricValues(value []UserExperienceAnalyticsMetricable)() {
-    m.metricValues = value
+    err := m.GetBackingStore().Set("metricValues", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserExperienceAnalyticsCategoryable interface {
     Entityable

@@ -9,12 +9,6 @@ import (
 
 type WorkbookComment struct {
     Entity
-    // The content of the comment.
-    content *string
-    // The content type of the comment.
-    contentType *string
-    // The list of replies to the comment. Read-only. Nullable.
-    replies []WorkbookCommentReplyable
 }
 // NewWorkbookComment instantiates a new WorkbookComment and sets the default values.
 func NewWorkbookComment()(*WorkbookComment) {
@@ -31,12 +25,26 @@ func CreateWorkbookCommentFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetContent gets the content property value. The content of the comment.
 // returns a *string when successful
 func (m *WorkbookComment) GetContent()(*string) {
-    return m.content
+    val, err := m.GetBackingStore().Get("content")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetContentType gets the contentType property value. The content type of the comment.
 // returns a *string when successful
 func (m *WorkbookComment) GetContentType()(*string) {
-    return m.contentType
+    val, err := m.GetBackingStore().Get("contentType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -83,7 +91,14 @@ func (m *WorkbookComment) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetReplies gets the replies property value. The list of replies to the comment. Read-only. Nullable.
 // returns a []WorkbookCommentReplyable when successful
 func (m *WorkbookComment) GetReplies()([]WorkbookCommentReplyable) {
-    return m.replies
+    val, err := m.GetBackingStore().Get("replies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WorkbookCommentReplyable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookComment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -119,15 +134,24 @@ func (m *WorkbookComment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetContent sets the content property value. The content of the comment.
 func (m *WorkbookComment) SetContent(value *string)() {
-    m.content = value
+    err := m.GetBackingStore().Set("content", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetContentType sets the contentType property value. The content type of the comment.
 func (m *WorkbookComment) SetContentType(value *string)() {
-    m.contentType = value
+    err := m.GetBackingStore().Set("contentType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReplies sets the replies property value. The list of replies to the comment. Read-only. Nullable.
 func (m *WorkbookComment) SetReplies(value []WorkbookCommentReplyable)() {
-    m.replies = value
+    err := m.GetBackingStore().Set("replies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookCommentable interface {
     Entityable

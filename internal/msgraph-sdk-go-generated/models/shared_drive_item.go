@@ -9,22 +9,6 @@ import (
 
 type SharedDriveItem struct {
     BaseItem
-    // Used to access the underlying driveItem
-    driveItem DriveItemable
-    // All driveItems contained in the sharing root. This collection cannot be enumerated.
-    items []DriveItemable
-    // Used to access the underlying list
-    list Listable
-    // Used to access the underlying listItem
-    listItem ListItemable
-    // Information about the owner of the shared item being referenced.
-    owner IdentitySetable
-    // Used to access the permission representing the underlying sharing link
-    permission Permissionable
-    // Used to access the underlying driveItem. Deprecated -- use driveItem instead.
-    root DriveItemable
-    // Used to access the underlying site
-    site Siteable
 }
 // NewSharedDriveItem instantiates a new SharedDriveItem and sets the default values.
 func NewSharedDriveItem()(*SharedDriveItem) {
@@ -43,7 +27,14 @@ func CreateSharedDriveItemFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetDriveItem gets the driveItem property value. Used to access the underlying driveItem
 // returns a DriveItemable when successful
 func (m *SharedDriveItem) GetDriveItem()(DriveItemable) {
-    return m.driveItem
+    val, err := m.GetBackingStore().Get("driveItem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DriveItemable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -140,37 +131,86 @@ func (m *SharedDriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetItems gets the items property value. All driveItems contained in the sharing root. This collection cannot be enumerated.
 // returns a []DriveItemable when successful
 func (m *SharedDriveItem) GetItems()([]DriveItemable) {
-    return m.items
+    val, err := m.GetBackingStore().Get("items")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DriveItemable)
+    }
+    return nil
 }
 // GetList gets the list property value. Used to access the underlying list
 // returns a Listable when successful
 func (m *SharedDriveItem) GetList()(Listable) {
-    return m.list
+    val, err := m.GetBackingStore().Get("list")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Listable)
+    }
+    return nil
 }
 // GetListItem gets the listItem property value. Used to access the underlying listItem
 // returns a ListItemable when successful
 func (m *SharedDriveItem) GetListItem()(ListItemable) {
-    return m.listItem
+    val, err := m.GetBackingStore().Get("listItem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ListItemable)
+    }
+    return nil
 }
 // GetOwner gets the owner property value. Information about the owner of the shared item being referenced.
 // returns a IdentitySetable when successful
 func (m *SharedDriveItem) GetOwner()(IdentitySetable) {
-    return m.owner
+    val, err := m.GetBackingStore().Get("owner")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetPermission gets the permission property value. Used to access the permission representing the underlying sharing link
 // returns a Permissionable when successful
 func (m *SharedDriveItem) GetPermission()(Permissionable) {
-    return m.permission
+    val, err := m.GetBackingStore().Get("permission")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Permissionable)
+    }
+    return nil
 }
 // GetRoot gets the root property value. Used to access the underlying driveItem. Deprecated -- use driveItem instead.
 // returns a DriveItemable when successful
 func (m *SharedDriveItem) GetRoot()(DriveItemable) {
-    return m.root
+    val, err := m.GetBackingStore().Get("root")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DriveItemable)
+    }
+    return nil
 }
 // GetSite gets the site property value. Used to access the underlying site
 // returns a Siteable when successful
 func (m *SharedDriveItem) GetSite()(Siteable) {
-    return m.site
+    val, err := m.GetBackingStore().Get("site")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Siteable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SharedDriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -236,35 +276,59 @@ func (m *SharedDriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetDriveItem sets the driveItem property value. Used to access the underlying driveItem
 func (m *SharedDriveItem) SetDriveItem(value DriveItemable)() {
-    m.driveItem = value
+    err := m.GetBackingStore().Set("driveItem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetItems sets the items property value. All driveItems contained in the sharing root. This collection cannot be enumerated.
 func (m *SharedDriveItem) SetItems(value []DriveItemable)() {
-    m.items = value
+    err := m.GetBackingStore().Set("items", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetList sets the list property value. Used to access the underlying list
 func (m *SharedDriveItem) SetList(value Listable)() {
-    m.list = value
+    err := m.GetBackingStore().Set("list", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetListItem sets the listItem property value. Used to access the underlying listItem
 func (m *SharedDriveItem) SetListItem(value ListItemable)() {
-    m.listItem = value
+    err := m.GetBackingStore().Set("listItem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwner sets the owner property value. Information about the owner of the shared item being referenced.
 func (m *SharedDriveItem) SetOwner(value IdentitySetable)() {
-    m.owner = value
+    err := m.GetBackingStore().Set("owner", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPermission sets the permission property value. Used to access the permission representing the underlying sharing link
 func (m *SharedDriveItem) SetPermission(value Permissionable)() {
-    m.permission = value
+    err := m.GetBackingStore().Set("permission", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoot sets the root property value. Used to access the underlying driveItem. Deprecated -- use driveItem instead.
 func (m *SharedDriveItem) SetRoot(value DriveItemable)() {
-    m.root = value
+    err := m.GetBackingStore().Set("root", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSite sets the site property value. Used to access the underlying site
 func (m *SharedDriveItem) SetSite(value Siteable)() {
-    m.site = value
+    err := m.GetBackingStore().Set("site", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SharedDriveItemable interface {
     BaseItemable

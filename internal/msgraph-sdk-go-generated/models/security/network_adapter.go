@@ -10,10 +10,6 @@ import (
 
 type NetworkAdapter struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Indicates whether the network adapter is selected for capturing and analyzing network traffic.
-    isEnabled *bool
-    // The name of the network adapter.
-    name *string
 }
 // NewNetworkAdapter instantiates a new NetworkAdapter and sets the default values.
 func NewNetworkAdapter()(*NetworkAdapter) {
@@ -56,12 +52,26 @@ func (m *NetworkAdapter) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetIsEnabled gets the isEnabled property value. Indicates whether the network adapter is selected for capturing and analyzing network traffic.
 // returns a *bool when successful
 func (m *NetworkAdapter) GetIsEnabled()(*bool) {
-    return m.isEnabled
+    val, err := m.GetBackingStore().Get("isEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetName gets the name property value. The name of the network adapter.
 // returns a *string when successful
 func (m *NetworkAdapter) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *NetworkAdapter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *NetworkAdapter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetIsEnabled sets the isEnabled property value. Indicates whether the network adapter is selected for capturing and analyzing network traffic.
 func (m *NetworkAdapter) SetIsEnabled(value *bool)() {
-    m.isEnabled = value
+    err := m.GetBackingStore().Set("isEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The name of the network adapter.
 func (m *NetworkAdapter) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type NetworkAdapterable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

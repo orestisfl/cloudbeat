@@ -9,8 +9,6 @@ import (
 
 type CommunicationsUserIdentity struct {
     Identity
-    // The user's tenant ID.
-    tenantId *string
 }
 // NewCommunicationsUserIdentity instantiates a new CommunicationsUserIdentity and sets the default values.
 func NewCommunicationsUserIdentity()(*CommunicationsUserIdentity) {
@@ -45,7 +43,14 @@ func (m *CommunicationsUserIdentity) GetFieldDeserializers()(map[string]func(i87
 // GetTenantId gets the tenantId property value. The user's tenant ID.
 // returns a *string when successful
 func (m *CommunicationsUserIdentity) GetTenantId()(*string) {
-    return m.tenantId
+    val, err := m.GetBackingStore().Get("tenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CommunicationsUserIdentity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *CommunicationsUserIdentity) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetTenantId sets the tenantId property value. The user's tenant ID.
 func (m *CommunicationsUserIdentity) SetTenantId(value *string)() {
-    m.tenantId = value
+    err := m.GetBackingStore().Set("tenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CommunicationsUserIdentityable interface {
     Identityable

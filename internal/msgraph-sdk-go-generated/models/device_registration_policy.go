@@ -9,20 +9,6 @@ import (
 
 type DeviceRegistrationPolicy struct {
     Entity
-    // The azureADJoin property
-    azureADJoin AzureADJoinPolicyable
-    // The azureADRegistration property
-    azureADRegistration AzureADRegistrationPolicyable
-    // The description property
-    description *string
-    // The displayName property
-    displayName *string
-    // The localAdminPassword property
-    localAdminPassword LocalAdminPasswordSettingsable
-    // The multiFactorAuthConfiguration property
-    multiFactorAuthConfiguration *MultiFactorAuthConfiguration
-    // The userDeviceQuota property
-    userDeviceQuota *int32
 }
 // NewDeviceRegistrationPolicy instantiates a new DeviceRegistrationPolicy and sets the default values.
 func NewDeviceRegistrationPolicy()(*DeviceRegistrationPolicy) {
@@ -39,22 +25,50 @@ func CreateDeviceRegistrationPolicyFromDiscriminatorValue(parseNode i878a80d2330
 // GetAzureADJoin gets the azureADJoin property value. The azureADJoin property
 // returns a AzureADJoinPolicyable when successful
 func (m *DeviceRegistrationPolicy) GetAzureADJoin()(AzureADJoinPolicyable) {
-    return m.azureADJoin
+    val, err := m.GetBackingStore().Get("azureADJoin")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AzureADJoinPolicyable)
+    }
+    return nil
 }
 // GetAzureADRegistration gets the azureADRegistration property value. The azureADRegistration property
 // returns a AzureADRegistrationPolicyable when successful
 func (m *DeviceRegistrationPolicy) GetAzureADRegistration()(AzureADRegistrationPolicyable) {
-    return m.azureADRegistration
+    val, err := m.GetBackingStore().Get("azureADRegistration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AzureADRegistrationPolicyable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
 func (m *DeviceRegistrationPolicy) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The displayName property
 // returns a *string when successful
 func (m *DeviceRegistrationPolicy) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -135,17 +149,38 @@ func (m *DeviceRegistrationPolicy) GetFieldDeserializers()(map[string]func(i878a
 // GetLocalAdminPassword gets the localAdminPassword property value. The localAdminPassword property
 // returns a LocalAdminPasswordSettingsable when successful
 func (m *DeviceRegistrationPolicy) GetLocalAdminPassword()(LocalAdminPasswordSettingsable) {
-    return m.localAdminPassword
+    val, err := m.GetBackingStore().Get("localAdminPassword")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(LocalAdminPasswordSettingsable)
+    }
+    return nil
 }
 // GetMultiFactorAuthConfiguration gets the multiFactorAuthConfiguration property value. The multiFactorAuthConfiguration property
 // returns a *MultiFactorAuthConfiguration when successful
 func (m *DeviceRegistrationPolicy) GetMultiFactorAuthConfiguration()(*MultiFactorAuthConfiguration) {
-    return m.multiFactorAuthConfiguration
+    val, err := m.GetBackingStore().Get("multiFactorAuthConfiguration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*MultiFactorAuthConfiguration)
+    }
+    return nil
 }
 // GetUserDeviceQuota gets the userDeviceQuota property value. The userDeviceQuota property
 // returns a *int32 when successful
 func (m *DeviceRegistrationPolicy) GetUserDeviceQuota()(*int32) {
-    return m.userDeviceQuota
+    val, err := m.GetBackingStore().Get("userDeviceQuota")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeviceRegistrationPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -200,31 +235,52 @@ func (m *DeviceRegistrationPolicy) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetAzureADJoin sets the azureADJoin property value. The azureADJoin property
 func (m *DeviceRegistrationPolicy) SetAzureADJoin(value AzureADJoinPolicyable)() {
-    m.azureADJoin = value
+    err := m.GetBackingStore().Set("azureADJoin", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAzureADRegistration sets the azureADRegistration property value. The azureADRegistration property
 func (m *DeviceRegistrationPolicy) SetAzureADRegistration(value AzureADRegistrationPolicyable)() {
-    m.azureADRegistration = value
+    err := m.GetBackingStore().Set("azureADRegistration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. The description property
 func (m *DeviceRegistrationPolicy) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The displayName property
 func (m *DeviceRegistrationPolicy) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLocalAdminPassword sets the localAdminPassword property value. The localAdminPassword property
 func (m *DeviceRegistrationPolicy) SetLocalAdminPassword(value LocalAdminPasswordSettingsable)() {
-    m.localAdminPassword = value
+    err := m.GetBackingStore().Set("localAdminPassword", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMultiFactorAuthConfiguration sets the multiFactorAuthConfiguration property value. The multiFactorAuthConfiguration property
 func (m *DeviceRegistrationPolicy) SetMultiFactorAuthConfiguration(value *MultiFactorAuthConfiguration)() {
-    m.multiFactorAuthConfiguration = value
+    err := m.GetBackingStore().Set("multiFactorAuthConfiguration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserDeviceQuota sets the userDeviceQuota property value. The userDeviceQuota property
 func (m *DeviceRegistrationPolicy) SetUserDeviceQuota(value *int32)() {
-    m.userDeviceQuota = value
+    err := m.GetBackingStore().Set("userDeviceQuota", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceRegistrationPolicyable interface {
     Entityable

@@ -6,32 +6,18 @@ package security
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type AlertEvidence struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The date and time when the evidence was created and added to the alert. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Detailed description of the entity role/s in an alert. Values are free-form.
-    detailedRoles []string
-    // The OdataType property
-    odataType *string
-    // The remediationStatus property
-    remediationStatus *EvidenceRemediationStatus
-    // Details about the remediation status.
-    remediationStatusDetails *string
-    // The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.
-    roles []EvidenceRole
-    // Array of custom tags associated with an evidence instance, for example, to denote a group of devices, high-value assets, etc.
-    tags []string
-    // The verdict property
-    verdict *EvidenceVerdict
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewAlertEvidence instantiates a new AlertEvidence and sets the default values.
 func NewAlertEvidence()(*AlertEvidence) {
     m := &AlertEvidence{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -151,17 +137,44 @@ func CreateAlertEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *AlertEvidence) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *AlertEvidence) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetCreatedDateTime gets the createdDateTime property value. The date and time when the evidence was created and added to the alert. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *AlertEvidence) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDetailedRoles gets the detailedRoles property value. Detailed description of the entity role/s in an alert. Values are free-form.
 // returns a []string when successful
 func (m *AlertEvidence) GetDetailedRoles()([]string) {
-    return m.detailedRoles
+    val, err := m.GetBackingStore().Get("detailedRoles")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -270,32 +283,74 @@ func (m *AlertEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *AlertEvidence) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRemediationStatus gets the remediationStatus property value. The remediationStatus property
 // returns a *EvidenceRemediationStatus when successful
 func (m *AlertEvidence) GetRemediationStatus()(*EvidenceRemediationStatus) {
-    return m.remediationStatus
+    val, err := m.GetBackingStore().Get("remediationStatus")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EvidenceRemediationStatus)
+    }
+    return nil
 }
 // GetRemediationStatusDetails gets the remediationStatusDetails property value. Details about the remediation status.
 // returns a *string when successful
 func (m *AlertEvidence) GetRemediationStatusDetails()(*string) {
-    return m.remediationStatusDetails
+    val, err := m.GetBackingStore().Get("remediationStatusDetails")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRoles gets the roles property value. The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.
 // returns a []EvidenceRole when successful
 func (m *AlertEvidence) GetRoles()([]EvidenceRole) {
-    return m.roles
+    val, err := m.GetBackingStore().Get("roles")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]EvidenceRole)
+    }
+    return nil
 }
 // GetTags gets the tags property value. Array of custom tags associated with an evidence instance, for example, to denote a group of devices, high-value assets, etc.
 // returns a []string when successful
 func (m *AlertEvidence) GetTags()([]string) {
-    return m.tags
+    val, err := m.GetBackingStore().Get("tags")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetVerdict gets the verdict property value. The verdict property
 // returns a *EvidenceVerdict when successful
 func (m *AlertEvidence) GetVerdict()(*EvidenceVerdict) {
-    return m.verdict
+    val, err := m.GetBackingStore().Get("verdict")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*EvidenceVerdict)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AlertEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -359,43 +414,76 @@ func (m *AlertEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AlertEvidence) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *AlertEvidence) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetCreatedDateTime sets the createdDateTime property value. The date and time when the evidence was created and added to the alert. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *AlertEvidence) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDetailedRoles sets the detailedRoles property value. Detailed description of the entity role/s in an alert. Values are free-form.
 func (m *AlertEvidence) SetDetailedRoles(value []string)() {
-    m.detailedRoles = value
+    err := m.GetBackingStore().Set("detailedRoles", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AlertEvidence) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRemediationStatus sets the remediationStatus property value. The remediationStatus property
 func (m *AlertEvidence) SetRemediationStatus(value *EvidenceRemediationStatus)() {
-    m.remediationStatus = value
+    err := m.GetBackingStore().Set("remediationStatus", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRemediationStatusDetails sets the remediationStatusDetails property value. Details about the remediation status.
 func (m *AlertEvidence) SetRemediationStatusDetails(value *string)() {
-    m.remediationStatusDetails = value
+    err := m.GetBackingStore().Set("remediationStatusDetails", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoles sets the roles property value. The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.
 func (m *AlertEvidence) SetRoles(value []EvidenceRole)() {
-    m.roles = value
+    err := m.GetBackingStore().Set("roles", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTags sets the tags property value. Array of custom tags associated with an evidence instance, for example, to denote a group of devices, high-value assets, etc.
 func (m *AlertEvidence) SetTags(value []string)() {
-    m.tags = value
+    err := m.GetBackingStore().Set("tags", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVerdict sets the verdict property value. The verdict property
 func (m *AlertEvidence) SetVerdict(value *EvidenceVerdict)() {
-    m.verdict = value
+    err := m.GetBackingStore().Set("verdict", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AlertEvidenceable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDetailedRoles()([]string)
     GetOdataType()(*string)
@@ -404,6 +492,7 @@ type AlertEvidenceable interface {
     GetRoles()([]EvidenceRole)
     GetTags()([]string)
     GetVerdict()(*EvidenceVerdict)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDetailedRoles(value []string)()
     SetOdataType(value *string)()

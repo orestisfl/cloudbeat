@@ -10,8 +10,6 @@ import (
 // IosHomeScreenApp represents an icon for an app on the Home Screen
 type IosHomeScreenApp struct {
     IosHomeScreenItem
-    // BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
-    bundleID *string
 }
 // NewIosHomeScreenApp instantiates a new IosHomeScreenApp and sets the default values.
 func NewIosHomeScreenApp()(*IosHomeScreenApp) {
@@ -30,7 +28,14 @@ func CreateIosHomeScreenAppFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 // GetBundleID gets the bundleID property value. BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
 // returns a *string when successful
 func (m *IosHomeScreenApp) GetBundleID()(*string) {
-    return m.bundleID
+    val, err := m.GetBackingStore().Get("bundleID")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *IosHomeScreenApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetBundleID sets the bundleID property value. BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
 func (m *IosHomeScreenApp) SetBundleID(value *string)() {
-    m.bundleID = value
+    err := m.GetBackingStore().Set("bundleID", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type IosHomeScreenAppable interface {
     IosHomeScreenItemable

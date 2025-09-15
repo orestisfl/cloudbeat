@@ -10,20 +10,6 @@ import (
 
 type ProtectionPolicyBase struct {
     Entity
-    // The identity of person who created the policy.
-    createdBy IdentitySetable
-    // The time of creation of the policy.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The name of the policy to be created.
-    displayName *string
-    // The identity of the person who last modified the policy.
-    lastModifiedBy IdentitySetable
-    // The timestamp of the last modification of the policy.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Contains the retention setting details for the policy.
-    retentionSettings []RetentionSettingable
-    // The aggregated status of the protection units associated with the policy. The possible values are: inactive, activeWithErrors, updating, active, unknownFutureValue.
-    status *ProtectionPolicyStatus
 }
 // NewProtectionPolicyBase instantiates a new ProtectionPolicyBase and sets the default values.
 func NewProtectionPolicyBase()(*ProtectionPolicyBase) {
@@ -62,17 +48,38 @@ func CreateProtectionPolicyBaseFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetCreatedBy gets the createdBy property value. The identity of person who created the policy.
 // returns a IdentitySetable when successful
 func (m *ProtectionPolicyBase) GetCreatedBy()(IdentitySetable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The time of creation of the policy.
 // returns a *Time when successful
 func (m *ProtectionPolicyBase) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The name of the policy to be created.
 // returns a *string when successful
 func (m *ProtectionPolicyBase) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -159,22 +166,50 @@ func (m *ProtectionPolicyBase) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetLastModifiedBy gets the lastModifiedBy property value. The identity of the person who last modified the policy.
 // returns a IdentitySetable when successful
 func (m *ProtectionPolicyBase) GetLastModifiedBy()(IdentitySetable) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. The timestamp of the last modification of the policy.
 // returns a *Time when successful
 func (m *ProtectionPolicyBase) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRetentionSettings gets the retentionSettings property value. Contains the retention setting details for the policy.
 // returns a []RetentionSettingable when successful
 func (m *ProtectionPolicyBase) GetRetentionSettings()([]RetentionSettingable) {
-    return m.retentionSettings
+    val, err := m.GetBackingStore().Get("retentionSettings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]RetentionSettingable)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The aggregated status of the protection units associated with the policy. The possible values are: inactive, activeWithErrors, updating, active, unknownFutureValue.
 // returns a *ProtectionPolicyStatus when successful
 func (m *ProtectionPolicyBase) GetStatus()(*ProtectionPolicyStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ProtectionPolicyStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProtectionPolicyBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -235,31 +270,52 @@ func (m *ProtectionPolicyBase) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetCreatedBy sets the createdBy property value. The identity of person who created the policy.
 func (m *ProtectionPolicyBase) SetCreatedBy(value IdentitySetable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The time of creation of the policy.
 func (m *ProtectionPolicyBase) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The name of the policy to be created.
 func (m *ProtectionPolicyBase) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. The identity of the person who last modified the policy.
 func (m *ProtectionPolicyBase) SetLastModifiedBy(value IdentitySetable)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. The timestamp of the last modification of the policy.
 func (m *ProtectionPolicyBase) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRetentionSettings sets the retentionSettings property value. Contains the retention setting details for the policy.
 func (m *ProtectionPolicyBase) SetRetentionSettings(value []RetentionSettingable)() {
-    m.retentionSettings = value
+    err := m.GetBackingStore().Set("retentionSettings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The aggregated status of the protection units associated with the policy. The possible values are: inactive, activeWithErrors, updating, active, unknownFutureValue.
 func (m *ProtectionPolicyBase) SetStatus(value *ProtectionPolicyStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProtectionPolicyBaseable interface {
     Entityable

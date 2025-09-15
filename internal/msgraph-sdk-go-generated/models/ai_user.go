@@ -9,8 +9,6 @@ import (
 
 type AiUser struct {
     Entity
-    // The interactionHistory property
-    interactionHistory AiInteractionHistoryable
 }
 // NewAiUser instantiates a new AiUser and sets the default values.
 func NewAiUser()(*AiUser) {
@@ -43,7 +41,14 @@ func (m *AiUser) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
 // GetInteractionHistory gets the interactionHistory property value. The interactionHistory property
 // returns a AiInteractionHistoryable when successful
 func (m *AiUser) GetInteractionHistory()(AiInteractionHistoryable) {
-    return m.interactionHistory
+    val, err := m.GetBackingStore().Get("interactionHistory")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AiInteractionHistoryable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AiUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *AiUser) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
 }
 // SetInteractionHistory sets the interactionHistory property value. The interactionHistory property
 func (m *AiUser) SetInteractionHistory(value AiInteractionHistoryable)() {
-    m.interactionHistory = value
+    err := m.GetBackingStore().Set("interactionHistory", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AiUserable interface {
     Entityable

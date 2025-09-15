@@ -9,8 +9,6 @@ import (
 
 type Sharepoint struct {
     Entity
-    // The settings property
-    settings SharepointSettingsable
 }
 // NewSharepoint instantiates a new Sharepoint and sets the default values.
 func NewSharepoint()(*Sharepoint) {
@@ -43,7 +41,14 @@ func (m *Sharepoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetSettings gets the settings property value. The settings property
 // returns a SharepointSettingsable when successful
 func (m *Sharepoint) GetSettings()(SharepointSettingsable) {
-    return m.settings
+    val, err := m.GetBackingStore().Get("settings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SharepointSettingsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Sharepoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *Sharepoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetSettings sets the settings property value. The settings property
 func (m *Sharepoint) SetSettings(value SharepointSettingsable)() {
-    m.settings = value
+    err := m.GetBackingStore().Set("settings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Sharepointable interface {
     Entityable

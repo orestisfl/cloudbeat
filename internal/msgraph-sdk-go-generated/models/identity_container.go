@@ -9,22 +9,6 @@ import (
 
 type IdentityContainer struct {
     Entity
-    // Represents entry point for API connectors.
-    apiConnectors []IdentityApiConnectorable
-    // Represents listeners for custom authentication extension events in Azure AD for workforce and customers.
-    authenticationEventListeners []AuthenticationEventListenerable
-    // Represents the entry point for self-service sign-up and sign-in user flows in both Microsoft Entra workforce and external tenants.
-    authenticationEventsFlows []AuthenticationEventsFlowable
-    // Represents entry point for B2X/self-service sign-up identity userflows.
-    b2xUserFlows []B2xIdentityUserFlowable
-    // the entry point for the Conditional Access (CA) object model.
-    conditionalAccess ConditionalAccessRootable
-    // Represents custom extensions to authentication flows in Azure AD for workforce and customers.
-    customAuthenticationExtensions []CustomAuthenticationExtensionable
-    // The identityProviders property
-    identityProviders []IdentityProviderBaseable
-    // Represents entry point for identity userflow attributes.
-    userFlowAttributes []IdentityUserFlowAttributeable
 }
 // NewIdentityContainer instantiates a new IdentityContainer and sets the default values.
 func NewIdentityContainer()(*IdentityContainer) {
@@ -41,32 +25,74 @@ func CreateIdentityContainerFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetApiConnectors gets the apiConnectors property value. Represents entry point for API connectors.
 // returns a []IdentityApiConnectorable when successful
 func (m *IdentityContainer) GetApiConnectors()([]IdentityApiConnectorable) {
-    return m.apiConnectors
+    val, err := m.GetBackingStore().Get("apiConnectors")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]IdentityApiConnectorable)
+    }
+    return nil
 }
 // GetAuthenticationEventListeners gets the authenticationEventListeners property value. Represents listeners for custom authentication extension events in Azure AD for workforce and customers.
 // returns a []AuthenticationEventListenerable when successful
 func (m *IdentityContainer) GetAuthenticationEventListeners()([]AuthenticationEventListenerable) {
-    return m.authenticationEventListeners
+    val, err := m.GetBackingStore().Get("authenticationEventListeners")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationEventListenerable)
+    }
+    return nil
 }
 // GetAuthenticationEventsFlows gets the authenticationEventsFlows property value. Represents the entry point for self-service sign-up and sign-in user flows in both Microsoft Entra workforce and external tenants.
 // returns a []AuthenticationEventsFlowable when successful
 func (m *IdentityContainer) GetAuthenticationEventsFlows()([]AuthenticationEventsFlowable) {
-    return m.authenticationEventsFlows
+    val, err := m.GetBackingStore().Get("authenticationEventsFlows")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationEventsFlowable)
+    }
+    return nil
 }
 // GetB2xUserFlows gets the b2xUserFlows property value. Represents entry point for B2X/self-service sign-up identity userflows.
 // returns a []B2xIdentityUserFlowable when successful
 func (m *IdentityContainer) GetB2xUserFlows()([]B2xIdentityUserFlowable) {
-    return m.b2xUserFlows
+    val, err := m.GetBackingStore().Get("b2xUserFlows")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]B2xIdentityUserFlowable)
+    }
+    return nil
 }
 // GetConditionalAccess gets the conditionalAccess property value. the entry point for the Conditional Access (CA) object model.
 // returns a ConditionalAccessRootable when successful
 func (m *IdentityContainer) GetConditionalAccess()(ConditionalAccessRootable) {
-    return m.conditionalAccess
+    val, err := m.GetBackingStore().Get("conditionalAccess")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ConditionalAccessRootable)
+    }
+    return nil
 }
 // GetCustomAuthenticationExtensions gets the customAuthenticationExtensions property value. Represents custom extensions to authentication flows in Azure AD for workforce and customers.
 // returns a []CustomAuthenticationExtensionable when successful
 func (m *IdentityContainer) GetCustomAuthenticationExtensions()([]CustomAuthenticationExtensionable) {
-    return m.customAuthenticationExtensions
+    val, err := m.GetBackingStore().Get("customAuthenticationExtensions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CustomAuthenticationExtensionable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -199,12 +225,26 @@ func (m *IdentityContainer) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetIdentityProviders gets the identityProviders property value. The identityProviders property
 // returns a []IdentityProviderBaseable when successful
 func (m *IdentityContainer) GetIdentityProviders()([]IdentityProviderBaseable) {
-    return m.identityProviders
+    val, err := m.GetBackingStore().Get("identityProviders")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]IdentityProviderBaseable)
+    }
+    return nil
 }
 // GetUserFlowAttributes gets the userFlowAttributes property value. Represents entry point for identity userflow attributes.
 // returns a []IdentityUserFlowAttributeable when successful
 func (m *IdentityContainer) GetUserFlowAttributes()([]IdentityUserFlowAttributeable) {
-    return m.userFlowAttributes
+    val, err := m.GetBackingStore().Get("userFlowAttributes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]IdentityUserFlowAttributeable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *IdentityContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -306,35 +346,59 @@ func (m *IdentityContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetApiConnectors sets the apiConnectors property value. Represents entry point for API connectors.
 func (m *IdentityContainer) SetApiConnectors(value []IdentityApiConnectorable)() {
-    m.apiConnectors = value
+    err := m.GetBackingStore().Set("apiConnectors", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthenticationEventListeners sets the authenticationEventListeners property value. Represents listeners for custom authentication extension events in Azure AD for workforce and customers.
 func (m *IdentityContainer) SetAuthenticationEventListeners(value []AuthenticationEventListenerable)() {
-    m.authenticationEventListeners = value
+    err := m.GetBackingStore().Set("authenticationEventListeners", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthenticationEventsFlows sets the authenticationEventsFlows property value. Represents the entry point for self-service sign-up and sign-in user flows in both Microsoft Entra workforce and external tenants.
 func (m *IdentityContainer) SetAuthenticationEventsFlows(value []AuthenticationEventsFlowable)() {
-    m.authenticationEventsFlows = value
+    err := m.GetBackingStore().Set("authenticationEventsFlows", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetB2xUserFlows sets the b2xUserFlows property value. Represents entry point for B2X/self-service sign-up identity userflows.
 func (m *IdentityContainer) SetB2xUserFlows(value []B2xIdentityUserFlowable)() {
-    m.b2xUserFlows = value
+    err := m.GetBackingStore().Set("b2xUserFlows", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetConditionalAccess sets the conditionalAccess property value. the entry point for the Conditional Access (CA) object model.
 func (m *IdentityContainer) SetConditionalAccess(value ConditionalAccessRootable)() {
-    m.conditionalAccess = value
+    err := m.GetBackingStore().Set("conditionalAccess", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCustomAuthenticationExtensions sets the customAuthenticationExtensions property value. Represents custom extensions to authentication flows in Azure AD for workforce and customers.
 func (m *IdentityContainer) SetCustomAuthenticationExtensions(value []CustomAuthenticationExtensionable)() {
-    m.customAuthenticationExtensions = value
+    err := m.GetBackingStore().Set("customAuthenticationExtensions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentityProviders sets the identityProviders property value. The identityProviders property
 func (m *IdentityContainer) SetIdentityProviders(value []IdentityProviderBaseable)() {
-    m.identityProviders = value
+    err := m.GetBackingStore().Set("identityProviders", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserFlowAttributes sets the userFlowAttributes property value. Represents entry point for identity userflow attributes.
 func (m *IdentityContainer) SetUserFlowAttributes(value []IdentityUserFlowAttributeable)() {
-    m.userFlowAttributes = value
+    err := m.GetBackingStore().Set("userFlowAttributes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type IdentityContainerable interface {
     Entityable

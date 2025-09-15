@@ -10,10 +10,6 @@ import (
 
 type AzureUsage struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The billed property
-    billed BilledUsageable
-    // The unbilled property
-    unbilled UnbilledUsageable
 }
 // NewAzureUsage instantiates a new AzureUsage and sets the default values.
 func NewAzureUsage()(*AzureUsage) {
@@ -30,7 +26,14 @@ func CreateAzureUsageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 // GetBilled gets the billed property value. The billed property
 // returns a BilledUsageable when successful
 func (m *AzureUsage) GetBilled()(BilledUsageable) {
-    return m.billed
+    val, err := m.GetBackingStore().Get("billed")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(BilledUsageable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +64,14 @@ func (m *AzureUsage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetUnbilled gets the unbilled property value. The unbilled property
 // returns a UnbilledUsageable when successful
 func (m *AzureUsage) GetUnbilled()(UnbilledUsageable) {
-    return m.unbilled
+    val, err := m.GetBackingStore().Get("unbilled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UnbilledUsageable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AzureUsage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *AzureUsage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetBilled sets the billed property value. The billed property
 func (m *AzureUsage) SetBilled(value BilledUsageable)() {
-    m.billed = value
+    err := m.GetBackingStore().Set("billed", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnbilled sets the unbilled property value. The unbilled property
 func (m *AzureUsage) SetUnbilled(value UnbilledUsageable)() {
-    m.unbilled = value
+    err := m.GetBackingStore().Set("unbilled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AzureUsageable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

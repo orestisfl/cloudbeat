@@ -10,8 +10,6 @@ import (
 
 type RuleBasedSubjectSet struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.SubjectSet
-    // The rule for the subject set. Lifecycle Workflows supports a rich set of user properties for configuring the rules using $filter query expressions. For more information, see supported user and query parameters.
-    rule *string
 }
 // NewRuleBasedSubjectSet instantiates a new RuleBasedSubjectSet and sets the default values.
 func NewRuleBasedSubjectSet()(*RuleBasedSubjectSet) {
@@ -46,7 +44,14 @@ func (m *RuleBasedSubjectSet) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetRule gets the rule property value. The rule for the subject set. Lifecycle Workflows supports a rich set of user properties for configuring the rules using $filter query expressions. For more information, see supported user and query parameters.
 // returns a *string when successful
 func (m *RuleBasedSubjectSet) GetRule()(*string) {
-    return m.rule
+    val, err := m.GetBackingStore().Get("rule")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *RuleBasedSubjectSet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *RuleBasedSubjectSet) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetRule sets the rule property value. The rule for the subject set. Lifecycle Workflows supports a rich set of user properties for configuring the rules using $filter query expressions. For more information, see supported user and query parameters.
 func (m *RuleBasedSubjectSet) SetRule(value *string)() {
-    m.rule = value
+    err := m.GetBackingStore().Set("rule", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type RuleBasedSubjectSetable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -9,12 +9,6 @@ import (
 
 type AzureResourceEvidence struct {
     AlertEvidence
-    // The unique identifier for the Azure resource.
-    resourceId *string
-    // The name of the resource.
-    resourceName *string
-    // The type of the resource.
-    resourceType *string
 }
 // NewAzureResourceEvidence instantiates a new AzureResourceEvidence and sets the default values.
 func NewAzureResourceEvidence()(*AzureResourceEvidence) {
@@ -69,17 +63,38 @@ func (m *AzureResourceEvidence) GetFieldDeserializers()(map[string]func(i878a80d
 // GetResourceId gets the resourceId property value. The unique identifier for the Azure resource.
 // returns a *string when successful
 func (m *AzureResourceEvidence) GetResourceId()(*string) {
-    return m.resourceId
+    val, err := m.GetBackingStore().Get("resourceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetResourceName gets the resourceName property value. The name of the resource.
 // returns a *string when successful
 func (m *AzureResourceEvidence) GetResourceName()(*string) {
-    return m.resourceName
+    val, err := m.GetBackingStore().Get("resourceName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetResourceType gets the resourceType property value. The type of the resource.
 // returns a *string when successful
 func (m *AzureResourceEvidence) GetResourceType()(*string) {
-    return m.resourceType
+    val, err := m.GetBackingStore().Get("resourceType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AzureResourceEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *AzureResourceEvidence) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetResourceId sets the resourceId property value. The unique identifier for the Azure resource.
 func (m *AzureResourceEvidence) SetResourceId(value *string)() {
-    m.resourceId = value
+    err := m.GetBackingStore().Set("resourceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceName sets the resourceName property value. The name of the resource.
 func (m *AzureResourceEvidence) SetResourceName(value *string)() {
-    m.resourceName = value
+    err := m.GetBackingStore().Set("resourceName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceType sets the resourceType property value. The type of the resource.
 func (m *AzureResourceEvidence) SetResourceType(value *string)() {
-    m.resourceType = value
+    err := m.GetBackingStore().Set("resourceType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AzureResourceEvidenceable interface {
     AlertEvidenceable

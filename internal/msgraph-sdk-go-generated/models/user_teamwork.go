@@ -9,14 +9,6 @@ import (
 
 type UserTeamwork struct {
     Entity
-    // The list of associatedTeamInfo objects that a user is associated with.
-    associatedTeams []AssociatedTeamInfoable
-    // The apps installed in the personal scope of this user.
-    installedApps []UserScopeTeamsAppInstallationable
-    // Represents the location that a user selected in Microsoft Teams and doesn't follow the Office's locale setting. A user's locale is represented by their preferred language and country or region. For example, en-us. The language component follows two-letter codes as defined in ISO 639-1, and the country component follows two-letter codes as defined in ISO 3166-1 alpha-2.
-    locale *string
-    // Represents the region of the organization or the user. For users with multigeo licenses, the property contains the user's region (if available). For users without multigeo licenses, the property contains the organization's region.The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
-    region *string
 }
 // NewUserTeamwork instantiates a new UserTeamwork and sets the default values.
 func NewUserTeamwork()(*UserTeamwork) {
@@ -33,7 +25,14 @@ func CreateUserTeamworkFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 // GetAssociatedTeams gets the associatedTeams property value. The list of associatedTeamInfo objects that a user is associated with.
 // returns a []AssociatedTeamInfoable when successful
 func (m *UserTeamwork) GetAssociatedTeams()([]AssociatedTeamInfoable) {
-    return m.associatedTeams
+    val, err := m.GetBackingStore().Get("associatedTeams")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AssociatedTeamInfoable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -96,17 +95,38 @@ func (m *UserTeamwork) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetInstalledApps gets the installedApps property value. The apps installed in the personal scope of this user.
 // returns a []UserScopeTeamsAppInstallationable when successful
 func (m *UserTeamwork) GetInstalledApps()([]UserScopeTeamsAppInstallationable) {
-    return m.installedApps
+    val, err := m.GetBackingStore().Get("installedApps")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UserScopeTeamsAppInstallationable)
+    }
+    return nil
 }
 // GetLocale gets the locale property value. Represents the location that a user selected in Microsoft Teams and doesn't follow the Office's locale setting. A user's locale is represented by their preferred language and country or region. For example, en-us. The language component follows two-letter codes as defined in ISO 639-1, and the country component follows two-letter codes as defined in ISO 3166-1 alpha-2.
 // returns a *string when successful
 func (m *UserTeamwork) GetLocale()(*string) {
-    return m.locale
+    val, err := m.GetBackingStore().Get("locale")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRegion gets the region property value. Represents the region of the organization or the user. For users with multigeo licenses, the property contains the user's region (if available). For users without multigeo licenses, the property contains the organization's region.The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
 // returns a *string when successful
 func (m *UserTeamwork) GetRegion()(*string) {
-    return m.region
+    val, err := m.GetBackingStore().Get("region")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserTeamwork) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -154,19 +174,31 @@ func (m *UserTeamwork) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetAssociatedTeams sets the associatedTeams property value. The list of associatedTeamInfo objects that a user is associated with.
 func (m *UserTeamwork) SetAssociatedTeams(value []AssociatedTeamInfoable)() {
-    m.associatedTeams = value
+    err := m.GetBackingStore().Set("associatedTeams", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetInstalledApps sets the installedApps property value. The apps installed in the personal scope of this user.
 func (m *UserTeamwork) SetInstalledApps(value []UserScopeTeamsAppInstallationable)() {
-    m.installedApps = value
+    err := m.GetBackingStore().Set("installedApps", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLocale sets the locale property value. Represents the location that a user selected in Microsoft Teams and doesn't follow the Office's locale setting. A user's locale is represented by their preferred language and country or region. For example, en-us. The language component follows two-letter codes as defined in ISO 639-1, and the country component follows two-letter codes as defined in ISO 3166-1 alpha-2.
 func (m *UserTeamwork) SetLocale(value *string)() {
-    m.locale = value
+    err := m.GetBackingStore().Set("locale", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegion sets the region property value. Represents the region of the organization or the user. For users with multigeo licenses, the property contains the user's region (if available). For users without multigeo licenses, the property contains the organization's region.The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
 func (m *UserTeamwork) SetRegion(value *string)() {
-    m.region = value
+    err := m.GetBackingStore().Set("region", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserTeamworkable interface {
     Entityable

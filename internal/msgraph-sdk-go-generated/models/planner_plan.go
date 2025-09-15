@@ -10,22 +10,6 @@ import (
 
 type PlannerPlan struct {
     Entity
-    // Read-only. Nullable. Collection of buckets in the plan.
-    buckets []PlannerBucketable
-    // Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it's set, this property can’t be updated. Required.
-    container PlannerPlanContainerable
-    // Read-only. The user who created the plan.
-    createdBy IdentitySetable
-    // Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Read-only. Nullable. Extra details about the plan.
-    details PlannerPlanDetailsable
-    // Use the container property instead. ID of the group that owns the plan. After it's set, this property can’t be updated. This property won't return a valid group ID if the container of the plan isn't a group.
-    owner *string
-    // Read-only. Nullable. Collection of tasks in the plan.
-    tasks []PlannerTaskable
-    // Required. Title of the plan.
-    title *string
 }
 // NewPlannerPlan instantiates a new PlannerPlan and sets the default values.
 func NewPlannerPlan()(*PlannerPlan) {
@@ -42,27 +26,62 @@ func CreatePlannerPlanFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 // GetBuckets gets the buckets property value. Read-only. Nullable. Collection of buckets in the plan.
 // returns a []PlannerBucketable when successful
 func (m *PlannerPlan) GetBuckets()([]PlannerBucketable) {
-    return m.buckets
+    val, err := m.GetBackingStore().Get("buckets")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PlannerBucketable)
+    }
+    return nil
 }
 // GetContainer gets the container property value. Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it's set, this property can’t be updated. Required.
 // returns a PlannerPlanContainerable when successful
 func (m *PlannerPlan) GetContainer()(PlannerPlanContainerable) {
-    return m.container
+    val, err := m.GetBackingStore().Get("container")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PlannerPlanContainerable)
+    }
+    return nil
 }
 // GetCreatedBy gets the createdBy property value. Read-only. The user who created the plan.
 // returns a IdentitySetable when successful
 func (m *PlannerPlan) GetCreatedBy()(IdentitySetable) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 // returns a *Time when successful
 func (m *PlannerPlan) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDetails gets the details property value. Read-only. Nullable. Extra details about the plan.
 // returns a PlannerPlanDetailsable when successful
 func (m *PlannerPlan) GetDetails()(PlannerPlanDetailsable) {
-    return m.details
+    val, err := m.GetBackingStore().Get("details")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PlannerPlanDetailsable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -165,17 +184,38 @@ func (m *PlannerPlan) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetOwner gets the owner property value. Use the container property instead. ID of the group that owns the plan. After it's set, this property can’t be updated. This property won't return a valid group ID if the container of the plan isn't a group.
 // returns a *string when successful
 func (m *PlannerPlan) GetOwner()(*string) {
-    return m.owner
+    val, err := m.GetBackingStore().Get("owner")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTasks gets the tasks property value. Read-only. Nullable. Collection of tasks in the plan.
 // returns a []PlannerTaskable when successful
 func (m *PlannerPlan) GetTasks()([]PlannerTaskable) {
-    return m.tasks
+    val, err := m.GetBackingStore().Get("tasks")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PlannerTaskable)
+    }
+    return nil
 }
 // GetTitle gets the title property value. Required. Title of the plan.
 // returns a *string when successful
 func (m *PlannerPlan) GetTitle()(*string) {
-    return m.title
+    val, err := m.GetBackingStore().Get("title")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PlannerPlan) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -247,35 +287,59 @@ func (m *PlannerPlan) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetBuckets sets the buckets property value. Read-only. Nullable. Collection of buckets in the plan.
 func (m *PlannerPlan) SetBuckets(value []PlannerBucketable)() {
-    m.buckets = value
+    err := m.GetBackingStore().Set("buckets", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetContainer sets the container property value. Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it's set, this property can’t be updated. Required.
 func (m *PlannerPlan) SetContainer(value PlannerPlanContainerable)() {
-    m.container = value
+    err := m.GetBackingStore().Set("container", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedBy sets the createdBy property value. Read-only. The user who created the plan.
 func (m *PlannerPlan) SetCreatedBy(value IdentitySetable)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 func (m *PlannerPlan) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDetails sets the details property value. Read-only. Nullable. Extra details about the plan.
 func (m *PlannerPlan) SetDetails(value PlannerPlanDetailsable)() {
-    m.details = value
+    err := m.GetBackingStore().Set("details", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOwner sets the owner property value. Use the container property instead. ID of the group that owns the plan. After it's set, this property can’t be updated. This property won't return a valid group ID if the container of the plan isn't a group.
 func (m *PlannerPlan) SetOwner(value *string)() {
-    m.owner = value
+    err := m.GetBackingStore().Set("owner", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTasks sets the tasks property value. Read-only. Nullable. Collection of tasks in the plan.
 func (m *PlannerPlan) SetTasks(value []PlannerTaskable)() {
-    m.tasks = value
+    err := m.GetBackingStore().Set("tasks", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTitle sets the title property value. Required. Title of the plan.
 func (m *PlannerPlan) SetTitle(value *string)() {
-    m.title = value
+    err := m.GetBackingStore().Set("title", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PlannerPlanable interface {
     Entityable

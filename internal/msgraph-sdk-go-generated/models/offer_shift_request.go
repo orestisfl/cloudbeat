@@ -10,14 +10,6 @@ import (
 
 type OfferShiftRequest struct {
     ScheduleChangeRequest
-    // The date and time when the recipient approved or declined the request.
-    recipientActionDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The message sent by the recipient regarding the request.
-    recipientActionMessage *string
-    // The recipient's user ID.
-    recipientUserId *string
-    // The sender's shift ID.
-    senderShiftId *string
 }
 // NewOfferShiftRequest instantiates a new OfferShiftRequest and sets the default values.
 func NewOfferShiftRequest()(*OfferShiftRequest) {
@@ -100,22 +92,50 @@ func (m *OfferShiftRequest) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetRecipientActionDateTime gets the recipientActionDateTime property value. The date and time when the recipient approved or declined the request.
 // returns a *Time when successful
 func (m *OfferShiftRequest) GetRecipientActionDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.recipientActionDateTime
+    val, err := m.GetBackingStore().Get("recipientActionDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRecipientActionMessage gets the recipientActionMessage property value. The message sent by the recipient regarding the request.
 // returns a *string when successful
 func (m *OfferShiftRequest) GetRecipientActionMessage()(*string) {
-    return m.recipientActionMessage
+    val, err := m.GetBackingStore().Get("recipientActionMessage")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRecipientUserId gets the recipientUserId property value. The recipient's user ID.
 // returns a *string when successful
 func (m *OfferShiftRequest) GetRecipientUserId()(*string) {
-    return m.recipientUserId
+    val, err := m.GetBackingStore().Get("recipientUserId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSenderShiftId gets the senderShiftId property value. The sender's shift ID.
 // returns a *string when successful
 func (m *OfferShiftRequest) GetSenderShiftId()(*string) {
-    return m.senderShiftId
+    val, err := m.GetBackingStore().Get("senderShiftId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OfferShiftRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -145,19 +165,31 @@ func (m *OfferShiftRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetRecipientActionDateTime sets the recipientActionDateTime property value. The date and time when the recipient approved or declined the request.
 func (m *OfferShiftRequest) SetRecipientActionDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.recipientActionDateTime = value
+    err := m.GetBackingStore().Set("recipientActionDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecipientActionMessage sets the recipientActionMessage property value. The message sent by the recipient regarding the request.
 func (m *OfferShiftRequest) SetRecipientActionMessage(value *string)() {
-    m.recipientActionMessage = value
+    err := m.GetBackingStore().Set("recipientActionMessage", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecipientUserId sets the recipientUserId property value. The recipient's user ID.
 func (m *OfferShiftRequest) SetRecipientUserId(value *string)() {
-    m.recipientUserId = value
+    err := m.GetBackingStore().Set("recipientUserId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSenderShiftId sets the senderShiftId property value. The sender's shift ID.
 func (m *OfferShiftRequest) SetSenderShiftId(value *string)() {
-    m.senderShiftId = value
+    err := m.GetBackingStore().Set("senderShiftId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OfferShiftRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

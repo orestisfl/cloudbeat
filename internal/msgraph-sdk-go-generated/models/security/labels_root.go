@@ -10,18 +10,6 @@ import (
 
 type LabelsRoot struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
-    authorities []AuthorityTemplateable
-    // Specifies a group of similar types of content in a particular department.
-    categories []CategoryTemplateable
-    // The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
-    citations []CitationTemplateable
-    // Specifies the department or business unit of an organization to which a label belongs.
-    departments []DepartmentTemplateable
-    // Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
-    filePlanReferences []FilePlanReferenceTemplateable
-    // Represents how customers can manage their data, whether and for how long to retain or delete it.
-    retentionLabels []RetentionLabelable
 }
 // NewLabelsRoot instantiates a new LabelsRoot and sets the default values.
 func NewLabelsRoot()(*LabelsRoot) {
@@ -38,22 +26,50 @@ func CreateLabelsRootFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 // GetAuthorities gets the authorities property value. Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
 // returns a []AuthorityTemplateable when successful
 func (m *LabelsRoot) GetAuthorities()([]AuthorityTemplateable) {
-    return m.authorities
+    val, err := m.GetBackingStore().Get("authorities")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthorityTemplateable)
+    }
+    return nil
 }
 // GetCategories gets the categories property value. Specifies a group of similar types of content in a particular department.
 // returns a []CategoryTemplateable when successful
 func (m *LabelsRoot) GetCategories()([]CategoryTemplateable) {
-    return m.categories
+    val, err := m.GetBackingStore().Get("categories")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CategoryTemplateable)
+    }
+    return nil
 }
 // GetCitations gets the citations property value. The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
 // returns a []CitationTemplateable when successful
 func (m *LabelsRoot) GetCitations()([]CitationTemplateable) {
-    return m.citations
+    val, err := m.GetBackingStore().Get("citations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CitationTemplateable)
+    }
+    return nil
 }
 // GetDepartments gets the departments property value. Specifies the department or business unit of an organization to which a label belongs.
 // returns a []DepartmentTemplateable when successful
 func (m *LabelsRoot) GetDepartments()([]DepartmentTemplateable) {
-    return m.departments
+    val, err := m.GetBackingStore().Get("departments")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DepartmentTemplateable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -160,12 +176,26 @@ func (m *LabelsRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetFilePlanReferences gets the filePlanReferences property value. Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
 // returns a []FilePlanReferenceTemplateable when successful
 func (m *LabelsRoot) GetFilePlanReferences()([]FilePlanReferenceTemplateable) {
-    return m.filePlanReferences
+    val, err := m.GetBackingStore().Get("filePlanReferences")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]FilePlanReferenceTemplateable)
+    }
+    return nil
 }
 // GetRetentionLabels gets the retentionLabels property value. Represents how customers can manage their data, whether and for how long to retain or delete it.
 // returns a []RetentionLabelable when successful
 func (m *LabelsRoot) GetRetentionLabels()([]RetentionLabelable) {
-    return m.retentionLabels
+    val, err := m.GetBackingStore().Get("retentionLabels")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]RetentionLabelable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LabelsRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -249,27 +279,45 @@ func (m *LabelsRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetAuthorities sets the authorities property value. Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
 func (m *LabelsRoot) SetAuthorities(value []AuthorityTemplateable)() {
-    m.authorities = value
+    err := m.GetBackingStore().Set("authorities", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCategories sets the categories property value. Specifies a group of similar types of content in a particular department.
 func (m *LabelsRoot) SetCategories(value []CategoryTemplateable)() {
-    m.categories = value
+    err := m.GetBackingStore().Set("categories", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCitations sets the citations property value. The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
 func (m *LabelsRoot) SetCitations(value []CitationTemplateable)() {
-    m.citations = value
+    err := m.GetBackingStore().Set("citations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDepartments sets the departments property value. Specifies the department or business unit of an organization to which a label belongs.
 func (m *LabelsRoot) SetDepartments(value []DepartmentTemplateable)() {
-    m.departments = value
+    err := m.GetBackingStore().Set("departments", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFilePlanReferences sets the filePlanReferences property value. Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
 func (m *LabelsRoot) SetFilePlanReferences(value []FilePlanReferenceTemplateable)() {
-    m.filePlanReferences = value
+    err := m.GetBackingStore().Set("filePlanReferences", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRetentionLabels sets the retentionLabels property value. Represents how customers can manage their data, whether and for how long to retain or delete it.
 func (m *LabelsRoot) SetRetentionLabels(value []RetentionLabelable)() {
-    m.retentionLabels = value
+    err := m.GetBackingStore().Set("retentionLabels", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LabelsRootable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

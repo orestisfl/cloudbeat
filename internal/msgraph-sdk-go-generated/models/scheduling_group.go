@@ -9,14 +9,6 @@ import (
 
 type SchedulingGroup struct {
     ChangeTrackedEntity
-    // The code for the schedulingGroup to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
-    code *string
-    // The display name for the schedulingGroup. Required.
-    displayName *string
-    // Indicates whether the schedulingGroup can be used when creating new entities or updating existing ones. Required.
-    isActive *bool
-    // The list of user IDs that are a member of the schedulingGroup. Required.
-    userIds []string
 }
 // NewSchedulingGroup instantiates a new SchedulingGroup and sets the default values.
 func NewSchedulingGroup()(*SchedulingGroup) {
@@ -35,12 +27,26 @@ func CreateSchedulingGroupFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetCode gets the code property value. The code for the schedulingGroup to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
 // returns a *string when successful
 func (m *SchedulingGroup) GetCode()(*string) {
-    return m.code
+    val, err := m.GetBackingStore().Get("code")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The display name for the schedulingGroup. Required.
 // returns a *string when successful
 func (m *SchedulingGroup) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -97,12 +103,26 @@ func (m *SchedulingGroup) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetIsActive gets the isActive property value. Indicates whether the schedulingGroup can be used when creating new entities or updating existing ones. Required.
 // returns a *bool when successful
 func (m *SchedulingGroup) GetIsActive()(*bool) {
-    return m.isActive
+    val, err := m.GetBackingStore().Get("isActive")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetUserIds gets the userIds property value. The list of user IDs that are a member of the schedulingGroup. Required.
 // returns a []string when successful
 func (m *SchedulingGroup) GetUserIds()([]string) {
-    return m.userIds
+    val, err := m.GetBackingStore().Get("userIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SchedulingGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *SchedulingGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetCode sets the code property value. The code for the schedulingGroup to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
 func (m *SchedulingGroup) SetCode(value *string)() {
-    m.code = value
+    err := m.GetBackingStore().Set("code", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The display name for the schedulingGroup. Required.
 func (m *SchedulingGroup) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsActive sets the isActive property value. Indicates whether the schedulingGroup can be used when creating new entities or updating existing ones. Required.
 func (m *SchedulingGroup) SetIsActive(value *bool)() {
-    m.isActive = value
+    err := m.GetBackingStore().Set("isActive", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserIds sets the userIds property value. The list of user IDs that are a member of the schedulingGroup. Required.
 func (m *SchedulingGroup) SetUserIds(value []string)() {
-    m.userIds = value
+    err := m.GetBackingStore().Set("userIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SchedulingGroupable interface {
     ChangeTrackedEntityable

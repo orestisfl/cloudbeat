@@ -9,14 +9,6 @@ import (
 
 type LabelContentRight struct {
     Entity
-    // The content identifier.
-    cid *string
-    // The content format.
-    format *string
-    // The label property
-    label SensitivityLabelable
-    // The rights property
-    rights *UsageRights
 }
 // NewLabelContentRight instantiates a new LabelContentRight and sets the default values.
 func NewLabelContentRight()(*LabelContentRight) {
@@ -33,7 +25,14 @@ func CreateLabelContentRightFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetCid gets the cid property value. The content identifier.
 // returns a *string when successful
 func (m *LabelContentRight) GetCid()(*string) {
-    return m.cid
+    val, err := m.GetBackingStore().Get("cid")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -84,17 +83,38 @@ func (m *LabelContentRight) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetFormat gets the format property value. The content format.
 // returns a *string when successful
 func (m *LabelContentRight) GetFormat()(*string) {
-    return m.format
+    val, err := m.GetBackingStore().Get("format")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLabel gets the label property value. The label property
 // returns a SensitivityLabelable when successful
 func (m *LabelContentRight) GetLabel()(SensitivityLabelable) {
-    return m.label
+    val, err := m.GetBackingStore().Get("label")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SensitivityLabelable)
+    }
+    return nil
 }
 // GetRights gets the rights property value. The rights property
 // returns a *UsageRights when successful
 func (m *LabelContentRight) GetRights()(*UsageRights) {
-    return m.rights
+    val, err := m.GetBackingStore().Get("rights")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*UsageRights)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LabelContentRight) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -131,19 +151,31 @@ func (m *LabelContentRight) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetCid sets the cid property value. The content identifier.
 func (m *LabelContentRight) SetCid(value *string)() {
-    m.cid = value
+    err := m.GetBackingStore().Set("cid", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFormat sets the format property value. The content format.
 func (m *LabelContentRight) SetFormat(value *string)() {
-    m.format = value
+    err := m.GetBackingStore().Set("format", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLabel sets the label property value. The label property
 func (m *LabelContentRight) SetLabel(value SensitivityLabelable)() {
-    m.label = value
+    err := m.GetBackingStore().Set("label", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRights sets the rights property value. The rights property
 func (m *LabelContentRight) SetRights(value *UsageRights)() {
-    m.rights = value
+    err := m.GetBackingStore().Set("rights", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LabelContentRightable interface {
     Entityable

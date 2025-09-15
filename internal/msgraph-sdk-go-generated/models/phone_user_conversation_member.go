@@ -9,8 +9,6 @@ import (
 
 type PhoneUserConversationMember struct {
     ConversationMember
-    // The phoneNumber property
-    phoneNumber *string
 }
 // NewPhoneUserConversationMember instantiates a new PhoneUserConversationMember and sets the default values.
 func NewPhoneUserConversationMember()(*PhoneUserConversationMember) {
@@ -45,7 +43,14 @@ func (m *PhoneUserConversationMember) GetFieldDeserializers()(map[string]func(i8
 // GetPhoneNumber gets the phoneNumber property value. The phoneNumber property
 // returns a *string when successful
 func (m *PhoneUserConversationMember) GetPhoneNumber()(*string) {
-    return m.phoneNumber
+    val, err := m.GetBackingStore().Get("phoneNumber")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PhoneUserConversationMember) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *PhoneUserConversationMember) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetPhoneNumber sets the phoneNumber property value. The phoneNumber property
 func (m *PhoneUserConversationMember) SetPhoneNumber(value *string)() {
-    m.phoneNumber = value
+    err := m.GetBackingStore().Set("phoneNumber", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PhoneUserConversationMemberable interface {
     ConversationMemberable

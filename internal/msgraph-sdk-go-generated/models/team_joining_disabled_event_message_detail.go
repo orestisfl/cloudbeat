@@ -9,10 +9,6 @@ import (
 
 type TeamJoiningDisabledEventMessageDetail struct {
     EventMessageDetail
-    // Initiator of the event.
-    initiator IdentitySetable
-    // Unique identifier of the team.
-    teamId *string
 }
 // NewTeamJoiningDisabledEventMessageDetail instantiates a new TeamJoiningDisabledEventMessageDetail and sets the default values.
 func NewTeamJoiningDisabledEventMessageDetail()(*TeamJoiningDisabledEventMessageDetail) {
@@ -57,12 +53,26 @@ func (m *TeamJoiningDisabledEventMessageDetail) GetFieldDeserializers()(map[stri
 // GetInitiator gets the initiator property value. Initiator of the event.
 // returns a IdentitySetable when successful
 func (m *TeamJoiningDisabledEventMessageDetail) GetInitiator()(IdentitySetable) {
-    return m.initiator
+    val, err := m.GetBackingStore().Get("initiator")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetTeamId gets the teamId property value. Unique identifier of the team.
 // returns a *string when successful
 func (m *TeamJoiningDisabledEventMessageDetail) GetTeamId()(*string) {
-    return m.teamId
+    val, err := m.GetBackingStore().Get("teamId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TeamJoiningDisabledEventMessageDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *TeamJoiningDisabledEventMessageDetail) Serialize(writer i878a80d2330e89
 }
 // SetInitiator sets the initiator property value. Initiator of the event.
 func (m *TeamJoiningDisabledEventMessageDetail) SetInitiator(value IdentitySetable)() {
-    m.initiator = value
+    err := m.GetBackingStore().Set("initiator", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTeamId sets the teamId property value. Unique identifier of the team.
 func (m *TeamJoiningDisabledEventMessageDetail) SetTeamId(value *string)() {
-    m.teamId = value
+    err := m.GetBackingStore().Set("teamId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TeamJoiningDisabledEventMessageDetailable interface {
     EventMessageDetailable

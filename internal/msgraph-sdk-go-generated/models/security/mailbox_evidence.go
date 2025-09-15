@@ -9,14 +9,6 @@ import (
 
 type MailboxEvidence struct {
     AlertEvidence
-    // The name associated with the mailbox.
-    displayName *string
-    // The primary email address of the mailbox.
-    primaryAddress *string
-    // The user principal name of the mailbox.
-    upn *string
-    // The user account of the mailbox.
-    userAccount UserAccountable
 }
 // NewMailboxEvidence instantiates a new MailboxEvidence and sets the default values.
 func NewMailboxEvidence()(*MailboxEvidence) {
@@ -35,7 +27,14 @@ func CreateMailboxEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetDisplayName gets the displayName property value. The name associated with the mailbox.
 // returns a *string when successful
 func (m *MailboxEvidence) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,17 +85,38 @@ func (m *MailboxEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetPrimaryAddress gets the primaryAddress property value. The primary email address of the mailbox.
 // returns a *string when successful
 func (m *MailboxEvidence) GetPrimaryAddress()(*string) {
-    return m.primaryAddress
+    val, err := m.GetBackingStore().Get("primaryAddress")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUpn gets the upn property value. The user principal name of the mailbox.
 // returns a *string when successful
 func (m *MailboxEvidence) GetUpn()(*string) {
-    return m.upn
+    val, err := m.GetBackingStore().Get("upn")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUserAccount gets the userAccount property value. The user account of the mailbox.
 // returns a UserAccountable when successful
 func (m *MailboxEvidence) GetUserAccount()(UserAccountable) {
-    return m.userAccount
+    val, err := m.GetBackingStore().Get("userAccount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UserAccountable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MailboxEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *MailboxEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetDisplayName sets the displayName property value. The name associated with the mailbox.
 func (m *MailboxEvidence) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPrimaryAddress sets the primaryAddress property value. The primary email address of the mailbox.
 func (m *MailboxEvidence) SetPrimaryAddress(value *string)() {
-    m.primaryAddress = value
+    err := m.GetBackingStore().Set("primaryAddress", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUpn sets the upn property value. The user principal name of the mailbox.
 func (m *MailboxEvidence) SetUpn(value *string)() {
-    m.upn = value
+    err := m.GetBackingStore().Set("upn", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserAccount sets the userAccount property value. The user account of the mailbox.
 func (m *MailboxEvidence) SetUserAccount(value UserAccountable)() {
-    m.userAccount = value
+    err := m.GetBackingStore().Set("userAccount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MailboxEvidenceable interface {
     AlertEvidenceable

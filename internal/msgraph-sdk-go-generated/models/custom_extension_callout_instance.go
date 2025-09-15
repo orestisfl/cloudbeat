@@ -5,28 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type CustomExtensionCalloutInstance struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Identification of the custom extension that was triggered at this instance.
-    customExtensionId *string
-    // Details provided by the logic app during the callback of the request instance.
-    detail *string
-    // The unique run identifier for the logic app.
-    externalCorrelationId *string
-    // Unique identifier for the callout instance. Read-only.
-    id *string
-    // The OdataType property
-    odataType *string
-    // The status of the request to the custom extension. The possible values are: calloutSent, callbackReceived, calloutFailed, callbackTimedOut, waitingForCallback, unknownFutureValue.
-    status *CustomExtensionCalloutInstanceStatus
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewCustomExtensionCalloutInstance instantiates a new CustomExtensionCalloutInstance and sets the default values.
 func NewCustomExtensionCalloutInstance()(*CustomExtensionCalloutInstance) {
     m := &CustomExtensionCalloutInstance{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -38,22 +28,56 @@ func CreateCustomExtensionCalloutInstanceFromDiscriminatorValue(parseNode i878a8
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *CustomExtensionCalloutInstance) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *CustomExtensionCalloutInstance) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetCustomExtensionId gets the customExtensionId property value. Identification of the custom extension that was triggered at this instance.
 // returns a *string when successful
 func (m *CustomExtensionCalloutInstance) GetCustomExtensionId()(*string) {
-    return m.customExtensionId
+    val, err := m.GetBackingStore().Get("customExtensionId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDetail gets the detail property value. Details provided by the logic app during the callback of the request instance.
 // returns a *string when successful
 func (m *CustomExtensionCalloutInstance) GetDetail()(*string) {
-    return m.detail
+    val, err := m.GetBackingStore().Get("detail")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExternalCorrelationId gets the externalCorrelationId property value. The unique run identifier for the logic app.
 // returns a *string when successful
 func (m *CustomExtensionCalloutInstance) GetExternalCorrelationId()(*string) {
-    return m.externalCorrelationId
+    val, err := m.GetBackingStore().Get("externalCorrelationId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -124,17 +148,38 @@ func (m *CustomExtensionCalloutInstance) GetFieldDeserializers()(map[string]func
 // GetId gets the id property value. Unique identifier for the callout instance. Read-only.
 // returns a *string when successful
 func (m *CustomExtensionCalloutInstance) GetId()(*string) {
-    return m.id
+    val, err := m.GetBackingStore().Get("id")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *CustomExtensionCalloutInstance) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the request to the custom extension. The possible values are: calloutSent, callbackReceived, calloutFailed, callbackTimedOut, waitingForCallback, unknownFutureValue.
 // returns a *CustomExtensionCalloutInstanceStatus when successful
 func (m *CustomExtensionCalloutInstance) GetStatus()(*CustomExtensionCalloutInstanceStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*CustomExtensionCalloutInstanceStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CustomExtensionCalloutInstance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -185,41 +230,69 @@ func (m *CustomExtensionCalloutInstance) Serialize(writer i878a80d2330e89d268963
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CustomExtensionCalloutInstance) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *CustomExtensionCalloutInstance) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetCustomExtensionId sets the customExtensionId property value. Identification of the custom extension that was triggered at this instance.
 func (m *CustomExtensionCalloutInstance) SetCustomExtensionId(value *string)() {
-    m.customExtensionId = value
+    err := m.GetBackingStore().Set("customExtensionId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDetail sets the detail property value. Details provided by the logic app during the callback of the request instance.
 func (m *CustomExtensionCalloutInstance) SetDetail(value *string)() {
-    m.detail = value
+    err := m.GetBackingStore().Set("detail", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalCorrelationId sets the externalCorrelationId property value. The unique run identifier for the logic app.
 func (m *CustomExtensionCalloutInstance) SetExternalCorrelationId(value *string)() {
-    m.externalCorrelationId = value
+    err := m.GetBackingStore().Set("externalCorrelationId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetId sets the id property value. Unique identifier for the callout instance. Read-only.
 func (m *CustomExtensionCalloutInstance) SetId(value *string)() {
-    m.id = value
+    err := m.GetBackingStore().Set("id", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *CustomExtensionCalloutInstance) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the request to the custom extension. The possible values are: calloutSent, callbackReceived, calloutFailed, callbackTimedOut, waitingForCallback, unknownFutureValue.
 func (m *CustomExtensionCalloutInstance) SetStatus(value *CustomExtensionCalloutInstanceStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CustomExtensionCalloutInstanceable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetCustomExtensionId()(*string)
     GetDetail()(*string)
     GetExternalCorrelationId()(*string)
     GetId()(*string)
     GetOdataType()(*string)
     GetStatus()(*CustomExtensionCalloutInstanceStatus)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetCustomExtensionId(value *string)()
     SetDetail(value *string)()
     SetExternalCorrelationId(value *string)()

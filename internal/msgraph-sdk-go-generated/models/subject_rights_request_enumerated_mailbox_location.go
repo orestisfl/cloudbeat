@@ -9,8 +9,6 @@ import (
 
 type SubjectRightsRequestEnumeratedMailboxLocation struct {
     SubjectRightsRequestMailboxLocation
-    // Collection of mailboxes that should be included in the search. Includes the user principal name (UPN) of each mailbox, for example, Monica.Thompson@contoso.com.
-    userPrincipalNames []string
 }
 // NewSubjectRightsRequestEnumeratedMailboxLocation instantiates a new SubjectRightsRequestEnumeratedMailboxLocation and sets the default values.
 func NewSubjectRightsRequestEnumeratedMailboxLocation()(*SubjectRightsRequestEnumeratedMailboxLocation) {
@@ -51,7 +49,14 @@ func (m *SubjectRightsRequestEnumeratedMailboxLocation) GetFieldDeserializers()(
 // GetUserPrincipalNames gets the userPrincipalNames property value. Collection of mailboxes that should be included in the search. Includes the user principal name (UPN) of each mailbox, for example, Monica.Thompson@contoso.com.
 // returns a []string when successful
 func (m *SubjectRightsRequestEnumeratedMailboxLocation) GetUserPrincipalNames()([]string) {
-    return m.userPrincipalNames
+    val, err := m.GetBackingStore().Get("userPrincipalNames")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SubjectRightsRequestEnumeratedMailboxLocation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -69,7 +74,10 @@ func (m *SubjectRightsRequestEnumeratedMailboxLocation) Serialize(writer i878a80
 }
 // SetUserPrincipalNames sets the userPrincipalNames property value. Collection of mailboxes that should be included in the search. Includes the user principal name (UPN) of each mailbox, for example, Monica.Thompson@contoso.com.
 func (m *SubjectRightsRequestEnumeratedMailboxLocation) SetUserPrincipalNames(value []string)() {
-    m.userPrincipalNames = value
+    err := m.GetBackingStore().Set("userPrincipalNames", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SubjectRightsRequestEnumeratedMailboxLocationable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -11,30 +11,6 @@ import (
 
 type CallRecord struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // UTC time when the last user left the call. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-    endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Meeting URL associated to the call. May not be available for a peerToPeer call record type.
-    joinWebUrl *string
-    // UTC time when the call record was created. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // List of all the modalities used in the call. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.
-    modalities []Modality
-    // The organizing party's identity. The organizer property is deprecated and will stop returning data on June 30, 2026. Going forward, use the organizer_v2 relationship.
-    organizer i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable
-    // Identity of the organizer of the call. This relationship is expanded by default in callRecord methods.
-    organizer_v2 Organizerable
-    // List of distinct identities involved in the call. Limited to 130 entries. The participants property is deprecated and will stop returning data on June 30, 2026. Going forward, use the participants_v2 relationship.
-    participants []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable
-    // List of distinct participants in the call.
-    participants_v2 []Participantable
-    // List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
-    sessions []Sessionable
-    // UTC time when the first user joined the call. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    startDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The type property
-    typeEscaped *CallType
-    // Monotonically increasing version of the call record. Higher version call records with the same id includes additional data compared to the lower version.
-    version *int64
 }
 // NewCallRecord instantiates a new CallRecord and sets the default values.
 func NewCallRecord()(*CallRecord) {
@@ -51,7 +27,14 @@ func CreateCallRecordFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 // GetEndDateTime gets the endDateTime property value. UTC time when the last user left the call. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 // returns a *Time when successful
 func (m *CallRecord) GetEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.endDateTime
+    val, err := m.GetBackingStore().Get("endDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -206,57 +189,134 @@ func (m *CallRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetJoinWebUrl gets the joinWebUrl property value. Meeting URL associated to the call. May not be available for a peerToPeer call record type.
 // returns a *string when successful
 func (m *CallRecord) GetJoinWebUrl()(*string) {
-    return m.joinWebUrl
+    val, err := m.GetBackingStore().Get("joinWebUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. UTC time when the call record was created. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 // returns a *Time when successful
 func (m *CallRecord) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetModalities gets the modalities property value. List of all the modalities used in the call. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.
 // returns a []Modality when successful
 func (m *CallRecord) GetModalities()([]Modality) {
-    return m.modalities
+    val, err := m.GetBackingStore().Get("modalities")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Modality)
+    }
+    return nil
 }
 // GetOrganizer gets the organizer property value. The organizing party's identity. The organizer property is deprecated and will stop returning data on June 30, 2026. Going forward, use the organizer_v2 relationship.
 // returns a IdentitySetable when successful
 func (m *CallRecord) GetOrganizer()(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable) {
-    return m.organizer
+    val, err := m.GetBackingStore().Get("organizer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)
+    }
+    return nil
 }
 // GetOrganizerV2 gets the organizer_v2 property value. Identity of the organizer of the call. This relationship is expanded by default in callRecord methods.
 // returns a Organizerable when successful
 func (m *CallRecord) GetOrganizerV2()(Organizerable) {
-    return m.organizer_v2
+    val, err := m.GetBackingStore().Get("organizer_v2")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Organizerable)
+    }
+    return nil
 }
 // GetParticipants gets the participants property value. List of distinct identities involved in the call. Limited to 130 entries. The participants property is deprecated and will stop returning data on June 30, 2026. Going forward, use the participants_v2 relationship.
 // returns a []IdentitySetable when successful
 func (m *CallRecord) GetParticipants()([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable) {
-    return m.participants
+    val, err := m.GetBackingStore().Get("participants")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)
+    }
+    return nil
 }
 // GetParticipantsV2 gets the participants_v2 property value. List of distinct participants in the call.
 // returns a []Participantable when successful
 func (m *CallRecord) GetParticipantsV2()([]Participantable) {
-    return m.participants_v2
+    val, err := m.GetBackingStore().Get("participants_v2")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Participantable)
+    }
+    return nil
 }
 // GetSessions gets the sessions property value. List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
 // returns a []Sessionable when successful
 func (m *CallRecord) GetSessions()([]Sessionable) {
-    return m.sessions
+    val, err := m.GetBackingStore().Get("sessions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Sessionable)
+    }
+    return nil
 }
 // GetStartDateTime gets the startDateTime property value. UTC time when the first user joined the call. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *CallRecord) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetTypeEscaped gets the type property value. The type property
 // returns a *CallType when successful
 func (m *CallRecord) GetTypeEscaped()(*CallType) {
-    return m.typeEscaped
+    val, err := m.GetBackingStore().Get("typeEscaped")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*CallType)
+    }
+    return nil
 }
 // GetVersion gets the version property value. Monotonically increasing version of the call record. Higher version call records with the same id includes additional data compared to the lower version.
 // returns a *int64 when successful
 func (m *CallRecord) GetVersion()(*int64) {
-    return m.version
+    val, err := m.GetBackingStore().Get("version")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CallRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -359,51 +419,87 @@ func (m *CallRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetEndDateTime sets the endDateTime property value. UTC time when the last user left the call. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 func (m *CallRecord) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.endDateTime = value
+    err := m.GetBackingStore().Set("endDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetJoinWebUrl sets the joinWebUrl property value. Meeting URL associated to the call. May not be available for a peerToPeer call record type.
 func (m *CallRecord) SetJoinWebUrl(value *string)() {
-    m.joinWebUrl = value
+    err := m.GetBackingStore().Set("joinWebUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. UTC time when the call record was created. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 func (m *CallRecord) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetModalities sets the modalities property value. List of all the modalities used in the call. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.
 func (m *CallRecord) SetModalities(value []Modality)() {
-    m.modalities = value
+    err := m.GetBackingStore().Set("modalities", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOrganizer sets the organizer property value. The organizing party's identity. The organizer property is deprecated and will stop returning data on June 30, 2026. Going forward, use the organizer_v2 relationship.
 func (m *CallRecord) SetOrganizer(value i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)() {
-    m.organizer = value
+    err := m.GetBackingStore().Set("organizer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOrganizerV2 sets the organizer_v2 property value. Identity of the organizer of the call. This relationship is expanded by default in callRecord methods.
 func (m *CallRecord) SetOrganizerV2(value Organizerable)() {
-    m.organizer_v2 = value
+    err := m.GetBackingStore().Set("organizer_v2", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParticipants sets the participants property value. List of distinct identities involved in the call. Limited to 130 entries. The participants property is deprecated and will stop returning data on June 30, 2026. Going forward, use the participants_v2 relationship.
 func (m *CallRecord) SetParticipants(value []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.IdentitySetable)() {
-    m.participants = value
+    err := m.GetBackingStore().Set("participants", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParticipantsV2 sets the participants_v2 property value. List of distinct participants in the call.
 func (m *CallRecord) SetParticipantsV2(value []Participantable)() {
-    m.participants_v2 = value
+    err := m.GetBackingStore().Set("participants_v2", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSessions sets the sessions property value. List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
 func (m *CallRecord) SetSessions(value []Sessionable)() {
-    m.sessions = value
+    err := m.GetBackingStore().Set("sessions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. UTC time when the first user joined the call. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *CallRecord) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTypeEscaped sets the type property value. The type property
 func (m *CallRecord) SetTypeEscaped(value *CallType)() {
-    m.typeEscaped = value
+    err := m.GetBackingStore().Set("typeEscaped", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetVersion sets the version property value. Monotonically increasing version of the call record. Higher version call records with the same id includes additional data compared to the lower version.
 func (m *CallRecord) SetVersion(value *int64)() {
-    m.version = value
+    err := m.GetBackingStore().Set("version", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CallRecordable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

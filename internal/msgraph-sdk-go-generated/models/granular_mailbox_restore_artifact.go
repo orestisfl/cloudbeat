@@ -9,10 +9,6 @@ import (
 
 type GranularMailboxRestoreArtifact struct {
     MailboxRestoreArtifact
-    // This property will be deprecated soon. Don't use.
-    artifactCount *int32
-    // .
-    searchResponseId *string
 }
 // NewGranularMailboxRestoreArtifact instantiates a new GranularMailboxRestoreArtifact and sets the default values.
 func NewGranularMailboxRestoreArtifact()(*GranularMailboxRestoreArtifact) {
@@ -29,7 +25,14 @@ func CreateGranularMailboxRestoreArtifactFromDiscriminatorValue(parseNode i878a8
 // GetArtifactCount gets the artifactCount property value. This property will be deprecated soon. Don't use.
 // returns a *int32 when successful
 func (m *GranularMailboxRestoreArtifact) GetArtifactCount()(*int32) {
-    return m.artifactCount
+    val, err := m.GetBackingStore().Get("artifactCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *GranularMailboxRestoreArtifact) GetFieldDeserializers()(map[string]func
 // GetSearchResponseId gets the searchResponseId property value. .
 // returns a *string when successful
 func (m *GranularMailboxRestoreArtifact) GetSearchResponseId()(*string) {
-    return m.searchResponseId
+    val, err := m.GetBackingStore().Get("searchResponseId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *GranularMailboxRestoreArtifact) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *GranularMailboxRestoreArtifact) Serialize(writer i878a80d2330e89d268963
 }
 // SetArtifactCount sets the artifactCount property value. This property will be deprecated soon. Don't use.
 func (m *GranularMailboxRestoreArtifact) SetArtifactCount(value *int32)() {
-    m.artifactCount = value
+    err := m.GetBackingStore().Set("artifactCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSearchResponseId sets the searchResponseId property value. .
 func (m *GranularMailboxRestoreArtifact) SetSearchResponseId(value *string)() {
-    m.searchResponseId = value
+    err := m.GetBackingStore().Set("searchResponseId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type GranularMailboxRestoreArtifactable interface {
     MailboxRestoreArtifactable

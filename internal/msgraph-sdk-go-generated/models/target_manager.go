@@ -9,8 +9,6 @@ import (
 
 type TargetManager struct {
     SubjectSet
-    // Manager level, between 1 and 4. The direct manager is 1.
-    managerLevel *int32
 }
 // NewTargetManager instantiates a new TargetManager and sets the default values.
 func NewTargetManager()(*TargetManager) {
@@ -45,7 +43,14 @@ func (m *TargetManager) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
 // GetManagerLevel gets the managerLevel property value. Manager level, between 1 and 4. The direct manager is 1.
 // returns a *int32 when successful
 func (m *TargetManager) GetManagerLevel()(*int32) {
-    return m.managerLevel
+    val, err := m.GetBackingStore().Get("managerLevel")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TargetManager) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *TargetManager) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetManagerLevel sets the managerLevel property value. Manager level, between 1 and 4. The direct manager is 1.
 func (m *TargetManager) SetManagerLevel(value *int32)() {
-    m.managerLevel = value
+    err := m.GetBackingStore().Set("managerLevel", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TargetManagerable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

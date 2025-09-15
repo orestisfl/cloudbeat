@@ -9,10 +9,6 @@ import (
 
 type CopilotAdminLimitedMode struct {
     Entity
-    // The groupId property
-    groupId *string
-    // The isEnabledForGroup property
-    isEnabledForGroup *bool
 }
 // NewCopilotAdminLimitedMode instantiates a new CopilotAdminLimitedMode and sets the default values.
 func NewCopilotAdminLimitedMode()(*CopilotAdminLimitedMode) {
@@ -55,12 +51,26 @@ func (m *CopilotAdminLimitedMode) GetFieldDeserializers()(map[string]func(i878a8
 // GetGroupId gets the groupId property value. The groupId property
 // returns a *string when successful
 func (m *CopilotAdminLimitedMode) GetGroupId()(*string) {
-    return m.groupId
+    val, err := m.GetBackingStore().Get("groupId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIsEnabledForGroup gets the isEnabledForGroup property value. The isEnabledForGroup property
 // returns a *bool when successful
 func (m *CopilotAdminLimitedMode) GetIsEnabledForGroup()(*bool) {
-    return m.isEnabledForGroup
+    val, err := m.GetBackingStore().Get("isEnabledForGroup")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CopilotAdminLimitedMode) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *CopilotAdminLimitedMode) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetGroupId sets the groupId property value. The groupId property
 func (m *CopilotAdminLimitedMode) SetGroupId(value *string)() {
-    m.groupId = value
+    err := m.GetBackingStore().Set("groupId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsEnabledForGroup sets the isEnabledForGroup property value. The isEnabledForGroup property
 func (m *CopilotAdminLimitedMode) SetIsEnabledForGroup(value *bool)() {
-    m.isEnabledForGroup = value
+    err := m.GetBackingStore().Set("isEnabledForGroup", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CopilotAdminLimitedModeable interface {
     Entityable

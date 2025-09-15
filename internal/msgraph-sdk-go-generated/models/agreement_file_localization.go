@@ -9,8 +9,6 @@ import (
 
 type AgreementFileLocalization struct {
     AgreementFileProperties
-    // Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.
-    versions []AgreementFileVersionable
 }
 // NewAgreementFileLocalization instantiates a new AgreementFileLocalization and sets the default values.
 func NewAgreementFileLocalization()(*AgreementFileLocalization) {
@@ -49,7 +47,14 @@ func (m *AgreementFileLocalization) GetFieldDeserializers()(map[string]func(i878
 // GetVersions gets the versions property value. Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.
 // returns a []AgreementFileVersionable when successful
 func (m *AgreementFileLocalization) GetVersions()([]AgreementFileVersionable) {
-    return m.versions
+    val, err := m.GetBackingStore().Get("versions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AgreementFileVersionable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AgreementFileLocalization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *AgreementFileLocalization) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetVersions sets the versions property value. Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.
 func (m *AgreementFileLocalization) SetVersions(value []AgreementFileVersionable)() {
-    m.versions = value
+    err := m.GetBackingStore().Set("versions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AgreementFileLocalizationable interface {
     AgreementFilePropertiesable

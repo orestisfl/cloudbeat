@@ -9,8 +9,6 @@ import (
 
 type NoTrainingNotificationSetting struct {
     EndUserNotificationSetting
-    // The notification for the user who is part of the simulation.
-    simulationNotification SimulationNotificationable
 }
 // NewNoTrainingNotificationSetting instantiates a new NoTrainingNotificationSetting and sets the default values.
 func NewNoTrainingNotificationSetting()(*NoTrainingNotificationSetting) {
@@ -45,7 +43,14 @@ func (m *NoTrainingNotificationSetting) GetFieldDeserializers()(map[string]func(
 // GetSimulationNotification gets the simulationNotification property value. The notification for the user who is part of the simulation.
 // returns a SimulationNotificationable when successful
 func (m *NoTrainingNotificationSetting) GetSimulationNotification()(SimulationNotificationable) {
-    return m.simulationNotification
+    val, err := m.GetBackingStore().Get("simulationNotification")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SimulationNotificationable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *NoTrainingNotificationSetting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *NoTrainingNotificationSetting) Serialize(writer i878a80d2330e89d2689638
 }
 // SetSimulationNotification sets the simulationNotification property value. The notification for the user who is part of the simulation.
 func (m *NoTrainingNotificationSetting) SetSimulationNotification(value SimulationNotificationable)() {
-    m.simulationNotification = value
+    err := m.GetBackingStore().Set("simulationNotification", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type NoTrainingNotificationSettingable interface {
     EndUserNotificationSettingable

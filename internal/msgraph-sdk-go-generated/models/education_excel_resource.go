@@ -9,8 +9,6 @@ import (
 
 type EducationExcelResource struct {
     EducationResource
-    // Pointer to the Excel file object.
-    fileUrl *string
 }
 // NewEducationExcelResource instantiates a new EducationExcelResource and sets the default values.
 func NewEducationExcelResource()(*EducationExcelResource) {
@@ -45,7 +43,14 @@ func (m *EducationExcelResource) GetFieldDeserializers()(map[string]func(i878a80
 // GetFileUrl gets the fileUrl property value. Pointer to the Excel file object.
 // returns a *string when successful
 func (m *EducationExcelResource) GetFileUrl()(*string) {
-    return m.fileUrl
+    val, err := m.GetBackingStore().Get("fileUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationExcelResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *EducationExcelResource) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetFileUrl sets the fileUrl property value. Pointer to the Excel file object.
 func (m *EducationExcelResource) SetFileUrl(value *string)() {
-    m.fileUrl = value
+    err := m.GetBackingStore().Set("fileUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationExcelResourceable interface {
     EducationResourceable

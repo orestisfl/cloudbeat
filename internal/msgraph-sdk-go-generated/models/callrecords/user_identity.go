@@ -10,8 +10,6 @@ import (
 
 type UserIdentity struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Identity
-    // The userPrincipalName property
-    userPrincipalName *string
 }
 // NewUserIdentity instantiates a new UserIdentity and sets the default values.
 func NewUserIdentity()(*UserIdentity) {
@@ -46,7 +44,14 @@ func (m *UserIdentity) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetUserPrincipalName gets the userPrincipalName property value. The userPrincipalName property
 // returns a *string when successful
 func (m *UserIdentity) GetUserPrincipalName()(*string) {
-    return m.userPrincipalName
+    val, err := m.GetBackingStore().Get("userPrincipalName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserIdentity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *UserIdentity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetUserPrincipalName sets the userPrincipalName property value. The userPrincipalName property
 func (m *UserIdentity) SetUserPrincipalName(value *string)() {
-    m.userPrincipalName = value
+    err := m.GetBackingStore().Set("userPrincipalName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserIdentityable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Identityable

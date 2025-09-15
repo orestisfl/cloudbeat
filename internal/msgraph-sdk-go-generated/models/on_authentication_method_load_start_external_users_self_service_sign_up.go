@@ -9,8 +9,6 @@ import (
 
 type OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp struct {
     OnAuthenticationMethodLoadStartHandler
-    // The identityProviders property
-    identityProviders []IdentityProviderBaseable
 }
 // NewOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp instantiates a new OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp and sets the default values.
 func NewOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp()(*OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp) {
@@ -51,7 +49,14 @@ func (m *OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp) GetField
 // GetIdentityProviders gets the identityProviders property value. The identityProviders property
 // returns a []IdentityProviderBaseable when successful
 func (m *OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp) GetIdentityProviders()([]IdentityProviderBaseable) {
-    return m.identityProviders
+    val, err := m.GetBackingStore().Get("identityProviders")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]IdentityProviderBaseable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -75,7 +80,10 @@ func (m *OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp) Serializ
 }
 // SetIdentityProviders sets the identityProviders property value. The identityProviders property
 func (m *OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp) SetIdentityProviders(value []IdentityProviderBaseable)() {
-    m.identityProviders = value
+    err := m.GetBackingStore().Set("identityProviders", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpable interface {
     OnAuthenticationMethodLoadStartHandlerable

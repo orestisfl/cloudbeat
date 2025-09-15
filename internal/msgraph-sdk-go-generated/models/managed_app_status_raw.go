@@ -10,8 +10,6 @@ import (
 // ManagedAppStatusRaw represents an un-typed status report about organizations app protection and configuration.
 type ManagedAppStatusRaw struct {
     ManagedAppStatus
-    // Status report content.
-    content i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
 }
 // NewManagedAppStatusRaw instantiates a new ManagedAppStatusRaw and sets the default values.
 func NewManagedAppStatusRaw()(*ManagedAppStatusRaw) {
@@ -30,7 +28,14 @@ func CreateManagedAppStatusRawFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetContent gets the content property value. Status report content.
 // returns a UntypedNodeable when successful
 func (m *ManagedAppStatusRaw) GetContent()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.content
+    val, err := m.GetBackingStore().Get("content")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *ManagedAppStatusRaw) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetContent sets the content property value. Status report content.
 func (m *ManagedAppStatusRaw) SetContent(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.content = value
+    err := m.GetBackingStore().Set("content", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ManagedAppStatusRawable interface {
     ManagedAppStatusable

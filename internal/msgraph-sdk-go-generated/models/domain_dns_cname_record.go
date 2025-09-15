@@ -9,8 +9,6 @@ import (
 
 type DomainDnsCnameRecord struct {
     DomainDnsRecord
-    // The canonical name of the CNAME record. Used to configure the CNAME record at the DNS host.
-    canonicalName *string
 }
 // NewDomainDnsCnameRecord instantiates a new DomainDnsCnameRecord and sets the default values.
 func NewDomainDnsCnameRecord()(*DomainDnsCnameRecord) {
@@ -27,7 +25,14 @@ func CreateDomainDnsCnameRecordFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetCanonicalName gets the canonicalName property value. The canonical name of the CNAME record. Used to configure the CNAME record at the DNS host.
 // returns a *string when successful
 func (m *DomainDnsCnameRecord) GetCanonicalName()(*string) {
-    return m.canonicalName
+    val, err := m.GetBackingStore().Get("canonicalName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +66,10 @@ func (m *DomainDnsCnameRecord) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetCanonicalName sets the canonicalName property value. The canonical name of the CNAME record. Used to configure the CNAME record at the DNS host.
 func (m *DomainDnsCnameRecord) SetCanonicalName(value *string)() {
-    m.canonicalName = value
+    err := m.GetBackingStore().Set("canonicalName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DomainDnsCnameRecordable interface {
     DomainDnsRecordable

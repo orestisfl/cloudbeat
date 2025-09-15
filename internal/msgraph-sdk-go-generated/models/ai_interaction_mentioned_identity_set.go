@@ -9,10 +9,6 @@ import (
 
 type AiInteractionMentionedIdentitySet struct {
     IdentitySet
-    // The conversation property
-    conversation TeamworkConversationIdentityable
-    // The tag property
-    tag TeamworkTagIdentityable
 }
 // NewAiInteractionMentionedIdentitySet instantiates a new AiInteractionMentionedIdentitySet and sets the default values.
 func NewAiInteractionMentionedIdentitySet()(*AiInteractionMentionedIdentitySet) {
@@ -31,7 +27,14 @@ func CreateAiInteractionMentionedIdentitySetFromDiscriminatorValue(parseNode i87
 // GetConversation gets the conversation property value. The conversation property
 // returns a TeamworkConversationIdentityable when successful
 func (m *AiInteractionMentionedIdentitySet) GetConversation()(TeamworkConversationIdentityable) {
-    return m.conversation
+    val, err := m.GetBackingStore().Get("conversation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TeamworkConversationIdentityable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -62,7 +65,14 @@ func (m *AiInteractionMentionedIdentitySet) GetFieldDeserializers()(map[string]f
 // GetTag gets the tag property value. The tag property
 // returns a TeamworkTagIdentityable when successful
 func (m *AiInteractionMentionedIdentitySet) GetTag()(TeamworkTagIdentityable) {
-    return m.tag
+    val, err := m.GetBackingStore().Get("tag")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TeamworkTagIdentityable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AiInteractionMentionedIdentitySet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *AiInteractionMentionedIdentitySet) Serialize(writer i878a80d2330e89d268
 }
 // SetConversation sets the conversation property value. The conversation property
 func (m *AiInteractionMentionedIdentitySet) SetConversation(value TeamworkConversationIdentityable)() {
-    m.conversation = value
+    err := m.GetBackingStore().Set("conversation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTag sets the tag property value. The tag property
 func (m *AiInteractionMentionedIdentitySet) SetTag(value TeamworkTagIdentityable)() {
-    m.tag = value
+    err := m.GetBackingStore().Set("tag", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AiInteractionMentionedIdentitySetable interface {
     IdentitySetable

@@ -10,8 +10,6 @@ import (
 
 type Identity struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The type of identity. Possible values are: user or group for Microsoft Entra identities and externalgroup for groups in an external system.
-    typeEscaped *IdentityType
 }
 // NewIdentity instantiates a new Identity and sets the default values.
 func NewIdentity()(*Identity) {
@@ -44,7 +42,14 @@ func (m *Identity) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetTypeEscaped gets the type property value. The type of identity. Possible values are: user or group for Microsoft Entra identities and externalgroup for groups in an external system.
 // returns a *IdentityType when successful
 func (m *Identity) GetTypeEscaped()(*IdentityType) {
-    return m.typeEscaped
+    val, err := m.GetBackingStore().Get("typeEscaped")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*IdentityType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Identity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *Identity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetTypeEscaped sets the type property value. The type of identity. Possible values are: user or group for Microsoft Entra identities and externalgroup for groups in an external system.
 func (m *Identity) SetTypeEscaped(value *IdentityType)() {
-    m.typeEscaped = value
+    err := m.GetBackingStore().Set("typeEscaped", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Identityable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

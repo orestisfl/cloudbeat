@@ -9,18 +9,6 @@ import (
 
 type UnifiedRbacResourceAction struct {
     Entity
-    // The actionVerb property
-    actionVerb *string
-    // The authenticationContextId property
-    authenticationContextId *string
-    // The description property
-    description *string
-    // The isAuthenticationContextSettable property
-    isAuthenticationContextSettable *bool
-    // The name property
-    name *string
-    // The resourceScopeId property
-    resourceScopeId *string
 }
 // NewUnifiedRbacResourceAction instantiates a new UnifiedRbacResourceAction and sets the default values.
 func NewUnifiedRbacResourceAction()(*UnifiedRbacResourceAction) {
@@ -37,17 +25,38 @@ func CreateUnifiedRbacResourceActionFromDiscriminatorValue(parseNode i878a80d233
 // GetActionVerb gets the actionVerb property value. The actionVerb property
 // returns a *string when successful
 func (m *UnifiedRbacResourceAction) GetActionVerb()(*string) {
-    return m.actionVerb
+    val, err := m.GetBackingStore().Get("actionVerb")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetAuthenticationContextId gets the authenticationContextId property value. The authenticationContextId property
 // returns a *string when successful
 func (m *UnifiedRbacResourceAction) GetAuthenticationContextId()(*string) {
-    return m.authenticationContextId
+    val, err := m.GetBackingStore().Get("authenticationContextId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
 func (m *UnifiedRbacResourceAction) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -118,17 +127,38 @@ func (m *UnifiedRbacResourceAction) GetFieldDeserializers()(map[string]func(i878
 // GetIsAuthenticationContextSettable gets the isAuthenticationContextSettable property value. The isAuthenticationContextSettable property
 // returns a *bool when successful
 func (m *UnifiedRbacResourceAction) GetIsAuthenticationContextSettable()(*bool) {
-    return m.isAuthenticationContextSettable
+    val, err := m.GetBackingStore().Get("isAuthenticationContextSettable")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetName gets the name property value. The name property
 // returns a *string when successful
 func (m *UnifiedRbacResourceAction) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetResourceScopeId gets the resourceScopeId property value. The resourceScopeId property
 // returns a *string when successful
 func (m *UnifiedRbacResourceAction) GetResourceScopeId()(*string) {
-    return m.resourceScopeId
+    val, err := m.GetBackingStore().Get("resourceScopeId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UnifiedRbacResourceAction) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -176,27 +206,45 @@ func (m *UnifiedRbacResourceAction) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetActionVerb sets the actionVerb property value. The actionVerb property
 func (m *UnifiedRbacResourceAction) SetActionVerb(value *string)() {
-    m.actionVerb = value
+    err := m.GetBackingStore().Set("actionVerb", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthenticationContextId sets the authenticationContextId property value. The authenticationContextId property
 func (m *UnifiedRbacResourceAction) SetAuthenticationContextId(value *string)() {
-    m.authenticationContextId = value
+    err := m.GetBackingStore().Set("authenticationContextId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. The description property
 func (m *UnifiedRbacResourceAction) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsAuthenticationContextSettable sets the isAuthenticationContextSettable property value. The isAuthenticationContextSettable property
 func (m *UnifiedRbacResourceAction) SetIsAuthenticationContextSettable(value *bool)() {
-    m.isAuthenticationContextSettable = value
+    err := m.GetBackingStore().Set("isAuthenticationContextSettable", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The name property
 func (m *UnifiedRbacResourceAction) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetResourceScopeId sets the resourceScopeId property value. The resourceScopeId property
 func (m *UnifiedRbacResourceAction) SetResourceScopeId(value *string)() {
-    m.resourceScopeId = value
+    err := m.GetBackingStore().Set("resourceScopeId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UnifiedRbacResourceActionable interface {
     Entityable

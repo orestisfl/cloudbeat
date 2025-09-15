@@ -10,8 +10,6 @@ import (
 
 type GroupBasedSubjectSet struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.SubjectSet
-    // The groups property
-    groups []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Groupable
 }
 // NewGroupBasedSubjectSet instantiates a new GroupBasedSubjectSet and sets the default values.
 func NewGroupBasedSubjectSet()(*GroupBasedSubjectSet) {
@@ -52,7 +50,14 @@ func (m *GroupBasedSubjectSet) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetGroups gets the groups property value. The groups property
 // returns a []Groupable when successful
 func (m *GroupBasedSubjectSet) GetGroups()([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Groupable) {
-    return m.groups
+    val, err := m.GetBackingStore().Get("groups")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Groupable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *GroupBasedSubjectSet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -76,7 +81,10 @@ func (m *GroupBasedSubjectSet) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetGroups sets the groups property value. The groups property
 func (m *GroupBasedSubjectSet) SetGroups(value []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Groupable)() {
-    m.groups = value
+    err := m.GetBackingStore().Set("groups", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type GroupBasedSubjectSetable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

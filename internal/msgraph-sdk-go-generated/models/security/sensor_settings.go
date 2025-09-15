@@ -5,26 +5,18 @@ package security
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type SensorSettings struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Description of the sensor.
-    description *string
-    // DNS names for the domain controller
-    domainControllerDnsNames []string
-    // Indicates whether to delay updates for the sensor.
-    isDelayedDeploymentEnabled *bool
-    // The networkAdapters property
-    networkAdapters []NetworkAdapterable
-    // The OdataType property
-    odataType *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewSensorSettings instantiates a new SensorSettings and sets the default values.
 func NewSensorSettings()(*SensorSettings) {
     m := &SensorSettings{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -36,17 +28,44 @@ func CreateSensorSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *SensorSettings) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *SensorSettings) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetDescription gets the description property value. Description of the sensor.
 // returns a *string when successful
 func (m *SensorSettings) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDomainControllerDnsNames gets the domainControllerDnsNames property value. DNS names for the domain controller
 // returns a []string when successful
 func (m *SensorSettings) GetDomainControllerDnsNames()([]string) {
-    return m.domainControllerDnsNames
+    val, err := m.GetBackingStore().Get("domainControllerDnsNames")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -119,17 +138,38 @@ func (m *SensorSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetIsDelayedDeploymentEnabled gets the isDelayedDeploymentEnabled property value. Indicates whether to delay updates for the sensor.
 // returns a *bool when successful
 func (m *SensorSettings) GetIsDelayedDeploymentEnabled()(*bool) {
-    return m.isDelayedDeploymentEnabled
+    val, err := m.GetBackingStore().Get("isDelayedDeploymentEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetNetworkAdapters gets the networkAdapters property value. The networkAdapters property
 // returns a []NetworkAdapterable when successful
 func (m *SensorSettings) GetNetworkAdapters()([]NetworkAdapterable) {
-    return m.networkAdapters
+    val, err := m.GetBackingStore().Get("networkAdapters")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]NetworkAdapterable)
+    }
+    return nil
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *SensorSettings) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SensorSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -179,36 +219,61 @@ func (m *SensorSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *SensorSettings) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *SensorSettings) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetDescription sets the description property value. Description of the sensor.
 func (m *SensorSettings) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDomainControllerDnsNames sets the domainControllerDnsNames property value. DNS names for the domain controller
 func (m *SensorSettings) SetDomainControllerDnsNames(value []string)() {
-    m.domainControllerDnsNames = value
+    err := m.GetBackingStore().Set("domainControllerDnsNames", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsDelayedDeploymentEnabled sets the isDelayedDeploymentEnabled property value. Indicates whether to delay updates for the sensor.
 func (m *SensorSettings) SetIsDelayedDeploymentEnabled(value *bool)() {
-    m.isDelayedDeploymentEnabled = value
+    err := m.GetBackingStore().Set("isDelayedDeploymentEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNetworkAdapters sets the networkAdapters property value. The networkAdapters property
 func (m *SensorSettings) SetNetworkAdapters(value []NetworkAdapterable)() {
-    m.networkAdapters = value
+    err := m.GetBackingStore().Set("networkAdapters", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *SensorSettings) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SensorSettingsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetDescription()(*string)
     GetDomainControllerDnsNames()([]string)
     GetIsDelayedDeploymentEnabled()(*bool)
     GetNetworkAdapters()([]NetworkAdapterable)
     GetOdataType()(*string)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetDescription(value *string)()
     SetDomainControllerDnsNames(value []string)()
     SetIsDelayedDeploymentEnabled(value *bool)()

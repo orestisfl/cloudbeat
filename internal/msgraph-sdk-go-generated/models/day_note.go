@@ -9,12 +9,6 @@ import (
 
 type DayNote struct {
     ChangeTrackedEntity
-    // The date of the day note.
-    dayNoteDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
-    // The draft version of this day note that is viewable by managers. Only contentType text is supported.
-    draftDayNote ItemBodyable
-    // The shared version of this day note that is viewable by both employees and managers. Only contentType text is supported.
-    sharedDayNote ItemBodyable
 }
 // NewDayNote instantiates a new DayNote and sets the default values.
 func NewDayNote()(*DayNote) {
@@ -33,12 +27,26 @@ func CreateDayNoteFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f48
 // GetDayNoteDate gets the dayNoteDate property value. The date of the day note.
 // returns a *DateOnly when successful
 func (m *DayNote) GetDayNoteDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly) {
-    return m.dayNoteDate
+    val, err := m.GetBackingStore().Get("dayNoteDate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    }
+    return nil
 }
 // GetDraftDayNote gets the draftDayNote property value. The draft version of this day note that is viewable by managers. Only contentType text is supported.
 // returns a ItemBodyable when successful
 func (m *DayNote) GetDraftDayNote()(ItemBodyable) {
-    return m.draftDayNote
+    val, err := m.GetBackingStore().Get("draftDayNote")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ItemBodyable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -79,7 +87,14 @@ func (m *DayNote) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 // GetSharedDayNote gets the sharedDayNote property value. The shared version of this day note that is viewable by both employees and managers. Only contentType text is supported.
 // returns a ItemBodyable when successful
 func (m *DayNote) GetSharedDayNote()(ItemBodyable) {
-    return m.sharedDayNote
+    val, err := m.GetBackingStore().Get("sharedDayNote")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ItemBodyable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DayNote) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *DayNote) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
 }
 // SetDayNoteDate sets the dayNoteDate property value. The date of the day note.
 func (m *DayNote) SetDayNoteDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)() {
-    m.dayNoteDate = value
+    err := m.GetBackingStore().Set("dayNoteDate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDraftDayNote sets the draftDayNote property value. The draft version of this day note that is viewable by managers. Only contentType text is supported.
 func (m *DayNote) SetDraftDayNote(value ItemBodyable)() {
-    m.draftDayNote = value
+    err := m.GetBackingStore().Set("draftDayNote", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSharedDayNote sets the sharedDayNote property value. The shared version of this day note that is viewable by both employees and managers. Only contentType text is supported.
 func (m *DayNote) SetSharedDayNote(value ItemBodyable)() {
-    m.sharedDayNote = value
+    err := m.GetBackingStore().Set("sharedDayNote", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DayNoteable interface {
     ChangeTrackedEntityable

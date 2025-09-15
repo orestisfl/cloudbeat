@@ -10,18 +10,6 @@ import (
 
 type ServiceApp struct {
     Entity
-    // The Entra ID application ID.
-    application Identityable
-    // Timestamp of the effective activation of the service app.
-    effectiveDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Identity of the person who last modified the entity.
-    lastModifiedBy IdentitySetable
-    // Timestamp of the last modification of the entity.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Timestamp of the creation of the service app entity.
-    registrationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The status of the service app. This value indicates whether or not the application can be used to control the backup service. The possible values are: inactive, active, pendingActive, pendingInactive, unknownFutureValue.
-    status *ServiceAppStatus
 }
 // NewServiceApp instantiates a new ServiceApp and sets the default values.
 func NewServiceApp()(*ServiceApp) {
@@ -38,12 +26,26 @@ func CreateServiceAppFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 // GetApplication gets the application property value. The Entra ID application ID.
 // returns a Identityable when successful
 func (m *ServiceApp) GetApplication()(Identityable) {
-    return m.application
+    val, err := m.GetBackingStore().Get("application")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Identityable)
+    }
+    return nil
 }
 // GetEffectiveDateTime gets the effectiveDateTime property value. Timestamp of the effective activation of the service app.
 // returns a *Time when successful
 func (m *ServiceApp) GetEffectiveDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.effectiveDateTime
+    val, err := m.GetBackingStore().Get("effectiveDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -114,22 +116,50 @@ func (m *ServiceApp) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetLastModifiedBy gets the lastModifiedBy property value. Identity of the person who last modified the entity.
 // returns a IdentitySetable when successful
 func (m *ServiceApp) GetLastModifiedBy()(IdentitySetable) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySetable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Timestamp of the last modification of the entity.
 // returns a *Time when successful
 func (m *ServiceApp) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRegistrationDateTime gets the registrationDateTime property value. Timestamp of the creation of the service app entity.
 // returns a *Time when successful
 func (m *ServiceApp) GetRegistrationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.registrationDateTime
+    val, err := m.GetBackingStore().Get("registrationDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the service app. This value indicates whether or not the application can be used to control the backup service. The possible values are: inactive, active, pendingActive, pendingInactive, unknownFutureValue.
 // returns a *ServiceAppStatus when successful
 func (m *ServiceApp) GetStatus()(*ServiceAppStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ServiceAppStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ServiceApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -178,27 +208,45 @@ func (m *ServiceApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetApplication sets the application property value. The Entra ID application ID.
 func (m *ServiceApp) SetApplication(value Identityable)() {
-    m.application = value
+    err := m.GetBackingStore().Set("application", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEffectiveDateTime sets the effectiveDateTime property value. Timestamp of the effective activation of the service app.
 func (m *ServiceApp) SetEffectiveDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.effectiveDateTime = value
+    err := m.GetBackingStore().Set("effectiveDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. Identity of the person who last modified the entity.
 func (m *ServiceApp) SetLastModifiedBy(value IdentitySetable)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Timestamp of the last modification of the entity.
 func (m *ServiceApp) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationDateTime sets the registrationDateTime property value. Timestamp of the creation of the service app entity.
 func (m *ServiceApp) SetRegistrationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.registrationDateTime = value
+    err := m.GetBackingStore().Set("registrationDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the service app. This value indicates whether or not the application can be used to control the backup service. The possible values are: inactive, active, pendingActive, pendingInactive, unknownFutureValue.
 func (m *ServiceApp) SetStatus(value *ServiceAppStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ServiceAppable interface {
     Entityable

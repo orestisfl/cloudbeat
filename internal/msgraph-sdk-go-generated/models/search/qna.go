@@ -11,24 +11,6 @@ import (
 
 type Qna struct {
     SearchAnswer
-    // Date and time when the QnA stops appearing as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    availabilityEndDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Date and time when the QnA starts to appear as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    availabilityStartDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The list of security groups that are able to view this QnA.
-    groupIds []string
-    // True if a user or Microsoft suggested this QnA to the admin. Read-only.
-    isSuggested *bool
-    // Keywords that trigger this QnA to appear in search results.
-    keywords AnswerKeywordable
-    // A list of geographically specific language names in which this QnA can be viewed. Each language tag value follows the pattern {language}-{region}. For example, en-us is English as used in the United States. For the list of possible values, see Supported language tags.
-    languageTags []string
-    // List of devices and operating systems that are able to view this QnA. Possible values are: android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, unknown, androidASOP, androidMobileApplicationManagement, iOSMobileApplicationManagement, unknownFutureValue.
-    platforms []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DevicePlatformType
-    // The state property
-    state *AnswerState
-    // Variations of a QnA for different countries/regions or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.
-    targetedVariations []AnswerVariantable
 }
 // NewQna instantiates a new Qna and sets the default values.
 func NewQna()(*Qna) {
@@ -45,12 +27,26 @@ func CreateQnaFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef
 // GetAvailabilityEndDateTime gets the availabilityEndDateTime property value. Date and time when the QnA stops appearing as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *Qna) GetAvailabilityEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.availabilityEndDateTime
+    val, err := m.GetBackingStore().Get("availabilityEndDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetAvailabilityStartDateTime gets the availabilityStartDateTime property value. Date and time when the QnA starts to appear as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *Qna) GetAvailabilityStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.availabilityStartDateTime
+    val, err := m.GetBackingStore().Get("availabilityStartDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -175,37 +171,86 @@ func (m *Qna) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3
 // GetGroupIds gets the groupIds property value. The list of security groups that are able to view this QnA.
 // returns a []string when successful
 func (m *Qna) GetGroupIds()([]string) {
-    return m.groupIds
+    val, err := m.GetBackingStore().Get("groupIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetIsSuggested gets the isSuggested property value. True if a user or Microsoft suggested this QnA to the admin. Read-only.
 // returns a *bool when successful
 func (m *Qna) GetIsSuggested()(*bool) {
-    return m.isSuggested
+    val, err := m.GetBackingStore().Get("isSuggested")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetKeywords gets the keywords property value. Keywords that trigger this QnA to appear in search results.
 // returns a AnswerKeywordable when successful
 func (m *Qna) GetKeywords()(AnswerKeywordable) {
-    return m.keywords
+    val, err := m.GetBackingStore().Get("keywords")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AnswerKeywordable)
+    }
+    return nil
 }
 // GetLanguageTags gets the languageTags property value. A list of geographically specific language names in which this QnA can be viewed. Each language tag value follows the pattern {language}-{region}. For example, en-us is English as used in the United States. For the list of possible values, see Supported language tags.
 // returns a []string when successful
 func (m *Qna) GetLanguageTags()([]string) {
-    return m.languageTags
+    val, err := m.GetBackingStore().Get("languageTags")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetPlatforms gets the platforms property value. List of devices and operating systems that are able to view this QnA. Possible values are: android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, unknown, androidASOP, androidMobileApplicationManagement, iOSMobileApplicationManagement, unknownFutureValue.
 // returns a []DevicePlatformType when successful
 func (m *Qna) GetPlatforms()([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DevicePlatformType) {
-    return m.platforms
+    val, err := m.GetBackingStore().Get("platforms")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DevicePlatformType)
+    }
+    return nil
 }
 // GetState gets the state property value. The state property
 // returns a *AnswerState when successful
 func (m *Qna) GetState()(*AnswerState) {
-    return m.state
+    val, err := m.GetBackingStore().Get("state")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*AnswerState)
+    }
+    return nil
 }
 // GetTargetedVariations gets the targetedVariations property value. Variations of a QnA for different countries/regions or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.
 // returns a []AnswerVariantable when successful
 func (m *Qna) GetTargetedVariations()([]AnswerVariantable) {
-    return m.targetedVariations
+    val, err := m.GetBackingStore().Get("targetedVariations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AnswerVariantable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Qna) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -278,39 +323,66 @@ func (m *Qna) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493
 }
 // SetAvailabilityEndDateTime sets the availabilityEndDateTime property value. Date and time when the QnA stops appearing as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *Qna) SetAvailabilityEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.availabilityEndDateTime = value
+    err := m.GetBackingStore().Set("availabilityEndDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAvailabilityStartDateTime sets the availabilityStartDateTime property value. Date and time when the QnA starts to appear as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *Qna) SetAvailabilityStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.availabilityStartDateTime = value
+    err := m.GetBackingStore().Set("availabilityStartDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetGroupIds sets the groupIds property value. The list of security groups that are able to view this QnA.
 func (m *Qna) SetGroupIds(value []string)() {
-    m.groupIds = value
+    err := m.GetBackingStore().Set("groupIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsSuggested sets the isSuggested property value. True if a user or Microsoft suggested this QnA to the admin. Read-only.
 func (m *Qna) SetIsSuggested(value *bool)() {
-    m.isSuggested = value
+    err := m.GetBackingStore().Set("isSuggested", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetKeywords sets the keywords property value. Keywords that trigger this QnA to appear in search results.
 func (m *Qna) SetKeywords(value AnswerKeywordable)() {
-    m.keywords = value
+    err := m.GetBackingStore().Set("keywords", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLanguageTags sets the languageTags property value. A list of geographically specific language names in which this QnA can be viewed. Each language tag value follows the pattern {language}-{region}. For example, en-us is English as used in the United States. For the list of possible values, see Supported language tags.
 func (m *Qna) SetLanguageTags(value []string)() {
-    m.languageTags = value
+    err := m.GetBackingStore().Set("languageTags", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPlatforms sets the platforms property value. List of devices and operating systems that are able to view this QnA. Possible values are: android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, unknown, androidASOP, androidMobileApplicationManagement, iOSMobileApplicationManagement, unknownFutureValue.
 func (m *Qna) SetPlatforms(value []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.DevicePlatformType)() {
-    m.platforms = value
+    err := m.GetBackingStore().Set("platforms", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetState sets the state property value. The state property
 func (m *Qna) SetState(value *AnswerState)() {
-    m.state = value
+    err := m.GetBackingStore().Set("state", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTargetedVariations sets the targetedVariations property value. Variations of a QnA for different countries/regions or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.
 func (m *Qna) SetTargetedVariations(value []AnswerVariantable)() {
-    m.targetedVariations = value
+    err := m.GetBackingStore().Set("targetedVariations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Qnaable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

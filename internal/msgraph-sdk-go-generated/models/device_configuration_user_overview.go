@@ -10,20 +10,6 @@ import (
 
 type DeviceConfigurationUserOverview struct {
     Entity
-    // Version of the policy for that overview
-    configurationVersion *int32
-    // Number of error Users
-    errorCount *int32
-    // Number of failed Users
-    failedCount *int32
-    // Last update time
-    lastUpdateDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Number of not applicable users
-    notApplicableCount *int32
-    // Number of pending Users
-    pendingCount *int32
-    // Number of succeeded Users
-    successCount *int32
 }
 // NewDeviceConfigurationUserOverview instantiates a new DeviceConfigurationUserOverview and sets the default values.
 func NewDeviceConfigurationUserOverview()(*DeviceConfigurationUserOverview) {
@@ -40,17 +26,38 @@ func CreateDeviceConfigurationUserOverviewFromDiscriminatorValue(parseNode i878a
 // GetConfigurationVersion gets the configurationVersion property value. Version of the policy for that overview
 // returns a *int32 when successful
 func (m *DeviceConfigurationUserOverview) GetConfigurationVersion()(*int32) {
-    return m.configurationVersion
+    val, err := m.GetBackingStore().Get("configurationVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetErrorCount gets the errorCount property value. Number of error Users
 // returns a *int32 when successful
 func (m *DeviceConfigurationUserOverview) GetErrorCount()(*int32) {
-    return m.errorCount
+    val, err := m.GetBackingStore().Get("errorCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFailedCount gets the failedCount property value. Number of failed Users
 // returns a *int32 when successful
 func (m *DeviceConfigurationUserOverview) GetFailedCount()(*int32) {
-    return m.failedCount
+    val, err := m.GetBackingStore().Get("failedCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -131,22 +138,50 @@ func (m *DeviceConfigurationUserOverview) GetFieldDeserializers()(map[string]fun
 // GetLastUpdateDateTime gets the lastUpdateDateTime property value. Last update time
 // returns a *Time when successful
 func (m *DeviceConfigurationUserOverview) GetLastUpdateDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastUpdateDateTime
+    val, err := m.GetBackingStore().Get("lastUpdateDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetNotApplicableCount gets the notApplicableCount property value. Number of not applicable users
 // returns a *int32 when successful
 func (m *DeviceConfigurationUserOverview) GetNotApplicableCount()(*int32) {
-    return m.notApplicableCount
+    val, err := m.GetBackingStore().Get("notApplicableCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetPendingCount gets the pendingCount property value. Number of pending Users
 // returns a *int32 when successful
 func (m *DeviceConfigurationUserOverview) GetPendingCount()(*int32) {
-    return m.pendingCount
+    val, err := m.GetBackingStore().Get("pendingCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetSuccessCount gets the successCount property value. Number of succeeded Users
 // returns a *int32 when successful
 func (m *DeviceConfigurationUserOverview) GetSuccessCount()(*int32) {
-    return m.successCount
+    val, err := m.GetBackingStore().Get("successCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DeviceConfigurationUserOverview) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -200,31 +235,52 @@ func (m *DeviceConfigurationUserOverview) Serialize(writer i878a80d2330e89d26896
 }
 // SetConfigurationVersion sets the configurationVersion property value. Version of the policy for that overview
 func (m *DeviceConfigurationUserOverview) SetConfigurationVersion(value *int32)() {
-    m.configurationVersion = value
+    err := m.GetBackingStore().Set("configurationVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetErrorCount sets the errorCount property value. Number of error Users
 func (m *DeviceConfigurationUserOverview) SetErrorCount(value *int32)() {
-    m.errorCount = value
+    err := m.GetBackingStore().Set("errorCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFailedCount sets the failedCount property value. Number of failed Users
 func (m *DeviceConfigurationUserOverview) SetFailedCount(value *int32)() {
-    m.failedCount = value
+    err := m.GetBackingStore().Set("failedCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastUpdateDateTime sets the lastUpdateDateTime property value. Last update time
 func (m *DeviceConfigurationUserOverview) SetLastUpdateDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastUpdateDateTime = value
+    err := m.GetBackingStore().Set("lastUpdateDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNotApplicableCount sets the notApplicableCount property value. Number of not applicable users
 func (m *DeviceConfigurationUserOverview) SetNotApplicableCount(value *int32)() {
-    m.notApplicableCount = value
+    err := m.GetBackingStore().Set("notApplicableCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPendingCount sets the pendingCount property value. Number of pending Users
 func (m *DeviceConfigurationUserOverview) SetPendingCount(value *int32)() {
-    m.pendingCount = value
+    err := m.GetBackingStore().Set("pendingCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSuccessCount sets the successCount property value. Number of succeeded Users
 func (m *DeviceConfigurationUserOverview) SetSuccessCount(value *int32)() {
-    m.successCount = value
+    err := m.GetBackingStore().Set("successCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DeviceConfigurationUserOverviewable interface {
     Entityable

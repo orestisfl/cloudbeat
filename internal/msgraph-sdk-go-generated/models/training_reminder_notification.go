@@ -9,8 +9,6 @@ import (
 
 type TrainingReminderNotification struct {
     BaseEndUserNotification
-    // Configurable frequency for the reminder email introduced during simulation creation. Possible values are: unknown, weekly, biWeekly, unknownFutureValue.
-    deliveryFrequency *NotificationDeliveryFrequency
 }
 // NewTrainingReminderNotification instantiates a new TrainingReminderNotification and sets the default values.
 func NewTrainingReminderNotification()(*TrainingReminderNotification) {
@@ -29,7 +27,14 @@ func CreateTrainingReminderNotificationFromDiscriminatorValue(parseNode i878a80d
 // GetDeliveryFrequency gets the deliveryFrequency property value. Configurable frequency for the reminder email introduced during simulation creation. Possible values are: unknown, weekly, biWeekly, unknownFutureValue.
 // returns a *NotificationDeliveryFrequency when successful
 func (m *TrainingReminderNotification) GetDeliveryFrequency()(*NotificationDeliveryFrequency) {
-    return m.deliveryFrequency
+    val, err := m.GetBackingStore().Get("deliveryFrequency")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*NotificationDeliveryFrequency)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *TrainingReminderNotification) Serialize(writer i878a80d2330e89d26896388
 }
 // SetDeliveryFrequency sets the deliveryFrequency property value. Configurable frequency for the reminder email introduced during simulation creation. Possible values are: unknown, weekly, biWeekly, unknownFutureValue.
 func (m *TrainingReminderNotification) SetDeliveryFrequency(value *NotificationDeliveryFrequency)() {
-    m.deliveryFrequency = value
+    err := m.GetBackingStore().Set("deliveryFrequency", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TrainingReminderNotificationable interface {
     BaseEndUserNotificationable

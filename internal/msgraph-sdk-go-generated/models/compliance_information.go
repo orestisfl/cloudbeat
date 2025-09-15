@@ -5,22 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type ComplianceInformation struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Collection of the certification controls associated with the certification.
-    certificationControls []CertificationControlable
-    // The name of the compliance certification, for example, ISO 27018:2014, GDPR, FedRAMP, and NIST 800-171.
-    certificationName *string
-    // The OdataType property
-    odataType *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewComplianceInformation instantiates a new ComplianceInformation and sets the default values.
 func NewComplianceInformation()(*ComplianceInformation) {
     m := &ComplianceInformation{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -32,17 +28,44 @@ func CreateComplianceInformationFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *ComplianceInformation) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *ComplianceInformation) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetCertificationControls gets the certificationControls property value. Collection of the certification controls associated with the certification.
 // returns a []CertificationControlable when successful
 func (m *ComplianceInformation) GetCertificationControls()([]CertificationControlable) {
-    return m.certificationControls
+    val, err := m.GetBackingStore().Get("certificationControls")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CertificationControlable)
+    }
+    return nil
 }
 // GetCertificationName gets the certificationName property value. The name of the compliance certification, for example, ISO 27018:2014, GDPR, FedRAMP, and NIST 800-171.
 // returns a *string when successful
 func (m *ComplianceInformation) GetCertificationName()(*string) {
-    return m.certificationName
+    val, err := m.GetBackingStore().Get("certificationName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -89,7 +112,14 @@ func (m *ComplianceInformation) GetFieldDeserializers()(map[string]func(i878a80d
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *ComplianceInformation) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ComplianceInformation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -127,26 +157,45 @@ func (m *ComplianceInformation) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ComplianceInformation) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *ComplianceInformation) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetCertificationControls sets the certificationControls property value. Collection of the certification controls associated with the certification.
 func (m *ComplianceInformation) SetCertificationControls(value []CertificationControlable)() {
-    m.certificationControls = value
+    err := m.GetBackingStore().Set("certificationControls", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCertificationName sets the certificationName property value. The name of the compliance certification, for example, ISO 27018:2014, GDPR, FedRAMP, and NIST 800-171.
 func (m *ComplianceInformation) SetCertificationName(value *string)() {
-    m.certificationName = value
+    err := m.GetBackingStore().Set("certificationName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ComplianceInformation) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ComplianceInformationable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetCertificationControls()([]CertificationControlable)
     GetCertificationName()(*string)
     GetOdataType()(*string)
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetCertificationControls(value []CertificationControlable)()
     SetCertificationName(value *string)()
     SetOdataType(value *string)()

@@ -9,10 +9,6 @@ import (
 
 type WorkbookCommentReply struct {
     Entity
-    // The content of the reply.
-    content *string
-    // The content type for the reply.
-    contentType *string
 }
 // NewWorkbookCommentReply instantiates a new WorkbookCommentReply and sets the default values.
 func NewWorkbookCommentReply()(*WorkbookCommentReply) {
@@ -29,12 +25,26 @@ func CreateWorkbookCommentReplyFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetContent gets the content property value. The content of the reply.
 // returns a *string when successful
 func (m *WorkbookCommentReply) GetContent()(*string) {
-    return m.content
+    val, err := m.GetBackingStore().Get("content")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetContentType gets the contentType property value. The content type for the reply.
 // returns a *string when successful
 func (m *WorkbookCommentReply) GetContentType()(*string) {
-    return m.contentType
+    val, err := m.GetBackingStore().Get("contentType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -84,11 +94,17 @@ func (m *WorkbookCommentReply) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetContent sets the content property value. The content of the reply.
 func (m *WorkbookCommentReply) SetContent(value *string)() {
-    m.content = value
+    err := m.GetBackingStore().Set("content", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetContentType sets the contentType property value. The content type for the reply.
 func (m *WorkbookCommentReply) SetContentType(value *string)() {
-    m.contentType = value
+    err := m.GetBackingStore().Set("contentType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookCommentReplyable interface {
     Entityable

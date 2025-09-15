@@ -9,8 +9,6 @@ import (
 
 type FilePlanAppliedCategory struct {
     FilePlanDescriptorBase
-    // Represents the file plan descriptor for a subcategory under a specific category, which has been assigned to a particular retention label.
-    subcategory FilePlanSubcategoryable
 }
 // NewFilePlanAppliedCategory instantiates a new FilePlanAppliedCategory and sets the default values.
 func NewFilePlanAppliedCategory()(*FilePlanAppliedCategory) {
@@ -43,7 +41,14 @@ func (m *FilePlanAppliedCategory) GetFieldDeserializers()(map[string]func(i878a8
 // GetSubcategory gets the subcategory property value. Represents the file plan descriptor for a subcategory under a specific category, which has been assigned to a particular retention label.
 // returns a FilePlanSubcategoryable when successful
 func (m *FilePlanAppliedCategory) GetSubcategory()(FilePlanSubcategoryable) {
-    return m.subcategory
+    val, err := m.GetBackingStore().Get("subcategory")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FilePlanSubcategoryable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *FilePlanAppliedCategory) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *FilePlanAppliedCategory) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetSubcategory sets the subcategory property value. Represents the file plan descriptor for a subcategory under a specific category, which has been assigned to a particular retention label.
 func (m *FilePlanAppliedCategory) SetSubcategory(value FilePlanSubcategoryable)() {
-    m.subcategory = value
+    err := m.GetBackingStore().Set("subcategory", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type FilePlanAppliedCategoryable interface {
     FilePlanDescriptorBaseable

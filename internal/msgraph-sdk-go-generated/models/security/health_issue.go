@@ -11,32 +11,6 @@ import (
 
 type HealthIssue struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Contains additional information about the issue, such as a list of items to fix.
-    additionalInformation []string
-    // The date and time when the health issue was generated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Contains more detailed information about the health issue.
-    description *string
-    // The display name of the health issue.
-    displayName *string
-    // A list of the fully qualified domain names of the domains or the sensors the health issue is related to.
-    domainNames []string
-    // The type of the health issue. The possible values are: sensor, global, unknownFutureValue. For a list of all health issues and their identifiers, see Microsoft Defender for Identity health issues.
-    healthIssueType *HealthIssueType
-    // The type identifier of the health issue. For a list of all health issues and their identifiers, see Microsoft Defender for Identity health issues.
-    issueTypeId *string
-    // The date and time when the health issue was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // A list of recommended actions that can be taken to resolve the issue effectively and efficiently. These actions might include instructions for further investigation and aren't limited to prewritten responses.
-    recommendations []string
-    // A list of commands from the PowerShell module for the product that can be used to resolve the issue, if available. If no commands can be used to solve the issue, this property is empty. The commands, if present, provide a quick and efficient way to address the issue. These commands run in sequence for the single recommended fix.
-    recommendedActionCommands []string
-    // A list of the DNS names of the sensors the health issue is related to.
-    sensorDNSNames []string
-    // The severity of the health issue. The possible values are: low, medium, high, unknownFutureValue.
-    severity *HealthIssueSeverity
-    // The status of the health issue. The possible values are: open, closed, suppressed, unknownFutureValue.
-    status *HealthIssueStatus
 }
 // NewHealthIssue instantiates a new HealthIssue and sets the default values.
 func NewHealthIssue()(*HealthIssue) {
@@ -53,27 +27,62 @@ func CreateHealthIssueFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 // GetAdditionalInformation gets the additionalInformation property value. Contains additional information about the issue, such as a list of items to fix.
 // returns a []string when successful
 func (m *HealthIssue) GetAdditionalInformation()([]string) {
-    return m.additionalInformation
+    val, err := m.GetBackingStore().Get("additionalInformation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The date and time when the health issue was generated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *HealthIssue) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDescription gets the description property value. Contains more detailed information about the health issue.
 // returns a *string when successful
 func (m *HealthIssue) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The display name of the health issue.
 // returns a *string when successful
 func (m *HealthIssue) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDomainNames gets the domainNames property value. A list of the fully qualified domain names of the domains or the sensors the health issue is related to.
 // returns a []string when successful
 func (m *HealthIssue) GetDomainNames()([]string) {
-    return m.domainNames
+    val, err := m.GetBackingStore().Get("domainNames")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -244,42 +253,98 @@ func (m *HealthIssue) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetHealthIssueType gets the healthIssueType property value. The type of the health issue. The possible values are: sensor, global, unknownFutureValue. For a list of all health issues and their identifiers, see Microsoft Defender for Identity health issues.
 // returns a *HealthIssueType when successful
 func (m *HealthIssue) GetHealthIssueType()(*HealthIssueType) {
-    return m.healthIssueType
+    val, err := m.GetBackingStore().Get("healthIssueType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*HealthIssueType)
+    }
+    return nil
 }
 // GetIssueTypeId gets the issueTypeId property value. The type identifier of the health issue. For a list of all health issues and their identifiers, see Microsoft Defender for Identity health issues.
 // returns a *string when successful
 func (m *HealthIssue) GetIssueTypeId()(*string) {
-    return m.issueTypeId
+    val, err := m.GetBackingStore().Get("issueTypeId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. The date and time when the health issue was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *HealthIssue) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRecommendations gets the recommendations property value. A list of recommended actions that can be taken to resolve the issue effectively and efficiently. These actions might include instructions for further investigation and aren't limited to prewritten responses.
 // returns a []string when successful
 func (m *HealthIssue) GetRecommendations()([]string) {
-    return m.recommendations
+    val, err := m.GetBackingStore().Get("recommendations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetRecommendedActionCommands gets the recommendedActionCommands property value. A list of commands from the PowerShell module for the product that can be used to resolve the issue, if available. If no commands can be used to solve the issue, this property is empty. The commands, if present, provide a quick and efficient way to address the issue. These commands run in sequence for the single recommended fix.
 // returns a []string when successful
 func (m *HealthIssue) GetRecommendedActionCommands()([]string) {
-    return m.recommendedActionCommands
+    val, err := m.GetBackingStore().Get("recommendedActionCommands")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetSensorDNSNames gets the sensorDNSNames property value. A list of the DNS names of the sensors the health issue is related to.
 // returns a []string when successful
 func (m *HealthIssue) GetSensorDNSNames()([]string) {
-    return m.sensorDNSNames
+    val, err := m.GetBackingStore().Get("sensorDNSNames")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetSeverity gets the severity property value. The severity of the health issue. The possible values are: low, medium, high, unknownFutureValue.
 // returns a *HealthIssueSeverity when successful
 func (m *HealthIssue) GetSeverity()(*HealthIssueSeverity) {
-    return m.severity
+    val, err := m.GetBackingStore().Get("severity")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*HealthIssueSeverity)
+    }
+    return nil
 }
 // GetStatus gets the status property value. The status of the health issue. The possible values are: open, closed, suppressed, unknownFutureValue.
 // returns a *HealthIssueStatus when successful
 func (m *HealthIssue) GetStatus()(*HealthIssueStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*HealthIssueStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *HealthIssue) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -372,55 +437,94 @@ func (m *HealthIssue) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetAdditionalInformation sets the additionalInformation property value. Contains additional information about the issue, such as a list of items to fix.
 func (m *HealthIssue) SetAdditionalInformation(value []string)() {
-    m.additionalInformation = value
+    err := m.GetBackingStore().Set("additionalInformation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The date and time when the health issue was generated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *HealthIssue) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. Contains more detailed information about the health issue.
 func (m *HealthIssue) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The display name of the health issue.
 func (m *HealthIssue) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDomainNames sets the domainNames property value. A list of the fully qualified domain names of the domains or the sensors the health issue is related to.
 func (m *HealthIssue) SetDomainNames(value []string)() {
-    m.domainNames = value
+    err := m.GetBackingStore().Set("domainNames", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetHealthIssueType sets the healthIssueType property value. The type of the health issue. The possible values are: sensor, global, unknownFutureValue. For a list of all health issues and their identifiers, see Microsoft Defender for Identity health issues.
 func (m *HealthIssue) SetHealthIssueType(value *HealthIssueType)() {
-    m.healthIssueType = value
+    err := m.GetBackingStore().Set("healthIssueType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIssueTypeId sets the issueTypeId property value. The type identifier of the health issue. For a list of all health issues and their identifiers, see Microsoft Defender for Identity health issues.
 func (m *HealthIssue) SetIssueTypeId(value *string)() {
-    m.issueTypeId = value
+    err := m.GetBackingStore().Set("issueTypeId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. The date and time when the health issue was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *HealthIssue) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecommendations sets the recommendations property value. A list of recommended actions that can be taken to resolve the issue effectively and efficiently. These actions might include instructions for further investigation and aren't limited to prewritten responses.
 func (m *HealthIssue) SetRecommendations(value []string)() {
-    m.recommendations = value
+    err := m.GetBackingStore().Set("recommendations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecommendedActionCommands sets the recommendedActionCommands property value. A list of commands from the PowerShell module for the product that can be used to resolve the issue, if available. If no commands can be used to solve the issue, this property is empty. The commands, if present, provide a quick and efficient way to address the issue. These commands run in sequence for the single recommended fix.
 func (m *HealthIssue) SetRecommendedActionCommands(value []string)() {
-    m.recommendedActionCommands = value
+    err := m.GetBackingStore().Set("recommendedActionCommands", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSensorDNSNames sets the sensorDNSNames property value. A list of the DNS names of the sensors the health issue is related to.
 func (m *HealthIssue) SetSensorDNSNames(value []string)() {
-    m.sensorDNSNames = value
+    err := m.GetBackingStore().Set("sensorDNSNames", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSeverity sets the severity property value. The severity of the health issue. The possible values are: low, medium, high, unknownFutureValue.
 func (m *HealthIssue) SetSeverity(value *HealthIssueSeverity)() {
-    m.severity = value
+    err := m.GetBackingStore().Set("severity", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. The status of the health issue. The possible values are: open, closed, suppressed, unknownFutureValue.
 func (m *HealthIssue) SetStatus(value *HealthIssueStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type HealthIssueable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

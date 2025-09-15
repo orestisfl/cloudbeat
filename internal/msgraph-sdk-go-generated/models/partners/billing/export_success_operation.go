@@ -9,8 +9,6 @@ import (
 
 type ExportSuccessOperation struct {
     Operation
-    // The resourceLocation property
-    resourceLocation Manifestable
 }
 // NewExportSuccessOperation instantiates a new ExportSuccessOperation and sets the default values.
 func NewExportSuccessOperation()(*ExportSuccessOperation) {
@@ -43,7 +41,14 @@ func (m *ExportSuccessOperation) GetFieldDeserializers()(map[string]func(i878a80
 // GetResourceLocation gets the resourceLocation property value. The resourceLocation property
 // returns a Manifestable when successful
 func (m *ExportSuccessOperation) GetResourceLocation()(Manifestable) {
-    return m.resourceLocation
+    val, err := m.GetBackingStore().Get("resourceLocation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Manifestable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ExportSuccessOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *ExportSuccessOperation) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetResourceLocation sets the resourceLocation property value. The resourceLocation property
 func (m *ExportSuccessOperation) SetResourceLocation(value Manifestable)() {
-    m.resourceLocation = value
+    err := m.GetBackingStore().Set("resourceLocation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ExportSuccessOperationable interface {
     Operationable

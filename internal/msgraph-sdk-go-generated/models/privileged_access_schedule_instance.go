@@ -10,10 +10,6 @@ import (
 
 type PrivilegedAccessScheduleInstance struct {
     Entity
-    // When the schedule instance ends. Required.
-    endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // When this instance starts. Required.
-    startDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewPrivilegedAccessScheduleInstance instantiates a new PrivilegedAccessScheduleInstance and sets the default values.
 func NewPrivilegedAccessScheduleInstance()(*PrivilegedAccessScheduleInstance) {
@@ -50,7 +46,14 @@ func CreatePrivilegedAccessScheduleInstanceFromDiscriminatorValue(parseNode i878
 // GetEndDateTime gets the endDateTime property value. When the schedule instance ends. Required.
 // returns a *Time when successful
 func (m *PrivilegedAccessScheduleInstance) GetEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.endDateTime
+    val, err := m.GetBackingStore().Get("endDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -81,7 +84,14 @@ func (m *PrivilegedAccessScheduleInstance) GetFieldDeserializers()(map[string]fu
 // GetStartDateTime gets the startDateTime property value. When this instance starts. Required.
 // returns a *Time when successful
 func (m *PrivilegedAccessScheduleInstance) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PrivilegedAccessScheduleInstance) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -105,11 +115,17 @@ func (m *PrivilegedAccessScheduleInstance) Serialize(writer i878a80d2330e89d2689
 }
 // SetEndDateTime sets the endDateTime property value. When the schedule instance ends. Required.
 func (m *PrivilegedAccessScheduleInstance) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.endDateTime = value
+    err := m.GetBackingStore().Set("endDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. When this instance starts. Required.
 func (m *PrivilegedAccessScheduleInstance) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PrivilegedAccessScheduleInstanceable interface {
     Entityable

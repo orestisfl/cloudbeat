@@ -9,10 +9,6 @@ import (
 
 type EdiscoveryNoncustodialDataSource struct {
     DataSourceContainer
-    // User source or SharePoint site data source as noncustodial data source.
-    dataSource DataSourceable
-    // Operation entity that represents the latest indexing for the noncustodial data source.
-    lastIndexOperation EdiscoveryIndexOperationable
 }
 // NewEdiscoveryNoncustodialDataSource instantiates a new EdiscoveryNoncustodialDataSource and sets the default values.
 func NewEdiscoveryNoncustodialDataSource()(*EdiscoveryNoncustodialDataSource) {
@@ -31,7 +27,14 @@ func CreateEdiscoveryNoncustodialDataSourceFromDiscriminatorValue(parseNode i878
 // GetDataSource gets the dataSource property value. User source or SharePoint site data source as noncustodial data source.
 // returns a DataSourceable when successful
 func (m *EdiscoveryNoncustodialDataSource) GetDataSource()(DataSourceable) {
-    return m.dataSource
+    val, err := m.GetBackingStore().Get("dataSource")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DataSourceable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -62,7 +65,14 @@ func (m *EdiscoveryNoncustodialDataSource) GetFieldDeserializers()(map[string]fu
 // GetLastIndexOperation gets the lastIndexOperation property value. Operation entity that represents the latest indexing for the noncustodial data source.
 // returns a EdiscoveryIndexOperationable when successful
 func (m *EdiscoveryNoncustodialDataSource) GetLastIndexOperation()(EdiscoveryIndexOperationable) {
-    return m.lastIndexOperation
+    val, err := m.GetBackingStore().Get("lastIndexOperation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EdiscoveryIndexOperationable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EdiscoveryNoncustodialDataSource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *EdiscoveryNoncustodialDataSource) Serialize(writer i878a80d2330e89d2689
 }
 // SetDataSource sets the dataSource property value. User source or SharePoint site data source as noncustodial data source.
 func (m *EdiscoveryNoncustodialDataSource) SetDataSource(value DataSourceable)() {
-    m.dataSource = value
+    err := m.GetBackingStore().Set("dataSource", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastIndexOperation sets the lastIndexOperation property value. Operation entity that represents the latest indexing for the noncustodial data source.
 func (m *EdiscoveryNoncustodialDataSource) SetLastIndexOperation(value EdiscoveryIndexOperationable)() {
-    m.lastIndexOperation = value
+    err := m.GetBackingStore().Set("lastIndexOperation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EdiscoveryNoncustodialDataSourceable interface {
     DataSourceContainerable

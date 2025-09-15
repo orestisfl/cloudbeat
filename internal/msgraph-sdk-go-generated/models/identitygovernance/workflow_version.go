@@ -9,8 +9,6 @@ import (
 
 type WorkflowVersion struct {
     WorkflowBase
-    // The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
-    versionNumber *int32
 }
 // NewWorkflowVersion instantiates a new WorkflowVersion and sets the default values.
 func NewWorkflowVersion()(*WorkflowVersion) {
@@ -45,7 +43,14 @@ func (m *WorkflowVersion) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetVersionNumber gets the versionNumber property value. The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 // returns a *int32 when successful
 func (m *WorkflowVersion) GetVersionNumber()(*int32) {
-    return m.versionNumber
+    val, err := m.GetBackingStore().Get("versionNumber")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkflowVersion) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *WorkflowVersion) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetVersionNumber sets the versionNumber property value. The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
 func (m *WorkflowVersion) SetVersionNumber(value *int32)() {
-    m.versionNumber = value
+    err := m.GetBackingStore().Set("versionNumber", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkflowVersionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

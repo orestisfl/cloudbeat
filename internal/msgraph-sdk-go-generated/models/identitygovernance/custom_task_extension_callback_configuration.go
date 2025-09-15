@@ -10,8 +10,6 @@ import (
 
 type CustomTaskExtensionCallbackConfiguration struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.CustomExtensionCallbackConfiguration
-    // The authorizedApps property
-    authorizedApps []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Applicationable
 }
 // NewCustomTaskExtensionCallbackConfiguration instantiates a new CustomTaskExtensionCallbackConfiguration and sets the default values.
 func NewCustomTaskExtensionCallbackConfiguration()(*CustomTaskExtensionCallbackConfiguration) {
@@ -30,7 +28,14 @@ func CreateCustomTaskExtensionCallbackConfigurationFromDiscriminatorValue(parseN
 // GetAuthorizedApps gets the authorizedApps property value. The authorizedApps property
 // returns a []Applicationable when successful
 func (m *CustomTaskExtensionCallbackConfiguration) GetAuthorizedApps()([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Applicationable) {
-    return m.authorizedApps
+    val, err := m.GetBackingStore().Get("authorizedApps")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Applicationable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -76,7 +81,10 @@ func (m *CustomTaskExtensionCallbackConfiguration) Serialize(writer i878a80d2330
 }
 // SetAuthorizedApps sets the authorizedApps property value. The authorizedApps property
 func (m *CustomTaskExtensionCallbackConfiguration) SetAuthorizedApps(value []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Applicationable)() {
-    m.authorizedApps = value
+    err := m.GetBackingStore().Set("authorizedApps", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CustomTaskExtensionCallbackConfigurationable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.CustomExtensionCallbackConfigurationable

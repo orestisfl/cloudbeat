@@ -9,12 +9,6 @@ import (
 
 type SharePointProtectionPolicy struct {
     ProtectionPolicyBase
-    // The rules associated with the SharePoint Protection policy.
-    siteInclusionRules []SiteProtectionRuleable
-    // The protection units (sites) that are protected under the site protection policy.
-    siteProtectionUnits []SiteProtectionUnitable
-    // The siteProtectionUnitsBulkAdditionJobs property
-    siteProtectionUnitsBulkAdditionJobs []SiteProtectionUnitsBulkAdditionJobable
 }
 // NewSharePointProtectionPolicy instantiates a new SharePointProtectionPolicy and sets the default values.
 func NewSharePointProtectionPolicy()(*SharePointProtectionPolicy) {
@@ -87,17 +81,38 @@ func (m *SharePointProtectionPolicy) GetFieldDeserializers()(map[string]func(i87
 // GetSiteInclusionRules gets the siteInclusionRules property value. The rules associated with the SharePoint Protection policy.
 // returns a []SiteProtectionRuleable when successful
 func (m *SharePointProtectionPolicy) GetSiteInclusionRules()([]SiteProtectionRuleable) {
-    return m.siteInclusionRules
+    val, err := m.GetBackingStore().Get("siteInclusionRules")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteProtectionRuleable)
+    }
+    return nil
 }
 // GetSiteProtectionUnits gets the siteProtectionUnits property value. The protection units (sites) that are protected under the site protection policy.
 // returns a []SiteProtectionUnitable when successful
 func (m *SharePointProtectionPolicy) GetSiteProtectionUnits()([]SiteProtectionUnitable) {
-    return m.siteProtectionUnits
+    val, err := m.GetBackingStore().Get("siteProtectionUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteProtectionUnitable)
+    }
+    return nil
 }
 // GetSiteProtectionUnitsBulkAdditionJobs gets the siteProtectionUnitsBulkAdditionJobs property value. The siteProtectionUnitsBulkAdditionJobs property
 // returns a []SiteProtectionUnitsBulkAdditionJobable when successful
 func (m *SharePointProtectionPolicy) GetSiteProtectionUnitsBulkAdditionJobs()([]SiteProtectionUnitsBulkAdditionJobable) {
-    return m.siteProtectionUnitsBulkAdditionJobs
+    val, err := m.GetBackingStore().Get("siteProtectionUnitsBulkAdditionJobs")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SiteProtectionUnitsBulkAdditionJobable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SharePointProtectionPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -145,15 +160,24 @@ func (m *SharePointProtectionPolicy) Serialize(writer i878a80d2330e89d26896388a3
 }
 // SetSiteInclusionRules sets the siteInclusionRules property value. The rules associated with the SharePoint Protection policy.
 func (m *SharePointProtectionPolicy) SetSiteInclusionRules(value []SiteProtectionRuleable)() {
-    m.siteInclusionRules = value
+    err := m.GetBackingStore().Set("siteInclusionRules", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteProtectionUnits sets the siteProtectionUnits property value. The protection units (sites) that are protected under the site protection policy.
 func (m *SharePointProtectionPolicy) SetSiteProtectionUnits(value []SiteProtectionUnitable)() {
-    m.siteProtectionUnits = value
+    err := m.GetBackingStore().Set("siteProtectionUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSiteProtectionUnitsBulkAdditionJobs sets the siteProtectionUnitsBulkAdditionJobs property value. The siteProtectionUnitsBulkAdditionJobs property
 func (m *SharePointProtectionPolicy) SetSiteProtectionUnitsBulkAdditionJobs(value []SiteProtectionUnitsBulkAdditionJobable)() {
-    m.siteProtectionUnitsBulkAdditionJobs = value
+    err := m.GetBackingStore().Set("siteProtectionUnitsBulkAdditionJobs", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SharePointProtectionPolicyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

@@ -9,8 +9,6 @@ import (
 
 type BinaryContent struct {
     ContentBase
-    // The binary content, encoded as a Base64 string. Inherited from contentBase.
-    data []byte
 }
 // NewBinaryContent instantiates a new BinaryContent and sets the default values.
 func NewBinaryContent()(*BinaryContent) {
@@ -29,7 +27,14 @@ func CreateBinaryContentFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 // GetData gets the data property value. The binary content, encoded as a Base64 string. Inherited from contentBase.
 // returns a []byte when successful
 func (m *BinaryContent) GetData()([]byte) {
-    return m.data
+    val, err := m.GetBackingStore().Get("data")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]byte)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -63,7 +68,10 @@ func (m *BinaryContent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetData sets the data property value. The binary content, encoded as a Base64 string. Inherited from contentBase.
 func (m *BinaryContent) SetData(value []byte)() {
-    m.data = value
+    err := m.GetBackingStore().Set("data", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BinaryContentable interface {
     ContentBaseable

@@ -10,38 +10,6 @@ import (
 
 type ProvisioningObjectSummary struct {
     Entity
-    // Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  SUpports $filter (eq, gt, lt) and orderby.
-    activityDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Unique ID of this change in this cycle. Supports $filter (eq, contains).
-    changeId *string
-    // Unique ID per job iteration. Supports $filter (eq, contains).
-    cycleId *string
-    // Indicates how long this provisioning action took to finish. Measured in milliseconds.
-    durationInMilliseconds *int32
-    // Details of who initiated this provisioning. Supports $filter (eq, contains).
-    initiatedBy Initiatorable
-    // The unique ID for the whole provisioning job. Supports $filter (eq, contains).
-    jobId *string
-    // Details of each property that was modified in this provisioning action on this object.
-    modifiedProperties []ModifiedPropertyable
-    // Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Microsoft Entra activity list. Supports $filter (eq, contains).
-    provisioningAction *ProvisioningAction
-    // Details of provisioning status.
-    provisioningStatusInfo ProvisioningStatusInfoable
-    // Details of each step in provisioning.
-    provisioningSteps []ProvisioningStepable
-    // Represents the service principal used for provisioning. Supports $filter (eq) for id and name.
-    servicePrincipal ProvisioningServicePrincipalable
-    // Details of source object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
-    sourceIdentity ProvisionedIdentityable
-    // Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
-    sourceSystem ProvisioningSystemable
-    // Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
-    targetIdentity ProvisionedIdentityable
-    // Details of target system of the object being provisioned. Supports $filter (eq, contains) for displayName.
-    targetSystem ProvisioningSystemable
-    // Unique Microsoft Entra tenant ID. Supports $filter (eq, contains).
-    tenantId *string
 }
 // NewProvisioningObjectSummary instantiates a new ProvisioningObjectSummary and sets the default values.
 func NewProvisioningObjectSummary()(*ProvisioningObjectSummary) {
@@ -58,22 +26,50 @@ func CreateProvisioningObjectSummaryFromDiscriminatorValue(parseNode i878a80d233
 // GetActivityDateTime gets the activityDateTime property value. Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  SUpports $filter (eq, gt, lt) and orderby.
 // returns a *Time when successful
 func (m *ProvisioningObjectSummary) GetActivityDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.activityDateTime
+    val, err := m.GetBackingStore().Get("activityDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetChangeId gets the changeId property value. Unique ID of this change in this cycle. Supports $filter (eq, contains).
 // returns a *string when successful
 func (m *ProvisioningObjectSummary) GetChangeId()(*string) {
-    return m.changeId
+    val, err := m.GetBackingStore().Get("changeId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCycleId gets the cycleId property value. Unique ID per job iteration. Supports $filter (eq, contains).
 // returns a *string when successful
 func (m *ProvisioningObjectSummary) GetCycleId()(*string) {
-    return m.cycleId
+    val, err := m.GetBackingStore().Get("cycleId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDurationInMilliseconds gets the durationInMilliseconds property value. Indicates how long this provisioning action took to finish. Measured in milliseconds.
 // returns a *int32 when successful
 func (m *ProvisioningObjectSummary) GetDurationInMilliseconds()(*int32) {
-    return m.durationInMilliseconds
+    val, err := m.GetBackingStore().Get("durationInMilliseconds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -256,62 +252,146 @@ func (m *ProvisioningObjectSummary) GetFieldDeserializers()(map[string]func(i878
 // GetInitiatedBy gets the initiatedBy property value. Details of who initiated this provisioning. Supports $filter (eq, contains).
 // returns a Initiatorable when successful
 func (m *ProvisioningObjectSummary) GetInitiatedBy()(Initiatorable) {
-    return m.initiatedBy
+    val, err := m.GetBackingStore().Get("initiatedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Initiatorable)
+    }
+    return nil
 }
 // GetJobId gets the jobId property value. The unique ID for the whole provisioning job. Supports $filter (eq, contains).
 // returns a *string when successful
 func (m *ProvisioningObjectSummary) GetJobId()(*string) {
-    return m.jobId
+    val, err := m.GetBackingStore().Get("jobId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetModifiedProperties gets the modifiedProperties property value. Details of each property that was modified in this provisioning action on this object.
 // returns a []ModifiedPropertyable when successful
 func (m *ProvisioningObjectSummary) GetModifiedProperties()([]ModifiedPropertyable) {
-    return m.modifiedProperties
+    val, err := m.GetBackingStore().Get("modifiedProperties")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ModifiedPropertyable)
+    }
+    return nil
 }
 // GetProvisioningAction gets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Microsoft Entra activity list. Supports $filter (eq, contains).
 // returns a *ProvisioningAction when successful
 func (m *ProvisioningObjectSummary) GetProvisioningAction()(*ProvisioningAction) {
-    return m.provisioningAction
+    val, err := m.GetBackingStore().Get("provisioningAction")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ProvisioningAction)
+    }
+    return nil
 }
 // GetProvisioningStatusInfo gets the provisioningStatusInfo property value. Details of provisioning status.
 // returns a ProvisioningStatusInfoable when successful
 func (m *ProvisioningObjectSummary) GetProvisioningStatusInfo()(ProvisioningStatusInfoable) {
-    return m.provisioningStatusInfo
+    val, err := m.GetBackingStore().Get("provisioningStatusInfo")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ProvisioningStatusInfoable)
+    }
+    return nil
 }
 // GetProvisioningSteps gets the provisioningSteps property value. Details of each step in provisioning.
 // returns a []ProvisioningStepable when successful
 func (m *ProvisioningObjectSummary) GetProvisioningSteps()([]ProvisioningStepable) {
-    return m.provisioningSteps
+    val, err := m.GetBackingStore().Get("provisioningSteps")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ProvisioningStepable)
+    }
+    return nil
 }
 // GetServicePrincipal gets the servicePrincipal property value. Represents the service principal used for provisioning. Supports $filter (eq) for id and name.
 // returns a ProvisioningServicePrincipalable when successful
 func (m *ProvisioningObjectSummary) GetServicePrincipal()(ProvisioningServicePrincipalable) {
-    return m.servicePrincipal
+    val, err := m.GetBackingStore().Get("servicePrincipal")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ProvisioningServicePrincipalable)
+    }
+    return nil
 }
 // GetSourceIdentity gets the sourceIdentity property value. Details of source object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 // returns a ProvisionedIdentityable when successful
 func (m *ProvisioningObjectSummary) GetSourceIdentity()(ProvisionedIdentityable) {
-    return m.sourceIdentity
+    val, err := m.GetBackingStore().Get("sourceIdentity")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ProvisionedIdentityable)
+    }
+    return nil
 }
 // GetSourceSystem gets the sourceSystem property value. Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 // returns a ProvisioningSystemable when successful
 func (m *ProvisioningObjectSummary) GetSourceSystem()(ProvisioningSystemable) {
-    return m.sourceSystem
+    val, err := m.GetBackingStore().Get("sourceSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ProvisioningSystemable)
+    }
+    return nil
 }
 // GetTargetIdentity gets the targetIdentity property value. Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 // returns a ProvisionedIdentityable when successful
 func (m *ProvisioningObjectSummary) GetTargetIdentity()(ProvisionedIdentityable) {
-    return m.targetIdentity
+    val, err := m.GetBackingStore().Get("targetIdentity")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ProvisionedIdentityable)
+    }
+    return nil
 }
 // GetTargetSystem gets the targetSystem property value. Details of target system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 // returns a ProvisioningSystemable when successful
 func (m *ProvisioningObjectSummary) GetTargetSystem()(ProvisioningSystemable) {
-    return m.targetSystem
+    val, err := m.GetBackingStore().Get("targetSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ProvisioningSystemable)
+    }
+    return nil
 }
 // GetTenantId gets the tenantId property value. Unique Microsoft Entra tenant ID. Supports $filter (eq, contains).
 // returns a *string when successful
 func (m *ProvisioningObjectSummary) GetTenantId()(*string) {
-    return m.tenantId
+    val, err := m.GetBackingStore().Get("tenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProvisioningObjectSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -432,67 +512,115 @@ func (m *ProvisioningObjectSummary) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetActivityDateTime sets the activityDateTime property value. Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  SUpports $filter (eq, gt, lt) and orderby.
 func (m *ProvisioningObjectSummary) SetActivityDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.activityDateTime = value
+    err := m.GetBackingStore().Set("activityDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetChangeId sets the changeId property value. Unique ID of this change in this cycle. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetChangeId(value *string)() {
-    m.changeId = value
+    err := m.GetBackingStore().Set("changeId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCycleId sets the cycleId property value. Unique ID per job iteration. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetCycleId(value *string)() {
-    m.cycleId = value
+    err := m.GetBackingStore().Set("cycleId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDurationInMilliseconds sets the durationInMilliseconds property value. Indicates how long this provisioning action took to finish. Measured in milliseconds.
 func (m *ProvisioningObjectSummary) SetDurationInMilliseconds(value *int32)() {
-    m.durationInMilliseconds = value
+    err := m.GetBackingStore().Set("durationInMilliseconds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetInitiatedBy sets the initiatedBy property value. Details of who initiated this provisioning. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetInitiatedBy(value Initiatorable)() {
-    m.initiatedBy = value
+    err := m.GetBackingStore().Set("initiatedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetJobId sets the jobId property value. The unique ID for the whole provisioning job. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetJobId(value *string)() {
-    m.jobId = value
+    err := m.GetBackingStore().Set("jobId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetModifiedProperties sets the modifiedProperties property value. Details of each property that was modified in this provisioning action on this object.
 func (m *ProvisioningObjectSummary) SetModifiedProperties(value []ModifiedPropertyable)() {
-    m.modifiedProperties = value
+    err := m.GetBackingStore().Set("modifiedProperties", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProvisioningAction sets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Microsoft Entra activity list. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetProvisioningAction(value *ProvisioningAction)() {
-    m.provisioningAction = value
+    err := m.GetBackingStore().Set("provisioningAction", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProvisioningStatusInfo sets the provisioningStatusInfo property value. Details of provisioning status.
 func (m *ProvisioningObjectSummary) SetProvisioningStatusInfo(value ProvisioningStatusInfoable)() {
-    m.provisioningStatusInfo = value
+    err := m.GetBackingStore().Set("provisioningStatusInfo", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProvisioningSteps sets the provisioningSteps property value. Details of each step in provisioning.
 func (m *ProvisioningObjectSummary) SetProvisioningSteps(value []ProvisioningStepable)() {
-    m.provisioningSteps = value
+    err := m.GetBackingStore().Set("provisioningSteps", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServicePrincipal sets the servicePrincipal property value. Represents the service principal used for provisioning. Supports $filter (eq) for id and name.
 func (m *ProvisioningObjectSummary) SetServicePrincipal(value ProvisioningServicePrincipalable)() {
-    m.servicePrincipal = value
+    err := m.GetBackingStore().Set("servicePrincipal", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceIdentity sets the sourceIdentity property value. Details of source object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 func (m *ProvisioningObjectSummary) SetSourceIdentity(value ProvisionedIdentityable)() {
-    m.sourceIdentity = value
+    err := m.GetBackingStore().Set("sourceIdentity", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSourceSystem sets the sourceSystem property value. Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 func (m *ProvisioningObjectSummary) SetSourceSystem(value ProvisioningSystemable)() {
-    m.sourceSystem = value
+    err := m.GetBackingStore().Set("sourceSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTargetIdentity sets the targetIdentity property value. Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 func (m *ProvisioningObjectSummary) SetTargetIdentity(value ProvisionedIdentityable)() {
-    m.targetIdentity = value
+    err := m.GetBackingStore().Set("targetIdentity", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTargetSystem sets the targetSystem property value. Details of target system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 func (m *ProvisioningObjectSummary) SetTargetSystem(value ProvisioningSystemable)() {
-    m.targetSystem = value
+    err := m.GetBackingStore().Set("targetSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTenantId sets the tenantId property value. Unique Microsoft Entra tenant ID. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetTenantId(value *string)() {
-    m.tenantId = value
+    err := m.GetBackingStore().Set("tenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProvisioningObjectSummaryable interface {
     Entityable

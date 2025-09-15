@@ -10,20 +10,6 @@ import (
 // WindowsAppX contains properties and inherited properties for Windows AppX Line Of Business apps.
 type WindowsAppX struct {
     MobileLobApp
-    // Contains properties for Windows architecture.
-    applicableArchitectures *WindowsArchitecture
-    // The identity name of the uploaded app package. For example: 'Contoso.DemoApp'.
-    identityName *string
-    // The identity publisher hash of the uploaded app package. This is the hash of the publisher from the manifest. For example: 'AB82CD0XYZ'.
-    identityPublisherHash *string
-    // The identity resource identifier of the uploaded app package. For example: 'TestResourceId'.
-    identityResourceIdentifier *string
-    // The identity version of the uploaded app package. For example: '1.0.0.0'.
-    identityVersion *string
-    // When TRUE, indicates that the app is a bundle. When FALSE, indicates that the app is not a bundle. By default, property is set to FALSE.
-    isBundle *bool
-    // The minimum operating system required for a Windows mobile app.
-    minimumSupportedOperatingSystem WindowsMinimumOperatingSystemable
 }
 // NewWindowsAppX instantiates a new WindowsAppX and sets the default values.
 func NewWindowsAppX()(*WindowsAppX) {
@@ -42,7 +28,14 @@ func CreateWindowsAppXFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 // GetApplicableArchitectures gets the applicableArchitectures property value. Contains properties for Windows architecture.
 // returns a *WindowsArchitecture when successful
 func (m *WindowsAppX) GetApplicableArchitectures()(*WindowsArchitecture) {
-    return m.applicableArchitectures
+    val, err := m.GetBackingStore().Get("applicableArchitectures")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*WindowsArchitecture)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -123,32 +116,74 @@ func (m *WindowsAppX) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetIdentityName gets the identityName property value. The identity name of the uploaded app package. For example: 'Contoso.DemoApp'.
 // returns a *string when successful
 func (m *WindowsAppX) GetIdentityName()(*string) {
-    return m.identityName
+    val, err := m.GetBackingStore().Get("identityName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIdentityPublisherHash gets the identityPublisherHash property value. The identity publisher hash of the uploaded app package. This is the hash of the publisher from the manifest. For example: 'AB82CD0XYZ'.
 // returns a *string when successful
 func (m *WindowsAppX) GetIdentityPublisherHash()(*string) {
-    return m.identityPublisherHash
+    val, err := m.GetBackingStore().Get("identityPublisherHash")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIdentityResourceIdentifier gets the identityResourceIdentifier property value. The identity resource identifier of the uploaded app package. For example: 'TestResourceId'.
 // returns a *string when successful
 func (m *WindowsAppX) GetIdentityResourceIdentifier()(*string) {
-    return m.identityResourceIdentifier
+    val, err := m.GetBackingStore().Get("identityResourceIdentifier")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIdentityVersion gets the identityVersion property value. The identity version of the uploaded app package. For example: '1.0.0.0'.
 // returns a *string when successful
 func (m *WindowsAppX) GetIdentityVersion()(*string) {
-    return m.identityVersion
+    val, err := m.GetBackingStore().Get("identityVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIsBundle gets the isBundle property value. When TRUE, indicates that the app is a bundle. When FALSE, indicates that the app is not a bundle. By default, property is set to FALSE.
 // returns a *bool when successful
 func (m *WindowsAppX) GetIsBundle()(*bool) {
-    return m.isBundle
+    val, err := m.GetBackingStore().Get("isBundle")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetMinimumSupportedOperatingSystem gets the minimumSupportedOperatingSystem property value. The minimum operating system required for a Windows mobile app.
 // returns a WindowsMinimumOperatingSystemable when successful
 func (m *WindowsAppX) GetMinimumSupportedOperatingSystem()(WindowsMinimumOperatingSystemable) {
-    return m.minimumSupportedOperatingSystem
+    val, err := m.GetBackingStore().Get("minimumSupportedOperatingSystem")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WindowsMinimumOperatingSystemable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WindowsAppX) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -203,31 +238,52 @@ func (m *WindowsAppX) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetApplicableArchitectures sets the applicableArchitectures property value. Contains properties for Windows architecture.
 func (m *WindowsAppX) SetApplicableArchitectures(value *WindowsArchitecture)() {
-    m.applicableArchitectures = value
+    err := m.GetBackingStore().Set("applicableArchitectures", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentityName sets the identityName property value. The identity name of the uploaded app package. For example: 'Contoso.DemoApp'.
 func (m *WindowsAppX) SetIdentityName(value *string)() {
-    m.identityName = value
+    err := m.GetBackingStore().Set("identityName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentityPublisherHash sets the identityPublisherHash property value. The identity publisher hash of the uploaded app package. This is the hash of the publisher from the manifest. For example: 'AB82CD0XYZ'.
 func (m *WindowsAppX) SetIdentityPublisherHash(value *string)() {
-    m.identityPublisherHash = value
+    err := m.GetBackingStore().Set("identityPublisherHash", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentityResourceIdentifier sets the identityResourceIdentifier property value. The identity resource identifier of the uploaded app package. For example: 'TestResourceId'.
 func (m *WindowsAppX) SetIdentityResourceIdentifier(value *string)() {
-    m.identityResourceIdentifier = value
+    err := m.GetBackingStore().Set("identityResourceIdentifier", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentityVersion sets the identityVersion property value. The identity version of the uploaded app package. For example: '1.0.0.0'.
 func (m *WindowsAppX) SetIdentityVersion(value *string)() {
-    m.identityVersion = value
+    err := m.GetBackingStore().Set("identityVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsBundle sets the isBundle property value. When TRUE, indicates that the app is a bundle. When FALSE, indicates that the app is not a bundle. By default, property is set to FALSE.
 func (m *WindowsAppX) SetIsBundle(value *bool)() {
-    m.isBundle = value
+    err := m.GetBackingStore().Set("isBundle", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMinimumSupportedOperatingSystem sets the minimumSupportedOperatingSystem property value. The minimum operating system required for a Windows mobile app.
 func (m *WindowsAppX) SetMinimumSupportedOperatingSystem(value WindowsMinimumOperatingSystemable)() {
-    m.minimumSupportedOperatingSystem = value
+    err := m.GetBackingStore().Set("minimumSupportedOperatingSystem", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WindowsAppXable interface {
     MobileLobAppable

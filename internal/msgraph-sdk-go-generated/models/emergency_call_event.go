@@ -9,12 +9,6 @@ import (
 
 type EmergencyCallEvent struct {
     CallEvent
-    // The callerInfo property
-    callerInfo EmergencyCallerInfoable
-    // The emergencyNumberDialed property
-    emergencyNumberDialed *string
-    // The policyName property
-    policyName *string
 }
 // NewEmergencyCallEvent instantiates a new EmergencyCallEvent and sets the default values.
 func NewEmergencyCallEvent()(*EmergencyCallEvent) {
@@ -31,12 +25,26 @@ func CreateEmergencyCallEventFromDiscriminatorValue(parseNode i878a80d2330e89d26
 // GetCallerInfo gets the callerInfo property value. The callerInfo property
 // returns a EmergencyCallerInfoable when successful
 func (m *EmergencyCallEvent) GetCallerInfo()(EmergencyCallerInfoable) {
-    return m.callerInfo
+    val, err := m.GetBackingStore().Get("callerInfo")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EmergencyCallerInfoable)
+    }
+    return nil
 }
 // GetEmergencyNumberDialed gets the emergencyNumberDialed property value. The emergencyNumberDialed property
 // returns a *string when successful
 func (m *EmergencyCallEvent) GetEmergencyNumberDialed()(*string) {
-    return m.emergencyNumberDialed
+    val, err := m.GetBackingStore().Get("emergencyNumberDialed")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -77,7 +85,14 @@ func (m *EmergencyCallEvent) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetPolicyName gets the policyName property value. The policyName property
 // returns a *string when successful
 func (m *EmergencyCallEvent) GetPolicyName()(*string) {
-    return m.policyName
+    val, err := m.GetBackingStore().Get("policyName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EmergencyCallEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -107,15 +122,24 @@ func (m *EmergencyCallEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetCallerInfo sets the callerInfo property value. The callerInfo property
 func (m *EmergencyCallEvent) SetCallerInfo(value EmergencyCallerInfoable)() {
-    m.callerInfo = value
+    err := m.GetBackingStore().Set("callerInfo", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEmergencyNumberDialed sets the emergencyNumberDialed property value. The emergencyNumberDialed property
 func (m *EmergencyCallEvent) SetEmergencyNumberDialed(value *string)() {
-    m.emergencyNumberDialed = value
+    err := m.GetBackingStore().Set("emergencyNumberDialed", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPolicyName sets the policyName property value. The policyName property
 func (m *EmergencyCallEvent) SetPolicyName(value *string)() {
-    m.policyName = value
+    err := m.GetBackingStore().Set("policyName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EmergencyCallEventable interface {
     CallEventable

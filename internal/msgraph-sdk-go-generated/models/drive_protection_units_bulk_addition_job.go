@@ -9,10 +9,6 @@ import (
 
 type DriveProtectionUnitsBulkAdditionJob struct {
     ProtectionUnitsBulkJobBase
-    // The list of OneDrive directoryObjectIds to add to the OneDrive protection policy.
-    directoryObjectIds []string
-    // The list of email addresses to add to the OneDrive protection policy.
-    drives []string
 }
 // NewDriveProtectionUnitsBulkAdditionJob instantiates a new DriveProtectionUnitsBulkAdditionJob and sets the default values.
 func NewDriveProtectionUnitsBulkAdditionJob()(*DriveProtectionUnitsBulkAdditionJob) {
@@ -31,12 +27,26 @@ func CreateDriveProtectionUnitsBulkAdditionJobFromDiscriminatorValue(parseNode i
 // GetDirectoryObjectIds gets the directoryObjectIds property value. The list of OneDrive directoryObjectIds to add to the OneDrive protection policy.
 // returns a []string when successful
 func (m *DriveProtectionUnitsBulkAdditionJob) GetDirectoryObjectIds()([]string) {
-    return m.directoryObjectIds
+    val, err := m.GetBackingStore().Get("directoryObjectIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetDrives gets the drives property value. The list of email addresses to add to the OneDrive protection policy.
 // returns a []string when successful
 func (m *DriveProtectionUnitsBulkAdditionJob) GetDrives()([]string) {
-    return m.drives
+    val, err := m.GetBackingStore().Get("drives")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -98,11 +108,17 @@ func (m *DriveProtectionUnitsBulkAdditionJob) Serialize(writer i878a80d2330e89d2
 }
 // SetDirectoryObjectIds sets the directoryObjectIds property value. The list of OneDrive directoryObjectIds to add to the OneDrive protection policy.
 func (m *DriveProtectionUnitsBulkAdditionJob) SetDirectoryObjectIds(value []string)() {
-    m.directoryObjectIds = value
+    err := m.GetBackingStore().Set("directoryObjectIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDrives sets the drives property value. The list of email addresses to add to the OneDrive protection policy.
 func (m *DriveProtectionUnitsBulkAdditionJob) SetDrives(value []string)() {
-    m.drives = value
+    err := m.GetBackingStore().Set("drives", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DriveProtectionUnitsBulkAdditionJobable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

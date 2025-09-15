@@ -10,48 +10,6 @@ import (
 
 type ReadingAssignmentSubmission struct {
     Entity
-    // Accuracy score of the reading progress.
-    accuracyScore *float64
-    // Indicates whether the submission is an attempt by the student or a miscue edit done by the educator. The possible values are Attempt and EditMiscue.
-    action *string
-    // ID of the assignment with which this submission is associated.
-    assignmentId *string
-    // List of words that the student found challenging during the reading session.
-    challengingWords []ChallengingWordable
-    // ID of the class this reading progress is associated with.
-    classId *string
-    // Insertions of the reading progress.
-    insertions *int64
-    // Mispronunciations of the reading progress.
-    mispronunciations *int64
-    // Number of exclamation marks missed in the reading passage.
-    missedExclamationMarks *int64
-    // Number of periods missed in the reading passage.
-    missedPeriods *int64
-    // Number of question marks missed in the reading passage.
-    missedQuestionMarks *int64
-    // Number of short words missed during the reading session.
-    missedShorts *int64
-    // Score that reflects the student's use of intonation and expression. Lower scores indicate more monotone reading.
-    monotoneScore *float64
-    // Omissions of the reading progress.
-    omissions *int64
-    // Number of times the student repeated words or phrases during the reading session.
-    repetitions *int64
-    // Number of times the student self-corrected their reading errors.
-    selfCorrections *int64
-    // ID of the user this reading progress is associated with.
-    studentId *string
-    // Date and time of the submission this reading progress is associated with. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    submissionDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // ID of the submission this reading progress is associated with.
-    submissionId *string
-    // Number of unexpected pauses made during the reading session.
-    unexpectedPauses *int64
-    // Words count of the reading progress.
-    wordCount *int64
-    // Words per minute of the reading progress.
-    wordsPerMinute *float64
 }
 // NewReadingAssignmentSubmission instantiates a new ReadingAssignmentSubmission and sets the default values.
 func NewReadingAssignmentSubmission()(*ReadingAssignmentSubmission) {
@@ -68,27 +26,62 @@ func CreateReadingAssignmentSubmissionFromDiscriminatorValue(parseNode i878a80d2
 // GetAccuracyScore gets the accuracyScore property value. Accuracy score of the reading progress.
 // returns a *float64 when successful
 func (m *ReadingAssignmentSubmission) GetAccuracyScore()(*float64) {
-    return m.accuracyScore
+    val, err := m.GetBackingStore().Get("accuracyScore")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*float64)
+    }
+    return nil
 }
 // GetAction gets the action property value. Indicates whether the submission is an attempt by the student or a miscue edit done by the educator. The possible values are Attempt and EditMiscue.
 // returns a *string when successful
 func (m *ReadingAssignmentSubmission) GetAction()(*string) {
-    return m.action
+    val, err := m.GetBackingStore().Get("action")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetAssignmentId gets the assignmentId property value. ID of the assignment with which this submission is associated.
 // returns a *string when successful
 func (m *ReadingAssignmentSubmission) GetAssignmentId()(*string) {
-    return m.assignmentId
+    val, err := m.GetBackingStore().Get("assignmentId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetChallengingWords gets the challengingWords property value. List of words that the student found challenging during the reading session.
 // returns a []ChallengingWordable when successful
 func (m *ReadingAssignmentSubmission) GetChallengingWords()([]ChallengingWordable) {
-    return m.challengingWords
+    val, err := m.GetBackingStore().Get("challengingWords")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ChallengingWordable)
+    }
+    return nil
 }
 // GetClassId gets the classId property value. ID of the class this reading progress is associated with.
 // returns a *string when successful
 func (m *ReadingAssignmentSubmission) GetClassId()(*string) {
-    return m.classId
+    val, err := m.GetBackingStore().Get("classId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -315,82 +308,194 @@ func (m *ReadingAssignmentSubmission) GetFieldDeserializers()(map[string]func(i8
 // GetInsertions gets the insertions property value. Insertions of the reading progress.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetInsertions()(*int64) {
-    return m.insertions
+    val, err := m.GetBackingStore().Get("insertions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetMispronunciations gets the mispronunciations property value. Mispronunciations of the reading progress.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetMispronunciations()(*int64) {
-    return m.mispronunciations
+    val, err := m.GetBackingStore().Get("mispronunciations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetMissedExclamationMarks gets the missedExclamationMarks property value. Number of exclamation marks missed in the reading passage.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetMissedExclamationMarks()(*int64) {
-    return m.missedExclamationMarks
+    val, err := m.GetBackingStore().Get("missedExclamationMarks")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetMissedPeriods gets the missedPeriods property value. Number of periods missed in the reading passage.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetMissedPeriods()(*int64) {
-    return m.missedPeriods
+    val, err := m.GetBackingStore().Get("missedPeriods")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetMissedQuestionMarks gets the missedQuestionMarks property value. Number of question marks missed in the reading passage.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetMissedQuestionMarks()(*int64) {
-    return m.missedQuestionMarks
+    val, err := m.GetBackingStore().Get("missedQuestionMarks")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetMissedShorts gets the missedShorts property value. Number of short words missed during the reading session.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetMissedShorts()(*int64) {
-    return m.missedShorts
+    val, err := m.GetBackingStore().Get("missedShorts")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetMonotoneScore gets the monotoneScore property value. Score that reflects the student's use of intonation and expression. Lower scores indicate more monotone reading.
 // returns a *float64 when successful
 func (m *ReadingAssignmentSubmission) GetMonotoneScore()(*float64) {
-    return m.monotoneScore
+    val, err := m.GetBackingStore().Get("monotoneScore")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*float64)
+    }
+    return nil
 }
 // GetOmissions gets the omissions property value. Omissions of the reading progress.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetOmissions()(*int64) {
-    return m.omissions
+    val, err := m.GetBackingStore().Get("omissions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetRepetitions gets the repetitions property value. Number of times the student repeated words or phrases during the reading session.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetRepetitions()(*int64) {
-    return m.repetitions
+    val, err := m.GetBackingStore().Get("repetitions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetSelfCorrections gets the selfCorrections property value. Number of times the student self-corrected their reading errors.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetSelfCorrections()(*int64) {
-    return m.selfCorrections
+    val, err := m.GetBackingStore().Get("selfCorrections")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetStudentId gets the studentId property value. ID of the user this reading progress is associated with.
 // returns a *string when successful
 func (m *ReadingAssignmentSubmission) GetStudentId()(*string) {
-    return m.studentId
+    val, err := m.GetBackingStore().Get("studentId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSubmissionDateTime gets the submissionDateTime property value. Date and time of the submission this reading progress is associated with. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *ReadingAssignmentSubmission) GetSubmissionDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.submissionDateTime
+    val, err := m.GetBackingStore().Get("submissionDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetSubmissionId gets the submissionId property value. ID of the submission this reading progress is associated with.
 // returns a *string when successful
 func (m *ReadingAssignmentSubmission) GetSubmissionId()(*string) {
-    return m.submissionId
+    val, err := m.GetBackingStore().Get("submissionId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUnexpectedPauses gets the unexpectedPauses property value. Number of unexpected pauses made during the reading session.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetUnexpectedPauses()(*int64) {
-    return m.unexpectedPauses
+    val, err := m.GetBackingStore().Get("unexpectedPauses")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetWordCount gets the wordCount property value. Words count of the reading progress.
 // returns a *int64 when successful
 func (m *ReadingAssignmentSubmission) GetWordCount()(*int64) {
-    return m.wordCount
+    val, err := m.GetBackingStore().Get("wordCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetWordsPerMinute gets the wordsPerMinute property value. Words per minute of the reading progress.
 // returns a *float64 when successful
 func (m *ReadingAssignmentSubmission) GetWordsPerMinute()(*float64) {
-    return m.wordsPerMinute
+    val, err := m.GetBackingStore().Get("wordsPerMinute")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*float64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ReadingAssignmentSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -534,87 +639,150 @@ func (m *ReadingAssignmentSubmission) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetAccuracyScore sets the accuracyScore property value. Accuracy score of the reading progress.
 func (m *ReadingAssignmentSubmission) SetAccuracyScore(value *float64)() {
-    m.accuracyScore = value
+    err := m.GetBackingStore().Set("accuracyScore", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAction sets the action property value. Indicates whether the submission is an attempt by the student or a miscue edit done by the educator. The possible values are Attempt and EditMiscue.
 func (m *ReadingAssignmentSubmission) SetAction(value *string)() {
-    m.action = value
+    err := m.GetBackingStore().Set("action", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAssignmentId sets the assignmentId property value. ID of the assignment with which this submission is associated.
 func (m *ReadingAssignmentSubmission) SetAssignmentId(value *string)() {
-    m.assignmentId = value
+    err := m.GetBackingStore().Set("assignmentId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetChallengingWords sets the challengingWords property value. List of words that the student found challenging during the reading session.
 func (m *ReadingAssignmentSubmission) SetChallengingWords(value []ChallengingWordable)() {
-    m.challengingWords = value
+    err := m.GetBackingStore().Set("challengingWords", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetClassId sets the classId property value. ID of the class this reading progress is associated with.
 func (m *ReadingAssignmentSubmission) SetClassId(value *string)() {
-    m.classId = value
+    err := m.GetBackingStore().Set("classId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetInsertions sets the insertions property value. Insertions of the reading progress.
 func (m *ReadingAssignmentSubmission) SetInsertions(value *int64)() {
-    m.insertions = value
+    err := m.GetBackingStore().Set("insertions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMispronunciations sets the mispronunciations property value. Mispronunciations of the reading progress.
 func (m *ReadingAssignmentSubmission) SetMispronunciations(value *int64)() {
-    m.mispronunciations = value
+    err := m.GetBackingStore().Set("mispronunciations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMissedExclamationMarks sets the missedExclamationMarks property value. Number of exclamation marks missed in the reading passage.
 func (m *ReadingAssignmentSubmission) SetMissedExclamationMarks(value *int64)() {
-    m.missedExclamationMarks = value
+    err := m.GetBackingStore().Set("missedExclamationMarks", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMissedPeriods sets the missedPeriods property value. Number of periods missed in the reading passage.
 func (m *ReadingAssignmentSubmission) SetMissedPeriods(value *int64)() {
-    m.missedPeriods = value
+    err := m.GetBackingStore().Set("missedPeriods", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMissedQuestionMarks sets the missedQuestionMarks property value. Number of question marks missed in the reading passage.
 func (m *ReadingAssignmentSubmission) SetMissedQuestionMarks(value *int64)() {
-    m.missedQuestionMarks = value
+    err := m.GetBackingStore().Set("missedQuestionMarks", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMissedShorts sets the missedShorts property value. Number of short words missed during the reading session.
 func (m *ReadingAssignmentSubmission) SetMissedShorts(value *int64)() {
-    m.missedShorts = value
+    err := m.GetBackingStore().Set("missedShorts", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMonotoneScore sets the monotoneScore property value. Score that reflects the student's use of intonation and expression. Lower scores indicate more monotone reading.
 func (m *ReadingAssignmentSubmission) SetMonotoneScore(value *float64)() {
-    m.monotoneScore = value
+    err := m.GetBackingStore().Set("monotoneScore", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOmissions sets the omissions property value. Omissions of the reading progress.
 func (m *ReadingAssignmentSubmission) SetOmissions(value *int64)() {
-    m.omissions = value
+    err := m.GetBackingStore().Set("omissions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRepetitions sets the repetitions property value. Number of times the student repeated words or phrases during the reading session.
 func (m *ReadingAssignmentSubmission) SetRepetitions(value *int64)() {
-    m.repetitions = value
+    err := m.GetBackingStore().Set("repetitions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSelfCorrections sets the selfCorrections property value. Number of times the student self-corrected their reading errors.
 func (m *ReadingAssignmentSubmission) SetSelfCorrections(value *int64)() {
-    m.selfCorrections = value
+    err := m.GetBackingStore().Set("selfCorrections", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStudentId sets the studentId property value. ID of the user this reading progress is associated with.
 func (m *ReadingAssignmentSubmission) SetStudentId(value *string)() {
-    m.studentId = value
+    err := m.GetBackingStore().Set("studentId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmissionDateTime sets the submissionDateTime property value. Date and time of the submission this reading progress is associated with. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ReadingAssignmentSubmission) SetSubmissionDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.submissionDateTime = value
+    err := m.GetBackingStore().Set("submissionDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubmissionId sets the submissionId property value. ID of the submission this reading progress is associated with.
 func (m *ReadingAssignmentSubmission) SetSubmissionId(value *string)() {
-    m.submissionId = value
+    err := m.GetBackingStore().Set("submissionId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUnexpectedPauses sets the unexpectedPauses property value. Number of unexpected pauses made during the reading session.
 func (m *ReadingAssignmentSubmission) SetUnexpectedPauses(value *int64)() {
-    m.unexpectedPauses = value
+    err := m.GetBackingStore().Set("unexpectedPauses", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWordCount sets the wordCount property value. Words count of the reading progress.
 func (m *ReadingAssignmentSubmission) SetWordCount(value *int64)() {
-    m.wordCount = value
+    err := m.GetBackingStore().Set("wordCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWordsPerMinute sets the wordsPerMinute property value. Words per minute of the reading progress.
 func (m *ReadingAssignmentSubmission) SetWordsPerMinute(value *float64)() {
-    m.wordsPerMinute = value
+    err := m.GetBackingStore().Set("wordsPerMinute", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ReadingAssignmentSubmissionable interface {
     Entityable

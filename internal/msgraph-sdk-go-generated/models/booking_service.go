@@ -11,54 +11,6 @@ import (
 // BookingService represents a particular service offered by a booking business.
 type BookingService struct {
     Entity
-    // Additional information that is sent to the customer when an appointment is confirmed.
-    additionalInformation *string
-    // The date, time, and time zone when the service was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Contains the set of custom questions associated with a particular service.
-    customQuestions []BookingQuestionAssignmentable
-    // The default length of the service, represented in numbers of days, hours, minutes, and seconds. For example, P11D23H59M59.999999999999S.
-    defaultDuration *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
-    // The default physical location for the service.
-    defaultLocation Locationable
-    // The default monetary price for the service.
-    defaultPrice *float64
-    // Represents the type of pricing of a booking service.
-    defaultPriceType *BookingPriceType
-    // The default set of reminders for an appointment of this service. The value of this property is available only when reading this bookingService by its ID.
-    defaultReminders []BookingReminderable
-    // A text description for the service.
-    description *string
-    // A service name.
-    displayName *string
-    // Indicates if an anonymousJoinWebUrl(webrtcUrl) is generated for the appointment booked for this service. The default value is false.
-    isAnonymousJoinEnabled *bool
-    // Indicates that the customer can manage bookings created by the staff. The default value is false.
-    isCustomerAllowedToManageBooking *bool
-    // True indicates that this service isn't available to customers for booking.
-    isHiddenFromCustomers *bool
-    // Indicates that the appointments for the service are held online. The default value is false.
-    isLocationOnline *bool
-    // The language of the self-service booking page.
-    languageTag *string
-    // The date, time, and time zone when the service was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastUpdatedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.
-    maximumAttendeesCount *int32
-    // Additional information about this service.
-    notes *string
-    // The time to buffer after an appointment for this service ends, and before the next customer appointment can be booked.
-    postBuffer *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
-    // The time to buffer before an appointment for this service can start.
-    preBuffer *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
-    // The set of policies that determine how appointments for this type of service should be created and managed.
-    schedulingPolicy BookingSchedulingPolicyable
-    // True indicates SMS notifications can be sent to the customers for the appointment of the service. Default value is false.
-    smsNotificationsEnabled *bool
-    // Represents those staff members who provide this service.
-    staffMemberIds []string
-    // The URL a customer uses to access the service.
-    webUrl *string
 }
 // NewBookingService instantiates a new BookingService and sets the default values.
 func NewBookingService()(*BookingService) {
@@ -75,52 +27,122 @@ func CreateBookingServiceFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetAdditionalInformation gets the additionalInformation property value. Additional information that is sent to the customer when an appointment is confirmed.
 // returns a *string when successful
 func (m *BookingService) GetAdditionalInformation()(*string) {
-    return m.additionalInformation
+    val, err := m.GetBackingStore().Get("additionalInformation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. The date, time, and time zone when the service was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *BookingService) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetCustomQuestions gets the customQuestions property value. Contains the set of custom questions associated with a particular service.
 // returns a []BookingQuestionAssignmentable when successful
 func (m *BookingService) GetCustomQuestions()([]BookingQuestionAssignmentable) {
-    return m.customQuestions
+    val, err := m.GetBackingStore().Get("customQuestions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]BookingQuestionAssignmentable)
+    }
+    return nil
 }
 // GetDefaultDuration gets the defaultDuration property value. The default length of the service, represented in numbers of days, hours, minutes, and seconds. For example, P11D23H59M59.999999999999S.
 // returns a *ISODuration when successful
 func (m *BookingService) GetDefaultDuration()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration) {
-    return m.defaultDuration
+    val, err := m.GetBackingStore().Get("defaultDuration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    }
+    return nil
 }
 // GetDefaultLocation gets the defaultLocation property value. The default physical location for the service.
 // returns a Locationable when successful
 func (m *BookingService) GetDefaultLocation()(Locationable) {
-    return m.defaultLocation
+    val, err := m.GetBackingStore().Get("defaultLocation")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Locationable)
+    }
+    return nil
 }
 // GetDefaultPrice gets the defaultPrice property value. The default monetary price for the service.
 // returns a *float64 when successful
 func (m *BookingService) GetDefaultPrice()(*float64) {
-    return m.defaultPrice
+    val, err := m.GetBackingStore().Get("defaultPrice")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*float64)
+    }
+    return nil
 }
 // GetDefaultPriceType gets the defaultPriceType property value. Represents the type of pricing of a booking service.
 // returns a *BookingPriceType when successful
 func (m *BookingService) GetDefaultPriceType()(*BookingPriceType) {
-    return m.defaultPriceType
+    val, err := m.GetBackingStore().Get("defaultPriceType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*BookingPriceType)
+    }
+    return nil
 }
 // GetDefaultReminders gets the defaultReminders property value. The default set of reminders for an appointment of this service. The value of this property is available only when reading this bookingService by its ID.
 // returns a []BookingReminderable when successful
 func (m *BookingService) GetDefaultReminders()([]BookingReminderable) {
-    return m.defaultReminders
+    val, err := m.GetBackingStore().Get("defaultReminders")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]BookingReminderable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. A text description for the service.
 // returns a *string when successful
 func (m *BookingService) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. A service name.
 // returns a *string when successful
 func (m *BookingService) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -389,72 +411,170 @@ func (m *BookingService) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetIsAnonymousJoinEnabled gets the isAnonymousJoinEnabled property value. Indicates if an anonymousJoinWebUrl(webrtcUrl) is generated for the appointment booked for this service. The default value is false.
 // returns a *bool when successful
 func (m *BookingService) GetIsAnonymousJoinEnabled()(*bool) {
-    return m.isAnonymousJoinEnabled
+    val, err := m.GetBackingStore().Get("isAnonymousJoinEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsCustomerAllowedToManageBooking gets the isCustomerAllowedToManageBooking property value. Indicates that the customer can manage bookings created by the staff. The default value is false.
 // returns a *bool when successful
 func (m *BookingService) GetIsCustomerAllowedToManageBooking()(*bool) {
-    return m.isCustomerAllowedToManageBooking
+    val, err := m.GetBackingStore().Get("isCustomerAllowedToManageBooking")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsHiddenFromCustomers gets the isHiddenFromCustomers property value. True indicates that this service isn't available to customers for booking.
 // returns a *bool when successful
 func (m *BookingService) GetIsHiddenFromCustomers()(*bool) {
-    return m.isHiddenFromCustomers
+    val, err := m.GetBackingStore().Get("isHiddenFromCustomers")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsLocationOnline gets the isLocationOnline property value. Indicates that the appointments for the service are held online. The default value is false.
 // returns a *bool when successful
 func (m *BookingService) GetIsLocationOnline()(*bool) {
-    return m.isLocationOnline
+    val, err := m.GetBackingStore().Get("isLocationOnline")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetLanguageTag gets the languageTag property value. The language of the self-service booking page.
 // returns a *string when successful
 func (m *BookingService) GetLanguageTag()(*string) {
-    return m.languageTag
+    val, err := m.GetBackingStore().Get("languageTag")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLastUpdatedDateTime gets the lastUpdatedDateTime property value. The date, time, and time zone when the service was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *BookingService) GetLastUpdatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastUpdatedDateTime
+    val, err := m.GetBackingStore().Get("lastUpdatedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetMaximumAttendeesCount gets the maximumAttendeesCount property value. The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.
 // returns a *int32 when successful
 func (m *BookingService) GetMaximumAttendeesCount()(*int32) {
-    return m.maximumAttendeesCount
+    val, err := m.GetBackingStore().Get("maximumAttendeesCount")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetNotes gets the notes property value. Additional information about this service.
 // returns a *string when successful
 func (m *BookingService) GetNotes()(*string) {
-    return m.notes
+    val, err := m.GetBackingStore().Get("notes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPostBuffer gets the postBuffer property value. The time to buffer after an appointment for this service ends, and before the next customer appointment can be booked.
 // returns a *ISODuration when successful
 func (m *BookingService) GetPostBuffer()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration) {
-    return m.postBuffer
+    val, err := m.GetBackingStore().Get("postBuffer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    }
+    return nil
 }
 // GetPreBuffer gets the preBuffer property value. The time to buffer before an appointment for this service can start.
 // returns a *ISODuration when successful
 func (m *BookingService) GetPreBuffer()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration) {
-    return m.preBuffer
+    val, err := m.GetBackingStore().Get("preBuffer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    }
+    return nil
 }
 // GetSchedulingPolicy gets the schedulingPolicy property value. The set of policies that determine how appointments for this type of service should be created and managed.
 // returns a BookingSchedulingPolicyable when successful
 func (m *BookingService) GetSchedulingPolicy()(BookingSchedulingPolicyable) {
-    return m.schedulingPolicy
+    val, err := m.GetBackingStore().Get("schedulingPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(BookingSchedulingPolicyable)
+    }
+    return nil
 }
 // GetSmsNotificationsEnabled gets the smsNotificationsEnabled property value. True indicates SMS notifications can be sent to the customers for the appointment of the service. Default value is false.
 // returns a *bool when successful
 func (m *BookingService) GetSmsNotificationsEnabled()(*bool) {
-    return m.smsNotificationsEnabled
+    val, err := m.GetBackingStore().Get("smsNotificationsEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetStaffMemberIds gets the staffMemberIds property value. Represents those staff members who provide this service.
 // returns a []string when successful
 func (m *BookingService) GetStaffMemberIds()([]string) {
-    return m.staffMemberIds
+    val, err := m.GetBackingStore().Get("staffMemberIds")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetWebUrl gets the webUrl property value. The URL a customer uses to access the service.
 // returns a *string when successful
 func (m *BookingService) GetWebUrl()(*string) {
-    return m.webUrl
+    val, err := m.GetBackingStore().Get("webUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *BookingService) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -617,99 +737,171 @@ func (m *BookingService) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetAdditionalInformation sets the additionalInformation property value. Additional information that is sent to the customer when an appointment is confirmed.
 func (m *BookingService) SetAdditionalInformation(value *string)() {
-    m.additionalInformation = value
+    err := m.GetBackingStore().Set("additionalInformation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. The date, time, and time zone when the service was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *BookingService) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCustomQuestions sets the customQuestions property value. Contains the set of custom questions associated with a particular service.
 func (m *BookingService) SetCustomQuestions(value []BookingQuestionAssignmentable)() {
-    m.customQuestions = value
+    err := m.GetBackingStore().Set("customQuestions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDefaultDuration sets the defaultDuration property value. The default length of the service, represented in numbers of days, hours, minutes, and seconds. For example, P11D23H59M59.999999999999S.
 func (m *BookingService) SetDefaultDuration(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
-    m.defaultDuration = value
+    err := m.GetBackingStore().Set("defaultDuration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDefaultLocation sets the defaultLocation property value. The default physical location for the service.
 func (m *BookingService) SetDefaultLocation(value Locationable)() {
-    m.defaultLocation = value
+    err := m.GetBackingStore().Set("defaultLocation", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDefaultPrice sets the defaultPrice property value. The default monetary price for the service.
 func (m *BookingService) SetDefaultPrice(value *float64)() {
-    m.defaultPrice = value
+    err := m.GetBackingStore().Set("defaultPrice", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDefaultPriceType sets the defaultPriceType property value. Represents the type of pricing of a booking service.
 func (m *BookingService) SetDefaultPriceType(value *BookingPriceType)() {
-    m.defaultPriceType = value
+    err := m.GetBackingStore().Set("defaultPriceType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDefaultReminders sets the defaultReminders property value. The default set of reminders for an appointment of this service. The value of this property is available only when reading this bookingService by its ID.
 func (m *BookingService) SetDefaultReminders(value []BookingReminderable)() {
-    m.defaultReminders = value
+    err := m.GetBackingStore().Set("defaultReminders", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. A text description for the service.
 func (m *BookingService) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. A service name.
 func (m *BookingService) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsAnonymousJoinEnabled sets the isAnonymousJoinEnabled property value. Indicates if an anonymousJoinWebUrl(webrtcUrl) is generated for the appointment booked for this service. The default value is false.
 func (m *BookingService) SetIsAnonymousJoinEnabled(value *bool)() {
-    m.isAnonymousJoinEnabled = value
+    err := m.GetBackingStore().Set("isAnonymousJoinEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsCustomerAllowedToManageBooking sets the isCustomerAllowedToManageBooking property value. Indicates that the customer can manage bookings created by the staff. The default value is false.
 func (m *BookingService) SetIsCustomerAllowedToManageBooking(value *bool)() {
-    m.isCustomerAllowedToManageBooking = value
+    err := m.GetBackingStore().Set("isCustomerAllowedToManageBooking", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsHiddenFromCustomers sets the isHiddenFromCustomers property value. True indicates that this service isn't available to customers for booking.
 func (m *BookingService) SetIsHiddenFromCustomers(value *bool)() {
-    m.isHiddenFromCustomers = value
+    err := m.GetBackingStore().Set("isHiddenFromCustomers", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsLocationOnline sets the isLocationOnline property value. Indicates that the appointments for the service are held online. The default value is false.
 func (m *BookingService) SetIsLocationOnline(value *bool)() {
-    m.isLocationOnline = value
+    err := m.GetBackingStore().Set("isLocationOnline", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLanguageTag sets the languageTag property value. The language of the self-service booking page.
 func (m *BookingService) SetLanguageTag(value *string)() {
-    m.languageTag = value
+    err := m.GetBackingStore().Set("languageTag", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastUpdatedDateTime sets the lastUpdatedDateTime property value. The date, time, and time zone when the service was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *BookingService) SetLastUpdatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastUpdatedDateTime = value
+    err := m.GetBackingStore().Set("lastUpdatedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMaximumAttendeesCount sets the maximumAttendeesCount property value. The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.
 func (m *BookingService) SetMaximumAttendeesCount(value *int32)() {
-    m.maximumAttendeesCount = value
+    err := m.GetBackingStore().Set("maximumAttendeesCount", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNotes sets the notes property value. Additional information about this service.
 func (m *BookingService) SetNotes(value *string)() {
-    m.notes = value
+    err := m.GetBackingStore().Set("notes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPostBuffer sets the postBuffer property value. The time to buffer after an appointment for this service ends, and before the next customer appointment can be booked.
 func (m *BookingService) SetPostBuffer(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
-    m.postBuffer = value
+    err := m.GetBackingStore().Set("postBuffer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPreBuffer sets the preBuffer property value. The time to buffer before an appointment for this service can start.
 func (m *BookingService) SetPreBuffer(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
-    m.preBuffer = value
+    err := m.GetBackingStore().Set("preBuffer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSchedulingPolicy sets the schedulingPolicy property value. The set of policies that determine how appointments for this type of service should be created and managed.
 func (m *BookingService) SetSchedulingPolicy(value BookingSchedulingPolicyable)() {
-    m.schedulingPolicy = value
+    err := m.GetBackingStore().Set("schedulingPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSmsNotificationsEnabled sets the smsNotificationsEnabled property value. True indicates SMS notifications can be sent to the customers for the appointment of the service. Default value is false.
 func (m *BookingService) SetSmsNotificationsEnabled(value *bool)() {
-    m.smsNotificationsEnabled = value
+    err := m.GetBackingStore().Set("smsNotificationsEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStaffMemberIds sets the staffMemberIds property value. Represents those staff members who provide this service.
 func (m *BookingService) SetStaffMemberIds(value []string)() {
-    m.staffMemberIds = value
+    err := m.GetBackingStore().Set("staffMemberIds", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWebUrl sets the webUrl property value. The URL a customer uses to access the service.
 func (m *BookingService) SetWebUrl(value *string)() {
-    m.webUrl = value
+    err := m.GetBackingStore().Set("webUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type BookingServiceable interface {
     Entityable

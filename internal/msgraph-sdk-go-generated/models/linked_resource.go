@@ -9,14 +9,6 @@ import (
 
 type LinkedResource struct {
     Entity
-    // The app name of the source that sends the linkedResource.
-    applicationName *string
-    // The title of the linkedResource.
-    displayName *string
-    // ID of the object that is associated with this task on the third-party/partner system.
-    externalId *string
-    // Deep link to the linkedResource.
-    webUrl *string
 }
 // NewLinkedResource instantiates a new LinkedResource and sets the default values.
 func NewLinkedResource()(*LinkedResource) {
@@ -33,17 +25,38 @@ func CreateLinkedResourceFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetApplicationName gets the applicationName property value. The app name of the source that sends the linkedResource.
 // returns a *string when successful
 func (m *LinkedResource) GetApplicationName()(*string) {
-    return m.applicationName
+    val, err := m.GetBackingStore().Get("applicationName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The title of the linkedResource.
 // returns a *string when successful
 func (m *LinkedResource) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExternalId gets the externalId property value. ID of the object that is associated with this task on the third-party/partner system.
 // returns a *string when successful
 func (m *LinkedResource) GetExternalId()(*string) {
-    return m.externalId
+    val, err := m.GetBackingStore().Get("externalId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -94,7 +107,14 @@ func (m *LinkedResource) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetWebUrl gets the webUrl property value. Deep link to the linkedResource.
 // returns a *string when successful
 func (m *LinkedResource) GetWebUrl()(*string) {
-    return m.webUrl
+    val, err := m.GetBackingStore().Get("webUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *LinkedResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -130,19 +150,31 @@ func (m *LinkedResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetApplicationName sets the applicationName property value. The app name of the source that sends the linkedResource.
 func (m *LinkedResource) SetApplicationName(value *string)() {
-    m.applicationName = value
+    err := m.GetBackingStore().Set("applicationName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The title of the linkedResource.
 func (m *LinkedResource) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalId sets the externalId property value. ID of the object that is associated with this task on the third-party/partner system.
 func (m *LinkedResource) SetExternalId(value *string)() {
-    m.externalId = value
+    err := m.GetBackingStore().Set("externalId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWebUrl sets the webUrl property value. Deep link to the linkedResource.
 func (m *LinkedResource) SetWebUrl(value *string)() {
-    m.webUrl = value
+    err := m.GetBackingStore().Set("webUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type LinkedResourceable interface {
     Entityable

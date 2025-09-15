@@ -10,16 +10,6 @@ import (
 
 type AccessPackageAssignmentRequestWorkflowExtension struct {
     CustomCalloutExtension
-    // The callback configuration for a custom extension.
-    callbackConfiguration CustomExtensionCallbackConfigurationable
-    // The userPrincipalName of the user or identity of the subject that created this resource. Read-only.
-    createdBy *string
-    // When the object was created.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The userPrincipalName of the identity that last modified the object.
-    lastModifiedBy *string
-    // When the object was last modified.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewAccessPackageAssignmentRequestWorkflowExtension instantiates a new AccessPackageAssignmentRequestWorkflowExtension and sets the default values.
 func NewAccessPackageAssignmentRequestWorkflowExtension()(*AccessPackageAssignmentRequestWorkflowExtension) {
@@ -38,17 +28,38 @@ func CreateAccessPackageAssignmentRequestWorkflowExtensionFromDiscriminatorValue
 // GetCallbackConfiguration gets the callbackConfiguration property value. The callback configuration for a custom extension.
 // returns a CustomExtensionCallbackConfigurationable when successful
 func (m *AccessPackageAssignmentRequestWorkflowExtension) GetCallbackConfiguration()(CustomExtensionCallbackConfigurationable) {
-    return m.callbackConfiguration
+    val, err := m.GetBackingStore().Get("callbackConfiguration")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CustomExtensionCallbackConfigurationable)
+    }
+    return nil
 }
 // GetCreatedBy gets the createdBy property value. The userPrincipalName of the user or identity of the subject that created this resource. Read-only.
 // returns a *string when successful
 func (m *AccessPackageAssignmentRequestWorkflowExtension) GetCreatedBy()(*string) {
-    return m.createdBy
+    val, err := m.GetBackingStore().Get("createdBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. When the object was created.
 // returns a *Time when successful
 func (m *AccessPackageAssignmentRequestWorkflowExtension) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -109,12 +120,26 @@ func (m *AccessPackageAssignmentRequestWorkflowExtension) GetFieldDeserializers(
 // GetLastModifiedBy gets the lastModifiedBy property value. The userPrincipalName of the identity that last modified the object.
 // returns a *string when successful
 func (m *AccessPackageAssignmentRequestWorkflowExtension) GetLastModifiedBy()(*string) {
-    return m.lastModifiedBy
+    val, err := m.GetBackingStore().Get("lastModifiedBy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. When the object was last modified.
 // returns a *Time when successful
 func (m *AccessPackageAssignmentRequestWorkflowExtension) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AccessPackageAssignmentRequestWorkflowExtension) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -156,23 +181,38 @@ func (m *AccessPackageAssignmentRequestWorkflowExtension) Serialize(writer i878a
 }
 // SetCallbackConfiguration sets the callbackConfiguration property value. The callback configuration for a custom extension.
 func (m *AccessPackageAssignmentRequestWorkflowExtension) SetCallbackConfiguration(value CustomExtensionCallbackConfigurationable)() {
-    m.callbackConfiguration = value
+    err := m.GetBackingStore().Set("callbackConfiguration", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedBy sets the createdBy property value. The userPrincipalName of the user or identity of the subject that created this resource. Read-only.
 func (m *AccessPackageAssignmentRequestWorkflowExtension) SetCreatedBy(value *string)() {
-    m.createdBy = value
+    err := m.GetBackingStore().Set("createdBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. When the object was created.
 func (m *AccessPackageAssignmentRequestWorkflowExtension) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. The userPrincipalName of the identity that last modified the object.
 func (m *AccessPackageAssignmentRequestWorkflowExtension) SetLastModifiedBy(value *string)() {
-    m.lastModifiedBy = value
+    err := m.GetBackingStore().Set("lastModifiedBy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. When the object was last modified.
 func (m *AccessPackageAssignmentRequestWorkflowExtension) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AccessPackageAssignmentRequestWorkflowExtensionable interface {
     CustomCalloutExtensionable

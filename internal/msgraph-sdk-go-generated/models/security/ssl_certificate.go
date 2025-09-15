@@ -10,26 +10,6 @@ import (
 
 type SslCertificate struct {
     Artifact
-    // The date and time when a certificate expires. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    expirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // A hash of the certificate calculated on the data and signature.
-    fingerprint *string
-    // The first date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    firstSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The date and time when a certificate was issued. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    issueDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The entity that grants this certificate.
-    issuer SslCertificateEntityable
-    // The most recent date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    lastSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The host resources related with this sslCertificate.
-    relatedHosts []Hostable
-    // The serial number associated with an SSL certificate.
-    serialNumber *string
-    // A SHA-1 hash of the certificate. Note: This is not the signature.
-    sha1 *string
-    // The person, site, machine, and so on, this certificate is for.
-    subject SslCertificateEntityable
 }
 // NewSslCertificate instantiates a new SslCertificate and sets the default values.
 func NewSslCertificate()(*SslCertificate) {
@@ -48,7 +28,14 @@ func CreateSslCertificateFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 // GetExpirationDateTime gets the expirationDateTime property value. The date and time when a certificate expires. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *SslCertificate) GetExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.expirationDateTime
+    val, err := m.GetBackingStore().Get("expirationDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -165,47 +152,110 @@ func (m *SslCertificate) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 // GetFingerprint gets the fingerprint property value. A hash of the certificate calculated on the data and signature.
 // returns a *string when successful
 func (m *SslCertificate) GetFingerprint()(*string) {
-    return m.fingerprint
+    val, err := m.GetBackingStore().Get("fingerprint")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFirstSeenDateTime gets the firstSeenDateTime property value. The first date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *SslCertificate) GetFirstSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.firstSeenDateTime
+    val, err := m.GetBackingStore().Get("firstSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetIssueDateTime gets the issueDateTime property value. The date and time when a certificate was issued. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *SslCertificate) GetIssueDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.issueDateTime
+    val, err := m.GetBackingStore().Get("issueDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetIssuer gets the issuer property value. The entity that grants this certificate.
 // returns a SslCertificateEntityable when successful
 func (m *SslCertificate) GetIssuer()(SslCertificateEntityable) {
-    return m.issuer
+    val, err := m.GetBackingStore().Get("issuer")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SslCertificateEntityable)
+    }
+    return nil
 }
 // GetLastSeenDateTime gets the lastSeenDateTime property value. The most recent date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *SslCertificate) GetLastSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastSeenDateTime
+    val, err := m.GetBackingStore().Get("lastSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetRelatedHosts gets the relatedHosts property value. The host resources related with this sslCertificate.
 // returns a []Hostable when successful
 func (m *SslCertificate) GetRelatedHosts()([]Hostable) {
-    return m.relatedHosts
+    val, err := m.GetBackingStore().Get("relatedHosts")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Hostable)
+    }
+    return nil
 }
 // GetSerialNumber gets the serialNumber property value. The serial number associated with an SSL certificate.
 // returns a *string when successful
 func (m *SslCertificate) GetSerialNumber()(*string) {
-    return m.serialNumber
+    val, err := m.GetBackingStore().Get("serialNumber")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSha1 gets the sha1 property value. A SHA-1 hash of the certificate. Note: This is not the signature.
 // returns a *string when successful
 func (m *SslCertificate) GetSha1()(*string) {
-    return m.sha1
+    val, err := m.GetBackingStore().Get("sha1")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSubject gets the subject property value. The person, site, machine, and so on, this certificate is for.
 // returns a SslCertificateEntityable when successful
 func (m *SslCertificate) GetSubject()(SslCertificateEntityable) {
-    return m.subject
+    val, err := m.GetBackingStore().Get("subject")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(SslCertificateEntityable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SslCertificate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -283,43 +333,73 @@ func (m *SslCertificate) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 }
 // SetExpirationDateTime sets the expirationDateTime property value. The date and time when a certificate expires. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *SslCertificate) SetExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.expirationDateTime = value
+    err := m.GetBackingStore().Set("expirationDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFingerprint sets the fingerprint property value. A hash of the certificate calculated on the data and signature.
 func (m *SslCertificate) SetFingerprint(value *string)() {
-    m.fingerprint = value
+    err := m.GetBackingStore().Set("fingerprint", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFirstSeenDateTime sets the firstSeenDateTime property value. The first date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *SslCertificate) SetFirstSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.firstSeenDateTime = value
+    err := m.GetBackingStore().Set("firstSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIssueDateTime sets the issueDateTime property value. The date and time when a certificate was issued. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *SslCertificate) SetIssueDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.issueDateTime = value
+    err := m.GetBackingStore().Set("issueDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIssuer sets the issuer property value. The entity that grants this certificate.
 func (m *SslCertificate) SetIssuer(value SslCertificateEntityable)() {
-    m.issuer = value
+    err := m.GetBackingStore().Set("issuer", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastSeenDateTime sets the lastSeenDateTime property value. The most recent date and time when this sslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *SslCertificate) SetLastSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastSeenDateTime = value
+    err := m.GetBackingStore().Set("lastSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRelatedHosts sets the relatedHosts property value. The host resources related with this sslCertificate.
 func (m *SslCertificate) SetRelatedHosts(value []Hostable)() {
-    m.relatedHosts = value
+    err := m.GetBackingStore().Set("relatedHosts", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSerialNumber sets the serialNumber property value. The serial number associated with an SSL certificate.
 func (m *SslCertificate) SetSerialNumber(value *string)() {
-    m.serialNumber = value
+    err := m.GetBackingStore().Set("serialNumber", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSha1 sets the sha1 property value. A SHA-1 hash of the certificate. Note: This is not the signature.
 func (m *SslCertificate) SetSha1(value *string)() {
-    m.sha1 = value
+    err := m.GetBackingStore().Set("sha1", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubject sets the subject property value. The person, site, machine, and so on, this certificate is for.
 func (m *SslCertificate) SetSubject(value SslCertificateEntityable)() {
-    m.subject = value
+    err := m.GetBackingStore().Set("subject", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SslCertificateable interface {
     Artifactable

@@ -9,20 +9,6 @@ import (
 
 type UnifiedStorageQuota struct {
     Entity
-    // The deleted property
-    deleted *int64
-    // The manageWebUrl property
-    manageWebUrl *string
-    // The remaining property
-    remaining *int64
-    // The services property
-    services []ServiceStorageQuotaBreakdownable
-    // The state property
-    state *string
-    // The total property
-    total *int64
-    // The used property
-    used *int64
 }
 // NewUnifiedStorageQuota instantiates a new UnifiedStorageQuota and sets the default values.
 func NewUnifiedStorageQuota()(*UnifiedStorageQuota) {
@@ -39,7 +25,14 @@ func CreateUnifiedStorageQuotaFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetDeleted gets the deleted property value. The deleted property
 // returns a *int64 when successful
 func (m *UnifiedStorageQuota) GetDeleted()(*int64) {
-    return m.deleted
+    val, err := m.GetBackingStore().Get("deleted")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -126,32 +119,74 @@ func (m *UnifiedStorageQuota) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetManageWebUrl gets the manageWebUrl property value. The manageWebUrl property
 // returns a *string when successful
 func (m *UnifiedStorageQuota) GetManageWebUrl()(*string) {
-    return m.manageWebUrl
+    val, err := m.GetBackingStore().Get("manageWebUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRemaining gets the remaining property value. The remaining property
 // returns a *int64 when successful
 func (m *UnifiedStorageQuota) GetRemaining()(*int64) {
-    return m.remaining
+    val, err := m.GetBackingStore().Get("remaining")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetServices gets the services property value. The services property
 // returns a []ServiceStorageQuotaBreakdownable when successful
 func (m *UnifiedStorageQuota) GetServices()([]ServiceStorageQuotaBreakdownable) {
-    return m.services
+    val, err := m.GetBackingStore().Get("services")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ServiceStorageQuotaBreakdownable)
+    }
+    return nil
 }
 // GetState gets the state property value. The state property
 // returns a *string when successful
 func (m *UnifiedStorageQuota) GetState()(*string) {
-    return m.state
+    val, err := m.GetBackingStore().Get("state")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTotal gets the total property value. The total property
 // returns a *int64 when successful
 func (m *UnifiedStorageQuota) GetTotal()(*int64) {
-    return m.total
+    val, err := m.GetBackingStore().Get("total")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // GetUsed gets the used property value. The used property
 // returns a *int64 when successful
 func (m *UnifiedStorageQuota) GetUsed()(*int64) {
-    return m.used
+    val, err := m.GetBackingStore().Get("used")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int64)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UnifiedStorageQuota) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -211,31 +246,52 @@ func (m *UnifiedStorageQuota) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetDeleted sets the deleted property value. The deleted property
 func (m *UnifiedStorageQuota) SetDeleted(value *int64)() {
-    m.deleted = value
+    err := m.GetBackingStore().Set("deleted", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetManageWebUrl sets the manageWebUrl property value. The manageWebUrl property
 func (m *UnifiedStorageQuota) SetManageWebUrl(value *string)() {
-    m.manageWebUrl = value
+    err := m.GetBackingStore().Set("manageWebUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRemaining sets the remaining property value. The remaining property
 func (m *UnifiedStorageQuota) SetRemaining(value *int64)() {
-    m.remaining = value
+    err := m.GetBackingStore().Set("remaining", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetServices sets the services property value. The services property
 func (m *UnifiedStorageQuota) SetServices(value []ServiceStorageQuotaBreakdownable)() {
-    m.services = value
+    err := m.GetBackingStore().Set("services", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetState sets the state property value. The state property
 func (m *UnifiedStorageQuota) SetState(value *string)() {
-    m.state = value
+    err := m.GetBackingStore().Set("state", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTotal sets the total property value. The total property
 func (m *UnifiedStorageQuota) SetTotal(value *int64)() {
-    m.total = value
+    err := m.GetBackingStore().Set("total", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUsed sets the used property value. The used property
 func (m *UnifiedStorageQuota) SetUsed(value *int64)() {
-    m.used = value
+    err := m.GetBackingStore().Set("used", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UnifiedStorageQuotaable interface {
     Entityable

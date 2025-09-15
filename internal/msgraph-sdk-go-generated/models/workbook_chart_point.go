@@ -9,10 +9,6 @@ import (
 
 type WorkbookChartPoint struct {
     Entity
-    // The format properties of the chart point. Read-only.
-    format WorkbookChartPointFormatable
-    // The value of a chart point. Read-only.
-    value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
 }
 // NewWorkbookChartPoint instantiates a new WorkbookChartPoint and sets the default values.
 func NewWorkbookChartPoint()(*WorkbookChartPoint) {
@@ -55,12 +51,26 @@ func (m *WorkbookChartPoint) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetFormat gets the format property value. The format properties of the chart point. Read-only.
 // returns a WorkbookChartPointFormatable when successful
 func (m *WorkbookChartPoint) GetFormat()(WorkbookChartPointFormatable) {
-    return m.format
+    val, err := m.GetBackingStore().Get("format")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartPointFormatable)
+    }
+    return nil
 }
 // GetValue gets the value property value. The value of a chart point. Read-only.
 // returns a UntypedNodeable when successful
 func (m *WorkbookChartPoint) GetValue()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookChartPoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *WorkbookChartPoint) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetFormat sets the format property value. The format properties of the chart point. Read-only.
 func (m *WorkbookChartPoint) SetFormat(value WorkbookChartPointFormatable)() {
-    m.format = value
+    err := m.GetBackingStore().Set("format", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValue sets the value property value. The value of a chart point. Read-only.
 func (m *WorkbookChartPoint) SetValue(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookChartPointable interface {
     Entityable

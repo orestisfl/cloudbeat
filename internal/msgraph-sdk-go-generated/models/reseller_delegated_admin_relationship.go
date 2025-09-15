@@ -9,10 +9,6 @@ import (
 
 type ResellerDelegatedAdminRelationship struct {
     DelegatedAdminRelationship
-    // The tenant ID of the indirect provider partner who created the relationship for the indirect reseller partner.
-    indirectProviderTenantId *string
-    // Indicates the indirect reseller partner consent status. true indicates that the partner has yet to review the relationship; false indicates that the partner has already provided consent by approving or rejecting the relationship.
-    isPartnerConsentPending *bool
 }
 // NewResellerDelegatedAdminRelationship instantiates a new ResellerDelegatedAdminRelationship and sets the default values.
 func NewResellerDelegatedAdminRelationship()(*ResellerDelegatedAdminRelationship) {
@@ -55,12 +51,26 @@ func (m *ResellerDelegatedAdminRelationship) GetFieldDeserializers()(map[string]
 // GetIndirectProviderTenantId gets the indirectProviderTenantId property value. The tenant ID of the indirect provider partner who created the relationship for the indirect reseller partner.
 // returns a *string when successful
 func (m *ResellerDelegatedAdminRelationship) GetIndirectProviderTenantId()(*string) {
-    return m.indirectProviderTenantId
+    val, err := m.GetBackingStore().Get("indirectProviderTenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetIsPartnerConsentPending gets the isPartnerConsentPending property value. Indicates the indirect reseller partner consent status. true indicates that the partner has yet to review the relationship; false indicates that the partner has already provided consent by approving or rejecting the relationship.
 // returns a *bool when successful
 func (m *ResellerDelegatedAdminRelationship) GetIsPartnerConsentPending()(*bool) {
-    return m.isPartnerConsentPending
+    val, err := m.GetBackingStore().Get("isPartnerConsentPending")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ResellerDelegatedAdminRelationship) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *ResellerDelegatedAdminRelationship) Serialize(writer i878a80d2330e89d26
 }
 // SetIndirectProviderTenantId sets the indirectProviderTenantId property value. The tenant ID of the indirect provider partner who created the relationship for the indirect reseller partner.
 func (m *ResellerDelegatedAdminRelationship) SetIndirectProviderTenantId(value *string)() {
-    m.indirectProviderTenantId = value
+    err := m.GetBackingStore().Set("indirectProviderTenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsPartnerConsentPending sets the isPartnerConsentPending property value. Indicates the indirect reseller partner consent status. true indicates that the partner has yet to review the relationship; false indicates that the partner has already provided consent by approving or rejecting the relationship.
 func (m *ResellerDelegatedAdminRelationship) SetIsPartnerConsentPending(value *bool)() {
-    m.isPartnerConsentPending = value
+    err := m.GetBackingStore().Set("isPartnerConsentPending", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ResellerDelegatedAdminRelationshipable interface {
     DelegatedAdminRelationshipable

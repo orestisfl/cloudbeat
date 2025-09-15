@@ -9,10 +9,6 @@ import (
 
 type RecycleBin struct {
     BaseItem
-    // List of the recycleBinItems deleted by a user.
-    items []RecycleBinItemable
-    // The settings property
-    settings RecycleBinSettingsable
 }
 // NewRecycleBin instantiates a new RecycleBin and sets the default values.
 func NewRecycleBin()(*RecycleBin) {
@@ -63,12 +59,26 @@ func (m *RecycleBin) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetItems gets the items property value. List of the recycleBinItems deleted by a user.
 // returns a []RecycleBinItemable when successful
 func (m *RecycleBin) GetItems()([]RecycleBinItemable) {
-    return m.items
+    val, err := m.GetBackingStore().Get("items")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]RecycleBinItemable)
+    }
+    return nil
 }
 // GetSettings gets the settings property value. The settings property
 // returns a RecycleBinSettingsable when successful
 func (m *RecycleBin) GetSettings()(RecycleBinSettingsable) {
-    return m.settings
+    val, err := m.GetBackingStore().Get("settings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(RecycleBinSettingsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *RecycleBin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -98,11 +108,17 @@ func (m *RecycleBin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetItems sets the items property value. List of the recycleBinItems deleted by a user.
 func (m *RecycleBin) SetItems(value []RecycleBinItemable)() {
-    m.items = value
+    err := m.GetBackingStore().Set("items", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSettings sets the settings property value. The settings property
 func (m *RecycleBin) SetSettings(value RecycleBinSettingsable)() {
-    m.settings = value
+    err := m.GetBackingStore().Set("settings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type RecycleBinable interface {
     BaseItemable

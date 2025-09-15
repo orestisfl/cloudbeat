@@ -11,10 +11,6 @@ import (
 
 type Subdomain struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // The date and time when Microsoft Defender Threat Intelligence first observed the subdomain. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-    firstSeenDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The host property
-    host Hostable
 }
 // NewSubdomain instantiates a new Subdomain and sets the default values.
 func NewSubdomain()(*Subdomain) {
@@ -57,12 +53,26 @@ func (m *Subdomain) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetFirstSeenDateTime gets the firstSeenDateTime property value. The date and time when Microsoft Defender Threat Intelligence first observed the subdomain. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 // returns a *Time when successful
 func (m *Subdomain) GetFirstSeenDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.firstSeenDateTime
+    val, err := m.GetBackingStore().Get("firstSeenDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetHost gets the host property value. The host property
 // returns a Hostable when successful
 func (m *Subdomain) GetHost()(Hostable) {
-    return m.host
+    val, err := m.GetBackingStore().Get("host")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Hostable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Subdomain) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *Subdomain) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetFirstSeenDateTime sets the firstSeenDateTime property value. The date and time when Microsoft Defender Threat Intelligence first observed the subdomain. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *Subdomain) SetFirstSeenDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.firstSeenDateTime = value
+    err := m.GetBackingStore().Set("firstSeenDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetHost sets the host property value. The host property
 func (m *Subdomain) SetHost(value Hostable)() {
-    m.host = value
+    err := m.GetBackingStore().Set("host", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Subdomainable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

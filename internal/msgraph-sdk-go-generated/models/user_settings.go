@@ -9,18 +9,6 @@ import (
 
 type UserSettings struct {
     Entity
-    // Reflects the organization level setting controlling delegate access to the trending API. When set to true, the organization doesn't have access to Office Delve. The relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for work or school is affected for the whole organization. This setting is read-only and can only be changed by administrators in the SharePoint admin center.
-    contributionToContentDiscoveryAsOrganizationDisabled *bool
-    // When set to true, the delegate access to the user's trending API is disabled. When set to true, documents in the user's Office Delve are disabled. When set to true, the relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for work or school is affected. Users can control this setting in Office Delve.
-    contributionToContentDiscoveryDisabled *bool
-    // The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
-    itemInsights UserInsightsSettingsable
-    // The shiftPreferences property
-    shiftPreferences ShiftPreferencesable
-    // The storage property
-    storage UserStorageable
-    // The windows property
-    windows []WindowsSettingable
 }
 // NewUserSettings instantiates a new UserSettings and sets the default values.
 func NewUserSettings()(*UserSettings) {
@@ -37,12 +25,26 @@ func CreateUserSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 // GetContributionToContentDiscoveryAsOrganizationDisabled gets the contributionToContentDiscoveryAsOrganizationDisabled property value. Reflects the organization level setting controlling delegate access to the trending API. When set to true, the organization doesn't have access to Office Delve. The relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for work or school is affected for the whole organization. This setting is read-only and can only be changed by administrators in the SharePoint admin center.
 // returns a *bool when successful
 func (m *UserSettings) GetContributionToContentDiscoveryAsOrganizationDisabled()(*bool) {
-    return m.contributionToContentDiscoveryAsOrganizationDisabled
+    val, err := m.GetBackingStore().Get("contributionToContentDiscoveryAsOrganizationDisabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetContributionToContentDiscoveryDisabled gets the contributionToContentDiscoveryDisabled property value. When set to true, the delegate access to the user's trending API is disabled. When set to true, documents in the user's Office Delve are disabled. When set to true, the relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for work or school is affected. Users can control this setting in Office Delve.
 // returns a *bool when successful
 func (m *UserSettings) GetContributionToContentDiscoveryDisabled()(*bool) {
-    return m.contributionToContentDiscoveryDisabled
+    val, err := m.GetBackingStore().Get("contributionToContentDiscoveryDisabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -119,22 +121,50 @@ func (m *UserSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetItemInsights gets the itemInsights property value. The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
 // returns a UserInsightsSettingsable when successful
 func (m *UserSettings) GetItemInsights()(UserInsightsSettingsable) {
-    return m.itemInsights
+    val, err := m.GetBackingStore().Get("itemInsights")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UserInsightsSettingsable)
+    }
+    return nil
 }
 // GetShiftPreferences gets the shiftPreferences property value. The shiftPreferences property
 // returns a ShiftPreferencesable when successful
 func (m *UserSettings) GetShiftPreferences()(ShiftPreferencesable) {
-    return m.shiftPreferences
+    val, err := m.GetBackingStore().Get("shiftPreferences")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(ShiftPreferencesable)
+    }
+    return nil
 }
 // GetStorage gets the storage property value. The storage property
 // returns a UserStorageable when successful
 func (m *UserSettings) GetStorage()(UserStorageable) {
-    return m.storage
+    val, err := m.GetBackingStore().Get("storage")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UserStorageable)
+    }
+    return nil
 }
 // GetWindows gets the windows property value. The windows property
 // returns a []WindowsSettingable when successful
 func (m *UserSettings) GetWindows()([]WindowsSettingable) {
-    return m.windows
+    val, err := m.GetBackingStore().Get("windows")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WindowsSettingable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UserSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -188,27 +218,45 @@ func (m *UserSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetContributionToContentDiscoveryAsOrganizationDisabled sets the contributionToContentDiscoveryAsOrganizationDisabled property value. Reflects the organization level setting controlling delegate access to the trending API. When set to true, the organization doesn't have access to Office Delve. The relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for work or school is affected for the whole organization. This setting is read-only and can only be changed by administrators in the SharePoint admin center.
 func (m *UserSettings) SetContributionToContentDiscoveryAsOrganizationDisabled(value *bool)() {
-    m.contributionToContentDiscoveryAsOrganizationDisabled = value
+    err := m.GetBackingStore().Set("contributionToContentDiscoveryAsOrganizationDisabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetContributionToContentDiscoveryDisabled sets the contributionToContentDiscoveryDisabled property value. When set to true, the delegate access to the user's trending API is disabled. When set to true, documents in the user's Office Delve are disabled. When set to true, the relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for work or school is affected. Users can control this setting in Office Delve.
 func (m *UserSettings) SetContributionToContentDiscoveryDisabled(value *bool)() {
-    m.contributionToContentDiscoveryDisabled = value
+    err := m.GetBackingStore().Set("contributionToContentDiscoveryDisabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetItemInsights sets the itemInsights property value. The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
 func (m *UserSettings) SetItemInsights(value UserInsightsSettingsable)() {
-    m.itemInsights = value
+    err := m.GetBackingStore().Set("itemInsights", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetShiftPreferences sets the shiftPreferences property value. The shiftPreferences property
 func (m *UserSettings) SetShiftPreferences(value ShiftPreferencesable)() {
-    m.shiftPreferences = value
+    err := m.GetBackingStore().Set("shiftPreferences", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStorage sets the storage property value. The storage property
 func (m *UserSettings) SetStorage(value UserStorageable)() {
-    m.storage = value
+    err := m.GetBackingStore().Set("storage", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWindows sets the windows property value. The windows property
 func (m *UserSettings) SetWindows(value []WindowsSettingable)() {
-    m.windows = value
+    err := m.GetBackingStore().Set("windows", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UserSettingsable interface {
     Entityable

@@ -9,10 +9,6 @@ import (
 
 type FileStorage struct {
     Entity
-    // The containers property
-    containers []FileStorageContainerable
-    // The deletedContainers property
-    deletedContainers []FileStorageContainerable
 }
 // NewFileStorage instantiates a new FileStorage and sets the default values.
 func NewFileStorage()(*FileStorage) {
@@ -29,12 +25,26 @@ func CreateFileStorageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 // GetContainers gets the containers property value. The containers property
 // returns a []FileStorageContainerable when successful
 func (m *FileStorage) GetContainers()([]FileStorageContainerable) {
-    return m.containers
+    val, err := m.GetBackingStore().Get("containers")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]FileStorageContainerable)
+    }
+    return nil
 }
 // GetDeletedContainers gets the deletedContainers property value. The deletedContainers property
 // returns a []FileStorageContainerable when successful
 func (m *FileStorage) GetDeletedContainers()([]FileStorageContainerable) {
-    return m.deletedContainers
+    val, err := m.GetBackingStore().Get("deletedContainers")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]FileStorageContainerable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -108,11 +118,17 @@ func (m *FileStorage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetContainers sets the containers property value. The containers property
 func (m *FileStorage) SetContainers(value []FileStorageContainerable)() {
-    m.containers = value
+    err := m.GetBackingStore().Set("containers", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeletedContainers sets the deletedContainers property value. The deletedContainers property
 func (m *FileStorage) SetDeletedContainers(value []FileStorageContainerable)() {
-    m.deletedContainers = value
+    err := m.GetBackingStore().Set("deletedContainers", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type FileStorageable interface {
     Entityable

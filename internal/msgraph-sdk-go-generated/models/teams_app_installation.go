@@ -9,12 +9,6 @@ import (
 
 type TeamsAppInstallation struct {
     Entity
-    // The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
-    consentedPermissionSet TeamsAppPermissionSetable
-    // The app that is installed.
-    teamsApp TeamsAppable
-    // The details of this version of the app.
-    teamsAppDefinition TeamsAppDefinitionable
 }
 // NewTeamsAppInstallation instantiates a new TeamsAppInstallation and sets the default values.
 func NewTeamsAppInstallation()(*TeamsAppInstallation) {
@@ -49,7 +43,14 @@ func CreateTeamsAppInstallationFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetConsentedPermissionSet gets the consentedPermissionSet property value. The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
 // returns a TeamsAppPermissionSetable when successful
 func (m *TeamsAppInstallation) GetConsentedPermissionSet()(TeamsAppPermissionSetable) {
-    return m.consentedPermissionSet
+    val, err := m.GetBackingStore().Get("consentedPermissionSet")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TeamsAppPermissionSetable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -90,12 +91,26 @@ func (m *TeamsAppInstallation) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetTeamsApp gets the teamsApp property value. The app that is installed.
 // returns a TeamsAppable when successful
 func (m *TeamsAppInstallation) GetTeamsApp()(TeamsAppable) {
-    return m.teamsApp
+    val, err := m.GetBackingStore().Get("teamsApp")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TeamsAppable)
+    }
+    return nil
 }
 // GetTeamsAppDefinition gets the teamsAppDefinition property value. The details of this version of the app.
 // returns a TeamsAppDefinitionable when successful
 func (m *TeamsAppInstallation) GetTeamsAppDefinition()(TeamsAppDefinitionable) {
-    return m.teamsAppDefinition
+    val, err := m.GetBackingStore().Get("teamsAppDefinition")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TeamsAppDefinitionable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TeamsAppInstallation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -125,15 +140,24 @@ func (m *TeamsAppInstallation) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetConsentedPermissionSet sets the consentedPermissionSet property value. The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
 func (m *TeamsAppInstallation) SetConsentedPermissionSet(value TeamsAppPermissionSetable)() {
-    m.consentedPermissionSet = value
+    err := m.GetBackingStore().Set("consentedPermissionSet", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTeamsApp sets the teamsApp property value. The app that is installed.
 func (m *TeamsAppInstallation) SetTeamsApp(value TeamsAppable)() {
-    m.teamsApp = value
+    err := m.GetBackingStore().Set("teamsApp", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTeamsAppDefinition sets the teamsAppDefinition property value. The details of this version of the app.
 func (m *TeamsAppInstallation) SetTeamsAppDefinition(value TeamsAppDefinitionable)() {
-    m.teamsAppDefinition = value
+    err := m.GetBackingStore().Set("teamsAppDefinition", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TeamsAppInstallationable interface {
     Entityable

@@ -10,6 +10,7 @@ import (
     i56887720f41ac882814261620b1c8459c4a992a0207af547c4453dd39fabc426 "github.com/microsoft/kiota-serialization-multipart-go"
     i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83 "github.com/microsoft/kiota-serialization-text-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
     i276e9a0600f4c8908e8f27b725eb62e27ed18b4928dd266f20ba3ce61c812119 "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/users"
     i4df2f66e8e7c98af48f38b781ef9b1769ac4a79882c5d00d6dfb73be3af6b440 "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/directoryroles"
     id52baf70f77e2880b3cbdd006ea999d9f43c7e5fcf086772de634b628d188b09 "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/groups"
@@ -21,7 +22,7 @@ type ApiClient struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 // NewApiClient instantiates a new ApiClient and sets the default values.
-func NewApiClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ApiClient) {
+func NewApiClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter, backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactory)(*ApiClient) {
     m := &ApiClient{
         BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}", map[string]string{}),
     }
@@ -36,6 +37,7 @@ func NewApiClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa52901
         m.BaseRequestBuilder.RequestAdapter.SetBaseUrl("https://graph.microsoft.com/v1.0")
     }
     m.BaseRequestBuilder.PathParameters["baseurl"] = m.BaseRequestBuilder.RequestAdapter.GetBaseUrl()
+    m.BaseRequestBuilder.RequestAdapter.EnableBackingStore(backingStore);
     return m
 }
 // DirectoryRoles provides operations to manage the collection of directoryRole entities.

@@ -9,10 +9,6 @@ import (
 
 type TermsOfUseContainer struct {
     Entity
-    // Represents the current status of a user's response to a company's customizable terms of use agreement.
-    agreementAcceptances []AgreementAcceptanceable
-    // Represents a tenant's customizable terms of use agreement that's created and managed with Microsoft Entra ID Governance.
-    agreements []Agreementable
 }
 // NewTermsOfUseContainer instantiates a new TermsOfUseContainer and sets the default values.
 func NewTermsOfUseContainer()(*TermsOfUseContainer) {
@@ -29,12 +25,26 @@ func CreateTermsOfUseContainerFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetAgreementAcceptances gets the agreementAcceptances property value. Represents the current status of a user's response to a company's customizable terms of use agreement.
 // returns a []AgreementAcceptanceable when successful
 func (m *TermsOfUseContainer) GetAgreementAcceptances()([]AgreementAcceptanceable) {
-    return m.agreementAcceptances
+    val, err := m.GetBackingStore().Get("agreementAcceptances")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AgreementAcceptanceable)
+    }
+    return nil
 }
 // GetAgreements gets the agreements property value. Represents a tenant's customizable terms of use agreement that's created and managed with Microsoft Entra ID Governance.
 // returns a []Agreementable when successful
 func (m *TermsOfUseContainer) GetAgreements()([]Agreementable) {
-    return m.agreements
+    val, err := m.GetBackingStore().Get("agreements")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Agreementable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -108,11 +118,17 @@ func (m *TermsOfUseContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetAgreementAcceptances sets the agreementAcceptances property value. Represents the current status of a user's response to a company's customizable terms of use agreement.
 func (m *TermsOfUseContainer) SetAgreementAcceptances(value []AgreementAcceptanceable)() {
-    m.agreementAcceptances = value
+    err := m.GetBackingStore().Set("agreementAcceptances", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAgreements sets the agreements property value. Represents a tenant's customizable terms of use agreement that's created and managed with Microsoft Entra ID Governance.
 func (m *TermsOfUseContainer) SetAgreements(value []Agreementable)() {
-    m.agreements = value
+    err := m.GetBackingStore().Set("agreements", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TermsOfUseContainerable interface {
     Entityable

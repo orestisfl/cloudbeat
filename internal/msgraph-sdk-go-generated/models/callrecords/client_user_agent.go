@@ -9,14 +9,6 @@ import (
 
 type ClientUserAgent struct {
     UserAgent
-    // The unique identifier of the Microsoft Entra application used by this endpoint.
-    azureADAppId *string
-    // Immutable resource identifier of the Azure Communication Service associated with this endpoint based on Communication Services APIs.
-    communicationServiceId *string
-    // The platform property
-    platform *ClientPlatform
-    // The productFamily property
-    productFamily *ProductFamily
 }
 // NewClientUserAgent instantiates a new ClientUserAgent and sets the default values.
 func NewClientUserAgent()(*ClientUserAgent) {
@@ -35,12 +27,26 @@ func CreateClientUserAgentFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetAzureADAppId gets the azureADAppId property value. The unique identifier of the Microsoft Entra application used by this endpoint.
 // returns a *string when successful
 func (m *ClientUserAgent) GetAzureADAppId()(*string) {
-    return m.azureADAppId
+    val, err := m.GetBackingStore().Get("azureADAppId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCommunicationServiceId gets the communicationServiceId property value. Immutable resource identifier of the Azure Communication Service associated with this endpoint based on Communication Services APIs.
 // returns a *string when successful
 func (m *ClientUserAgent) GetCommunicationServiceId()(*string) {
-    return m.communicationServiceId
+    val, err := m.GetBackingStore().Get("communicationServiceId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -91,12 +97,26 @@ func (m *ClientUserAgent) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetPlatform gets the platform property value. The platform property
 // returns a *ClientPlatform when successful
 func (m *ClientUserAgent) GetPlatform()(*ClientPlatform) {
-    return m.platform
+    val, err := m.GetBackingStore().Get("platform")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ClientPlatform)
+    }
+    return nil
 }
 // GetProductFamily gets the productFamily property value. The productFamily property
 // returns a *ProductFamily when successful
 func (m *ClientUserAgent) GetProductFamily()(*ProductFamily) {
-    return m.productFamily
+    val, err := m.GetBackingStore().Get("productFamily")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ProductFamily)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ClientUserAgent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -134,19 +154,31 @@ func (m *ClientUserAgent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetAzureADAppId sets the azureADAppId property value. The unique identifier of the Microsoft Entra application used by this endpoint.
 func (m *ClientUserAgent) SetAzureADAppId(value *string)() {
-    m.azureADAppId = value
+    err := m.GetBackingStore().Set("azureADAppId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCommunicationServiceId sets the communicationServiceId property value. Immutable resource identifier of the Azure Communication Service associated with this endpoint based on Communication Services APIs.
 func (m *ClientUserAgent) SetCommunicationServiceId(value *string)() {
-    m.communicationServiceId = value
+    err := m.GetBackingStore().Set("communicationServiceId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPlatform sets the platform property value. The platform property
 func (m *ClientUserAgent) SetPlatform(value *ClientPlatform)() {
-    m.platform = value
+    err := m.GetBackingStore().Set("platform", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProductFamily sets the productFamily property value. The productFamily property
 func (m *ClientUserAgent) SetProductFamily(value *ProductFamily)() {
-    m.productFamily = value
+    err := m.GetBackingStore().Set("productFamily", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ClientUserAgentable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

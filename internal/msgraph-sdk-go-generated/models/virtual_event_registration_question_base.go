@@ -9,10 +9,6 @@ import (
 
 type VirtualEventRegistrationQuestionBase struct {
     Entity
-    // Display name of the registration question.
-    displayName *string
-    // Indicates whether an answer to the question is required. The default value is false.
-    isRequired *bool
 }
 // NewVirtualEventRegistrationQuestionBase instantiates a new VirtualEventRegistrationQuestionBase and sets the default values.
 func NewVirtualEventRegistrationQuestionBase()(*VirtualEventRegistrationQuestionBase) {
@@ -49,7 +45,14 @@ func CreateVirtualEventRegistrationQuestionBaseFromDiscriminatorValue(parseNode 
 // GetDisplayName gets the displayName property value. Display name of the registration question.
 // returns a *string when successful
 func (m *VirtualEventRegistrationQuestionBase) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -80,7 +83,14 @@ func (m *VirtualEventRegistrationQuestionBase) GetFieldDeserializers()(map[strin
 // GetIsRequired gets the isRequired property value. Indicates whether an answer to the question is required. The default value is false.
 // returns a *bool when successful
 func (m *VirtualEventRegistrationQuestionBase) GetIsRequired()(*bool) {
-    return m.isRequired
+    val, err := m.GetBackingStore().Get("isRequired")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventRegistrationQuestionBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -104,11 +114,17 @@ func (m *VirtualEventRegistrationQuestionBase) Serialize(writer i878a80d2330e89d
 }
 // SetDisplayName sets the displayName property value. Display name of the registration question.
 func (m *VirtualEventRegistrationQuestionBase) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsRequired sets the isRequired property value. Indicates whether an answer to the question is required. The default value is false.
 func (m *VirtualEventRegistrationQuestionBase) SetIsRequired(value *bool)() {
-    m.isRequired = value
+    err := m.GetBackingStore().Set("isRequired", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventRegistrationQuestionBaseable interface {
     Entityable

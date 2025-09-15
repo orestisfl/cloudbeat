@@ -10,12 +10,6 @@ import (
 
 type DispositionReviewStage struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Name representing each stage within a collection.
-    name *string
-    // A collection of reviewers at each stage.
-    reviewersEmailAddresses []string
-    // The unique sequence number for each stage of the disposition review.
-    stageNumber *string
 }
 // NewDispositionReviewStage instantiates a new DispositionReviewStage and sets the default values.
 func NewDispositionReviewStage()(*DispositionReviewStage) {
@@ -74,17 +68,38 @@ func (m *DispositionReviewStage) GetFieldDeserializers()(map[string]func(i878a80
 // GetName gets the name property value. Name representing each stage within a collection.
 // returns a *string when successful
 func (m *DispositionReviewStage) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetReviewersEmailAddresses gets the reviewersEmailAddresses property value. A collection of reviewers at each stage.
 // returns a []string when successful
 func (m *DispositionReviewStage) GetReviewersEmailAddresses()([]string) {
-    return m.reviewersEmailAddresses
+    val, err := m.GetBackingStore().Get("reviewersEmailAddresses")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetStageNumber gets the stageNumber property value. The unique sequence number for each stage of the disposition review.
 // returns a *string when successful
 func (m *DispositionReviewStage) GetStageNumber()(*string) {
-    return m.stageNumber
+    val, err := m.GetBackingStore().Get("stageNumber")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DispositionReviewStage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -114,15 +129,24 @@ func (m *DispositionReviewStage) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetName sets the name property value. Name representing each stage within a collection.
 func (m *DispositionReviewStage) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReviewersEmailAddresses sets the reviewersEmailAddresses property value. A collection of reviewers at each stage.
 func (m *DispositionReviewStage) SetReviewersEmailAddresses(value []string)() {
-    m.reviewersEmailAddresses = value
+    err := m.GetBackingStore().Set("reviewersEmailAddresses", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStageNumber sets the stageNumber property value. The unique sequence number for each stage of the disposition review.
 func (m *DispositionReviewStage) SetStageNumber(value *string)() {
-    m.stageNumber = value
+    err := m.GetBackingStore().Set("stageNumber", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DispositionReviewStageable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

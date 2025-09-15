@@ -9,8 +9,6 @@ import (
 
 type OnUserCreateStartExternalUsersSelfServiceSignUp struct {
     OnUserCreateStartHandler
-    // The type of user to create. Maps to userType property of user object. The possible values are: member, guest, unknownFutureValue.
-    userTypeToCreate *UserType
 }
 // NewOnUserCreateStartExternalUsersSelfServiceSignUp instantiates a new OnUserCreateStartExternalUsersSelfServiceSignUp and sets the default values.
 func NewOnUserCreateStartExternalUsersSelfServiceSignUp()(*OnUserCreateStartExternalUsersSelfServiceSignUp) {
@@ -45,7 +43,14 @@ func (m *OnUserCreateStartExternalUsersSelfServiceSignUp) GetFieldDeserializers(
 // GetUserTypeToCreate gets the userTypeToCreate property value. The type of user to create. Maps to userType property of user object. The possible values are: member, guest, unknownFutureValue.
 // returns a *UserType when successful
 func (m *OnUserCreateStartExternalUsersSelfServiceSignUp) GetUserTypeToCreate()(*UserType) {
-    return m.userTypeToCreate
+    val, err := m.GetBackingStore().Get("userTypeToCreate")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*UserType)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnUserCreateStartExternalUsersSelfServiceSignUp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *OnUserCreateStartExternalUsersSelfServiceSignUp) Serialize(writer i878a
 }
 // SetUserTypeToCreate sets the userTypeToCreate property value. The type of user to create. Maps to userType property of user object. The possible values are: member, guest, unknownFutureValue.
 func (m *OnUserCreateStartExternalUsersSelfServiceSignUp) SetUserTypeToCreate(value *UserType)() {
-    m.userTypeToCreate = value
+    err := m.GetBackingStore().Set("userTypeToCreate", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnUserCreateStartExternalUsersSelfServiceSignUpable interface {
     OnUserCreateStartHandlerable

@@ -9,18 +9,6 @@ import (
 
 type Teamwork struct {
     Entity
-    // A collection of deleted chats.
-    deletedChats []DeletedChatable
-    // The deleted team.
-    deletedTeams []DeletedTeamable
-    // Indicates whether Microsoft Teams is enabled for the organization.
-    isTeamsEnabled *bool
-    // Represents the region of the organization or the tenant. The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
-    region *string
-    // Represents tenant-wide settings for all Teams apps in the tenant.
-    teamsAppSettings TeamsAppSettingsable
-    // The workforceIntegrations property
-    workforceIntegrations []WorkforceIntegrationable
 }
 // NewTeamwork instantiates a new Teamwork and sets the default values.
 func NewTeamwork()(*Teamwork) {
@@ -37,12 +25,26 @@ func CreateTeamworkFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
 // GetDeletedChats gets the deletedChats property value. A collection of deleted chats.
 // returns a []DeletedChatable when successful
 func (m *Teamwork) GetDeletedChats()([]DeletedChatable) {
-    return m.deletedChats
+    val, err := m.GetBackingStore().Get("deletedChats")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DeletedChatable)
+    }
+    return nil
 }
 // GetDeletedTeams gets the deletedTeams property value. The deleted team.
 // returns a []DeletedTeamable when successful
 func (m *Teamwork) GetDeletedTeams()([]DeletedTeamable) {
-    return m.deletedTeams
+    val, err := m.GetBackingStore().Get("deletedTeams")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DeletedTeamable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -131,22 +133,50 @@ func (m *Teamwork) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetIsTeamsEnabled gets the isTeamsEnabled property value. Indicates whether Microsoft Teams is enabled for the organization.
 // returns a *bool when successful
 func (m *Teamwork) GetIsTeamsEnabled()(*bool) {
-    return m.isTeamsEnabled
+    val, err := m.GetBackingStore().Get("isTeamsEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetRegion gets the region property value. Represents the region of the organization or the tenant. The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
 // returns a *string when successful
 func (m *Teamwork) GetRegion()(*string) {
-    return m.region
+    val, err := m.GetBackingStore().Get("region")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetTeamsAppSettings gets the teamsAppSettings property value. Represents tenant-wide settings for all Teams apps in the tenant.
 // returns a TeamsAppSettingsable when successful
 func (m *Teamwork) GetTeamsAppSettings()(TeamsAppSettingsable) {
-    return m.teamsAppSettings
+    val, err := m.GetBackingStore().Get("teamsAppSettings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TeamsAppSettingsable)
+    }
+    return nil
 }
 // GetWorkforceIntegrations gets the workforceIntegrations property value. The workforceIntegrations property
 // returns a []WorkforceIntegrationable when successful
 func (m *Teamwork) GetWorkforceIntegrations()([]WorkforceIntegrationable) {
-    return m.workforceIntegrations
+    val, err := m.GetBackingStore().Get("workforceIntegrations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WorkforceIntegrationable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Teamwork) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -212,27 +242,45 @@ func (m *Teamwork) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 }
 // SetDeletedChats sets the deletedChats property value. A collection of deleted chats.
 func (m *Teamwork) SetDeletedChats(value []DeletedChatable)() {
-    m.deletedChats = value
+    err := m.GetBackingStore().Set("deletedChats", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeletedTeams sets the deletedTeams property value. The deleted team.
 func (m *Teamwork) SetDeletedTeams(value []DeletedTeamable)() {
-    m.deletedTeams = value
+    err := m.GetBackingStore().Set("deletedTeams", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsTeamsEnabled sets the isTeamsEnabled property value. Indicates whether Microsoft Teams is enabled for the organization.
 func (m *Teamwork) SetIsTeamsEnabled(value *bool)() {
-    m.isTeamsEnabled = value
+    err := m.GetBackingStore().Set("isTeamsEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegion sets the region property value. Represents the region of the organization or the tenant. The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
 func (m *Teamwork) SetRegion(value *string)() {
-    m.region = value
+    err := m.GetBackingStore().Set("region", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTeamsAppSettings sets the teamsAppSettings property value. Represents tenant-wide settings for all Teams apps in the tenant.
 func (m *Teamwork) SetTeamsAppSettings(value TeamsAppSettingsable)() {
-    m.teamsAppSettings = value
+    err := m.GetBackingStore().Set("teamsAppSettings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWorkforceIntegrations sets the workforceIntegrations property value. The workforceIntegrations property
 func (m *Teamwork) SetWorkforceIntegrations(value []WorkforceIntegrationable)() {
-    m.workforceIntegrations = value
+    err := m.GetBackingStore().Set("workforceIntegrations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Teamworkable interface {
     Entityable

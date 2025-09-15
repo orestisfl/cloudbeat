@@ -9,24 +9,6 @@ import (
 
 type Directory struct {
     Entity
-    // Conceptual container for user and group directory objects.
-    administrativeUnits []AdministrativeUnitable
-    // Group of related custom security attribute definitions.
-    attributeSets []AttributeSetable
-    // Schema of a custom security attributes (key-value pairs).
-    customSecurityAttributeDefinitions []CustomSecurityAttributeDefinitionable
-    // Recently deleted items. Read-only. Nullable.
-    deletedItems []DirectoryObjectable
-    // The credentials of the device's local administrator account backed up to Microsoft Entra ID.
-    deviceLocalCredentials []DeviceLocalCredentialInfoable
-    // Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
-    federationConfigurations []IdentityProviderBaseable
-    // A container for on-premises directory synchronization functionalities that are available for the organization.
-    onPremisesSynchronization []OnPremisesDirectorySynchronizationable
-    // The collection of public key infrastructure instances for the certificate-based authentication feature for users in a Microsoft Entra tenant.
-    publicKeyInfrastructure PublicKeyInfrastructureRootable
-    // List of commercial subscriptions that an organization acquired.
-    subscriptions []CompanySubscriptionable
 }
 // NewDirectory instantiates a new Directory and sets the default values.
 func NewDirectory()(*Directory) {
@@ -43,32 +25,74 @@ func CreateDirectoryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
 // GetAdministrativeUnits gets the administrativeUnits property value. Conceptual container for user and group directory objects.
 // returns a []AdministrativeUnitable when successful
 func (m *Directory) GetAdministrativeUnits()([]AdministrativeUnitable) {
-    return m.administrativeUnits
+    val, err := m.GetBackingStore().Get("administrativeUnits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AdministrativeUnitable)
+    }
+    return nil
 }
 // GetAttributeSets gets the attributeSets property value. Group of related custom security attribute definitions.
 // returns a []AttributeSetable when successful
 func (m *Directory) GetAttributeSets()([]AttributeSetable) {
-    return m.attributeSets
+    val, err := m.GetBackingStore().Get("attributeSets")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AttributeSetable)
+    }
+    return nil
 }
 // GetCustomSecurityAttributeDefinitions gets the customSecurityAttributeDefinitions property value. Schema of a custom security attributes (key-value pairs).
 // returns a []CustomSecurityAttributeDefinitionable when successful
 func (m *Directory) GetCustomSecurityAttributeDefinitions()([]CustomSecurityAttributeDefinitionable) {
-    return m.customSecurityAttributeDefinitions
+    val, err := m.GetBackingStore().Get("customSecurityAttributeDefinitions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CustomSecurityAttributeDefinitionable)
+    }
+    return nil
 }
 // GetDeletedItems gets the deletedItems property value. Recently deleted items. Read-only. Nullable.
 // returns a []DirectoryObjectable when successful
 func (m *Directory) GetDeletedItems()([]DirectoryObjectable) {
-    return m.deletedItems
+    val, err := m.GetBackingStore().Get("deletedItems")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DirectoryObjectable)
+    }
+    return nil
 }
 // GetDeviceLocalCredentials gets the deviceLocalCredentials property value. The credentials of the device's local administrator account backed up to Microsoft Entra ID.
 // returns a []DeviceLocalCredentialInfoable when successful
 func (m *Directory) GetDeviceLocalCredentials()([]DeviceLocalCredentialInfoable) {
-    return m.deviceLocalCredentials
+    val, err := m.GetBackingStore().Get("deviceLocalCredentials")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DeviceLocalCredentialInfoable)
+    }
+    return nil
 }
 // GetFederationConfigurations gets the federationConfigurations property value. Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
 // returns a []IdentityProviderBaseable when successful
 func (m *Directory) GetFederationConfigurations()([]IdentityProviderBaseable) {
-    return m.federationConfigurations
+    val, err := m.GetBackingStore().Get("federationConfigurations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]IdentityProviderBaseable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -217,17 +241,38 @@ func (m *Directory) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 // GetOnPremisesSynchronization gets the onPremisesSynchronization property value. A container for on-premises directory synchronization functionalities that are available for the organization.
 // returns a []OnPremisesDirectorySynchronizationable when successful
 func (m *Directory) GetOnPremisesSynchronization()([]OnPremisesDirectorySynchronizationable) {
-    return m.onPremisesSynchronization
+    val, err := m.GetBackingStore().Get("onPremisesSynchronization")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]OnPremisesDirectorySynchronizationable)
+    }
+    return nil
 }
 // GetPublicKeyInfrastructure gets the publicKeyInfrastructure property value. The collection of public key infrastructure instances for the certificate-based authentication feature for users in a Microsoft Entra tenant.
 // returns a PublicKeyInfrastructureRootable when successful
 func (m *Directory) GetPublicKeyInfrastructure()(PublicKeyInfrastructureRootable) {
-    return m.publicKeyInfrastructure
+    val, err := m.GetBackingStore().Get("publicKeyInfrastructure")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(PublicKeyInfrastructureRootable)
+    }
+    return nil
 }
 // GetSubscriptions gets the subscriptions property value. List of commercial subscriptions that an organization acquired.
 // returns a []CompanySubscriptionable when successful
 func (m *Directory) GetSubscriptions()([]CompanySubscriptionable) {
-    return m.subscriptions
+    val, err := m.GetBackingStore().Get("subscriptions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CompanySubscriptionable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Directory) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -341,39 +386,66 @@ func (m *Directory) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 }
 // SetAdministrativeUnits sets the administrativeUnits property value. Conceptual container for user and group directory objects.
 func (m *Directory) SetAdministrativeUnits(value []AdministrativeUnitable)() {
-    m.administrativeUnits = value
+    err := m.GetBackingStore().Set("administrativeUnits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAttributeSets sets the attributeSets property value. Group of related custom security attribute definitions.
 func (m *Directory) SetAttributeSets(value []AttributeSetable)() {
-    m.attributeSets = value
+    err := m.GetBackingStore().Set("attributeSets", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCustomSecurityAttributeDefinitions sets the customSecurityAttributeDefinitions property value. Schema of a custom security attributes (key-value pairs).
 func (m *Directory) SetCustomSecurityAttributeDefinitions(value []CustomSecurityAttributeDefinitionable)() {
-    m.customSecurityAttributeDefinitions = value
+    err := m.GetBackingStore().Set("customSecurityAttributeDefinitions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeletedItems sets the deletedItems property value. Recently deleted items. Read-only. Nullable.
 func (m *Directory) SetDeletedItems(value []DirectoryObjectable)() {
-    m.deletedItems = value
+    err := m.GetBackingStore().Set("deletedItems", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceLocalCredentials sets the deviceLocalCredentials property value. The credentials of the device's local administrator account backed up to Microsoft Entra ID.
 func (m *Directory) SetDeviceLocalCredentials(value []DeviceLocalCredentialInfoable)() {
-    m.deviceLocalCredentials = value
+    err := m.GetBackingStore().Set("deviceLocalCredentials", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFederationConfigurations sets the federationConfigurations property value. Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
 func (m *Directory) SetFederationConfigurations(value []IdentityProviderBaseable)() {
-    m.federationConfigurations = value
+    err := m.GetBackingStore().Set("federationConfigurations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOnPremisesSynchronization sets the onPremisesSynchronization property value. A container for on-premises directory synchronization functionalities that are available for the organization.
 func (m *Directory) SetOnPremisesSynchronization(value []OnPremisesDirectorySynchronizationable)() {
-    m.onPremisesSynchronization = value
+    err := m.GetBackingStore().Set("onPremisesSynchronization", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPublicKeyInfrastructure sets the publicKeyInfrastructure property value. The collection of public key infrastructure instances for the certificate-based authentication feature for users in a Microsoft Entra tenant.
 func (m *Directory) SetPublicKeyInfrastructure(value PublicKeyInfrastructureRootable)() {
-    m.publicKeyInfrastructure = value
+    err := m.GetBackingStore().Set("publicKeyInfrastructure", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubscriptions sets the subscriptions property value. List of commercial subscriptions that an organization acquired.
 func (m *Directory) SetSubscriptions(value []CompanySubscriptionable)() {
-    m.subscriptions = value
+    err := m.GetBackingStore().Set("subscriptions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Directoryable interface {
     Entityable

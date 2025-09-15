@@ -9,8 +9,6 @@ import (
 
 type PersistentBrowserSessionControl struct {
     ConditionalAccessSessionControl
-    // Possible values are: always, never.
-    mode *PersistentBrowserSessionMode
 }
 // NewPersistentBrowserSessionControl instantiates a new PersistentBrowserSessionControl and sets the default values.
 func NewPersistentBrowserSessionControl()(*PersistentBrowserSessionControl) {
@@ -45,7 +43,14 @@ func (m *PersistentBrowserSessionControl) GetFieldDeserializers()(map[string]fun
 // GetMode gets the mode property value. Possible values are: always, never.
 // returns a *PersistentBrowserSessionMode when successful
 func (m *PersistentBrowserSessionControl) GetMode()(*PersistentBrowserSessionMode) {
-    return m.mode
+    val, err := m.GetBackingStore().Get("mode")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*PersistentBrowserSessionMode)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PersistentBrowserSessionControl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -64,7 +69,10 @@ func (m *PersistentBrowserSessionControl) Serialize(writer i878a80d2330e89d26896
 }
 // SetMode sets the mode property value. Possible values are: always, never.
 func (m *PersistentBrowserSessionControl) SetMode(value *PersistentBrowserSessionMode)() {
-    m.mode = value
+    err := m.GetBackingStore().Set("mode", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PersistentBrowserSessionControlable interface {
     ConditionalAccessSessionControlable

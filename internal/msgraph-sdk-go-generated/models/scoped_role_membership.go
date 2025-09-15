@@ -9,12 +9,6 @@ import (
 
 type ScopedRoleMembership struct {
     Entity
-    // Unique identifier for the administrative unit that the directory role is scoped to
-    administrativeUnitId *string
-    // Unique identifier for the directory role that the member is in.
-    roleId *string
-    // The roleMemberInfo property
-    roleMemberInfo Identityable
 }
 // NewScopedRoleMembership instantiates a new ScopedRoleMembership and sets the default values.
 func NewScopedRoleMembership()(*ScopedRoleMembership) {
@@ -31,7 +25,14 @@ func CreateScopedRoleMembershipFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetAdministrativeUnitId gets the administrativeUnitId property value. Unique identifier for the administrative unit that the directory role is scoped to
 // returns a *string when successful
 func (m *ScopedRoleMembership) GetAdministrativeUnitId()(*string) {
-    return m.administrativeUnitId
+    val, err := m.GetBackingStore().Get("administrativeUnitId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -72,12 +73,26 @@ func (m *ScopedRoleMembership) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetRoleId gets the roleId property value. Unique identifier for the directory role that the member is in.
 // returns a *string when successful
 func (m *ScopedRoleMembership) GetRoleId()(*string) {
-    return m.roleId
+    val, err := m.GetBackingStore().Get("roleId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetRoleMemberInfo gets the roleMemberInfo property value. The roleMemberInfo property
 // returns a Identityable when successful
 func (m *ScopedRoleMembership) GetRoleMemberInfo()(Identityable) {
-    return m.roleMemberInfo
+    val, err := m.GetBackingStore().Get("roleMemberInfo")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Identityable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ScopedRoleMembership) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -107,15 +122,24 @@ func (m *ScopedRoleMembership) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetAdministrativeUnitId sets the administrativeUnitId property value. Unique identifier for the administrative unit that the directory role is scoped to
 func (m *ScopedRoleMembership) SetAdministrativeUnitId(value *string)() {
-    m.administrativeUnitId = value
+    err := m.GetBackingStore().Set("administrativeUnitId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoleId sets the roleId property value. Unique identifier for the directory role that the member is in.
 func (m *ScopedRoleMembership) SetRoleId(value *string)() {
-    m.roleId = value
+    err := m.GetBackingStore().Set("roleId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoleMemberInfo sets the roleMemberInfo property value. The roleMemberInfo property
 func (m *ScopedRoleMembership) SetRoleMemberInfo(value Identityable)() {
-    m.roleMemberInfo = value
+    err := m.GetBackingStore().Set("roleMemberInfo", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ScopedRoleMembershipable interface {
     Entityable

@@ -9,10 +9,6 @@ import (
 
 type KubernetesServiceAccountEvidence struct {
     AlertEvidence
-    // The service account name.
-    name *string
-    // The service account namespace.
-    namespace KubernetesNamespaceEvidenceable
 }
 // NewKubernetesServiceAccountEvidence instantiates a new KubernetesServiceAccountEvidence and sets the default values.
 func NewKubernetesServiceAccountEvidence()(*KubernetesServiceAccountEvidence) {
@@ -57,12 +53,26 @@ func (m *KubernetesServiceAccountEvidence) GetFieldDeserializers()(map[string]fu
 // GetName gets the name property value. The service account name.
 // returns a *string when successful
 func (m *KubernetesServiceAccountEvidence) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetNamespace gets the namespace property value. The service account namespace.
 // returns a KubernetesNamespaceEvidenceable when successful
 func (m *KubernetesServiceAccountEvidence) GetNamespace()(KubernetesNamespaceEvidenceable) {
-    return m.namespace
+    val, err := m.GetBackingStore().Get("namespace")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(KubernetesNamespaceEvidenceable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *KubernetesServiceAccountEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *KubernetesServiceAccountEvidence) Serialize(writer i878a80d2330e89d2689
 }
 // SetName sets the name property value. The service account name.
 func (m *KubernetesServiceAccountEvidence) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetNamespace sets the namespace property value. The service account namespace.
 func (m *KubernetesServiceAccountEvidence) SetNamespace(value KubernetesNamespaceEvidenceable)() {
-    m.namespace = value
+    err := m.GetBackingStore().Set("namespace", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type KubernetesServiceAccountEvidenceable interface {
     AlertEvidenceable

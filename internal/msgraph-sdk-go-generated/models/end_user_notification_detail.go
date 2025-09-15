@@ -9,18 +9,6 @@ import (
 
 type EndUserNotificationDetail struct {
     Entity
-    // Email HTML content.
-    emailContent *string
-    // Indicates whether this language is default.
-    isDefaultLangauge *bool
-    // Notification language.
-    language *string
-    // Notification locale.
-    locale *string
-    // The sentFrom property
-    sentFrom EmailIdentityable
-    // Mail subject.
-    subject *string
 }
 // NewEndUserNotificationDetail instantiates a new EndUserNotificationDetail and sets the default values.
 func NewEndUserNotificationDetail()(*EndUserNotificationDetail) {
@@ -37,7 +25,14 @@ func CreateEndUserNotificationDetailFromDiscriminatorValue(parseNode i878a80d233
 // GetEmailContent gets the emailContent property value. Email HTML content.
 // returns a *string when successful
 func (m *EndUserNotificationDetail) GetEmailContent()(*string) {
-    return m.emailContent
+    val, err := m.GetBackingStore().Get("emailContent")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -108,27 +103,62 @@ func (m *EndUserNotificationDetail) GetFieldDeserializers()(map[string]func(i878
 // GetIsDefaultLangauge gets the isDefaultLangauge property value. Indicates whether this language is default.
 // returns a *bool when successful
 func (m *EndUserNotificationDetail) GetIsDefaultLangauge()(*bool) {
-    return m.isDefaultLangauge
+    val, err := m.GetBackingStore().Get("isDefaultLangauge")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetLanguage gets the language property value. Notification language.
 // returns a *string when successful
 func (m *EndUserNotificationDetail) GetLanguage()(*string) {
-    return m.language
+    val, err := m.GetBackingStore().Get("language")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetLocale gets the locale property value. Notification locale.
 // returns a *string when successful
 func (m *EndUserNotificationDetail) GetLocale()(*string) {
-    return m.locale
+    val, err := m.GetBackingStore().Get("locale")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetSentFrom gets the sentFrom property value. The sentFrom property
 // returns a EmailIdentityable when successful
 func (m *EndUserNotificationDetail) GetSentFrom()(EmailIdentityable) {
-    return m.sentFrom
+    val, err := m.GetBackingStore().Get("sentFrom")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EmailIdentityable)
+    }
+    return nil
 }
 // GetSubject gets the subject property value. Mail subject.
 // returns a *string when successful
 func (m *EndUserNotificationDetail) GetSubject()(*string) {
-    return m.subject
+    val, err := m.GetBackingStore().Get("subject")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EndUserNotificationDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -176,27 +206,45 @@ func (m *EndUserNotificationDetail) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetEmailContent sets the emailContent property value. Email HTML content.
 func (m *EndUserNotificationDetail) SetEmailContent(value *string)() {
-    m.emailContent = value
+    err := m.GetBackingStore().Set("emailContent", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsDefaultLangauge sets the isDefaultLangauge property value. Indicates whether this language is default.
 func (m *EndUserNotificationDetail) SetIsDefaultLangauge(value *bool)() {
-    m.isDefaultLangauge = value
+    err := m.GetBackingStore().Set("isDefaultLangauge", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLanguage sets the language property value. Notification language.
 func (m *EndUserNotificationDetail) SetLanguage(value *string)() {
-    m.language = value
+    err := m.GetBackingStore().Set("language", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLocale sets the locale property value. Notification locale.
 func (m *EndUserNotificationDetail) SetLocale(value *string)() {
-    m.locale = value
+    err := m.GetBackingStore().Set("locale", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSentFrom sets the sentFrom property value. The sentFrom property
 func (m *EndUserNotificationDetail) SetSentFrom(value EmailIdentityable)() {
-    m.sentFrom = value
+    err := m.GetBackingStore().Set("sentFrom", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSubject sets the subject property value. Mail subject.
 func (m *EndUserNotificationDetail) SetSubject(value *string)() {
-    m.subject = value
+    err := m.GetBackingStore().Set("subject", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EndUserNotificationDetailable interface {
     Entityable

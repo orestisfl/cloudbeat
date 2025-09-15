@@ -9,10 +9,6 @@ import (
 
 type VirtualEventWebinarRegistrationConfiguration struct {
     VirtualEventRegistrationConfiguration
-    // The isManualApprovalEnabled property
-    isManualApprovalEnabled *bool
-    // The isWaitlistEnabled property
-    isWaitlistEnabled *bool
 }
 // NewVirtualEventWebinarRegistrationConfiguration instantiates a new VirtualEventWebinarRegistrationConfiguration and sets the default values.
 func NewVirtualEventWebinarRegistrationConfiguration()(*VirtualEventWebinarRegistrationConfiguration) {
@@ -55,12 +51,26 @@ func (m *VirtualEventWebinarRegistrationConfiguration) GetFieldDeserializers()(m
 // GetIsManualApprovalEnabled gets the isManualApprovalEnabled property value. The isManualApprovalEnabled property
 // returns a *bool when successful
 func (m *VirtualEventWebinarRegistrationConfiguration) GetIsManualApprovalEnabled()(*bool) {
-    return m.isManualApprovalEnabled
+    val, err := m.GetBackingStore().Get("isManualApprovalEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsWaitlistEnabled gets the isWaitlistEnabled property value. The isWaitlistEnabled property
 // returns a *bool when successful
 func (m *VirtualEventWebinarRegistrationConfiguration) GetIsWaitlistEnabled()(*bool) {
-    return m.isWaitlistEnabled
+    val, err := m.GetBackingStore().Get("isWaitlistEnabled")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventWebinarRegistrationConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -84,11 +94,17 @@ func (m *VirtualEventWebinarRegistrationConfiguration) Serialize(writer i878a80d
 }
 // SetIsManualApprovalEnabled sets the isManualApprovalEnabled property value. The isManualApprovalEnabled property
 func (m *VirtualEventWebinarRegistrationConfiguration) SetIsManualApprovalEnabled(value *bool)() {
-    m.isManualApprovalEnabled = value
+    err := m.GetBackingStore().Set("isManualApprovalEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsWaitlistEnabled sets the isWaitlistEnabled property value. The isWaitlistEnabled property
 func (m *VirtualEventWebinarRegistrationConfiguration) SetIsWaitlistEnabled(value *bool)() {
-    m.isWaitlistEnabled = value
+    err := m.GetBackingStore().Set("isWaitlistEnabled", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventWebinarRegistrationConfigurationable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

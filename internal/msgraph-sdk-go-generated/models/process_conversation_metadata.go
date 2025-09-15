@@ -9,12 +9,6 @@ import (
 
 type ProcessConversationMetadata struct {
     ProcessContentMetadataBase
-    // List of resources (for example, file URLs, web URLs) accessed during the generation of this message (relevant for bot interactions).
-    accessedResources []string
-    // Identifier of the parent message in a threaded conversation, if applicable.
-    parentMessageId *string
-    // List of plugins used during the generation of this message (relevant for AI/bot interactions).
-    plugins []AiInteractionPluginable
 }
 // NewProcessConversationMetadata instantiates a new ProcessConversationMetadata and sets the default values.
 func NewProcessConversationMetadata()(*ProcessConversationMetadata) {
@@ -33,7 +27,14 @@ func CreateProcessConversationMetadataFromDiscriminatorValue(parseNode i878a80d2
 // GetAccessedResources gets the accessedResources property value. List of resources (for example, file URLs, web URLs) accessed during the generation of this message (relevant for bot interactions).
 // returns a []string when successful
 func (m *ProcessConversationMetadata) GetAccessedResources()([]string) {
-    return m.accessedResources
+    val, err := m.GetBackingStore().Get("accessedResources")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,12 +87,26 @@ func (m *ProcessConversationMetadata) GetFieldDeserializers()(map[string]func(i8
 // GetParentMessageId gets the parentMessageId property value. Identifier of the parent message in a threaded conversation, if applicable.
 // returns a *string when successful
 func (m *ProcessConversationMetadata) GetParentMessageId()(*string) {
-    return m.parentMessageId
+    val, err := m.GetBackingStore().Get("parentMessageId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPlugins gets the plugins property value. List of plugins used during the generation of this message (relevant for AI/bot interactions).
 // returns a []AiInteractionPluginable when successful
 func (m *ProcessConversationMetadata) GetPlugins()([]AiInteractionPluginable) {
-    return m.plugins
+    val, err := m.GetBackingStore().Get("plugins")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AiInteractionPluginable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ProcessConversationMetadata) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -127,15 +142,24 @@ func (m *ProcessConversationMetadata) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetAccessedResources sets the accessedResources property value. List of resources (for example, file URLs, web URLs) accessed during the generation of this message (relevant for bot interactions).
 func (m *ProcessConversationMetadata) SetAccessedResources(value []string)() {
-    m.accessedResources = value
+    err := m.GetBackingStore().Set("accessedResources", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParentMessageId sets the parentMessageId property value. Identifier of the parent message in a threaded conversation, if applicable.
 func (m *ProcessConversationMetadata) SetParentMessageId(value *string)() {
-    m.parentMessageId = value
+    err := m.GetBackingStore().Set("parentMessageId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPlugins sets the plugins property value. List of plugins used during the generation of this message (relevant for AI/bot interactions).
 func (m *ProcessConversationMetadata) SetPlugins(value []AiInteractionPluginable)() {
-    m.plugins = value
+    err := m.GetBackingStore().Set("plugins", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ProcessConversationMetadataable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

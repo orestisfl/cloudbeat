@@ -5,32 +5,18 @@ package models
 
 import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e "github.com/microsoft/kiota-abstractions-go/store"
 )
 
 type DocumentSet struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // Content types allowed in document set.
-    allowedContentTypes []ContentTypeInfoable
-    // Default contents of document set.
-    defaultContents []DocumentSetContentable
-    // The OdataType property
-    odataType *string
-    // Specifies whether to push welcome page changes to inherited content types.
-    propagateWelcomePageChanges *bool
-    // The sharedColumns property
-    sharedColumns []ColumnDefinitionable
-    // Indicates whether to add the name of the document set to each file name.
-    shouldPrefixNameToFile *bool
-    // The welcomePageColumns property
-    welcomePageColumns []ColumnDefinitionable
-    // Welcome page absolute URL.
-    welcomePageUrl *string
+    // Stores model information.
+    backingStore ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore
 }
 // NewDocumentSet instantiates a new DocumentSet and sets the default values.
 func NewDocumentSet()(*DocumentSet) {
     m := &DocumentSet{
     }
+    m.backingStore = ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStoreFactoryInstance();
     m.SetAdditionalData(make(map[string]any))
     return m
 }
@@ -42,17 +28,44 @@ func CreateDocumentSetFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *DocumentSet) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+    val , err :=  m.backingStore.Get("additionalData")
+    if err != nil {
+        panic(err)
+    }
+    if val == nil {
+        var value = make(map[string]any);
+        m.SetAdditionalData(value);
+    }
+    return val.(map[string]any)
 }
 // GetAllowedContentTypes gets the allowedContentTypes property value. Content types allowed in document set.
 // returns a []ContentTypeInfoable when successful
 func (m *DocumentSet) GetAllowedContentTypes()([]ContentTypeInfoable) {
-    return m.allowedContentTypes
+    val, err := m.GetBackingStore().Get("allowedContentTypes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ContentTypeInfoable)
+    }
+    return nil
+}
+// GetBackingStore gets the BackingStore property value. Stores model information.
+// returns a BackingStore when successful
+func (m *DocumentSet) GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore) {
+    return m.backingStore
 }
 // GetDefaultContents gets the defaultContents property value. Default contents of document set.
 // returns a []DocumentSetContentable when successful
 func (m *DocumentSet) GetDefaultContents()([]DocumentSetContentable) {
-    return m.defaultContents
+    val, err := m.GetBackingStore().Get("defaultContents")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DocumentSetContentable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -167,32 +180,74 @@ func (m *DocumentSet) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 // GetOdataType gets the @odata.type property value. The OdataType property
 // returns a *string when successful
 func (m *DocumentSet) GetOdataType()(*string) {
-    return m.odataType
+    val, err := m.GetBackingStore().Get("odataType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPropagateWelcomePageChanges gets the propagateWelcomePageChanges property value. Specifies whether to push welcome page changes to inherited content types.
 // returns a *bool when successful
 func (m *DocumentSet) GetPropagateWelcomePageChanges()(*bool) {
-    return m.propagateWelcomePageChanges
+    val, err := m.GetBackingStore().Get("propagateWelcomePageChanges")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetSharedColumns gets the sharedColumns property value. The sharedColumns property
 // returns a []ColumnDefinitionable when successful
 func (m *DocumentSet) GetSharedColumns()([]ColumnDefinitionable) {
-    return m.sharedColumns
+    val, err := m.GetBackingStore().Get("sharedColumns")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ColumnDefinitionable)
+    }
+    return nil
 }
 // GetShouldPrefixNameToFile gets the shouldPrefixNameToFile property value. Indicates whether to add the name of the document set to each file name.
 // returns a *bool when successful
 func (m *DocumentSet) GetShouldPrefixNameToFile()(*bool) {
-    return m.shouldPrefixNameToFile
+    val, err := m.GetBackingStore().Get("shouldPrefixNameToFile")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetWelcomePageColumns gets the welcomePageColumns property value. The welcomePageColumns property
 // returns a []ColumnDefinitionable when successful
 func (m *DocumentSet) GetWelcomePageColumns()([]ColumnDefinitionable) {
-    return m.welcomePageColumns
+    val, err := m.GetBackingStore().Get("welcomePageColumns")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ColumnDefinitionable)
+    }
+    return nil
 }
 // GetWelcomePageUrl gets the welcomePageUrl property value. Welcome page absolute URL.
 // returns a *string when successful
 func (m *DocumentSet) GetWelcomePageUrl()(*string) {
-    return m.welcomePageUrl
+    val, err := m.GetBackingStore().Get("welcomePageUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DocumentSet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -278,44 +333,77 @@ func (m *DocumentSet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *DocumentSet) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+    err := m.GetBackingStore().Set("additionalData", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAllowedContentTypes sets the allowedContentTypes property value. Content types allowed in document set.
 func (m *DocumentSet) SetAllowedContentTypes(value []ContentTypeInfoable)() {
-    m.allowedContentTypes = value
+    err := m.GetBackingStore().Set("allowedContentTypes", value)
+    if err != nil {
+        panic(err)
+    }
+}
+// SetBackingStore sets the BackingStore property value. Stores model information.
+func (m *DocumentSet) SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)() {
+    m.backingStore = value
 }
 // SetDefaultContents sets the defaultContents property value. Default contents of document set.
 func (m *DocumentSet) SetDefaultContents(value []DocumentSetContentable)() {
-    m.defaultContents = value
+    err := m.GetBackingStore().Set("defaultContents", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *DocumentSet) SetOdataType(value *string)() {
-    m.odataType = value
+    err := m.GetBackingStore().Set("odataType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPropagateWelcomePageChanges sets the propagateWelcomePageChanges property value. Specifies whether to push welcome page changes to inherited content types.
 func (m *DocumentSet) SetPropagateWelcomePageChanges(value *bool)() {
-    m.propagateWelcomePageChanges = value
+    err := m.GetBackingStore().Set("propagateWelcomePageChanges", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSharedColumns sets the sharedColumns property value. The sharedColumns property
 func (m *DocumentSet) SetSharedColumns(value []ColumnDefinitionable)() {
-    m.sharedColumns = value
+    err := m.GetBackingStore().Set("sharedColumns", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetShouldPrefixNameToFile sets the shouldPrefixNameToFile property value. Indicates whether to add the name of the document set to each file name.
 func (m *DocumentSet) SetShouldPrefixNameToFile(value *bool)() {
-    m.shouldPrefixNameToFile = value
+    err := m.GetBackingStore().Set("shouldPrefixNameToFile", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWelcomePageColumns sets the welcomePageColumns property value. The welcomePageColumns property
 func (m *DocumentSet) SetWelcomePageColumns(value []ColumnDefinitionable)() {
-    m.welcomePageColumns = value
+    err := m.GetBackingStore().Set("welcomePageColumns", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWelcomePageUrl sets the welcomePageUrl property value. Welcome page absolute URL.
 func (m *DocumentSet) SetWelcomePageUrl(value *string)() {
-    m.welcomePageUrl = value
+    err := m.GetBackingStore().Set("welcomePageUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DocumentSetable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackedModel
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAllowedContentTypes()([]ContentTypeInfoable)
+    GetBackingStore()(ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)
     GetDefaultContents()([]DocumentSetContentable)
     GetOdataType()(*string)
     GetPropagateWelcomePageChanges()(*bool)
@@ -324,6 +412,7 @@ type DocumentSetable interface {
     GetWelcomePageColumns()([]ColumnDefinitionable)
     GetWelcomePageUrl()(*string)
     SetAllowedContentTypes(value []ContentTypeInfoable)()
+    SetBackingStore(value ie8677ce2c7e1b4c22e9c3827ecd078d41185424dd9eeb92b7d971ed2d49a392e.BackingStore)()
     SetDefaultContents(value []DocumentSetContentable)()
     SetOdataType(value *string)()
     SetPropagateWelcomePageChanges(value *bool)()

@@ -9,8 +9,6 @@ import (
 
 type TeamworkApplicationIdentity struct {
     Identity
-    // Type of application that is referenced. Possible values are: aadApplication, bot, tenantBot, office365Connector, outgoingWebhook, and unknownFutureValue.
-    applicationIdentityType *TeamworkApplicationIdentityType
 }
 // NewTeamworkApplicationIdentity instantiates a new TeamworkApplicationIdentity and sets the default values.
 func NewTeamworkApplicationIdentity()(*TeamworkApplicationIdentity) {
@@ -29,7 +27,14 @@ func CreateTeamworkApplicationIdentityFromDiscriminatorValue(parseNode i878a80d2
 // GetApplicationIdentityType gets the applicationIdentityType property value. Type of application that is referenced. Possible values are: aadApplication, bot, tenantBot, office365Connector, outgoingWebhook, and unknownFutureValue.
 // returns a *TeamworkApplicationIdentityType when successful
 func (m *TeamworkApplicationIdentity) GetApplicationIdentityType()(*TeamworkApplicationIdentityType) {
-    return m.applicationIdentityType
+    val, err := m.GetBackingStore().Get("applicationIdentityType")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*TeamworkApplicationIdentityType)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -64,7 +69,10 @@ func (m *TeamworkApplicationIdentity) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetApplicationIdentityType sets the applicationIdentityType property value. Type of application that is referenced. Possible values are: aadApplication, bot, tenantBot, office365Connector, outgoingWebhook, and unknownFutureValue.
 func (m *TeamworkApplicationIdentity) SetApplicationIdentityType(value *TeamworkApplicationIdentityType)() {
-    m.applicationIdentityType = value
+    err := m.GetBackingStore().Set("applicationIdentityType", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TeamworkApplicationIdentityable interface {
     Identityable

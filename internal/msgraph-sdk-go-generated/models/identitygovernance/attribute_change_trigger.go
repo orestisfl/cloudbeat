@@ -9,8 +9,6 @@ import (
 
 type AttributeChangeTrigger struct {
     WorkflowExecutionTrigger
-    // The trigger attribute being changed that triggers the workflowexecutiontrigger of a workflow.)
-    triggerAttributes []TriggerAttributeable
 }
 // NewAttributeChangeTrigger instantiates a new AttributeChangeTrigger and sets the default values.
 func NewAttributeChangeTrigger()(*AttributeChangeTrigger) {
@@ -51,7 +49,14 @@ func (m *AttributeChangeTrigger) GetFieldDeserializers()(map[string]func(i878a80
 // GetTriggerAttributes gets the triggerAttributes property value. The trigger attribute being changed that triggers the workflowexecutiontrigger of a workflow.)
 // returns a []TriggerAttributeable when successful
 func (m *AttributeChangeTrigger) GetTriggerAttributes()([]TriggerAttributeable) {
-    return m.triggerAttributes
+    val, err := m.GetBackingStore().Get("triggerAttributes")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TriggerAttributeable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AttributeChangeTrigger) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -75,7 +80,10 @@ func (m *AttributeChangeTrigger) Serialize(writer i878a80d2330e89d26896388a3f487
 }
 // SetTriggerAttributes sets the triggerAttributes property value. The trigger attribute being changed that triggers the workflowexecutiontrigger of a workflow.)
 func (m *AttributeChangeTrigger) SetTriggerAttributes(value []TriggerAttributeable)() {
-    m.triggerAttributes = value
+    err := m.GetBackingStore().Set("triggerAttributes", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AttributeChangeTriggerable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

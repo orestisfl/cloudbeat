@@ -9,8 +9,6 @@ import (
 
 type ServiceHostedMediaConfig struct {
     MediaConfig
-    // The list of media to pre-fetch.
-    preFetchMedia []MediaInfoable
 }
 // NewServiceHostedMediaConfig instantiates a new ServiceHostedMediaConfig and sets the default values.
 func NewServiceHostedMediaConfig()(*ServiceHostedMediaConfig) {
@@ -51,7 +49,14 @@ func (m *ServiceHostedMediaConfig) GetFieldDeserializers()(map[string]func(i878a
 // GetPreFetchMedia gets the preFetchMedia property value. The list of media to pre-fetch.
 // returns a []MediaInfoable when successful
 func (m *ServiceHostedMediaConfig) GetPreFetchMedia()([]MediaInfoable) {
-    return m.preFetchMedia
+    val, err := m.GetBackingStore().Get("preFetchMedia")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]MediaInfoable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *ServiceHostedMediaConfig) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -75,7 +80,10 @@ func (m *ServiceHostedMediaConfig) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetPreFetchMedia sets the preFetchMedia property value. The list of media to pre-fetch.
 func (m *ServiceHostedMediaConfig) SetPreFetchMedia(value []MediaInfoable)() {
-    m.preFetchMedia = value
+    err := m.GetBackingStore().Set("preFetchMedia", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type ServiceHostedMediaConfigable interface {
     MediaConfigable

@@ -9,8 +9,6 @@ import (
 
 type CloudClipboardRoot struct {
     Entity
-    // Represents a collection of Cloud Clipboard items.
-    items []CloudClipboardItemable
 }
 // NewCloudClipboardRoot instantiates a new CloudClipboardRoot and sets the default values.
 func NewCloudClipboardRoot()(*CloudClipboardRoot) {
@@ -49,7 +47,14 @@ func (m *CloudClipboardRoot) GetFieldDeserializers()(map[string]func(i878a80d233
 // GetItems gets the items property value. Represents a collection of Cloud Clipboard items.
 // returns a []CloudClipboardItemable when successful
 func (m *CloudClipboardRoot) GetItems()([]CloudClipboardItemable) {
-    return m.items
+    val, err := m.GetBackingStore().Get("items")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CloudClipboardItemable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *CloudClipboardRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *CloudClipboardRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 }
 // SetItems sets the items property value. Represents a collection of Cloud Clipboard items.
 func (m *CloudClipboardRoot) SetItems(value []CloudClipboardItemable)() {
-    m.items = value
+    err := m.GetBackingStore().Set("items", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type CloudClipboardRootable interface {
     Entityable

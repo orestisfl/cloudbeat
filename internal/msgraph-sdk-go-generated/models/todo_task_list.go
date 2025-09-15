@@ -9,18 +9,6 @@ import (
 
 type TodoTaskList struct {
     Entity
-    // The name of the task list.
-    displayName *string
-    // The collection of open extensions defined for the task list. Nullable.
-    extensions []Extensionable
-    // True if the user is owner of the given task list.
-    isOwner *bool
-    // True if the task list is shared with other users
-    isShared *bool
-    // The tasks in this task list. Read-only. Nullable.
-    tasks []TodoTaskable
-    // The wellknownListName property
-    wellknownListName *WellknownListName
 }
 // NewTodoTaskList instantiates a new TodoTaskList and sets the default values.
 func NewTodoTaskList()(*TodoTaskList) {
@@ -37,12 +25,26 @@ func CreateTodoTaskListFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 // GetDisplayName gets the displayName property value. The name of the task list.
 // returns a *string when successful
 func (m *TodoTaskList) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetExtensions gets the extensions property value. The collection of open extensions defined for the task list. Nullable.
 // returns a []Extensionable when successful
 func (m *TodoTaskList) GetExtensions()([]Extensionable) {
-    return m.extensions
+    val, err := m.GetBackingStore().Get("extensions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Extensionable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -125,22 +127,50 @@ func (m *TodoTaskList) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetIsOwner gets the isOwner property value. True if the user is owner of the given task list.
 // returns a *bool when successful
 func (m *TodoTaskList) GetIsOwner()(*bool) {
-    return m.isOwner
+    val, err := m.GetBackingStore().Get("isOwner")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetIsShared gets the isShared property value. True if the task list is shared with other users
 // returns a *bool when successful
 func (m *TodoTaskList) GetIsShared()(*bool) {
-    return m.isShared
+    val, err := m.GetBackingStore().Get("isShared")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetTasks gets the tasks property value. The tasks in this task list. Read-only. Nullable.
 // returns a []TodoTaskable when successful
 func (m *TodoTaskList) GetTasks()([]TodoTaskable) {
-    return m.tasks
+    val, err := m.GetBackingStore().Get("tasks")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TodoTaskable)
+    }
+    return nil
 }
 // GetWellknownListName gets the wellknownListName property value. The wellknownListName property
 // returns a *WellknownListName when successful
 func (m *TodoTaskList) GetWellknownListName()(*WellknownListName) {
-    return m.wellknownListName
+    val, err := m.GetBackingStore().Get("wellknownListName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*WellknownListName)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *TodoTaskList) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -201,27 +231,45 @@ func (m *TodoTaskList) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetDisplayName sets the displayName property value. The name of the task list.
 func (m *TodoTaskList) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExtensions sets the extensions property value. The collection of open extensions defined for the task list. Nullable.
 func (m *TodoTaskList) SetExtensions(value []Extensionable)() {
-    m.extensions = value
+    err := m.GetBackingStore().Set("extensions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsOwner sets the isOwner property value. True if the user is owner of the given task list.
 func (m *TodoTaskList) SetIsOwner(value *bool)() {
-    m.isOwner = value
+    err := m.GetBackingStore().Set("isOwner", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsShared sets the isShared property value. True if the task list is shared with other users
 func (m *TodoTaskList) SetIsShared(value *bool)() {
-    m.isShared = value
+    err := m.GetBackingStore().Set("isShared", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTasks sets the tasks property value. The tasks in this task list. Read-only. Nullable.
 func (m *TodoTaskList) SetTasks(value []TodoTaskable)() {
-    m.tasks = value
+    err := m.GetBackingStore().Set("tasks", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWellknownListName sets the wellknownListName property value. The wellknownListName property
 func (m *TodoTaskList) SetWellknownListName(value *WellknownListName)() {
-    m.wellknownListName = value
+    err := m.GetBackingStore().Set("wellknownListName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type TodoTaskListable interface {
     Entityable

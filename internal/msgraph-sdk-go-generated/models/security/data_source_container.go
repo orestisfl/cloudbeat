@@ -11,18 +11,6 @@ import (
 
 type DataSourceContainer struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Created date and time of the dataSourceContainer entity.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Display name of the dataSourceContainer entity.
-    displayName *string
-    // The hold status of the dataSourceContainer. The possible values are: notApplied, applied, applying, removing, partial
-    holdStatus *DataSourceHoldStatus
-    // Last modified date and time of the dataSourceContainer.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Date and time that the dataSourceContainer was released from the case.
-    releasedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Latest status of the dataSourceContainer. Possible values are: Active, Released.
-    status *DataSourceContainerStatus
 }
 // NewDataSourceContainer instantiates a new DataSourceContainer and sets the default values.
 func NewDataSourceContainer()(*DataSourceContainer) {
@@ -59,12 +47,26 @@ func CreateDataSourceContainerFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetCreatedDateTime gets the createdDateTime property value. Created date and time of the dataSourceContainer entity.
 // returns a *Time when successful
 func (m *DataSourceContainer) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. Display name of the dataSourceContainer entity.
 // returns a *string when successful
 func (m *DataSourceContainer) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -135,22 +137,50 @@ func (m *DataSourceContainer) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetHoldStatus gets the holdStatus property value. The hold status of the dataSourceContainer. The possible values are: notApplied, applied, applying, removing, partial
 // returns a *DataSourceHoldStatus when successful
 func (m *DataSourceContainer) GetHoldStatus()(*DataSourceHoldStatus) {
-    return m.holdStatus
+    val, err := m.GetBackingStore().Get("holdStatus")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DataSourceHoldStatus)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Last modified date and time of the dataSourceContainer.
 // returns a *Time when successful
 func (m *DataSourceContainer) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetReleasedDateTime gets the releasedDateTime property value. Date and time that the dataSourceContainer was released from the case.
 // returns a *Time when successful
 func (m *DataSourceContainer) GetReleasedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.releasedDateTime
+    val, err := m.GetBackingStore().Get("releasedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetStatus gets the status property value. Latest status of the dataSourceContainer. Possible values are: Active, Released.
 // returns a *DataSourceContainerStatus when successful
 func (m *DataSourceContainer) GetStatus()(*DataSourceContainerStatus) {
-    return m.status
+    val, err := m.GetBackingStore().Get("status")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DataSourceContainerStatus)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *DataSourceContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -200,27 +230,45 @@ func (m *DataSourceContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetCreatedDateTime sets the createdDateTime property value. Created date and time of the dataSourceContainer entity.
 func (m *DataSourceContainer) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. Display name of the dataSourceContainer entity.
 func (m *DataSourceContainer) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetHoldStatus sets the holdStatus property value. The hold status of the dataSourceContainer. The possible values are: notApplied, applied, applying, removing, partial
 func (m *DataSourceContainer) SetHoldStatus(value *DataSourceHoldStatus)() {
-    m.holdStatus = value
+    err := m.GetBackingStore().Set("holdStatus", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Last modified date and time of the dataSourceContainer.
 func (m *DataSourceContainer) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReleasedDateTime sets the releasedDateTime property value. Date and time that the dataSourceContainer was released from the case.
 func (m *DataSourceContainer) SetReleasedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.releasedDateTime = value
+    err := m.GetBackingStore().Set("releasedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStatus sets the status property value. Latest status of the dataSourceContainer. Possible values are: Active, Released.
 func (m *DataSourceContainer) SetStatus(value *DataSourceContainerStatus)() {
-    m.status = value
+    err := m.GetBackingStore().Set("status", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type DataSourceContainerable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

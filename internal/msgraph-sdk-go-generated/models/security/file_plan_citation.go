@@ -9,10 +9,6 @@ import (
 
 type FilePlanCitation struct {
     FilePlanDescriptorBase
-    // Represents the jurisdiction or agency that published the filePlanCitation.
-    citationJurisdiction *string
-    // Represents the URL to the published filePlanCitation.
-    citationUrl *string
 }
 // NewFilePlanCitation instantiates a new FilePlanCitation and sets the default values.
 func NewFilePlanCitation()(*FilePlanCitation) {
@@ -29,12 +25,26 @@ func CreateFilePlanCitationFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 // GetCitationJurisdiction gets the citationJurisdiction property value. Represents the jurisdiction or agency that published the filePlanCitation.
 // returns a *string when successful
 func (m *FilePlanCitation) GetCitationJurisdiction()(*string) {
-    return m.citationJurisdiction
+    val, err := m.GetBackingStore().Get("citationJurisdiction")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetCitationUrl gets the citationUrl property value. Represents the URL to the published filePlanCitation.
 // returns a *string when successful
 func (m *FilePlanCitation) GetCitationUrl()(*string) {
-    return m.citationUrl
+    val, err := m.GetBackingStore().Get("citationUrl")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -84,11 +94,17 @@ func (m *FilePlanCitation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 }
 // SetCitationJurisdiction sets the citationJurisdiction property value. Represents the jurisdiction or agency that published the filePlanCitation.
 func (m *FilePlanCitation) SetCitationJurisdiction(value *string)() {
-    m.citationJurisdiction = value
+    err := m.GetBackingStore().Set("citationJurisdiction", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCitationUrl sets the citationUrl property value. Represents the URL to the published filePlanCitation.
 func (m *FilePlanCitation) SetCitationUrl(value *string)() {
-    m.citationUrl = value
+    err := m.GetBackingStore().Set("citationUrl", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type FilePlanCitationable interface {
     FilePlanDescriptorBaseable

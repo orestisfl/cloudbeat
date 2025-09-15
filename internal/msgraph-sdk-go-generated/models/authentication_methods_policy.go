@@ -10,22 +10,6 @@ import (
 
 type AuthenticationMethodsPolicy struct {
     Entity
-    // Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
-    authenticationMethodConfigurations []AuthenticationMethodConfigurationable
-    // A description of the policy. Read-only.
-    description *string
-    // The name of the policy. Read-only.
-    displayName *string
-    // The date and time of the last update to the policy. Read-only.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-    policyMigrationState *AuthenticationMethodsPolicyMigrationState
-    // The version of the policy in use. Read-only.
-    policyVersion *string
-    // The reconfirmationInDays property
-    reconfirmationInDays *int32
-    // Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
-    registrationEnforcement RegistrationEnforcementable
 }
 // NewAuthenticationMethodsPolicy instantiates a new AuthenticationMethodsPolicy and sets the default values.
 func NewAuthenticationMethodsPolicy()(*AuthenticationMethodsPolicy) {
@@ -42,17 +26,38 @@ func CreateAuthenticationMethodsPolicyFromDiscriminatorValue(parseNode i878a80d2
 // GetAuthenticationMethodConfigurations gets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
 // returns a []AuthenticationMethodConfigurationable when successful
 func (m *AuthenticationMethodsPolicy) GetAuthenticationMethodConfigurations()([]AuthenticationMethodConfigurationable) {
-    return m.authenticationMethodConfigurations
+    val, err := m.GetBackingStore().Get("authenticationMethodConfigurations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationMethodConfigurationable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. A description of the policy. Read-only.
 // returns a *string when successful
 func (m *AuthenticationMethodsPolicy) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. The name of the policy. Read-only.
 // returns a *string when successful
 func (m *AuthenticationMethodsPolicy) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -149,27 +154,62 @@ func (m *AuthenticationMethodsPolicy) GetFieldDeserializers()(map[string]func(i8
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. The date and time of the last update to the policy. Read-only.
 // returns a *Time when successful
 func (m *AuthenticationMethodsPolicy) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetPolicyMigrationState gets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
 // returns a *AuthenticationMethodsPolicyMigrationState when successful
 func (m *AuthenticationMethodsPolicy) GetPolicyMigrationState()(*AuthenticationMethodsPolicyMigrationState) {
-    return m.policyMigrationState
+    val, err := m.GetBackingStore().Get("policyMigrationState")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*AuthenticationMethodsPolicyMigrationState)
+    }
+    return nil
 }
 // GetPolicyVersion gets the policyVersion property value. The version of the policy in use. Read-only.
 // returns a *string when successful
 func (m *AuthenticationMethodsPolicy) GetPolicyVersion()(*string) {
-    return m.policyVersion
+    val, err := m.GetBackingStore().Get("policyVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetReconfirmationInDays gets the reconfirmationInDays property value. The reconfirmationInDays property
 // returns a *int32 when successful
 func (m *AuthenticationMethodsPolicy) GetReconfirmationInDays()(*int32) {
-    return m.reconfirmationInDays
+    val, err := m.GetBackingStore().Get("reconfirmationInDays")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*int32)
+    }
+    return nil
 }
 // GetRegistrationEnforcement gets the registrationEnforcement property value. Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
 // returns a RegistrationEnforcementable when successful
 func (m *AuthenticationMethodsPolicy) GetRegistrationEnforcement()(RegistrationEnforcementable) {
-    return m.registrationEnforcement
+    val, err := m.GetBackingStore().Get("registrationEnforcement")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(RegistrationEnforcementable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AuthenticationMethodsPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -236,35 +276,59 @@ func (m *AuthenticationMethodsPolicy) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetAuthenticationMethodConfigurations sets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
 func (m *AuthenticationMethodsPolicy) SetAuthenticationMethodConfigurations(value []AuthenticationMethodConfigurationable)() {
-    m.authenticationMethodConfigurations = value
+    err := m.GetBackingStore().Set("authenticationMethodConfigurations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. A description of the policy. Read-only.
 func (m *AuthenticationMethodsPolicy) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. The name of the policy. Read-only.
 func (m *AuthenticationMethodsPolicy) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. The date and time of the last update to the policy. Read-only.
 func (m *AuthenticationMethodsPolicy) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPolicyMigrationState sets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
 func (m *AuthenticationMethodsPolicy) SetPolicyMigrationState(value *AuthenticationMethodsPolicyMigrationState)() {
-    m.policyMigrationState = value
+    err := m.GetBackingStore().Set("policyMigrationState", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPolicyVersion sets the policyVersion property value. The version of the policy in use. Read-only.
 func (m *AuthenticationMethodsPolicy) SetPolicyVersion(value *string)() {
-    m.policyVersion = value
+    err := m.GetBackingStore().Set("policyVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReconfirmationInDays sets the reconfirmationInDays property value. The reconfirmationInDays property
 func (m *AuthenticationMethodsPolicy) SetReconfirmationInDays(value *int32)() {
-    m.reconfirmationInDays = value
+    err := m.GetBackingStore().Set("reconfirmationInDays", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRegistrationEnforcement sets the registrationEnforcement property value. Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
 func (m *AuthenticationMethodsPolicy) SetRegistrationEnforcement(value RegistrationEnforcementable)() {
-    m.registrationEnforcement = value
+    err := m.GetBackingStore().Set("registrationEnforcement", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AuthenticationMethodsPolicyable interface {
     Entityable

@@ -9,8 +9,6 @@ import (
 
 type SmsAuthenticationMethodConfiguration struct {
     AuthenticationMethodConfiguration
-    // A collection of groups that are enabled to use the authentication method.
-    includeTargets []SmsAuthenticationMethodTargetable
 }
 // NewSmsAuthenticationMethodConfiguration instantiates a new SmsAuthenticationMethodConfiguration and sets the default values.
 func NewSmsAuthenticationMethodConfiguration()(*SmsAuthenticationMethodConfiguration) {
@@ -51,7 +49,14 @@ func (m *SmsAuthenticationMethodConfiguration) GetFieldDeserializers()(map[strin
 // GetIncludeTargets gets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
 // returns a []SmsAuthenticationMethodTargetable when successful
 func (m *SmsAuthenticationMethodConfiguration) GetIncludeTargets()([]SmsAuthenticationMethodTargetable) {
-    return m.includeTargets
+    val, err := m.GetBackingStore().Get("includeTargets")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SmsAuthenticationMethodTargetable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *SmsAuthenticationMethodConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -75,7 +80,10 @@ func (m *SmsAuthenticationMethodConfiguration) Serialize(writer i878a80d2330e89d
 }
 // SetIncludeTargets sets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
 func (m *SmsAuthenticationMethodConfiguration) SetIncludeTargets(value []SmsAuthenticationMethodTargetable)() {
-    m.includeTargets = value
+    err := m.GetBackingStore().Set("includeTargets", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type SmsAuthenticationMethodConfigurationable interface {
     AuthenticationMethodConfigurationable

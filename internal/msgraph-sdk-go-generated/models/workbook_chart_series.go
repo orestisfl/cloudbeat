@@ -9,12 +9,6 @@ import (
 
 type WorkbookChartSeries struct {
     Entity
-    // The formatting of a chart series, which includes fill and line formatting. Read-only.
-    format WorkbookChartSeriesFormatable
-    // The name of a series in a chart.
-    name *string
-    // A collection of all points in the series. Read-only.
-    points []WorkbookChartPointable
 }
 // NewWorkbookChartSeries instantiates a new WorkbookChartSeries and sets the default values.
 func NewWorkbookChartSeries()(*WorkbookChartSeries) {
@@ -73,17 +67,38 @@ func (m *WorkbookChartSeries) GetFieldDeserializers()(map[string]func(i878a80d23
 // GetFormat gets the format property value. The formatting of a chart series, which includes fill and line formatting. Read-only.
 // returns a WorkbookChartSeriesFormatable when successful
 func (m *WorkbookChartSeries) GetFormat()(WorkbookChartSeriesFormatable) {
-    return m.format
+    val, err := m.GetBackingStore().Get("format")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(WorkbookChartSeriesFormatable)
+    }
+    return nil
 }
 // GetName gets the name property value. The name of a series in a chart.
 // returns a *string when successful
 func (m *WorkbookChartSeries) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetPoints gets the points property value. A collection of all points in the series. Read-only.
 // returns a []WorkbookChartPointable when successful
 func (m *WorkbookChartSeries) GetPoints()([]WorkbookChartPointable) {
-    return m.points
+    val, err := m.GetBackingStore().Get("points")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]WorkbookChartPointable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WorkbookChartSeries) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -119,15 +134,24 @@ func (m *WorkbookChartSeries) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetFormat sets the format property value. The formatting of a chart series, which includes fill and line formatting. Read-only.
 func (m *WorkbookChartSeries) SetFormat(value WorkbookChartSeriesFormatable)() {
-    m.format = value
+    err := m.GetBackingStore().Set("format", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The name of a series in a chart.
 func (m *WorkbookChartSeries) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPoints sets the points property value. A collection of all points in the series. Read-only.
 func (m *WorkbookChartSeries) SetPoints(value []WorkbookChartPointable)() {
-    m.points = value
+    err := m.GetBackingStore().Set("points", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookChartSeriesable interface {
     Entityable

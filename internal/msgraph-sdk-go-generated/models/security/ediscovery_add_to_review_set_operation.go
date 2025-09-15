@@ -9,20 +9,6 @@ import (
 
 type EdiscoveryAddToReviewSetOperation struct {
     CaseOperation
-    // The options to add items to the review set. Possible values are: allVersions, linkedFiles, unknownFutureValue, advancedIndexing, listAttachments, htmlTranscripts, messageConversationExpansion, locationsWithoutHits, allItemsInFolder. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: advancedIndexing, listAttachments, htmlTranscripts, messageConversationExpansion, locationsWithoutHits, allItemsInFolder.
-    additionalDataOptions *AdditionalDataOptions
-    // Specifies the number of most recent versions of cloud attachments to collect. Possible values are: latest, recent10, recent100, all, unknownFutureValue.
-    cloudAttachmentVersion *CloudAttachmentVersion
-    // Specifies the number of most recent versions of SharePoint documents to collect. Possible values are: latest, recent10, recent100, all, unknownFutureValue.
-    documentVersion *DocumentVersion
-    // The items to include in the review set. Possible values are: searchHits, partiallyIndexed, unknownFutureValue.
-    itemsToInclude *ItemsToInclude
-    // Contains the properties for report file metadata, including downloadUrl, fileName, and size.
-    reportFileMetadata []ReportFileMetadataable
-    // eDiscovery review set to which items matching source collection query gets added.
-    reviewSet EdiscoveryReviewSetable
-    // eDiscovery search that gets added to review set.
-    search EdiscoverySearchable
 }
 // NewEdiscoveryAddToReviewSetOperation instantiates a new EdiscoveryAddToReviewSetOperation and sets the default values.
 func NewEdiscoveryAddToReviewSetOperation()(*EdiscoveryAddToReviewSetOperation) {
@@ -39,17 +25,38 @@ func CreateEdiscoveryAddToReviewSetOperationFromDiscriminatorValue(parseNode i87
 // GetAdditionalDataOptions gets the additionalDataOptions property value. The options to add items to the review set. Possible values are: allVersions, linkedFiles, unknownFutureValue, advancedIndexing, listAttachments, htmlTranscripts, messageConversationExpansion, locationsWithoutHits, allItemsInFolder. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: advancedIndexing, listAttachments, htmlTranscripts, messageConversationExpansion, locationsWithoutHits, allItemsInFolder.
 // returns a *AdditionalDataOptions when successful
 func (m *EdiscoveryAddToReviewSetOperation) GetAdditionalDataOptions()(*AdditionalDataOptions) {
-    return m.additionalDataOptions
+    val, err := m.GetBackingStore().Get("additionalDataOptions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*AdditionalDataOptions)
+    }
+    return nil
 }
 // GetCloudAttachmentVersion gets the cloudAttachmentVersion property value. Specifies the number of most recent versions of cloud attachments to collect. Possible values are: latest, recent10, recent100, all, unknownFutureValue.
 // returns a *CloudAttachmentVersion when successful
 func (m *EdiscoveryAddToReviewSetOperation) GetCloudAttachmentVersion()(*CloudAttachmentVersion) {
-    return m.cloudAttachmentVersion
+    val, err := m.GetBackingStore().Get("cloudAttachmentVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*CloudAttachmentVersion)
+    }
+    return nil
 }
 // GetDocumentVersion gets the documentVersion property value. Specifies the number of most recent versions of SharePoint documents to collect. Possible values are: latest, recent10, recent100, all, unknownFutureValue.
 // returns a *DocumentVersion when successful
 func (m *EdiscoveryAddToReviewSetOperation) GetDocumentVersion()(*DocumentVersion) {
-    return m.documentVersion
+    val, err := m.GetBackingStore().Get("documentVersion")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*DocumentVersion)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -136,22 +143,50 @@ func (m *EdiscoveryAddToReviewSetOperation) GetFieldDeserializers()(map[string]f
 // GetItemsToInclude gets the itemsToInclude property value. The items to include in the review set. Possible values are: searchHits, partiallyIndexed, unknownFutureValue.
 // returns a *ItemsToInclude when successful
 func (m *EdiscoveryAddToReviewSetOperation) GetItemsToInclude()(*ItemsToInclude) {
-    return m.itemsToInclude
+    val, err := m.GetBackingStore().Get("itemsToInclude")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*ItemsToInclude)
+    }
+    return nil
 }
 // GetReportFileMetadata gets the reportFileMetadata property value. Contains the properties for report file metadata, including downloadUrl, fileName, and size.
 // returns a []ReportFileMetadataable when successful
 func (m *EdiscoveryAddToReviewSetOperation) GetReportFileMetadata()([]ReportFileMetadataable) {
-    return m.reportFileMetadata
+    val, err := m.GetBackingStore().Get("reportFileMetadata")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ReportFileMetadataable)
+    }
+    return nil
 }
 // GetReviewSet gets the reviewSet property value. eDiscovery review set to which items matching source collection query gets added.
 // returns a EdiscoveryReviewSetable when successful
 func (m *EdiscoveryAddToReviewSetOperation) GetReviewSet()(EdiscoveryReviewSetable) {
-    return m.reviewSet
+    val, err := m.GetBackingStore().Get("reviewSet")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EdiscoveryReviewSetable)
+    }
+    return nil
 }
 // GetSearch gets the search property value. eDiscovery search that gets added to review set.
 // returns a EdiscoverySearchable when successful
 func (m *EdiscoveryAddToReviewSetOperation) GetSearch()(EdiscoverySearchable) {
-    return m.search
+    val, err := m.GetBackingStore().Get("search")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EdiscoverySearchable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EdiscoveryAddToReviewSetOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -215,31 +250,52 @@ func (m *EdiscoveryAddToReviewSetOperation) Serialize(writer i878a80d2330e89d268
 }
 // SetAdditionalDataOptions sets the additionalDataOptions property value. The options to add items to the review set. Possible values are: allVersions, linkedFiles, unknownFutureValue, advancedIndexing, listAttachments, htmlTranscripts, messageConversationExpansion, locationsWithoutHits, allItemsInFolder. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: advancedIndexing, listAttachments, htmlTranscripts, messageConversationExpansion, locationsWithoutHits, allItemsInFolder.
 func (m *EdiscoveryAddToReviewSetOperation) SetAdditionalDataOptions(value *AdditionalDataOptions)() {
-    m.additionalDataOptions = value
+    err := m.GetBackingStore().Set("additionalDataOptions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCloudAttachmentVersion sets the cloudAttachmentVersion property value. Specifies the number of most recent versions of cloud attachments to collect. Possible values are: latest, recent10, recent100, all, unknownFutureValue.
 func (m *EdiscoveryAddToReviewSetOperation) SetCloudAttachmentVersion(value *CloudAttachmentVersion)() {
-    m.cloudAttachmentVersion = value
+    err := m.GetBackingStore().Set("cloudAttachmentVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDocumentVersion sets the documentVersion property value. Specifies the number of most recent versions of SharePoint documents to collect. Possible values are: latest, recent10, recent100, all, unknownFutureValue.
 func (m *EdiscoveryAddToReviewSetOperation) SetDocumentVersion(value *DocumentVersion)() {
-    m.documentVersion = value
+    err := m.GetBackingStore().Set("documentVersion", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetItemsToInclude sets the itemsToInclude property value. The items to include in the review set. Possible values are: searchHits, partiallyIndexed, unknownFutureValue.
 func (m *EdiscoveryAddToReviewSetOperation) SetItemsToInclude(value *ItemsToInclude)() {
-    m.itemsToInclude = value
+    err := m.GetBackingStore().Set("itemsToInclude", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReportFileMetadata sets the reportFileMetadata property value. Contains the properties for report file metadata, including downloadUrl, fileName, and size.
 func (m *EdiscoveryAddToReviewSetOperation) SetReportFileMetadata(value []ReportFileMetadataable)() {
-    m.reportFileMetadata = value
+    err := m.GetBackingStore().Set("reportFileMetadata", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetReviewSet sets the reviewSet property value. eDiscovery review set to which items matching source collection query gets added.
 func (m *EdiscoveryAddToReviewSetOperation) SetReviewSet(value EdiscoveryReviewSetable)() {
-    m.reviewSet = value
+    err := m.GetBackingStore().Set("reviewSet", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSearch sets the search property value. eDiscovery search that gets added to review set.
 func (m *EdiscoveryAddToReviewSetOperation) SetSearch(value EdiscoverySearchable)() {
-    m.search = value
+    err := m.GetBackingStore().Set("search", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EdiscoveryAddToReviewSetOperationable interface {
     CaseOperationable

@@ -10,28 +10,6 @@ import (
 
 type OnlineMeeting struct {
     OnlineMeetingBase
-    // The content stream of the attendee report of a Microsoft Teams live event. Read-only.
-    attendeeReport []byte
-    // Settings related to a live event.
-    broadcastSettings BroadcastMeetingSettingsable
-    // The meeting creation time in UTC. Read-only.
-    creationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The meeting end time in UTC. Required when you create an online meeting.
-    endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The external ID that is a custom identifier. Optional.
-    externalId *string
-    // Indicates whether this meeting is a Teams live event.
-    isBroadcast *bool
-    // The ID of the meeting template.
-    meetingTemplateId *string
-    // The participants associated with the online meeting, including the organizer and the attendees.
-    participants MeetingParticipantsable
-    // The recordings of an online meeting. Read-only.
-    recordings []CallRecordingable
-    // The meeting start time in UTC.
-    startDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The transcripts of an online meeting. Read-only.
-    transcripts []CallTranscriptable
 }
 // NewOnlineMeeting instantiates a new OnlineMeeting and sets the default values.
 func NewOnlineMeeting()(*OnlineMeeting) {
@@ -50,27 +28,62 @@ func CreateOnlineMeetingFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 // GetAttendeeReport gets the attendeeReport property value. The content stream of the attendee report of a Microsoft Teams live event. Read-only.
 // returns a []byte when successful
 func (m *OnlineMeeting) GetAttendeeReport()([]byte) {
-    return m.attendeeReport
+    val, err := m.GetBackingStore().Get("attendeeReport")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]byte)
+    }
+    return nil
 }
 // GetBroadcastSettings gets the broadcastSettings property value. Settings related to a live event.
 // returns a BroadcastMeetingSettingsable when successful
 func (m *OnlineMeeting) GetBroadcastSettings()(BroadcastMeetingSettingsable) {
-    return m.broadcastSettings
+    val, err := m.GetBackingStore().Get("broadcastSettings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(BroadcastMeetingSettingsable)
+    }
+    return nil
 }
 // GetCreationDateTime gets the creationDateTime property value. The meeting creation time in UTC. Read-only.
 // returns a *Time when successful
 func (m *OnlineMeeting) GetCreationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.creationDateTime
+    val, err := m.GetBackingStore().Get("creationDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetEndDateTime gets the endDateTime property value. The meeting end time in UTC. Required when you create an online meeting.
 // returns a *Time when successful
 func (m *OnlineMeeting) GetEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.endDateTime
+    val, err := m.GetBackingStore().Get("endDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetExternalId gets the externalId property value. The external ID that is a custom identifier. Optional.
 // returns a *string when successful
 func (m *OnlineMeeting) GetExternalId()(*string) {
-    return m.externalId
+    val, err := m.GetBackingStore().Get("externalId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -203,32 +216,74 @@ func (m *OnlineMeeting) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
 // GetIsBroadcast gets the isBroadcast property value. Indicates whether this meeting is a Teams live event.
 // returns a *bool when successful
 func (m *OnlineMeeting) GetIsBroadcast()(*bool) {
-    return m.isBroadcast
+    val, err := m.GetBackingStore().Get("isBroadcast")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetMeetingTemplateId gets the meetingTemplateId property value. The ID of the meeting template.
 // returns a *string when successful
 func (m *OnlineMeeting) GetMeetingTemplateId()(*string) {
-    return m.meetingTemplateId
+    val, err := m.GetBackingStore().Get("meetingTemplateId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetParticipants gets the participants property value. The participants associated with the online meeting, including the organizer and the attendees.
 // returns a MeetingParticipantsable when successful
 func (m *OnlineMeeting) GetParticipants()(MeetingParticipantsable) {
-    return m.participants
+    val, err := m.GetBackingStore().Get("participants")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(MeetingParticipantsable)
+    }
+    return nil
 }
 // GetRecordings gets the recordings property value. The recordings of an online meeting. Read-only.
 // returns a []CallRecordingable when successful
 func (m *OnlineMeeting) GetRecordings()([]CallRecordingable) {
-    return m.recordings
+    val, err := m.GetBackingStore().Get("recordings")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CallRecordingable)
+    }
+    return nil
 }
 // GetStartDateTime gets the startDateTime property value. The meeting start time in UTC.
 // returns a *Time when successful
 func (m *OnlineMeeting) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetTranscripts gets the transcripts property value. The transcripts of an online meeting. Read-only.
 // returns a []CallTranscriptable when successful
 func (m *OnlineMeeting) GetTranscripts()([]CallTranscriptable) {
-    return m.transcripts
+    val, err := m.GetBackingStore().Get("transcripts")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]CallTranscriptable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *OnlineMeeting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -318,47 +373,80 @@ func (m *OnlineMeeting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 }
 // SetAttendeeReport sets the attendeeReport property value. The content stream of the attendee report of a Microsoft Teams live event. Read-only.
 func (m *OnlineMeeting) SetAttendeeReport(value []byte)() {
-    m.attendeeReport = value
+    err := m.GetBackingStore().Set("attendeeReport", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetBroadcastSettings sets the broadcastSettings property value. Settings related to a live event.
 func (m *OnlineMeeting) SetBroadcastSettings(value BroadcastMeetingSettingsable)() {
-    m.broadcastSettings = value
+    err := m.GetBackingStore().Set("broadcastSettings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreationDateTime sets the creationDateTime property value. The meeting creation time in UTC. Read-only.
 func (m *OnlineMeeting) SetCreationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.creationDateTime = value
+    err := m.GetBackingStore().Set("creationDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEndDateTime sets the endDateTime property value. The meeting end time in UTC. Required when you create an online meeting.
 func (m *OnlineMeeting) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.endDateTime = value
+    err := m.GetBackingStore().Set("endDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetExternalId sets the externalId property value. The external ID that is a custom identifier. Optional.
 func (m *OnlineMeeting) SetExternalId(value *string)() {
-    m.externalId = value
+    err := m.GetBackingStore().Set("externalId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsBroadcast sets the isBroadcast property value. Indicates whether this meeting is a Teams live event.
 func (m *OnlineMeeting) SetIsBroadcast(value *bool)() {
-    m.isBroadcast = value
+    err := m.GetBackingStore().Set("isBroadcast", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetMeetingTemplateId sets the meetingTemplateId property value. The ID of the meeting template.
 func (m *OnlineMeeting) SetMeetingTemplateId(value *string)() {
-    m.meetingTemplateId = value
+    err := m.GetBackingStore().Set("meetingTemplateId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetParticipants sets the participants property value. The participants associated with the online meeting, including the organizer and the attendees.
 func (m *OnlineMeeting) SetParticipants(value MeetingParticipantsable)() {
-    m.participants = value
+    err := m.GetBackingStore().Set("participants", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRecordings sets the recordings property value. The recordings of an online meeting. Read-only.
 func (m *OnlineMeeting) SetRecordings(value []CallRecordingable)() {
-    m.recordings = value
+    err := m.GetBackingStore().Set("recordings", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. The meeting start time in UTC.
 func (m *OnlineMeeting) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTranscripts sets the transcripts property value. The transcripts of an online meeting. Read-only.
 func (m *OnlineMeeting) SetTranscripts(value []CallTranscriptable)() {
-    m.transcripts = value
+    err := m.GetBackingStore().Set("transcripts", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type OnlineMeetingable interface {
     OnlineMeetingBaseable

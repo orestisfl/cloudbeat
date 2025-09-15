@@ -9,8 +9,6 @@ import (
 
 type StorageSettings struct {
     Entity
-    // The quota property
-    quota UnifiedStorageQuotaable
 }
 // NewStorageSettings instantiates a new StorageSettings and sets the default values.
 func NewStorageSettings()(*StorageSettings) {
@@ -43,7 +41,14 @@ func (m *StorageSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 // GetQuota gets the quota property value. The quota property
 // returns a UnifiedStorageQuotaable when successful
 func (m *StorageSettings) GetQuota()(UnifiedStorageQuotaable) {
-    return m.quota
+    val, err := m.GetBackingStore().Get("quota")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(UnifiedStorageQuotaable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *StorageSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *StorageSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 }
 // SetQuota sets the quota property value. The quota property
 func (m *StorageSettings) SetQuota(value UnifiedStorageQuotaable)() {
-    m.quota = value
+    err := m.GetBackingStore().Set("quota", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type StorageSettingsable interface {
     Entityable

@@ -11,22 +11,6 @@ import (
 
 type Term struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Children of current term.
-    children []Termable
-    // Date and time of term creation. Read-only.
-    createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Description about term that is dependent on the languageTag.
-    descriptions []LocalizedDescriptionable
-    // Label metadata for a term.
-    labels []LocalizedLabelable
-    // Last date and time of term modification. Read-only.
-    lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Collection of properties on the term.
-    properties []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.KeyValueable
-    // To indicate which terms are related to the current term as either pinned or reused.
-    relations []Relationable
-    // The [set] in which the term is created.
-    set Setable
 }
 // NewTerm instantiates a new Term and sets the default values.
 func NewTerm()(*Term) {
@@ -43,17 +27,38 @@ func CreateTermFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487ee
 // GetChildren gets the children property value. Children of current term.
 // returns a []Termable when successful
 func (m *Term) GetChildren()([]Termable) {
-    return m.children
+    val, err := m.GetBackingStore().Get("children")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Termable)
+    }
+    return nil
 }
 // GetCreatedDateTime gets the createdDateTime property value. Date and time of term creation. Read-only.
 // returns a *Time when successful
 func (m *Term) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.createdDateTime
+    val, err := m.GetBackingStore().Get("createdDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetDescriptions gets the descriptions property value. Description about term that is dependent on the languageTag.
 // returns a []LocalizedDescriptionable when successful
 func (m *Term) GetDescriptions()([]LocalizedDescriptionable) {
-    return m.descriptions
+    val, err := m.GetBackingStore().Get("descriptions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]LocalizedDescriptionable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -174,27 +179,62 @@ func (m *Term) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
 // GetLabels gets the labels property value. Label metadata for a term.
 // returns a []LocalizedLabelable when successful
 func (m *Term) GetLabels()([]LocalizedLabelable) {
-    return m.labels
+    val, err := m.GetBackingStore().Get("labels")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]LocalizedLabelable)
+    }
+    return nil
 }
 // GetLastModifiedDateTime gets the lastModifiedDateTime property value. Last date and time of term modification. Read-only.
 // returns a *Time when successful
 func (m *Term) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.lastModifiedDateTime
+    val, err := m.GetBackingStore().Get("lastModifiedDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetProperties gets the properties property value. Collection of properties on the term.
 // returns a []KeyValueable when successful
 func (m *Term) GetProperties()([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.KeyValueable) {
-    return m.properties
+    val, err := m.GetBackingStore().Get("properties")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.KeyValueable)
+    }
+    return nil
 }
 // GetRelations gets the relations property value. To indicate which terms are related to the current term as either pinned or reused.
 // returns a []Relationable when successful
 func (m *Term) GetRelations()([]Relationable) {
-    return m.relations
+    val, err := m.GetBackingStore().Get("relations")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Relationable)
+    }
+    return nil
 }
 // GetSet gets the set property value. The [set] in which the term is created.
 // returns a Setable when successful
 func (m *Term) GetSet()(Setable) {
-    return m.set
+    val, err := m.GetBackingStore().Get("set")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Setable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Term) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -284,35 +324,59 @@ func (m *Term) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
 }
 // SetChildren sets the children property value. Children of current term.
 func (m *Term) SetChildren(value []Termable)() {
-    m.children = value
+    err := m.GetBackingStore().Set("children", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCreatedDateTime sets the createdDateTime property value. Date and time of term creation. Read-only.
 func (m *Term) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.createdDateTime = value
+    err := m.GetBackingStore().Set("createdDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescriptions sets the descriptions property value. Description about term that is dependent on the languageTag.
 func (m *Term) SetDescriptions(value []LocalizedDescriptionable)() {
-    m.descriptions = value
+    err := m.GetBackingStore().Set("descriptions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLabels sets the labels property value. Label metadata for a term.
 func (m *Term) SetLabels(value []LocalizedLabelable)() {
-    m.labels = value
+    err := m.GetBackingStore().Set("labels", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLastModifiedDateTime sets the lastModifiedDateTime property value. Last date and time of term modification. Read-only.
 func (m *Term) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.lastModifiedDateTime = value
+    err := m.GetBackingStore().Set("lastModifiedDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProperties sets the properties property value. Collection of properties on the term.
 func (m *Term) SetProperties(value []i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.KeyValueable)() {
-    m.properties = value
+    err := m.GetBackingStore().Set("properties", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRelations sets the relations property value. To indicate which terms are related to the current term as either pinned or reused.
 func (m *Term) SetRelations(value []Relationable)() {
-    m.relations = value
+    err := m.GetBackingStore().Set("relations", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSet sets the set property value. The [set] in which the term is created.
 func (m *Term) SetSet(value Setable)() {
-    m.set = value
+    err := m.GetBackingStore().Set("set", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Termable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

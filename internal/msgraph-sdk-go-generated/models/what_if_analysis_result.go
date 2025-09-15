@@ -9,10 +9,6 @@ import (
 
 type WhatIfAnalysisResult struct {
     ConditionalAccessPolicy
-    // The analysisReasons property
-    analysisReasons *WhatIfAnalysisReasons
-    // Specifies whether the policy applies to the sign-in properties provided in the request body. If policyApplies is true, the policy applies to the sign-in based on the sign-in properties provided. If policyApplies is false, the policy doesn't apply to the sign-in based on the sign-in properties provided and the analysisReasons property is populated to show the reason for the policy not applying.
-    policyApplies *bool
 }
 // NewWhatIfAnalysisResult instantiates a new WhatIfAnalysisResult and sets the default values.
 func NewWhatIfAnalysisResult()(*WhatIfAnalysisResult) {
@@ -29,7 +25,14 @@ func CreateWhatIfAnalysisResultFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetAnalysisReasons gets the analysisReasons property value. The analysisReasons property
 // returns a *WhatIfAnalysisReasons when successful
 func (m *WhatIfAnalysisResult) GetAnalysisReasons()(*WhatIfAnalysisReasons) {
-    return m.analysisReasons
+    val, err := m.GetBackingStore().Get("analysisReasons")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*WhatIfAnalysisReasons)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -60,7 +63,14 @@ func (m *WhatIfAnalysisResult) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetPolicyApplies gets the policyApplies property value. Specifies whether the policy applies to the sign-in properties provided in the request body. If policyApplies is true, the policy applies to the sign-in based on the sign-in properties provided. If policyApplies is false, the policy doesn't apply to the sign-in based on the sign-in properties provided and the analysisReasons property is populated to show the reason for the policy not applying.
 // returns a *bool when successful
 func (m *WhatIfAnalysisResult) GetPolicyApplies()(*bool) {
-    return m.policyApplies
+    val, err := m.GetBackingStore().Get("policyApplies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *WhatIfAnalysisResult) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -85,11 +95,17 @@ func (m *WhatIfAnalysisResult) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetAnalysisReasons sets the analysisReasons property value. The analysisReasons property
 func (m *WhatIfAnalysisResult) SetAnalysisReasons(value *WhatIfAnalysisReasons)() {
-    m.analysisReasons = value
+    err := m.GetBackingStore().Set("analysisReasons", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPolicyApplies sets the policyApplies property value. Specifies whether the policy applies to the sign-in properties provided in the request body. If policyApplies is true, the policy applies to the sign-in based on the sign-in properties provided. If policyApplies is false, the policy doesn't apply to the sign-in based on the sign-in properties provided and the analysisReasons property is populated to show the reason for the policy not applying.
 func (m *WhatIfAnalysisResult) SetPolicyApplies(value *bool)() {
-    m.policyApplies = value
+    err := m.GetBackingStore().Set("policyApplies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WhatIfAnalysisResultable interface {
     ConditionalAccessPolicyable

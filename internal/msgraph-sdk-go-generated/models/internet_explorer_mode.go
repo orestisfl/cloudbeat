@@ -9,8 +9,6 @@ import (
 
 type InternetExplorerMode struct {
     Entity
-    // A collection of site lists to support Internet Explorer mode.
-    siteLists []BrowserSiteListable
 }
 // NewInternetExplorerMode instantiates a new InternetExplorerMode and sets the default values.
 func NewInternetExplorerMode()(*InternetExplorerMode) {
@@ -49,7 +47,14 @@ func (m *InternetExplorerMode) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetSiteLists gets the siteLists property value. A collection of site lists to support Internet Explorer mode.
 // returns a []BrowserSiteListable when successful
 func (m *InternetExplorerMode) GetSiteLists()([]BrowserSiteListable) {
-    return m.siteLists
+    val, err := m.GetBackingStore().Get("siteLists")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]BrowserSiteListable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *InternetExplorerMode) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -73,7 +78,10 @@ func (m *InternetExplorerMode) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetSiteLists sets the siteLists property value. A collection of site lists to support Internet Explorer mode.
 func (m *InternetExplorerMode) SetSiteLists(value []BrowserSiteListable)() {
-    m.siteLists = value
+    err := m.GetBackingStore().Set("siteLists", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type InternetExplorerModeable interface {
     Entityable

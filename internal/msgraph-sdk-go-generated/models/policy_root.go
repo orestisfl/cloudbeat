@@ -9,46 +9,6 @@ import (
 
 type PolicyRoot struct {
     Entity
-    // The policy that controls the idle time out for web sessions for applications.
-    activityBasedTimeoutPolicies []ActivityBasedTimeoutPolicyable
-    // The policy by which consent requests are created and managed for the entire tenant.
-    adminConsentRequestPolicy AdminConsentRequestPolicyable
-    // The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
-    appManagementPolicies []AppManagementPolicyable
-    // The policy configuration of the self-service sign-up experience of external users.
-    authenticationFlowsPolicy AuthenticationFlowsPolicyable
-    // The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
-    authenticationMethodsPolicy AuthenticationMethodsPolicyable
-    // The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
-    authenticationStrengthPolicies []AuthenticationStrengthPolicyable
-    // The policy that controls Microsoft Entra authorization settings.
-    authorizationPolicy AuthorizationPolicyable
-    // The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
-    claimsMappingPolicies []ClaimsMappingPolicyable
-    // The custom rules that define an access scenario.
-    conditionalAccessPolicies []ConditionalAccessPolicyable
-    // The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
-    crossTenantAccessPolicy CrossTenantAccessPolicyable
-    // The tenant-wide policy that enforces app management restrictions for all applications and service principals.
-    defaultAppManagementPolicy TenantAppManagementPolicyable
-    // The deviceRegistrationPolicy property
-    deviceRegistrationPolicy DeviceRegistrationPolicyable
-    // The feature rollout policy associated with a directory object.
-    featureRolloutPolicies []FeatureRolloutPolicyable
-    // The policy to control Microsoft Entra authentication behavior for federated users.
-    homeRealmDiscoveryPolicies []HomeRealmDiscoveryPolicyable
-    // The policy that represents the security defaults that protect against common attacks.
-    identitySecurityDefaultsEnforcementPolicy IdentitySecurityDefaultsEnforcementPolicyable
-    // The policy that specifies the conditions under which consent can be granted.
-    permissionGrantPolicies []PermissionGrantPolicyable
-    // Specifies the various policies associated with scopes and roles.
-    roleManagementPolicies []UnifiedRoleManagementPolicyable
-    // The assignment of a role management policy to a role definition object.
-    roleManagementPolicyAssignments []UnifiedRoleManagementPolicyAssignmentable
-    // The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
-    tokenIssuancePolicies []TokenIssuancePolicyable
-    // The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
-    tokenLifetimePolicies []TokenLifetimePolicyable
 }
 // NewPolicyRoot instantiates a new PolicyRoot and sets the default values.
 func NewPolicyRoot()(*PolicyRoot) {
@@ -65,67 +25,158 @@ func CreatePolicyRootFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 // GetActivityBasedTimeoutPolicies gets the activityBasedTimeoutPolicies property value. The policy that controls the idle time out for web sessions for applications.
 // returns a []ActivityBasedTimeoutPolicyable when successful
 func (m *PolicyRoot) GetActivityBasedTimeoutPolicies()([]ActivityBasedTimeoutPolicyable) {
-    return m.activityBasedTimeoutPolicies
+    val, err := m.GetBackingStore().Get("activityBasedTimeoutPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ActivityBasedTimeoutPolicyable)
+    }
+    return nil
 }
 // GetAdminConsentRequestPolicy gets the adminConsentRequestPolicy property value. The policy by which consent requests are created and managed for the entire tenant.
 // returns a AdminConsentRequestPolicyable when successful
 func (m *PolicyRoot) GetAdminConsentRequestPolicy()(AdminConsentRequestPolicyable) {
-    return m.adminConsentRequestPolicy
+    val, err := m.GetBackingStore().Get("adminConsentRequestPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AdminConsentRequestPolicyable)
+    }
+    return nil
 }
 // GetAppManagementPolicies gets the appManagementPolicies property value. The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
 // returns a []AppManagementPolicyable when successful
 func (m *PolicyRoot) GetAppManagementPolicies()([]AppManagementPolicyable) {
-    return m.appManagementPolicies
+    val, err := m.GetBackingStore().Get("appManagementPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AppManagementPolicyable)
+    }
+    return nil
 }
 // GetAuthenticationFlowsPolicy gets the authenticationFlowsPolicy property value. The policy configuration of the self-service sign-up experience of external users.
 // returns a AuthenticationFlowsPolicyable when successful
 func (m *PolicyRoot) GetAuthenticationFlowsPolicy()(AuthenticationFlowsPolicyable) {
-    return m.authenticationFlowsPolicy
+    val, err := m.GetBackingStore().Get("authenticationFlowsPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AuthenticationFlowsPolicyable)
+    }
+    return nil
 }
 // GetAuthenticationMethodsPolicy gets the authenticationMethodsPolicy property value. The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
 // returns a AuthenticationMethodsPolicyable when successful
 func (m *PolicyRoot) GetAuthenticationMethodsPolicy()(AuthenticationMethodsPolicyable) {
-    return m.authenticationMethodsPolicy
+    val, err := m.GetBackingStore().Get("authenticationMethodsPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AuthenticationMethodsPolicyable)
+    }
+    return nil
 }
 // GetAuthenticationStrengthPolicies gets the authenticationStrengthPolicies property value. The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
 // returns a []AuthenticationStrengthPolicyable when successful
 func (m *PolicyRoot) GetAuthenticationStrengthPolicies()([]AuthenticationStrengthPolicyable) {
-    return m.authenticationStrengthPolicies
+    val, err := m.GetBackingStore().Get("authenticationStrengthPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]AuthenticationStrengthPolicyable)
+    }
+    return nil
 }
 // GetAuthorizationPolicy gets the authorizationPolicy property value. The policy that controls Microsoft Entra authorization settings.
 // returns a AuthorizationPolicyable when successful
 func (m *PolicyRoot) GetAuthorizationPolicy()(AuthorizationPolicyable) {
-    return m.authorizationPolicy
+    val, err := m.GetBackingStore().Get("authorizationPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AuthorizationPolicyable)
+    }
+    return nil
 }
 // GetClaimsMappingPolicies gets the claimsMappingPolicies property value. The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
 // returns a []ClaimsMappingPolicyable when successful
 func (m *PolicyRoot) GetClaimsMappingPolicies()([]ClaimsMappingPolicyable) {
-    return m.claimsMappingPolicies
+    val, err := m.GetBackingStore().Get("claimsMappingPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ClaimsMappingPolicyable)
+    }
+    return nil
 }
 // GetConditionalAccessPolicies gets the conditionalAccessPolicies property value. The custom rules that define an access scenario.
 // returns a []ConditionalAccessPolicyable when successful
 func (m *PolicyRoot) GetConditionalAccessPolicies()([]ConditionalAccessPolicyable) {
-    return m.conditionalAccessPolicies
+    val, err := m.GetBackingStore().Get("conditionalAccessPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ConditionalAccessPolicyable)
+    }
+    return nil
 }
 // GetCrossTenantAccessPolicy gets the crossTenantAccessPolicy property value. The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
 // returns a CrossTenantAccessPolicyable when successful
 func (m *PolicyRoot) GetCrossTenantAccessPolicy()(CrossTenantAccessPolicyable) {
-    return m.crossTenantAccessPolicy
+    val, err := m.GetBackingStore().Get("crossTenantAccessPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(CrossTenantAccessPolicyable)
+    }
+    return nil
 }
 // GetDefaultAppManagementPolicy gets the defaultAppManagementPolicy property value. The tenant-wide policy that enforces app management restrictions for all applications and service principals.
 // returns a TenantAppManagementPolicyable when successful
 func (m *PolicyRoot) GetDefaultAppManagementPolicy()(TenantAppManagementPolicyable) {
-    return m.defaultAppManagementPolicy
+    val, err := m.GetBackingStore().Get("defaultAppManagementPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(TenantAppManagementPolicyable)
+    }
+    return nil
 }
 // GetDeviceRegistrationPolicy gets the deviceRegistrationPolicy property value. The deviceRegistrationPolicy property
 // returns a DeviceRegistrationPolicyable when successful
 func (m *PolicyRoot) GetDeviceRegistrationPolicy()(DeviceRegistrationPolicyable) {
-    return m.deviceRegistrationPolicy
+    val, err := m.GetBackingStore().Get("deviceRegistrationPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(DeviceRegistrationPolicyable)
+    }
+    return nil
 }
 // GetFeatureRolloutPolicies gets the featureRolloutPolicies property value. The feature rollout policy associated with a directory object.
 // returns a []FeatureRolloutPolicyable when successful
 func (m *PolicyRoot) GetFeatureRolloutPolicies()([]FeatureRolloutPolicyable) {
-    return m.featureRolloutPolicies
+    val, err := m.GetBackingStore().Get("featureRolloutPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]FeatureRolloutPolicyable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -408,37 +459,86 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // GetHomeRealmDiscoveryPolicies gets the homeRealmDiscoveryPolicies property value. The policy to control Microsoft Entra authentication behavior for federated users.
 // returns a []HomeRealmDiscoveryPolicyable when successful
 func (m *PolicyRoot) GetHomeRealmDiscoveryPolicies()([]HomeRealmDiscoveryPolicyable) {
-    return m.homeRealmDiscoveryPolicies
+    val, err := m.GetBackingStore().Get("homeRealmDiscoveryPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]HomeRealmDiscoveryPolicyable)
+    }
+    return nil
 }
 // GetIdentitySecurityDefaultsEnforcementPolicy gets the identitySecurityDefaultsEnforcementPolicy property value. The policy that represents the security defaults that protect against common attacks.
 // returns a IdentitySecurityDefaultsEnforcementPolicyable when successful
 func (m *PolicyRoot) GetIdentitySecurityDefaultsEnforcementPolicy()(IdentitySecurityDefaultsEnforcementPolicyable) {
-    return m.identitySecurityDefaultsEnforcementPolicy
+    val, err := m.GetBackingStore().Get("identitySecurityDefaultsEnforcementPolicy")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(IdentitySecurityDefaultsEnforcementPolicyable)
+    }
+    return nil
 }
 // GetPermissionGrantPolicies gets the permissionGrantPolicies property value. The policy that specifies the conditions under which consent can be granted.
 // returns a []PermissionGrantPolicyable when successful
 func (m *PolicyRoot) GetPermissionGrantPolicies()([]PermissionGrantPolicyable) {
-    return m.permissionGrantPolicies
+    val, err := m.GetBackingStore().Get("permissionGrantPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]PermissionGrantPolicyable)
+    }
+    return nil
 }
 // GetRoleManagementPolicies gets the roleManagementPolicies property value. Specifies the various policies associated with scopes and roles.
 // returns a []UnifiedRoleManagementPolicyable when successful
 func (m *PolicyRoot) GetRoleManagementPolicies()([]UnifiedRoleManagementPolicyable) {
-    return m.roleManagementPolicies
+    val, err := m.GetBackingStore().Get("roleManagementPolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UnifiedRoleManagementPolicyable)
+    }
+    return nil
 }
 // GetRoleManagementPolicyAssignments gets the roleManagementPolicyAssignments property value. The assignment of a role management policy to a role definition object.
 // returns a []UnifiedRoleManagementPolicyAssignmentable when successful
 func (m *PolicyRoot) GetRoleManagementPolicyAssignments()([]UnifiedRoleManagementPolicyAssignmentable) {
-    return m.roleManagementPolicyAssignments
+    val, err := m.GetBackingStore().Get("roleManagementPolicyAssignments")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]UnifiedRoleManagementPolicyAssignmentable)
+    }
+    return nil
 }
 // GetTokenIssuancePolicies gets the tokenIssuancePolicies property value. The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
 // returns a []TokenIssuancePolicyable when successful
 func (m *PolicyRoot) GetTokenIssuancePolicies()([]TokenIssuancePolicyable) {
-    return m.tokenIssuancePolicies
+    val, err := m.GetBackingStore().Get("tokenIssuancePolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TokenIssuancePolicyable)
+    }
+    return nil
 }
 // GetTokenLifetimePolicies gets the tokenLifetimePolicies property value. The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
 // returns a []TokenLifetimePolicyable when successful
 func (m *PolicyRoot) GetTokenLifetimePolicies()([]TokenLifetimePolicyable) {
-    return m.tokenLifetimePolicies
+    val, err := m.GetBackingStore().Get("tokenLifetimePolicies")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]TokenLifetimePolicyable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -642,83 +742,143 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 }
 // SetActivityBasedTimeoutPolicies sets the activityBasedTimeoutPolicies property value. The policy that controls the idle time out for web sessions for applications.
 func (m *PolicyRoot) SetActivityBasedTimeoutPolicies(value []ActivityBasedTimeoutPolicyable)() {
-    m.activityBasedTimeoutPolicies = value
+    err := m.GetBackingStore().Set("activityBasedTimeoutPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAdminConsentRequestPolicy sets the adminConsentRequestPolicy property value. The policy by which consent requests are created and managed for the entire tenant.
 func (m *PolicyRoot) SetAdminConsentRequestPolicy(value AdminConsentRequestPolicyable)() {
-    m.adminConsentRequestPolicy = value
+    err := m.GetBackingStore().Set("adminConsentRequestPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAppManagementPolicies sets the appManagementPolicies property value. The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
 func (m *PolicyRoot) SetAppManagementPolicies(value []AppManagementPolicyable)() {
-    m.appManagementPolicies = value
+    err := m.GetBackingStore().Set("appManagementPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthenticationFlowsPolicy sets the authenticationFlowsPolicy property value. The policy configuration of the self-service sign-up experience of external users.
 func (m *PolicyRoot) SetAuthenticationFlowsPolicy(value AuthenticationFlowsPolicyable)() {
-    m.authenticationFlowsPolicy = value
+    err := m.GetBackingStore().Set("authenticationFlowsPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthenticationMethodsPolicy sets the authenticationMethodsPolicy property value. The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
 func (m *PolicyRoot) SetAuthenticationMethodsPolicy(value AuthenticationMethodsPolicyable)() {
-    m.authenticationMethodsPolicy = value
+    err := m.GetBackingStore().Set("authenticationMethodsPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthenticationStrengthPolicies sets the authenticationStrengthPolicies property value. The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
 func (m *PolicyRoot) SetAuthenticationStrengthPolicies(value []AuthenticationStrengthPolicyable)() {
-    m.authenticationStrengthPolicies = value
+    err := m.GetBackingStore().Set("authenticationStrengthPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetAuthorizationPolicy sets the authorizationPolicy property value. The policy that controls Microsoft Entra authorization settings.
 func (m *PolicyRoot) SetAuthorizationPolicy(value AuthorizationPolicyable)() {
-    m.authorizationPolicy = value
+    err := m.GetBackingStore().Set("authorizationPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetClaimsMappingPolicies sets the claimsMappingPolicies property value. The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
 func (m *PolicyRoot) SetClaimsMappingPolicies(value []ClaimsMappingPolicyable)() {
-    m.claimsMappingPolicies = value
+    err := m.GetBackingStore().Set("claimsMappingPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetConditionalAccessPolicies sets the conditionalAccessPolicies property value. The custom rules that define an access scenario.
 func (m *PolicyRoot) SetConditionalAccessPolicies(value []ConditionalAccessPolicyable)() {
-    m.conditionalAccessPolicies = value
+    err := m.GetBackingStore().Set("conditionalAccessPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCrossTenantAccessPolicy sets the crossTenantAccessPolicy property value. The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
 func (m *PolicyRoot) SetCrossTenantAccessPolicy(value CrossTenantAccessPolicyable)() {
-    m.crossTenantAccessPolicy = value
+    err := m.GetBackingStore().Set("crossTenantAccessPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDefaultAppManagementPolicy sets the defaultAppManagementPolicy property value. The tenant-wide policy that enforces app management restrictions for all applications and service principals.
 func (m *PolicyRoot) SetDefaultAppManagementPolicy(value TenantAppManagementPolicyable)() {
-    m.defaultAppManagementPolicy = value
+    err := m.GetBackingStore().Set("defaultAppManagementPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDeviceRegistrationPolicy sets the deviceRegistrationPolicy property value. The deviceRegistrationPolicy property
 func (m *PolicyRoot) SetDeviceRegistrationPolicy(value DeviceRegistrationPolicyable)() {
-    m.deviceRegistrationPolicy = value
+    err := m.GetBackingStore().Set("deviceRegistrationPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFeatureRolloutPolicies sets the featureRolloutPolicies property value. The feature rollout policy associated with a directory object.
 func (m *PolicyRoot) SetFeatureRolloutPolicies(value []FeatureRolloutPolicyable)() {
-    m.featureRolloutPolicies = value
+    err := m.GetBackingStore().Set("featureRolloutPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetHomeRealmDiscoveryPolicies sets the homeRealmDiscoveryPolicies property value. The policy to control Microsoft Entra authentication behavior for federated users.
 func (m *PolicyRoot) SetHomeRealmDiscoveryPolicies(value []HomeRealmDiscoveryPolicyable)() {
-    m.homeRealmDiscoveryPolicies = value
+    err := m.GetBackingStore().Set("homeRealmDiscoveryPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentitySecurityDefaultsEnforcementPolicy sets the identitySecurityDefaultsEnforcementPolicy property value. The policy that represents the security defaults that protect against common attacks.
 func (m *PolicyRoot) SetIdentitySecurityDefaultsEnforcementPolicy(value IdentitySecurityDefaultsEnforcementPolicyable)() {
-    m.identitySecurityDefaultsEnforcementPolicy = value
+    err := m.GetBackingStore().Set("identitySecurityDefaultsEnforcementPolicy", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPermissionGrantPolicies sets the permissionGrantPolicies property value. The policy that specifies the conditions under which consent can be granted.
 func (m *PolicyRoot) SetPermissionGrantPolicies(value []PermissionGrantPolicyable)() {
-    m.permissionGrantPolicies = value
+    err := m.GetBackingStore().Set("permissionGrantPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoleManagementPolicies sets the roleManagementPolicies property value. Specifies the various policies associated with scopes and roles.
 func (m *PolicyRoot) SetRoleManagementPolicies(value []UnifiedRoleManagementPolicyable)() {
-    m.roleManagementPolicies = value
+    err := m.GetBackingStore().Set("roleManagementPolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetRoleManagementPolicyAssignments sets the roleManagementPolicyAssignments property value. The assignment of a role management policy to a role definition object.
 func (m *PolicyRoot) SetRoleManagementPolicyAssignments(value []UnifiedRoleManagementPolicyAssignmentable)() {
-    m.roleManagementPolicyAssignments = value
+    err := m.GetBackingStore().Set("roleManagementPolicyAssignments", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTokenIssuancePolicies sets the tokenIssuancePolicies property value. The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
 func (m *PolicyRoot) SetTokenIssuancePolicies(value []TokenIssuancePolicyable)() {
-    m.tokenIssuancePolicies = value
+    err := m.GetBackingStore().Set("tokenIssuancePolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTokenLifetimePolicies sets the tokenLifetimePolicies property value. The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
 func (m *PolicyRoot) SetTokenLifetimePolicies(value []TokenLifetimePolicyable)() {
-    m.tokenLifetimePolicies = value
+    err := m.GetBackingStore().Set("tokenLifetimePolicies", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type PolicyRootable interface {
     Entityable

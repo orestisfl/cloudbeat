@@ -11,22 +11,6 @@ import (
 
 type Session struct {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entity
-    // Endpoint that answered the session.
-    callee Endpointable
-    // Endpoint that initiated the session.
-    caller Endpointable
-    // UTC time when the last user left the session. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-    endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Failure information associated with the session if the session failed.
-    failureInfo FailureInfoable
-    // Specifies whether the session is a test.
-    isTest *bool
-    // List of modalities present in the session. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.
-    modalities []Modality
-    // The list of segments involved in the session. Read-only. Nullable.
-    segments []Segmentable
-    // UTC time when the first user joined the session. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-    startDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewSession instantiates a new Session and sets the default values.
 func NewSession()(*Session) {
@@ -43,22 +27,50 @@ func CreateSessionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f48
 // GetCallee gets the callee property value. Endpoint that answered the session.
 // returns a Endpointable when successful
 func (m *Session) GetCallee()(Endpointable) {
-    return m.callee
+    val, err := m.GetBackingStore().Get("callee")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Endpointable)
+    }
+    return nil
 }
 // GetCaller gets the caller property value. Endpoint that initiated the session.
 // returns a Endpointable when successful
 func (m *Session) GetCaller()(Endpointable) {
-    return m.caller
+    val, err := m.GetBackingStore().Get("caller")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Endpointable)
+    }
+    return nil
 }
 // GetEndDateTime gets the endDateTime property value. UTC time when the last user left the session. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 // returns a *Time when successful
 func (m *Session) GetEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.endDateTime
+    val, err := m.GetBackingStore().Get("endDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // GetFailureInfo gets the failureInfo property value. Failure information associated with the session if the session failed.
 // returns a FailureInfoable when successful
 func (m *Session) GetFailureInfo()(FailureInfoable) {
-    return m.failureInfo
+    val, err := m.GetBackingStore().Get("failureInfo")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(FailureInfoable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -161,22 +173,50 @@ func (m *Session) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 // GetIsTest gets the isTest property value. Specifies whether the session is a test.
 // returns a *bool when successful
 func (m *Session) GetIsTest()(*bool) {
-    return m.isTest
+    val, err := m.GetBackingStore().Get("isTest")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*bool)
+    }
+    return nil
 }
 // GetModalities gets the modalities property value. List of modalities present in the session. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.
 // returns a []Modality when successful
 func (m *Session) GetModalities()([]Modality) {
-    return m.modalities
+    val, err := m.GetBackingStore().Get("modalities")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Modality)
+    }
+    return nil
 }
 // GetSegments gets the segments property value. The list of segments involved in the session. Read-only. Nullable.
 // returns a []Segmentable when successful
 func (m *Session) GetSegments()([]Segmentable) {
-    return m.segments
+    val, err := m.GetBackingStore().Get("segments")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]Segmentable)
+    }
+    return nil
 }
 // GetStartDateTime gets the startDateTime property value. UTC time when the first user joined the session. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 // returns a *Time when successful
 func (m *Session) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
-    return m.startDateTime
+    val, err := m.GetBackingStore().Get("startDateTime")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *Session) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -242,35 +282,59 @@ func (m *Session) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
 }
 // SetCallee sets the callee property value. Endpoint that answered the session.
 func (m *Session) SetCallee(value Endpointable)() {
-    m.callee = value
+    err := m.GetBackingStore().Set("callee", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetCaller sets the caller property value. Endpoint that initiated the session.
 func (m *Session) SetCaller(value Endpointable)() {
-    m.caller = value
+    err := m.GetBackingStore().Set("caller", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetEndDateTime sets the endDateTime property value. UTC time when the last user left the session. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 func (m *Session) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.endDateTime = value
+    err := m.GetBackingStore().Set("endDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetFailureInfo sets the failureInfo property value. Failure information associated with the session if the session failed.
 func (m *Session) SetFailureInfo(value FailureInfoable)() {
-    m.failureInfo = value
+    err := m.GetBackingStore().Set("failureInfo", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIsTest sets the isTest property value. Specifies whether the session is a test.
 func (m *Session) SetIsTest(value *bool)() {
-    m.isTest = value
+    err := m.GetBackingStore().Set("isTest", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetModalities sets the modalities property value. List of modalities present in the session. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.
 func (m *Session) SetModalities(value []Modality)() {
-    m.modalities = value
+    err := m.GetBackingStore().Set("modalities", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSegments sets the segments property value. The list of segments involved in the session. Read-only. Nullable.
 func (m *Session) SetSegments(value []Segmentable)() {
-    m.segments = value
+    err := m.GetBackingStore().Set("segments", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetStartDateTime sets the startDateTime property value. UTC time when the first user joined the session. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 func (m *Session) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
-    m.startDateTime = value
+    err := m.GetBackingStore().Set("startDateTime", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type Sessionable interface {
     i1459bb6cc24e946b3ac09fa3a3fb09be20240c61da91d0d77300a3654d193206.Entityable

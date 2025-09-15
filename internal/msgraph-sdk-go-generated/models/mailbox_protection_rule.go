@@ -9,8 +9,6 @@ import (
 
 type MailboxProtectionRule struct {
     ProtectionRuleBase
-    // Contains a mailbox expression. For examples, see mailboxExpression examples.
-    mailboxExpression *string
 }
 // NewMailboxProtectionRule instantiates a new MailboxProtectionRule and sets the default values.
 func NewMailboxProtectionRule()(*MailboxProtectionRule) {
@@ -45,7 +43,14 @@ func (m *MailboxProtectionRule) GetFieldDeserializers()(map[string]func(i878a80d
 // GetMailboxExpression gets the mailboxExpression property value. Contains a mailbox expression. For examples, see mailboxExpression examples.
 // returns a *string when successful
 func (m *MailboxProtectionRule) GetMailboxExpression()(*string) {
-    return m.mailboxExpression
+    val, err := m.GetBackingStore().Get("mailboxExpression")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *MailboxProtectionRule) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -63,7 +68,10 @@ func (m *MailboxProtectionRule) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetMailboxExpression sets the mailboxExpression property value. Contains a mailbox expression. For examples, see mailboxExpression examples.
 func (m *MailboxProtectionRule) SetMailboxExpression(value *string)() {
-    m.mailboxExpression = value
+    err := m.GetBackingStore().Set("mailboxExpression", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type MailboxProtectionRuleable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable

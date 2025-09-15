@@ -9,8 +9,6 @@ import (
 
 type WorkbookRangeFill struct {
     Entity
-    // HTML color code representing the color of the border line. Can either be of the form #RRGGBB, for example 'FFA500', or be a named HTML color, for example 'orange'.
-    color *string
 }
 // NewWorkbookRangeFill instantiates a new WorkbookRangeFill and sets the default values.
 func NewWorkbookRangeFill()(*WorkbookRangeFill) {
@@ -27,7 +25,14 @@ func CreateWorkbookRangeFillFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetColor gets the color property value. HTML color code representing the color of the border line. Can either be of the form #RRGGBB, for example 'FFA500', or be a named HTML color, for example 'orange'.
 // returns a *string when successful
 func (m *WorkbookRangeFill) GetColor()(*string) {
-    return m.color
+    val, err := m.GetBackingStore().Get("color")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +66,10 @@ func (m *WorkbookRangeFill) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetColor sets the color property value. HTML color code representing the color of the border line. Can either be of the form #RRGGBB, for example 'FFA500', or be a named HTML color, for example 'orange'.
 func (m *WorkbookRangeFill) SetColor(value *string)() {
-    m.color = value
+    err := m.GetBackingStore().Set("color", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookRangeFillable interface {
     Entityable

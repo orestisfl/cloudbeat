@@ -9,8 +9,6 @@ import (
 
 type EducationModuleResource struct {
     Entity
-    // Resource object that is with this module.
-    resource EducationResourceable
 }
 // NewEducationModuleResource instantiates a new EducationModuleResource and sets the default values.
 func NewEducationModuleResource()(*EducationModuleResource) {
@@ -43,7 +41,14 @@ func (m *EducationModuleResource) GetFieldDeserializers()(map[string]func(i878a8
 // GetResource gets the resource property value. Resource object that is with this module.
 // returns a EducationResourceable when successful
 func (m *EducationModuleResource) GetResource()(EducationResourceable) {
-    return m.resource
+    val, err := m.GetBackingStore().Get("resource")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(EducationResourceable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *EducationModuleResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -61,7 +66,10 @@ func (m *EducationModuleResource) Serialize(writer i878a80d2330e89d26896388a3f48
 }
 // SetResource sets the resource property value. Resource object that is with this module.
 func (m *EducationModuleResource) SetResource(value EducationResourceable)() {
-    m.resource = value
+    err := m.GetBackingStore().Set("resource", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type EducationModuleResourceable interface {
     Entityable

@@ -9,12 +9,6 @@ import (
 
 type VirtualEventPresenter struct {
     Entity
-    // Email address of the presenter.
-    email *string
-    // Identity information of the presenter. The supported identities are: communicationsGuestIdentity and communicationsUserIdentity.
-    identity Identityable
-    // Other details about the presenter. This property returns null when the virtual event type is virtualEventTownhall.
-    presenterDetails VirtualEventPresenterDetailsable
 }
 // NewVirtualEventPresenter instantiates a new VirtualEventPresenter and sets the default values.
 func NewVirtualEventPresenter()(*VirtualEventPresenter) {
@@ -31,7 +25,14 @@ func CreateVirtualEventPresenterFromDiscriminatorValue(parseNode i878a80d2330e89
 // GetEmail gets the email property value. Email address of the presenter.
 // returns a *string when successful
 func (m *VirtualEventPresenter) GetEmail()(*string) {
-    return m.email
+    val, err := m.GetBackingStore().Get("email")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -72,12 +73,26 @@ func (m *VirtualEventPresenter) GetFieldDeserializers()(map[string]func(i878a80d
 // GetIdentity gets the identity property value. Identity information of the presenter. The supported identities are: communicationsGuestIdentity and communicationsUserIdentity.
 // returns a Identityable when successful
 func (m *VirtualEventPresenter) GetIdentity()(Identityable) {
-    return m.identity
+    val, err := m.GetBackingStore().Get("identity")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Identityable)
+    }
+    return nil
 }
 // GetPresenterDetails gets the presenterDetails property value. Other details about the presenter. This property returns null when the virtual event type is virtualEventTownhall.
 // returns a VirtualEventPresenterDetailsable when successful
 func (m *VirtualEventPresenter) GetPresenterDetails()(VirtualEventPresenterDetailsable) {
-    return m.presenterDetails
+    val, err := m.GetBackingStore().Get("presenterDetails")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(VirtualEventPresenterDetailsable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventPresenter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -107,15 +122,24 @@ func (m *VirtualEventPresenter) Serialize(writer i878a80d2330e89d26896388a3f487e
 }
 // SetEmail sets the email property value. Email address of the presenter.
 func (m *VirtualEventPresenter) SetEmail(value *string)() {
-    m.email = value
+    err := m.GetBackingStore().Set("email", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetIdentity sets the identity property value. Identity information of the presenter. The supported identities are: communicationsGuestIdentity and communicationsUserIdentity.
 func (m *VirtualEventPresenter) SetIdentity(value Identityable)() {
-    m.identity = value
+    err := m.GetBackingStore().Set("identity", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetPresenterDetails sets the presenterDetails property value. Other details about the presenter. This property returns null when the virtual event type is virtualEventTownhall.
 func (m *VirtualEventPresenter) SetPresenterDetails(value VirtualEventPresenterDetailsable)() {
-    m.presenterDetails = value
+    err := m.GetBackingStore().Set("presenterDetails", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventPresenterable interface {
     Entityable

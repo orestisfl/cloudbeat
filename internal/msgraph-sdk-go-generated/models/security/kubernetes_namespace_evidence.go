@@ -9,12 +9,6 @@ import (
 
 type KubernetesNamespaceEvidence struct {
     AlertEvidence
-    // The namespace cluster.
-    cluster KubernetesClusterEvidenceable
-    // The labels for the Kubernetes pod.
-    labels Dictionaryable
-    // The namespace name.
-    name *string
 }
 // NewKubernetesNamespaceEvidence instantiates a new KubernetesNamespaceEvidence and sets the default values.
 func NewKubernetesNamespaceEvidence()(*KubernetesNamespaceEvidence) {
@@ -33,7 +27,14 @@ func CreateKubernetesNamespaceEvidenceFromDiscriminatorValue(parseNode i878a80d2
 // GetCluster gets the cluster property value. The namespace cluster.
 // returns a KubernetesClusterEvidenceable when successful
 func (m *KubernetesNamespaceEvidence) GetCluster()(KubernetesClusterEvidenceable) {
-    return m.cluster
+    val, err := m.GetBackingStore().Get("cluster")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(KubernetesClusterEvidenceable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -74,12 +75,26 @@ func (m *KubernetesNamespaceEvidence) GetFieldDeserializers()(map[string]func(i8
 // GetLabels gets the labels property value. The labels for the Kubernetes pod.
 // returns a Dictionaryable when successful
 func (m *KubernetesNamespaceEvidence) GetLabels()(Dictionaryable) {
-    return m.labels
+    val, err := m.GetBackingStore().Get("labels")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Dictionaryable)
+    }
+    return nil
 }
 // GetName gets the name property value. The namespace name.
 // returns a *string when successful
 func (m *KubernetesNamespaceEvidence) GetName()(*string) {
-    return m.name
+    val, err := m.GetBackingStore().Get("name")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *KubernetesNamespaceEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -109,15 +124,24 @@ func (m *KubernetesNamespaceEvidence) Serialize(writer i878a80d2330e89d26896388a
 }
 // SetCluster sets the cluster property value. The namespace cluster.
 func (m *KubernetesNamespaceEvidence) SetCluster(value KubernetesClusterEvidenceable)() {
-    m.cluster = value
+    err := m.GetBackingStore().Set("cluster", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetLabels sets the labels property value. The labels for the Kubernetes pod.
 func (m *KubernetesNamespaceEvidence) SetLabels(value Dictionaryable)() {
-    m.labels = value
+    err := m.GetBackingStore().Set("labels", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetName sets the name property value. The namespace name.
 func (m *KubernetesNamespaceEvidence) SetName(value *string)() {
-    m.name = value
+    err := m.GetBackingStore().Set("name", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type KubernetesNamespaceEvidenceable interface {
     AlertEvidenceable

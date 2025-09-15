@@ -9,12 +9,6 @@ import (
 
 type AuditLogRoot struct {
     Entity
-    // The directoryAudits property
-    directoryAudits []DirectoryAuditable
-    // The provisioning property
-    provisioning []ProvisioningObjectSummaryable
-    // The signIns property
-    signIns []SignInable
 }
 // NewAuditLogRoot instantiates a new AuditLogRoot and sets the default values.
 func NewAuditLogRoot()(*AuditLogRoot) {
@@ -31,7 +25,14 @@ func CreateAuditLogRootFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
 // GetDirectoryAudits gets the directoryAudits property value. The directoryAudits property
 // returns a []DirectoryAuditable when successful
 func (m *AuditLogRoot) GetDirectoryAudits()([]DirectoryAuditable) {
-    return m.directoryAudits
+    val, err := m.GetBackingStore().Get("directoryAudits")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]DirectoryAuditable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -90,12 +91,26 @@ func (m *AuditLogRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
 // GetProvisioning gets the provisioning property value. The provisioning property
 // returns a []ProvisioningObjectSummaryable when successful
 func (m *AuditLogRoot) GetProvisioning()([]ProvisioningObjectSummaryable) {
-    return m.provisioning
+    val, err := m.GetBackingStore().Get("provisioning")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]ProvisioningObjectSummaryable)
+    }
+    return nil
 }
 // GetSignIns gets the signIns property value. The signIns property
 // returns a []SignInable when successful
 func (m *AuditLogRoot) GetSignIns()([]SignInable) {
-    return m.signIns
+    val, err := m.GetBackingStore().Get("signIns")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]SignInable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AuditLogRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -143,15 +158,24 @@ func (m *AuditLogRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 }
 // SetDirectoryAudits sets the directoryAudits property value. The directoryAudits property
 func (m *AuditLogRoot) SetDirectoryAudits(value []DirectoryAuditable)() {
-    m.directoryAudits = value
+    err := m.GetBackingStore().Set("directoryAudits", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetProvisioning sets the provisioning property value. The provisioning property
 func (m *AuditLogRoot) SetProvisioning(value []ProvisioningObjectSummaryable)() {
-    m.provisioning = value
+    err := m.GetBackingStore().Set("provisioning", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetSignIns sets the signIns property value. The signIns property
 func (m *AuditLogRoot) SetSignIns(value []SignInable)() {
-    m.signIns = value
+    err := m.GetBackingStore().Set("signIns", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AuditLogRootable interface {
     Entityable

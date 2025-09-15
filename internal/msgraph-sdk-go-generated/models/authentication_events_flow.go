@@ -9,12 +9,6 @@ import (
 
 type AuthenticationEventsFlow struct {
     Entity
-    // The conditions representing the context of the authentication request that's used to decide whether the events policy is invoked.  Supports $filter (eq). See support for filtering on user flows for syntax information.
-    conditions AuthenticationConditionsable
-    // The description of the events policy.
-    description *string
-    // Required. The display name for the events policy.
-    displayName *string
 }
 // NewAuthenticationEventsFlow instantiates a new AuthenticationEventsFlow and sets the default values.
 func NewAuthenticationEventsFlow()(*AuthenticationEventsFlow) {
@@ -49,17 +43,38 @@ func CreateAuthenticationEventsFlowFromDiscriminatorValue(parseNode i878a80d2330
 // GetConditions gets the conditions property value. The conditions representing the context of the authentication request that's used to decide whether the events policy is invoked.  Supports $filter (eq). See support for filtering on user flows for syntax information.
 // returns a AuthenticationConditionsable when successful
 func (m *AuthenticationEventsFlow) GetConditions()(AuthenticationConditionsable) {
-    return m.conditions
+    val, err := m.GetBackingStore().Get("conditions")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(AuthenticationConditionsable)
+    }
+    return nil
 }
 // GetDescription gets the description property value. The description of the events policy.
 // returns a *string when successful
 func (m *AuthenticationEventsFlow) GetDescription()(*string) {
-    return m.description
+    val, err := m.GetBackingStore().Get("description")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetDisplayName gets the displayName property value. Required. The display name for the events policy.
 // returns a *string when successful
 func (m *AuthenticationEventsFlow) GetDisplayName()(*string) {
-    return m.displayName
+    val, err := m.GetBackingStore().Get("displayName")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -125,15 +140,24 @@ func (m *AuthenticationEventsFlow) Serialize(writer i878a80d2330e89d26896388a3f4
 }
 // SetConditions sets the conditions property value. The conditions representing the context of the authentication request that's used to decide whether the events policy is invoked.  Supports $filter (eq). See support for filtering on user flows for syntax information.
 func (m *AuthenticationEventsFlow) SetConditions(value AuthenticationConditionsable)() {
-    m.conditions = value
+    err := m.GetBackingStore().Set("conditions", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDescription sets the description property value. The description of the events policy.
 func (m *AuthenticationEventsFlow) SetDescription(value *string)() {
-    m.description = value
+    err := m.GetBackingStore().Set("description", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetDisplayName sets the displayName property value. Required. The display name for the events policy.
 func (m *AuthenticationEventsFlow) SetDisplayName(value *string)() {
-    m.displayName = value
+    err := m.GetBackingStore().Set("displayName", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AuthenticationEventsFlowable interface {
     Entityable

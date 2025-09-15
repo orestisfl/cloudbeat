@@ -9,12 +9,6 @@ import (
 
 type VirtualEventsRoot struct {
     Entity
-    // The events property
-    events []VirtualEventable
-    // A collection of town halls. Nullable.
-    townhalls []VirtualEventTownhallable
-    // A collection of webinars. Nullable.
-    webinars []VirtualEventWebinarable
 }
 // NewVirtualEventsRoot instantiates a new VirtualEventsRoot and sets the default values.
 func NewVirtualEventsRoot()(*VirtualEventsRoot) {
@@ -31,7 +25,14 @@ func CreateVirtualEventsRootFromDiscriminatorValue(parseNode i878a80d2330e89d268
 // GetEvents gets the events property value. The events property
 // returns a []VirtualEventable when successful
 func (m *VirtualEventsRoot) GetEvents()([]VirtualEventable) {
-    return m.events
+    val, err := m.GetBackingStore().Get("events")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventable)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -90,12 +91,26 @@ func (m *VirtualEventsRoot) GetFieldDeserializers()(map[string]func(i878a80d2330
 // GetTownhalls gets the townhalls property value. A collection of town halls. Nullable.
 // returns a []VirtualEventTownhallable when successful
 func (m *VirtualEventsRoot) GetTownhalls()([]VirtualEventTownhallable) {
-    return m.townhalls
+    val, err := m.GetBackingStore().Get("townhalls")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventTownhallable)
+    }
+    return nil
 }
 // GetWebinars gets the webinars property value. A collection of webinars. Nullable.
 // returns a []VirtualEventWebinarable when successful
 func (m *VirtualEventsRoot) GetWebinars()([]VirtualEventWebinarable) {
-    return m.webinars
+    val, err := m.GetBackingStore().Get("webinars")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.([]VirtualEventWebinarable)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *VirtualEventsRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -143,15 +158,24 @@ func (m *VirtualEventsRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 }
 // SetEvents sets the events property value. The events property
 func (m *VirtualEventsRoot) SetEvents(value []VirtualEventable)() {
-    m.events = value
+    err := m.GetBackingStore().Set("events", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTownhalls sets the townhalls property value. A collection of town halls. Nullable.
 func (m *VirtualEventsRoot) SetTownhalls(value []VirtualEventTownhallable)() {
-    m.townhalls = value
+    err := m.GetBackingStore().Set("townhalls", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetWebinars sets the webinars property value. A collection of webinars. Nullable.
 func (m *VirtualEventsRoot) SetWebinars(value []VirtualEventWebinarable)() {
-    m.webinars = value
+    err := m.GetBackingStore().Set("webinars", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type VirtualEventsRootable interface {
     Entityable

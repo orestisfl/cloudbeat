@@ -9,10 +9,6 @@ import (
 
 type UnclassifiedArtifact struct {
     Artifact
-    // The kind for this unclassifiedArtifact resource, describing what this value means.
-    kind *string
-    // The value for this unclassifiedArtifact.
-    value *string
 }
 // NewUnclassifiedArtifact instantiates a new UnclassifiedArtifact and sets the default values.
 func NewUnclassifiedArtifact()(*UnclassifiedArtifact) {
@@ -57,12 +53,26 @@ func (m *UnclassifiedArtifact) GetFieldDeserializers()(map[string]func(i878a80d2
 // GetKind gets the kind property value. The kind for this unclassifiedArtifact resource, describing what this value means.
 // returns a *string when successful
 func (m *UnclassifiedArtifact) GetKind()(*string) {
-    return m.kind
+    val, err := m.GetBackingStore().Get("kind")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetValue gets the value property value. The value for this unclassifiedArtifact.
 // returns a *string when successful
 func (m *UnclassifiedArtifact) GetValue()(*string) {
-    return m.value
+    val, err := m.GetBackingStore().Get("value")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *UnclassifiedArtifact) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -86,11 +96,17 @@ func (m *UnclassifiedArtifact) Serialize(writer i878a80d2330e89d26896388a3f487ee
 }
 // SetKind sets the kind property value. The kind for this unclassifiedArtifact resource, describing what this value means.
 func (m *UnclassifiedArtifact) SetKind(value *string)() {
-    m.kind = value
+    err := m.GetBackingStore().Set("kind", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetValue sets the value property value. The value for this unclassifiedArtifact.
 func (m *UnclassifiedArtifact) SetValue(value *string)() {
-    m.value = value
+    err := m.GetBackingStore().Set("value", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type UnclassifiedArtifactable interface {
     Artifactable

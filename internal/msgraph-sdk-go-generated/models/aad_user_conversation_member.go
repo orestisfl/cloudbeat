@@ -9,14 +9,6 @@ import (
 
 type AadUserConversationMember struct {
     ConversationMember
-    // The email address of the user.
-    email *string
-    // TenantId which the Microsoft Entra user belongs to.
-    tenantId *string
-    // The user property
-    user Userable
-    // The guid of the user.
-    userId *string
 }
 // NewAadUserConversationMember instantiates a new AadUserConversationMember and sets the default values.
 func NewAadUserConversationMember()(*AadUserConversationMember) {
@@ -35,7 +27,14 @@ func CreateAadUserConversationMemberFromDiscriminatorValue(parseNode i878a80d233
 // GetEmail gets the email property value. The email address of the user.
 // returns a *string when successful
 func (m *AadUserConversationMember) GetEmail()(*string) {
-    return m.email
+    val, err := m.GetBackingStore().Get("email")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -86,17 +85,38 @@ func (m *AadUserConversationMember) GetFieldDeserializers()(map[string]func(i878
 // GetTenantId gets the tenantId property value. TenantId which the Microsoft Entra user belongs to.
 // returns a *string when successful
 func (m *AadUserConversationMember) GetTenantId()(*string) {
-    return m.tenantId
+    val, err := m.GetBackingStore().Get("tenantId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetUser gets the user property value. The user property
 // returns a Userable when successful
 func (m *AadUserConversationMember) GetUser()(Userable) {
-    return m.user
+    val, err := m.GetBackingStore().Get("user")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(Userable)
+    }
+    return nil
 }
 // GetUserId gets the userId property value. The guid of the user.
 // returns a *string when successful
 func (m *AadUserConversationMember) GetUserId()(*string) {
-    return m.userId
+    val, err := m.GetBackingStore().Get("userId")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // Serialize serializes information the current object
 func (m *AadUserConversationMember) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -132,19 +152,31 @@ func (m *AadUserConversationMember) Serialize(writer i878a80d2330e89d26896388a3f
 }
 // SetEmail sets the email property value. The email address of the user.
 func (m *AadUserConversationMember) SetEmail(value *string)() {
-    m.email = value
+    err := m.GetBackingStore().Set("email", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetTenantId sets the tenantId property value. TenantId which the Microsoft Entra user belongs to.
 func (m *AadUserConversationMember) SetTenantId(value *string)() {
-    m.tenantId = value
+    err := m.GetBackingStore().Set("tenantId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUser sets the user property value. The user property
 func (m *AadUserConversationMember) SetUser(value Userable)() {
-    m.user = value
+    err := m.GetBackingStore().Set("user", value)
+    if err != nil {
+        panic(err)
+    }
 }
 // SetUserId sets the userId property value. The guid of the user.
 func (m *AadUserConversationMember) SetUserId(value *string)() {
-    m.userId = value
+    err := m.GetBackingStore().Set("userId", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type AadUserConversationMemberable interface {
     ConversationMemberable

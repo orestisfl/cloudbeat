@@ -9,8 +9,6 @@ import (
 
 type WorkbookApplication struct {
     Entity
-    // Returns the calculation mode used in the workbook. Possible values are: Automatic, AutomaticExceptTables, Manual.
-    calculationMode *string
 }
 // NewWorkbookApplication instantiates a new WorkbookApplication and sets the default values.
 func NewWorkbookApplication()(*WorkbookApplication) {
@@ -27,7 +25,14 @@ func CreateWorkbookApplicationFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetCalculationMode gets the calculationMode property value. Returns the calculation mode used in the workbook. Possible values are: Automatic, AutomaticExceptTables, Manual.
 // returns a *string when successful
 func (m *WorkbookApplication) GetCalculationMode()(*string) {
-    return m.calculationMode
+    val, err := m.GetBackingStore().Get("calculationMode")
+    if err != nil {
+        panic(err)
+    }
+    if val != nil {
+        return val.(*string)
+    }
+    return nil
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
@@ -61,7 +66,10 @@ func (m *WorkbookApplication) Serialize(writer i878a80d2330e89d26896388a3f487eef
 }
 // SetCalculationMode sets the calculationMode property value. Returns the calculation mode used in the workbook. Possible values are: Automatic, AutomaticExceptTables, Manual.
 func (m *WorkbookApplication) SetCalculationMode(value *string)() {
-    m.calculationMode = value
+    err := m.GetBackingStore().Set("calculationMode", value)
+    if err != nil {
+        panic(err)
+    }
 }
 type WorkbookApplicationable interface {
     Entityable
