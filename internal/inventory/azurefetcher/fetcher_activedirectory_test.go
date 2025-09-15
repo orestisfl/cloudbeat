@@ -26,7 +26,6 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/microsoft/kiota-abstractions-go/store"
-	"github.com/microsoftgraph/msgraph-sdk-go/models"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
@@ -34,6 +33,7 @@ import (
 
 	"github.com/elastic/cloudbeat/internal/inventory"
 	"github.com/elastic/cloudbeat/internal/inventory/testutil"
+	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/models"
 	"github.com/elastic/cloudbeat/internal/resources/utils/pointers"
 	"github.com/elastic/cloudbeat/internal/resources/utils/testhelper"
 )

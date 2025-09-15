@@ -1,0 +1,39 @@
+{
+  "descriptionHash": "E4D45CFC0592196B4802CE4C577D741F46D19F71EBC30D0BA43815E15734627B4EC366DA60B1C523800B5646E4B7863BE5245E004A032705C5661C929DFD29BB",
+  "descriptionLocation": "https://aka.ms/graph/v1.0/openapi.yaml",
+  "lockFileVersion": "1.0.0",
+  "kiotaVersion": "1.28.0",
+  "clientClassName": "ApiClient",
+  "typeAccessModifier": "Public",
+  "clientNamespaceName": "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated",
+  "language": "Go",
+  "usesBackingStore": false,
+  "excludeBackwardCompatible": false,
+  "includeAdditionalData": true,
+  "disableSSLValidation": false,
+  "serializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",
+    "Microsoft.Kiota.Serialization.Text.TextSerializationWriterFactory",
+    "Microsoft.Kiota.Serialization.Form.FormSerializationWriterFactory",
+    "Microsoft.Kiota.Serialization.Multipart.MultipartSerializationWriterFactory"
+  ],
+  "deserializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory",
+    "Microsoft.Kiota.Serialization.Text.TextParseNodeFactory",
+    "Microsoft.Kiota.Serialization.Form.FormParseNodeFactory"
+  ],
+  "structuredMimeTypes": [
+    "application/json",
+    "text/plain;q=0.9",
+    "application/x-www-form-urlencoded;q=0.2",
+    "multipart/form-data;q=0.1"
+  ],
+  "includePatterns": [
+    "/servicePrincipals",
+    "/directoryRoles",
+    "/groups",
+    "/users"
+  ],
+  "excludePatterns": [],
+  "disabledValidationRules": []
+}

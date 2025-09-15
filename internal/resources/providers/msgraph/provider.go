@@ -23,11 +23,11 @@ import (
 
 	graph "github.com/microsoftgraph/msgraph-sdk-go"
 	graphcore "github.com/microsoftgraph/msgraph-sdk-go-core"
-	"github.com/microsoftgraph/msgraph-sdk-go/directoryroles"
-	"github.com/microsoftgraph/msgraph-sdk-go/groups"
-	"github.com/microsoftgraph/msgraph-sdk-go/models"
-	"github.com/microsoftgraph/msgraph-sdk-go/serviceprincipals"
-	"github.com/microsoftgraph/msgraph-sdk-go/users"
+	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/directoryroles"
+	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/groups"
+	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/models"
+	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/serviceprincipals"
+	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/users"
 
 	"github.com/elastic/cloudbeat/internal/infra/clog"
 	"github.com/elastic/cloudbeat/internal/resources/providers/azurelib/auth"

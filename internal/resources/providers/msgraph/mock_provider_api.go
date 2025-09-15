@@ -22,7 +22,7 @@ package msgraph
 import (
 	context "context"
 
-	models "github.com/microsoftgraph/msgraph-sdk-go/models"
+	models "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/models"
 	mock "github.com/stretchr/testify/mock"
 )
 

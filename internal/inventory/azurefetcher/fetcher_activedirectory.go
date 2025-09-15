@@ -20,10 +20,9 @@ package azurefetcher
 import (
 	"context"
 
-	"github.com/microsoftgraph/msgraph-sdk-go/models"
-
 	"github.com/elastic/cloudbeat/internal/infra/clog"
 	"github.com/elastic/cloudbeat/internal/inventory"
+	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/models"
 	"github.com/elastic/cloudbeat/internal/resources/utils/pointers"
 )
 
