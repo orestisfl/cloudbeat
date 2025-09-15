@@ -21,17 +21,17 @@ import (
 	"context"
 	"fmt"
 
+	azure "github.com/microsoft/kiota-authentication-azure-go"
+	bundle "github.com/microsoft/kiota-bundle-go"
+	graphcore "github.com/microsoftgraph/msgraph-sdk-go-core"
+
+	"github.com/elastic/cloudbeat/internal/infra/clog"
 	client "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/directoryroles"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/groups"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/models"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/serviceprincipals"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/users"
-	azure "github.com/microsoft/kiota-authentication-azure-go"
-	bundle "github.com/microsoft/kiota-bundle-go"
-	graphcore "github.com/microsoftgraph/msgraph-sdk-go-core"
-
-	"github.com/elastic/cloudbeat/internal/infra/clog"
 	"github.com/elastic/cloudbeat/internal/resources/providers/azurelib/auth"
 )
 
@@ -66,7 +66,7 @@ func NewProvider(log *clog.Logger, azureConfig auth.AzureFactoryConfig) (Provide
 	}
 	return &provider{
 		log:    log.Named("msgraph"),
-		client: client.NewApiClient(adapter, nil),
+		client: client.NewApiClient(adapter, nil), // TODO: pass backing store?
 	}, nil
 }
 
