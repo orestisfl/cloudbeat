@@ -21,13 +21,15 @@ import (
 	"context"
 	"fmt"
 
-	graph "github.com/microsoftgraph/msgraph-sdk-go"
-	graphcore "github.com/microsoftgraph/msgraph-sdk-go-core"
+	client "github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/directoryroles"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/groups"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/models"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/serviceprincipals"
 	"github.com/elastic/cloudbeat/internal/msgraph-sdk-go-generated/users"
+	azure "github.com/microsoft/kiota-authentication-azure-go"
+	bundle "github.com/microsoft/kiota-bundle-go"
+	graphcore "github.com/microsoftgraph/msgraph-sdk-go-core"
 
 	"github.com/elastic/cloudbeat/internal/infra/clog"
 	"github.com/elastic/cloudbeat/internal/resources/providers/azurelib/auth"
@@ -54,17 +56,18 @@ type provider struct {
 // Docs: https://learn.microsoft.com/en-us/graph/sdks/create-client?from=snippets&tabs=go
 func NewProvider(log *clog.Logger, azureConfig auth.AzureFactoryConfig) (ProviderAPI, error) {
 	// Requires 'Directory.Read.All' API permission
-	c, err := graph.NewGraphServiceClientWithCredentials(azureConfig.Credentials, nil)
+	authProvider, err := azure.NewAzureIdentityAuthenticationProvider(azureConfig.Credentials)
 	if err != nil {
-		return nil, fmt.Errorf("error creating MS Graph client: %w", err)
+		return nil, fmt.Errorf("creating auth provider: %w", err)
 	}
-
-	p := &provider{
+	adapter, err := bundle.NewDefaultRequestAdapter(authProvider)
+	if err != nil {
+		return nil, fmt.Errorf("creating request adapter: %w", err)
+	}
+	return &provider{
 		log:    log.Named("msgraph"),
-		client: c,
-	}
-
-	return p, nil
+		client: client.NewApiClient(adapter),
+	}, nil
 }
 
 // Docs:
