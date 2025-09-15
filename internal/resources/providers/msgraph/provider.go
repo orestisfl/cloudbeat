@@ -66,7 +66,7 @@ func NewProvider(log *clog.Logger, azureConfig auth.AzureFactoryConfig) (Provide
 	}
 	return &provider{
 		log:    log.Named("msgraph"),
-		client: client.NewApiClient(adapter),
+		client: client.NewApiClient(adapter, nil),
 	}, nil
 }
 
