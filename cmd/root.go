@@ -27,10 +27,10 @@ import (
 	"github.com/elastic/beats/v7/libbeat/publisher/processing"
 	_ "github.com/elastic/beats/v7/x-pack/libbeat/include"
 	"github.com/elastic/beats/v7/x-pack/libbeat/management"
+	"github.com/elastic/cloudbeat/pkg/beater"
 	"github.com/elastic/elastic-agent-client/v7/pkg/client"
 	"github.com/elastic/elastic-agent-client/v7/pkg/proto"
 
-	"github.com/elastic/cloudbeat/internal/beater"
 	"github.com/elastic/cloudbeat/version"
 )
 
